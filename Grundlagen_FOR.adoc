@@ -1,0 +1,10 @@
+= [[FOR]]Die FOR-Schleife
+:stem: 
+:toc: left
+:toc-title: Inhaltsverzeichnis
+:sectnums:
+:icons: font
+:keywords: for-Schleife
+
+== Motivation
+Möchte man ...
