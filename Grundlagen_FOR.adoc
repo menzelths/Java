@@ -8,7 +8,7 @@
 
 == Motivation
 
-*Aufgabe 1:*
+*Aufgabe:*
 
 Gib alle geraden Zahlen zwischen 0 und 10 einschließlich aus.
 
@@ -31,6 +31,8 @@ Spätestens aber, wenn man alle geraden Zahlen zwischen 0 und 1000 einschließli
 Zu diesem Zweck gibt es die *for-Schleife*, die dazu da ist, Anweisungen zu wiederholen.
 
 == Syntax 
+=== Grundsyntax
+
 Die for-Schleife wird am einfachsten anhand eines Beispiels erklärt, das tatsächlich die geraden Zahlen zwischen 0 und 10 einschließlich ausgibt.
 
 [source, java]
@@ -72,3 +74,89 @@ Da der Wert von i nach jedem Durchlauf um 1 erhöht wird, läuft die Schleife fo
 
 Sobald also `i` den Wert 11 annimmt, ist die Bedingung `i < = 10` zum wiederholten Durchlaufen der Schleife nicht mehr erfüllt und der Code _hinter_ der for-Schleife wird als nächstes ausgeführt.
 
+[IMPORTANT]
+====
+Beachte, dass `i` nur innerhalb der geschweiften Klammern des for-Blocks bekannt ist: die Variable wird im Kopf der Schleife mittels `int i=0` *deklariert* (dem Programm vorgestellt) und *initialisiert* (mit einem Startwert belegt, hier 0) und _lebt_ zwischen den geschweiften Klammern der for-Schleife.
+
+Dahinter ist sie wieder unbekannt und der Buchstabe `i` kann erneut verwendet werden. Somit ergibt das folgende Programm einen Fehler:
+
+[source, java]
+----
+for (int i=0; i<=10; i++){ 
+    System.out.println(""+i); // <1>
+} // <2>
+System.out.println(""+i); // <3>
+----
+<1> Zwischen den geschweiften Klammern der for-Schleife: das `i` ist hier bekannt.
+<2> for-Schleife zu Ende: ab hier ist das `i` nicht mehr bekannt.
+<3> Fehler! Hier ist das `i` dem Programm nicht mehr bekannt. Man hätte es z. B. eine Zeile davor mittels `int i=8;` erneut einführen können.
+====
+
+=== Anderer Startwert
+Natürlich muss `i` zu Beginn nicht auf 0 gesetzt werden, man könnte auch schon bei 4 starten und nur bis 8 laufen lassen:
+
+[source, java]
+----
+for (int i=4; i<=8; i++){
+    if (i%2==0){ 
+        System.out.println(""+i);
+    }
+} 
+----
+
+=== Zählen in Zweierschritten
+Auch der letzte Abschnitt muss nicht immer nur um 1 erhöhen. Man könnte das ganze Programm vereinfachen, indem man bei 0 startet und die Zahlen in Zweierschritten durchläuft:
+
+[source, java]
+----
+for (int i=0; i<=10; i+=2){ // <1>
+    System.out.println(""+i);
+} 
+----
+<1> Statt `i+=2` könnte man auch `i=i+2` schreiben, was einer Erhöhung um 2 entspricht.
+
+
+=== Rückwärts laufende for-Schleife
+Ebenso kann man eine for-Schleife abwärts zählen lassen, indem man statt `i++` den Ausdruck `i--` verwendet. So könnte man einen Countdown umsetzen.
+
+[source, java]
+----
+for (int i=10; i>=0; i--){ // <1>
+    System.out.println(""+i);
+} 
+----
+<1> Beachte, dass neben dem Startwert auch noch die Bedingung für den nächsten Schleifendurchlauf angepasst werden muss!
+
+=== Verschachtelte Schleifen
+Will man beispielsweise das kleine Einmaleins tabellarisch ausgeben, so gelingt das mit zwei ineinander verschachtelten Schleifen:
+
+[source, java]
+----
+for (int i=1; i<=10; i++){ // <1>
+    for (int j=1; j<=10; j++){ // <2>
+        System.out.print(i*j+"\t"); // <3>
+    } 
+    System.out.println(""); // <4>
+}
+----
+<1> Äußere Schleife für die einzelnen Zeilen (Laufvariable `i`)
+<2> Innere Schleifen für die Spalten (Laufvariable `j`)
+<3> `print` und nicht `println`: dadurch kein Zeilenvorschub nach der Ausgabe. Das `\t` fügt einen Tabulator ein, damit die Ausgabe besser aussieht.
+<4> Dieses `println` wird nach der Ausgabe einer kompletten Zeile aufgerufen und fügt einen Zeilenvorschub ein, springt also in die nächste Zeile.
+
+Die innerer Schleife läuft pro Einzelschritt der äußeren Schleife jeweils 10 Mal durch.
+
+Die Ausgabe sieht folgendermaßen aus:
+
+....
+1	2	3	4	5	6	7	8	9	10	
+2	4	6	8	10	12	14	16	18	20	
+3	6	9	12	15	18	21	24	27	30	
+4	8	12	16	20	24	28	32	36	40	
+5	10	15	20	25	30	35	40	45	50	
+6	12	18	24	30	36	42	48	54	60	
+7	14	21	28	35	42	49	56	63	70	
+8	16	24	32	40	48	56	64	72	80	
+9	18	27	36	45	54	63	72	81	90	
+10	20	30	40	50	60	70	80	90	100	
+....
