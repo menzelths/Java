@@ -426,6 +426,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Inhaltsverzeichnis</div>
 <ul class="sectlevel1">
 <li><a href="#_motivation">1. Motivation</a></li>
+<li><a href="#_syntax">2. Syntax</a></li>
 </ul>
 </div>
 </div>
@@ -434,14 +435,158 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_motivation">1. Motivation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Möchte man &#8230;&#8203;</p>
+<p><strong>Aufgabe 1:</strong></p>
+</div>
+<div class="paragraph">
+<p>Gib alle geraden Zahlen zwischen 0 und 10 einschließlich aus.</p>
+</div>
+<div class="paragraph">
+<p><strong>Mögliche Lösung:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">System.out.println("0");
+System.out.println("2");
+System.out.println("4");
+System.out.println("6");
+System.out.println("8");
+System.out.println("10");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Es handelt sich hierbei zwar um eine Lösung, allerdings könnte man für diese Vorgehensweise genauso eine Textverarbeitung für die Ausgabe wählen, der Aufwand wäre dann sogar etwas geringer.</p>
+</div>
+<div class="paragraph">
+<p>Spätestens aber, wenn man alle geraden Zahlen zwischen 0 und 1000 einschließlich ausgeben will, wird niemand die Aufgabe wie in der dargestellten Lösung beantworten.</p>
+</div>
+<div class="paragraph">
+<p>Zu diesem Zweck gibt es die <strong>for-Schleife</strong>, die dazu da ist, Anweisungen zu wiederholen.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntax">2. Syntax</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Die for-Schleife wird am einfachsten anhand eines Beispiels erklärt, das tatsächlich die geraden Zahlen zwischen 0 und 10 einschließlich ausgibt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">for (int i=0; i&lt;=10; i++){ <i class="conum" data-value="1"></i><b>(1)</b>
+    if (i%2==0){ <i class="conum" data-value="2"></i><b>(2)</b>
+        System.out.println(""+i); <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+} <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Kopf der for-Schleife</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Überprüfung auf die Eigenschaft "Zahl gerade" mit Modulo ("Teilbarkeit durch 2 wahr?")</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Ausgabe der Zahl. Die Anführungszeichen wandeln den Ausdruck <code>""+i</code> in einen String um, da <code>System.out.println</code> nur Strings, also Text, ausgeben kann.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Hier endet die for-Schleife, d.h. alle Anweisungen bis hierher werden wiederholt.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Sehen wir uns den Kopf der for-Schleife genauer an: Dieser besteht aus drei Abschnitten, die untereinander durch Strichpunkte getrennt sind.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>int i=0</code> führt die Integer-Variable i ein, die mit dem Wert 0 initialisiert wird. Sie wird auch als <strong>Laufvariable</strong> bezeichnet.</p>
+</li>
+<li>
+<p><code>i &lt; = 10</code> ist die Bedingung, die <em>vor</em> jedem Durchlauf auf Wahrheit überprüft wird. Sobald diese Bedingung nicht mehr erfüllt ist, wird die for-Schleife verlassen und der Code hinter der for-Schleife wird ausgeführt.</p>
+</li>
+<li>
+<p><code>i++</code> erhöht den Wert von i nach jedem Durchlauf um 1</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Da der Wert von i nach jedem Durchlauf um 1 erhöht wird, läuft die Schleife folgendermaßen ab:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>i</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ist <code>i &lt; = 10</code> ?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">falsch</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Sobald also <code>i</code> den Wert 11 annimmt, ist die Bedingung <code>i &lt; = 10</code> zum wiederholten Durchlaufen der Schleife nicht mehr erfüllt und der Code <em>hinter</em> der for-Schleife wird als nächstes ausgeführt.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-08 18:25:47 Mitteleuropõische Sommerzeit
+Last updated 2016-10-10 14:47:37 Mitteleuropõische Sommerzeit
 </div>
 </div>
 <script type="text/x-mathjax-config">

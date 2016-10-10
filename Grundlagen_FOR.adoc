@@ -7,4 +7,68 @@
 :keywords: for-Schleife
 
 == Motivation
-Möchte man ...
+
+*Aufgabe 1:*
+
+Gib alle geraden Zahlen zwischen 0 und 10 einschließlich aus.
+
+*Mögliche Lösung:*
+
+[source, java]
+----
+System.out.println("0");
+System.out.println("2");
+System.out.println("4");
+System.out.println("6");
+System.out.println("8");
+System.out.println("10");
+----
+
+Es handelt sich hierbei zwar um eine Lösung, allerdings könnte man für diese Vorgehensweise genauso eine Textverarbeitung für die Ausgabe wählen, der Aufwand wäre dann sogar etwas geringer.
+
+Spätestens aber, wenn man alle geraden Zahlen zwischen 0 und 1000 einschließlich ausgeben will, wird niemand die Aufgabe wie in der dargestellten Lösung beantworten.
+
+Zu diesem Zweck gibt es die *for-Schleife*, die dazu da ist, Anweisungen zu wiederholen.
+
+== Syntax 
+Die for-Schleife wird am einfachsten anhand eines Beispiels erklärt, das tatsächlich die geraden Zahlen zwischen 0 und 10 einschließlich ausgibt.
+
+[source, java]
+----
+for (int i=0; i<=10; i++){ // <1>
+    if (i%2==0){ // <2>
+        System.out.println(""+i); // <3>
+    }
+} // <4>
+----
+<1> Kopf der for-Schleife
+<2> Überprüfung auf die Eigenschaft "Zahl gerade" mit Modulo ("Teilbarkeit durch 2 wahr?")
+<3> Ausgabe der Zahl. Die Anführungszeichen wandeln den Ausdruck `""+i` in einen String um, da `System.out.println` nur Strings, also Text, ausgeben kann.
+<4> Hier endet die for-Schleife, d.h. alle Anweisungen bis hierher werden wiederholt.
+
+Sehen wir uns den Kopf der for-Schleife genauer an: Dieser besteht aus drei Abschnitten, die untereinander durch Strichpunkte getrennt sind.
+
+. `int i=0` führt die Integer-Variable i ein, die mit dem Wert 0 initialisiert wird. Sie wird auch als *Laufvariable* bezeichnet.
+. `i < = 10` ist die Bedingung, die _vor_ jedem Durchlauf auf Wahrheit überprüft wird. Sobald diese Bedingung nicht mehr erfüllt ist, wird die for-Schleife verlassen und der Code hinter der for-Schleife wird ausgeführt.
+. `i++` erhöht den Wert von i nach jedem Durchlauf um 1
+
+Da der Wert von i nach jedem Durchlauf um 1 erhöht wird, läuft die Schleife folgendermaßen ab:
+
+|===
+|`i`|Ist `i < = 10` ? 
+| 0|wahr
+| 1|wahr
+| 2|wahr
+| 3|wahr
+| 4|wahr
+| 5|wahr
+| 6|wahr
+| 7|wahr
+| 8|wahr
+| 9|wahr
+| 10|wahr
+| 11|falsch
+|===
+
+Sobald also `i` den Wert 11 annimmt, ist die Bedingung `i < = 10` zum wiederholten Durchlaufen der Schleife nicht mehr erfüllt und der Code _hinter_ der for-Schleife wird als nächstes ausgeführt.
+
