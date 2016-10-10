@@ -1,4 +1,4 @@
-= [[FOR]]Die FOR-Schleife
+= [[FOR]]Die for-Schleife
 :stem: 
 :toc: left
 :toc-title: Inhaltsverzeichnis
@@ -39,13 +39,13 @@ Die for-Schleife wird am einfachsten anhand eines Beispiels erklärt, das tatsä
 ----
 for (int i=0; i<=10; i++){ // <1>
     if (i%2==0){ // <2>
-        System.out.println(""+i); // <3>
+        System.out.println(i); // <3>
     }
 } // <4>
 ----
 <1> Kopf der for-Schleife
 <2> Überprüfung auf die Eigenschaft "Zahl gerade" mit Modulo ("Teilbarkeit durch 2 wahr?")
-<3> Ausgabe der Zahl. Die Anführungszeichen wandeln den Ausdruck `""+i` in einen String um, da `System.out.println` nur Strings, also Text, ausgeben kann.
+<3> Ausgabe der Zahl. 
 <4> Hier endet die for-Schleife, d.h. alle Anweisungen bis hierher werden wiederholt.
 
 Sehen wir uns den Kopf der for-Schleife genauer an: Dieser besteht aus drei Abschnitten, die untereinander durch Strichpunkte getrennt sind.
@@ -83,9 +83,9 @@ Dahinter ist sie wieder unbekannt und der Buchstabe `i` kann erneut verwendet we
 [source, java]
 ----
 for (int i=0; i<=10; i++){ 
-    System.out.println(""+i); // <1>
+    System.out.println(i); // <1>
 } // <2>
-System.out.println(""+i); // <3>
+System.out.println(i); // <3>
 ----
 <1> Zwischen den geschweiften Klammern der for-Schleife: das `i` ist hier bekannt.
 <2> for-Schleife zu Ende: ab hier ist das `i` nicht mehr bekannt.
@@ -110,7 +110,7 @@ Auch der letzte Abschnitt muss nicht immer nur um 1 erhöhen. Man könnte das ga
 [source, java]
 ----
 for (int i=0; i<=10; i+=2){ // <1>
-    System.out.println(""+i);
+    System.out.println(i);
 } 
 ----
 <1> Statt `i+=2` könnte man auch `i=i+2` schreiben, was einer Erhöhung um 2 entspricht.
@@ -122,7 +122,8 @@ Ebenso kann man eine for-Schleife abwärts zählen lassen, indem man statt `i++`
 [source, java]
 ----
 for (int i=10; i>=0; i--){ // <1>
-    System.out.println(""+i);
+    System.out.println(i);
+    System.out.println(i);
 } 
 ----
 <1> Beachte, dass neben dem Startwert auch noch die Bedingung für den nächsten Schleifendurchlauf angepasst werden muss!

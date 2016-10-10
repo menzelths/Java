@@ -3,7 +3,12 @@
 
 == Javakurs
 
-<<Grundlagen_FOR.adoc#FOR,Die For-Schleife>>
+=== Grundlagen
+
+<<Grundlagen_FOR.adoc#FOR,Die for-Schleife>>
+
+<<Grundlagen_WHILE.adoc#WHILE,Die while-Schleife>>
+
 
 
 

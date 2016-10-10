@@ -5,7 +5,8 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Kapitelübersicht</title>
+<meta name="keywords" content="while-Schleife">
+<title>Die while-Schleife und die do-while-Schleife</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -416,22 +417,78 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Kapitelübersicht</h1>
+<h1><a id="WHILE"></a>Die while-Schleife und die do-while-Schleife</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Inhaltsverzeichnis</div>
+<ul class="sectlevel1">
+<li><a href="#_motivation">1. Motivation</a></li>
+<li><a href="#_syntax">2. Syntax</a>
+<ul class="sectlevel2">
+<li><a href="#_grundsyntax">2.1. Grundsyntax</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_javakurs">Javakurs</h2>
+<h2 id="_motivation">1. Motivation</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_grundlagen">Grundlagen</h3>
 <div class="paragraph">
-<p><a href="Grundlagen_FOR.html#FOR">Die for-Schleife</a></p>
+<p>Beim Einsatz der <em>for-Schleife</em>, weiß man im Prinzip beim Schreiben eines Programms, wie oft diese Schleife durchlaufen werden muss. Allerdings gibt es viele Probleme, die sich zwar mit Programmen lösen lassen, bei denen aber zu Beginn nicht klar ist, wie oft bestimmte Schritte wiederholt werden müssen.</p>
 </div>
 <div class="paragraph">
-<p><a href="Grundlagen_WHILE.html#WHILE">Die while-Schleife</a></p>
+<p>Ein einfaches Beispiel ist das Auffinden von Teilern einer Zahl: Manche Zahlen haben nur 2 Teiler (Primzahlen), andere 5 oder 30, etc.</p>
+</div>
+<div class="paragraph">
+<p>In solchen Fällen kann die Anzahl der Wiederholungen nicht einfach beim Schreiben eines Programms angegeben werden. Ein solches Problem kann aber über eine Wahrheitsbedingung gelöst werden, indem das Programm so lange läuft, wie eine Bedingung erfüllt ist.</p>
+</div>
+<div class="paragraph">
+<p>Genau für diesen Zweck existiert die <strong>while-Schleife</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntax">2. Syntax</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_grundsyntax">2.1. Grundsyntax</h3>
+<div class="paragraph">
+<p>Betrachten wir zunächst ein einfaches Beispiel. Es sollen solange zufällige Zahlen ausgegeben bis eine Zahl größer als 0.5 ist. Dies könnte mit Hilfe der while-Schleife folgendermaßen bewerkstelligt werden:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">double zufall = Math.random(); <i class="conum" data-value="1"></i><b>(1)</b>
+while (zufall &lt; 0.5) { <i class="conum" data-value="2"></i><b>(2)</b>
+    System.out.println(zufall);
+    zufall = Math.random(); <i class="conum" data-value="3"></i><b>(3)</b>
+}
+System.out.println("Fertig"); <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Eine Variable zur Speicherung von Kommazahlen namens <code>zufall</code> wird angelegt und mit einer Zufallszahl zwischen 0 und 1 belegt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Solange diese Zufallszahl kleiner als 0.5 ist wird diese Zahl ausgegeben und</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>eine neue Zufallszahl in <code>zufall</code> gespeichert.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Wenn die Bedingung der while-Schleife nicht mehr erfüllt ist, fährt das Programm hinter dem while-Block mit der Ausführung fort, gibt hier also "Fertig" aus.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -439,8 +496,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-10 15:32:59 Mitteleuropõische Sommerzeit
+Last updated 2016-10-10 15:53:17 Mitteleuropõische Sommerzeit
 </div>
 </div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>

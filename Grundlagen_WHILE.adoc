@@ -1,0 +1,36 @@
+= [[WHILE]]Die while-Schleife und die do-while-Schleife
+:stem: 
+:toc: left
+:toc-title: Inhaltsverzeichnis
+:sectnums:
+:icons: font
+:keywords: while-Schleife
+
+== Motivation
+Beim Einsatz der _for-Schleife_, weiß man im Prinzip beim Schreiben eines Programms, wie oft diese Schleife durchlaufen werden muss. Allerdings gibt es viele Probleme, die sich zwar mit Programmen lösen lassen, bei denen aber zu Beginn nicht klar ist, wie oft bestimmte Schritte wiederholt werden müssen.
+
+Ein einfaches Beispiel ist das Auffinden von Teilern einer Zahl: Manche Zahlen haben nur 2 Teiler (Primzahlen), andere 5 oder 30, etc.
+
+In solchen Fällen kann die Anzahl der Wiederholungen nicht einfach beim Schreiben eines Programms angegeben werden. Ein solches Problem kann aber über eine Wahrheitsbedingung gelöst werden, indem das Programm so lange läuft, wie eine Bedingung erfüllt ist.
+
+Genau für diesen Zweck existiert die *while-Schleife*.
+
+== Syntax
+=== Grundsyntax
+Betrachten wir zunächst ein einfaches Beispiel. Es sollen solange zufällige Zahlen ausgegeben bis eine Zahl größer als 0.5 ist. Dies könnte mit Hilfe der while-Schleife folgendermaßen bewerkstelligt werden:
+
+[source, java, indent=0]
+----
+        double zufall = Math.random(); //<1>
+        while (zufall < 0.5) { // <2>
+            System.out.println(zufall);
+            zufall = Math.random(); // <3>
+        }
+        System.out.println("Fertig"); // <4>
+----
+<1> Eine Variable zur Speicherung von Kommazahlen namens `zufall` wird angelegt und mit einer Zufallszahl zwischen 0 und 1 belegt.
+<2> Solange diese Zufallszahl kleiner als 0.5 ist wird diese Zahl ausgegeben und
+<3> eine neue Zufallszahl in `zufall` gespeichert.
+<4> Wenn die Bedingung der while-Schleife nicht mehr erfüllt ist, fährt das Programm hinter dem while-Block mit der Ausführung fort, gibt hier also "Fertig" aus.
+
+
