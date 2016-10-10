@@ -426,7 +426,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Inhaltsverzeichnis</div>
 <ul class="sectlevel1">
 <li><a href="#_motivation">1. Motivation</a></li>
-<li><a href="#_syntax">2. Syntax</a></li>
+<li><a href="#_syntax">2. Syntax</a>
+<ul class="sectlevel2">
+<li><a href="#_grundsyntax">2.1. Grundsyntax</a></li>
+<li><a href="#_anderer_startwert">2.2. Anderer Startwert</a></li>
+<li><a href="#_zählen_in_zweierschritten">2.3. Zählen in Zweierschritten</a></li>
+<li><a href="#_rückwärts_laufende_for_schleife">2.4. Rückwärts laufende for-Schleife</a></li>
+<li><a href="#_verschachtelte_schleifen">2.5. Verschachtelte Schleifen</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -435,7 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_motivation">1. Motivation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Aufgabe 1:</strong></p>
+<p><strong>Aufgabe:</strong></p>
 </div>
 <div class="paragraph">
 <p>Gib alle geraden Zahlen zwischen 0 und 10 einschließlich aus.</p>
@@ -467,6 +475,8 @@ System.out.println("10");</code></pre>
 <div class="sect1">
 <h2 id="_syntax">2. Syntax</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_grundsyntax">2.1. Grundsyntax</h3>
 <div class="paragraph">
 <p>Die for-Schleife wird am einfachsten anhand eines Beispiels erklärt, das tatsächlich die geraden Zahlen zwischen 0 und 10 einschließlich ausgibt.</p>
 </div>
@@ -581,12 +591,167 @@ System.out.println("10");</code></pre>
 <div class="paragraph">
 <p>Sobald also <code>i</code> den Wert 11 annimmt, ist die Bedingung <code>i &lt; = 10</code> zum wiederholten Durchlaufen der Schleife nicht mehr erfüllt und der Code <em>hinter</em> der for-Schleife wird als nächstes ausgeführt.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Beachte, dass <code>i</code> nur innerhalb der geschweiften Klammern des for-Blocks bekannt ist: die Variable wird im Kopf der Schleife mittels <code>int i=0</code> <strong>deklariert</strong> (dem Programm vorgestellt) und <strong>initialisiert</strong> (mit einem Startwert belegt, hier 0) und <em>lebt</em> zwischen den geschweiften Klammern der for-Schleife.</p>
+</div>
+<div class="paragraph">
+<p>Dahinter ist sie wieder unbekannt und der Buchstabe <code>i</code> kann erneut verwendet werden. Somit ergibt das folgende Programm einen Fehler:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">for (int i=0; i&lt;=10; i++){
+    System.out.println(""+i); <i class="conum" data-value="1"></i><b>(1)</b>
+} <i class="conum" data-value="2"></i><b>(2)</b>
+System.out.println(""+i); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Zwischen den geschweiften Klammern der for-Schleife: das <code>i</code> ist hier bekannt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>for-Schleife zu Ende: ab hier ist das <code>i</code> nicht mehr bekannt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Fehler! Hier ist das <code>i</code> dem Programm nicht mehr bekannt. Man hätte es z. B. eine Zeile davor mittels <code>int i=8;</code> erneut einführen können.</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_anderer_startwert">2.2. Anderer Startwert</h3>
+<div class="paragraph">
+<p>Natürlich muss <code>i</code> zu Beginn nicht auf 0 gesetzt werden, man könnte auch schon bei 4 starten und nur bis 8 laufen lassen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">for (int i=4; i&lt;=8; i++){
+    if (i%2==0){
+        System.out.println(""+i);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_zählen_in_zweierschritten">2.3. Zählen in Zweierschritten</h3>
+<div class="paragraph">
+<p>Auch der letzte Abschnitt muss nicht immer nur um 1 erhöhen. Man könnte das ganze Programm vereinfachen, indem man bei 0 startet und die Zahlen in Zweierschritten durchläuft:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">for (int i=0; i&lt;=10; i+=2){ <i class="conum" data-value="1"></i><b>(1)</b>
+    System.out.println(""+i);
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Statt <code>i+=2</code> könnte man auch <code>i=i+2</code> schreiben, was einer Erhöhung um 2 entspricht.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rückwärts_laufende_for_schleife">2.4. Rückwärts laufende for-Schleife</h3>
+<div class="paragraph">
+<p>Ebenso kann man eine for-Schleife abwärts zählen lassen, indem man statt <code>i++</code> den Ausdruck <code>i--</code> verwendet. So könnte man einen Countdown umsetzen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">for (int i=10; i&gt;=0; i--){ <i class="conum" data-value="1"></i><b>(1)</b>
+    System.out.println(""+i);
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Beachte, dass neben dem Startwert auch noch die Bedingung für den nächsten Schleifendurchlauf angepasst werden muss!</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_verschachtelte_schleifen">2.5. Verschachtelte Schleifen</h3>
+<div class="paragraph">
+<p>Will man beispielsweise das kleine Einmaleins tabellarisch ausgeben, so gelingt das mit zwei ineinander verschachtelten Schleifen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">for (int i=1; i&lt;=10; i++){ <i class="conum" data-value="1"></i><b>(1)</b>
+    for (int j=1; j&lt;=10; j++){ <i class="conum" data-value="2"></i><b>(2)</b>
+        System.out.print(i*j+"\t"); <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+    System.out.println(""); <i class="conum" data-value="4"></i><b>(4)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Äußere Schleife für die einzelnen Zeilen (Laufvariable <code>i</code>)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Innere Schleifen für die Spalten (Laufvariable <code>j</code>)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>print</code> und nicht <code>println</code>: dadurch kein Zeilenvorschub nach der Ausgabe. Das <code>\t</code> fügt einen Tabulator ein, damit die Ausgabe besser aussieht.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Dieses <code>println</code> wird nach der Ausgabe einer kompletten Zeile aufgerufen und fügt einen Zeilenvorschub ein, springt also in die nächste Zeile.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Die innerer Schleife läuft pro Einzelschritt der äußeren Schleife jeweils 10 Mal durch.</p>
+</div>
+<div class="paragraph">
+<p>Die Ausgabe sieht folgendermaßen aus:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>1	2	3	4	5	6	7	8	9	10
+2	4	6	8	10	12	14	16	18	20
+3	6	9	12	15	18	21	24	27	30
+4	8	12	16	20	24	28	32	36	40
+5	10	15	20	25	30	35	40	45	50
+6	12	18	24	30	36	42	48	54	60
+7	14	21	28	35	42	49	56	63	70
+8	16	24	32	40	48	56	64	72	80
+9	18	27	36	45	54	63	72	81	90
+10	20	30	40	50	60	70	80	90	100</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-10 14:47:37 Mitteleuropõische Sommerzeit
+Last updated 2016-10-10 15:26:33 Mitteleuropõische Sommerzeit
 </div>
 </div>
 <script type="text/x-mathjax-config">
