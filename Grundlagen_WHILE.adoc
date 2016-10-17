@@ -238,7 +238,7 @@ Eine Möglichkeit wäre:
 ----
 <1> Neue Schleife mit so vielen Durchläufen, wie `zaehler` gezählt hat. Hier wird eine neue Laufvariable `j` eingeführt, da wir uns noch in der for-Schleife mit der Laufvariable `i` befinden.
 <2> Wieder `print` statt `println`, damit nicht nach jedem `#` eine neue Zeile beginnt
-<3> `println` beendet mit seiner Ausgabe die aktuelle Zeile und springt in die nächste. Das Gleicher erreicht man mit `\n`: Kommt dieses in einem String vor, steht dies für eine neue Zeile.
+<3> `println` beendet mit seiner Ausgabe die aktuelle Zeile und springt in die nächste. Das Gleiche erreicht man mit `\n`: Kommt dieses in einem String vor, steht dies für eine neue Zeile. Durch die Kombination aus beidem, wie hier, springt der Cursor sogar in die übernächste Zeile, so dass jeweils eine Leerzeile entsteht.
 
 Die Ausgabe sieht dann so aus:
 
