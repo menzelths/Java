@@ -1,0 +1,17 @@
+= [[METHODEN]](Statische) Methoden
+:stem: 
+:toc: left
+:toc-title: Inhaltsverzeichnis
+:sectnums:
+:icons: font
+:keywords: Methode, Methoden, statisch
+
+== Motivation
+
+Beim Programmieren kommt es oft vor, dass bestimmte Programmteile mehrfach im Programm auftauchen. Über "Copy and Paste" kann man natürlich einen einmal geschriebenen Teil auch an einer anderen Stelle wieder einsetzen; allerdings ist das keine einfach zu wartende Lösung, da, falls in diesem Programmteil ein Fehler verbessert werden muss, dieser auch an allen anderen Stellen korrigiert werden muss.
+
+Unter anderem zu diesem Zweck gibt es *Methoden* (in anderen Programmiersprachen häufig auch als *Funktionen* bekannt), die oft benötigte Programmteile einfach wiederverwendbar machen.
+
+== Syntax
+
+Als Beispiel soll ein Programmteil dienen, der eine Zahl quadriert. Wir 

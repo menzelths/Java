@@ -5,8 +5,8 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<meta name="keywords" content="while-Schleife">
-<title>Die while-Schleife und die do-while-Schleife</title>
+<meta name="keywords" content="while-Schleife, while, Collatz">
+<title>Die while-Schleife</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -421,7 +421,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1><a id="WHILE"></a>Die while-Schleife und die do-while-Schleife</h1>
+<h1><a id="WHILE"></a>Die while-Schleife</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Inhaltsverzeichnis</div>
 <ul class="sectlevel1">
@@ -429,6 +429,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_syntax">2. Syntax</a>
 <ul class="sectlevel2">
 <li><a href="#_grundsyntax">2.1. Grundsyntax</a></li>
+</ul>
+</li>
+<li><a href="#_beispiel_collatz_sche_vermutung">3. Beispiel: Collatz&#8217;sche Vermutung</a>
+<ul class="sectlevel2">
+<li><a href="#_grundproblem">3.1. Grundproblem</a></li>
+<li><a href="#_erweiterung_1_zählen_der_schritte_bis_zur_1">3.2. Erweiterung 1: Zählen der Schritte bis zur 1</a></li>
+<li><a href="#_erweiterung_2_ausgeben_der_schritte_und_schrittzahlen_für_alle_zahlen_von_2_bis_10">3.3. Erweiterung 2: Ausgeben der Schritte und Schrittzahlen für alle Zahlen von 2 bis 10</a></li>
+<li><a href="#_erweiterung_3_collatz_mit_grafischer_ausgabe">3.4. Erweiterung 3: Collatz mit "grafischer Ausgabe"</a></li>
 </ul>
 </li>
 </ul>
@@ -490,13 +498,365 @@ System.out.println("Fertig"); <i class="conum" data-value="4"></i><b>(4)</b></co
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Beachte, dass die Bedingung in den Klammern nach dem <code>while</code>-Schlüsselwort aus der While-Schleife heraus im Normalfall veränderbar sein sollte, da sonst die Gefahr einer <strong>Endlosschleife</strong> besteht. In unserem Beispiel findet eine solche Änderung statt, da der Wert von <code>zufall</code> in jedem Durchlauf zufällig neu bestimmt wird und die Wiederholung der Schleife somit irgendwann abgebrochen wird, da ein zufälliger Wert &gt;= 0.5 in <code>zufall</code> gespeichert wird.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_beispiel_collatz_sche_vermutung">3. Beispiel: Collatz&#8217;sche Vermutung</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_grundproblem">3.1. Grundproblem</h3>
+<div class="paragraph">
+<p>Stellen wir uns eine Art Spiel vor: Man denke sich eine natürliche Zahl ungleich der 1.</p>
+</div>
+<div class="paragraph">
+<p>Handelt es sich dabei um eine <em>gerade</em> Zahl, so dividieren wir sie durch 2.</p>
+</div>
+<div class="paragraph">
+<p>Ist die Zahl jedoch <em>ungerade</em>, so multiplizieren wir sie mit 3 und addieren 1, also kurz:</p>
+</div>
+<div class="paragraph">
+<p>\$z text( gerade ) =&gt; z_text(neu)=z/2\$,</p>
+</div>
+<div class="paragraph">
+<p>\$z text( ungerade ) =&gt; z_text(neu)=3*z+1\$</p>
+</div>
+<div class="paragraph">
+<p>Mit der neuen Zahl wiederholt man dieses "Spiel" und verfährt solange nach dieser Regel, bis man für z die Zahl 1 erhält.</p>
+</div>
+<div class="paragraph">
+<p>Die <strong>Collatz&#8217;sche Vermutung</strong> besagt nun, dass man, unabhängig von der Startzahl, immer bei 1 landet. <em>Vermutung</em>, da man bis heute keinen mathematischen Beweis dafür hat, dass dies tatsächlich immer gelingt.</p>
+</div>
+<div class="paragraph">
+<p>Dieses Problem ist gut für eine While-Schleife geeignet, da man zum Zeitpunkt des Programmierens noch nicht weiß, wie oft das Spiel durchlaufen werden muss. Man weiß nur, dass es läuft, <em>solange</em> z&gt;1 ist. Und immer, wenn das Wort "solange" einen Wiederholungsvorgang beschreibt, ist die While-Schleife ein guter Kandidat zur Lösung des Problems mit Hilfe eines Algorithmus.</p>
+</div>
+<div class="paragraph">
+<p>Eine mögliche Lösung könnte so aussehen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">int z=5; <i class="conum" data-value="1"></i><b>(1)</b>
+System.out.println("Startwert: "+z);
+while (z&gt;1){ <i class="conum" data-value="2"></i><b>(2)</b>
+    if (z%2==0){ <i class="conum" data-value="3"></i><b>(3)</b>
+        z/=2; <i class="conum" data-value="4"></i><b>(4)</b>
+    } else {
+        z=3*z+1;
+    }
+    System.out.println(z);
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Die Ganzzahlvariable z enthält die betrachtete Zahl</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Der folgende Prozess wird wiederholt, <em>solange</em> z&gt;1 ist</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>z%2</code> (sprich: "z modulo 2") liefert den Rest der Division von z durch 2: ist z also gerade, erhält man 0, sonst 1</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>z/=2</code> ist die abkürzende Schreibweise für <code>z=z/2</code></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Nach dem Starten liefert das Programm die Ausgabe:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Startwert: 5
+16
+8
+4
+2
+1</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_erweiterung_1_zählen_der_schritte_bis_zur_1">3.2. Erweiterung 1: Zählen der Schritte bis zur 1</h3>
+<div class="paragraph">
+<p>Möchte man zählen, wie viele Schritte benötigt werden, bis man zur 1 gelangt, so muss man einen Zähler einbauen. Dies gelingt beispielsweise folgendermaßen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">int z=5;
+int zaehler=0; <i class="conum" data-value="1"></i><b>(1)</b>
+System.out.println("Startwert: "+z);
+while (z&gt;1){
+    if (z%2==0){
+        z/=2;
+    } else {
+        z=3*z+1;
+    }
+    zaehler++; <i class="conum" data-value="2"></i><b>(2)</b>
+    System.out.println(z);
+}
+System.out.println("Anzahl der Schritte: "+zaehler); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Deklaration und Initialisierung der Zählvariable <code>zaehler</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>An diese Stelle kommt das Programm jedes Mal, wenn z verändert wird. Somit ist das die perfekte Stelle, um die Anzahl der Schritte zu zählen</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>An diese Stelle kommt das Programm erst <em>nach</em> dem Beenden der While-Schleife. Somit kann hier nun die Anzahl der Schritte ausgegeben werden.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_erweiterung_2_ausgeben_der_schritte_und_schrittzahlen_für_alle_zahlen_von_2_bis_10">3.3. Erweiterung 2: Ausgeben der Schritte und Schrittzahlen für alle Zahlen von 2 bis 10</h3>
+<div class="paragraph">
+<p>Nun soll nicht nur eine Zahl, sondern mehrere untersucht werden, was man intuitiv zunächst so umsetzen könnte:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">for (int z = 2; z&lt;=10; z++) {<i class="conum" data-value="1"></i><b>(1)</b>
+    int zaehler = 0;
+    System.out.println("Startwert: " + z);
+    while (z &gt; 1) {
+        if (z % 2 == 0) {
+            z /= 2;
+        } else {
+            z = 3 * z + 1;
+        }
+        zaehler++;
+        System.out.print(z + " ");<i class="conum" data-value="2"></i><b>(2)</b>
+    }
+    System.out.println(", Anzahl der Schritte: " + zaehler);
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Anstatt <code>z</code> auf einen festen Wert zu setzen, wird <code>z</code> nun über die for-Schleife festgelegt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Statt <code>println</code> verwenden wir hier nur <code>print</code>, wodurch nach der Ausgabe <em>keine</em> neue Zeile bgeonnen wird. Das Leerzeichen hinter der Ausgabe von <code>z</code> wird eingefügt, damit die Ausgabe schöner formatiert wird.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Startet man das Programm, so erhält man überraschenderweise <em>nicht</em> das gewünschte Ergebnis, sondern immer wieder die gleiche Ausgabe</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>...
+Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 2
+1 , Anzahl der Schritte: 1
+...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Was haben wir falsch gemacht?</p>
+</div>
+<div class="paragraph">
+<p>Innerhalb der while-Schleife wird der Wert von <code>z</code> verändert und ist nach Beendigung der while-Schleife immer 1.</p>
+</div>
+<div class="paragraph">
+<p>Da <code>z</code> aber gleichzeitig steuert, wie oft die for-Schleife durchlaufen wird, haben wir hier ein Problem: die for-Schleife läuft solange, wie <code>z &lt; = 10</code> ist und da z durch die while-Schleife immer wieder auf 1 gesetzt wird, erhöht die for-Schleife den Wert um 1 (also auf 2) und beginnt das Spiel von vorne.</p>
+</div>
+<div class="paragraph">
+<p>Letzten Endes haben wir hier eine <strong>Endlosschleife</strong> erzeugt.</p>
+</div>
+<div class="paragraph">
+<p>Abhilfe schafft das Einführen einer neuen Variable innerhalb der for-Schleife, wie folgt:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">for (int i = 2; i&lt;=10; i++) {<i class="conum" data-value="1"></i><b>(1)</b>
+    int z=i;<i class="conum" data-value="2"></i><b>(2)</b>
+    int zaehler = 0;
+    System.out.println("Startwert: " + z);
+    while (z &gt; 1) {
+        if (z % 2 == 0) {
+            z /= 2;
+        } else {
+            z = 3 * z + 1;
+        }
+        zaehler++;
+        System.out.print(z + " ");
+    }
+    System.out.println(", Anzahl der Schritte: " + zaehler);
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Benutze als Laufvariable <code>i</code> statt <code>z</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Übergabe von <code>i</code> an <code>z</code>: dadurch hat die Änderung von <code>z</code> keinen Einfluss auf das Laufverhalten der Schleife</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Das <code>z</code> wird innerhalb der while-Schleife nach wie vor jedes Mal auf 1 abgeändert, was allerdings keinen Einfluss auf das <code>i</code> hat, das für die Steuerung der Schleife verantwortlich ist.</p>
+</div>
+<div class="paragraph">
+<p>Nun liefert das Programm die Ausgabe</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 3
+10 5 16 8 4 2 1 , Anzahl der Schritte: 7
+Startwert: 4
+2 1 , Anzahl der Schritte: 2
+Startwert: 5
+16 8 4 2 1 , Anzahl der Schritte: 5
+Startwert: 6
+3 10 5 16 8 4 2 1 , Anzahl der Schritte: 8
+Startwert: 7
+22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1 , Anzahl der Schritte: 16
+Startwert: 8
+4 2 1 , Anzahl der Schritte: 3
+Startwert: 9
+28 14 7 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1 , Anzahl der Schritte: 19
+Startwert: 10
+5 16 8 4 2 1 , Anzahl der Schritte: 6</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_erweiterung_3_collatz_mit_grafischer_ausgabe">3.4. Erweiterung 3: Collatz mit "grafischer Ausgabe"</h3>
+<div class="paragraph">
+<p>Eine letzte Erweiterung soll mit Hilfe von <code>#</code> -Symbolen die Anzahl der notwendigen Schritte anzeigen, um besser zu visualisieren, wo viele oder wenige Schritte benötigt werden.</p>
+</div>
+<div class="paragraph">
+<p>Eine Möglichkeit wäre:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">        for (int i = 2; i &lt;=10; i++) {
+            int z=i;
+            int zaehler = 0;
+            System.out.println("Startwert: " + z);
+            while (z &gt; 1) {
+                if (z % 2 == 0) {
+                    z /= 2;
+                } else {
+                    z = 3 * z + 1;
+                }
+                zaehler++;
+                System.out.print(z + " ");
+            }
+            System.out.println("");
+            for (int j=0;j&lt;zaehler;j++){ <i class="conum" data-value="1"></i><b>(1)</b>
+                System.out.print("#"); <i class="conum" data-value="2"></i><b>(2)</b>
+            }
+            System.out.println("\n");<i class="conum" data-value="3"></i><b>(3)</b>
+        }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Neue Schleife mit so vielen Durchläufen, wie <code>zaehler</code> gezählt hat. Hier wird eine neue Laufvariable <code>j</code> eingeführt, da wir uns noch in der for-Schleife mit der Laufvariable <code>i</code> befinden.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Wieder <code>print</code> statt <code>println</code>, damit nicht nach jedem <code>#</code> eine neue Zeile beginnt</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>println</code> beendet mit seiner Ausgabe die aktuelle Zeile und springt in die nächste. Das Gleicher erreicht man mit <code>\n</code>: Kommt dieses in einem String vor, steht dies für eine neue Zeile.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Die Ausgabe sieht dann so aus:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Startwert: 2
+1
+#
+
+Startwert: 3
+10 5 16 8 4 2 1
+#######
+
+Startwert: 4
+2 1
+##
+
+Startwert: 5
+16 8 4 2 1
+#####
+
+Startwert: 6
+3 10 5 16 8 4 2 1
+########
+
+Startwert: 7
+22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1
+################
+
+Startwert: 8
+4 2 1
+###
+
+Startwert: 9
+28 14 7 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1
+###################
+
+Startwert: 10
+5 16 8 4 2 1
+######</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-10 15:53:17 Mitteleuropõische Sommerzeit
+Last updated 2016-10-17 15:04:56 Mitteleuropõische Sommerzeit
 </div>
 </div>
 <script type="text/x-mathjax-config">
