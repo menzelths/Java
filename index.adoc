@@ -9,9 +9,9 @@
 
 <<Grundlagen_WHILE.adoc#WHILE,Die while-Schleife>>
 
-//// 
+
 <<Grundlagen_METHODEN.adoc#METHODEN,(Statische) Methoden>>
-////
+
 
 
 
