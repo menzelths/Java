@@ -14,4 +14,116 @@ Unter anderem zu diesem Zweck gibt es *Methoden* (in anderen Programmiersprachen
 
 == Syntax
 
-Als Beispiel soll ein Programmteil dienen, der eine Zahl quadriert. Wir 
+Als Beispiel soll ein Programmteil dienen, der eine Zahl quadriert. Wir übergeben eine Zahl `übergabe` und liefern das Ergebnis zurück.
+Dieser Programmteil könnte so aussehen:
+
+[source,java,ident=0]
+----
+static int quadriereZahl(int übergabe){ //<1>
+    int ergebnis=übergabe*übergabe; // <2>
+    return ergebnis; // <3>
+} // <4>
+----
+<1> Der Methode namens `quadriereZahl` wird ein Integer-Wert übergeben, der innerhalb dieser Methode `übergabe` heißt. Als Rückgabewert dieser Methode verlangt das `int` vor `quadriereZahl` einen Integerwert.
+<2> Die Berechnung wird durchgeführt und das Ergebnis in der Integer-Variable `ergebnis` gespeichert.
+<3> Das Ergebnis der Berechnung wird zurückgegeben.
+<4> Ende der Methode
+
+Das Schlüsselwort `static` werden wir an anderer Stelle erklären.
+
+Zunächst soll gezeigt werden, wie diese Methode nun aufgerufen wird, wofür ausnahmsweise die gesamte Java-Klasse gezeigt wird:
+
+[source,java,ident=0]
+----
+public class QuadratZahlBerechnung {
+
+    public static void main(String[] args) {
+        int rückgabe = quadriereZahl(5); // <1> 
+        System.out.println(rückgabe);
+    }
+
+    static int quadriereZahl(int übergabe) { // <2>
+        int ergebnis = übergabe * übergabe; // <3>
+        return ergebnis; // <4>
+    }
+    
+}
+----
+<1> Aufruf der Methode `quadriereZahl` mit dem Integerwert 5. Der Rückgabewert der Methode wird in der Variable `rückgabe` gespeichert.
+<2> Beim Aufruf über `quadriereZahl(5)` nimmt `übergabe` den Wert 5 an.
+<3> Als `int ergebnis = übergabe * übergabe` wird dadurch `int ergebnis= 5 * 5`, also 25 berechnet.
+<4> Der in `ergebnis` gespeicherte Wert wird durch das Schlüsselwort `return` an die Stelle zurückgegeben, von der aus die Methode aufgerufen  wurde. In diesem Fall wird die Integer-Zahl 25 an die Variable `rückgabe` zurückgegeben.
+
+== Weitere Beispiele
+
+=== Anderer Parameter- und Rückgabetyp für die Quadratfunktion
+
+Um eine Methode zum Quadrieren von Kommazahlen des Typs `double` umzusetzen, würde man so vorgehen:
+
+[source,java,ident=0]
+----
+public class QuadratZahlBerechnungDouble {
+
+    public static void main(String[] args) {
+        double rückgabe = quadriereZahl(5.2); //<1>
+        System.out.println(rückgabe);
+    }
+
+    static double quadriereZahl(double übergabe) { // <2>
+        double ergebnis = übergabe * übergabe; // <3>
+        return ergebnis;
+    }
+    
+}
+----
+<1> Der Typ des Rückgabewerts ist nun `double` und als Zahl kann auch eine Kommazahl übergeben werden.
+<2> Die *Signatur* der Methode hat sich geändert: Sie heißt zwar weiterhin `quadriereZahl`, erwartet als Parameter nun aber einen Wert vom Typ `double` und gibt auch einen solchen Wert zurück.
+<3> Auch der Typ von `ergebnis` muss zu `double` angepasst werden, da die Multiplikation zweier Kommazahlen auch wieder eine Kommazahl ergibt.
+
+=== Multiplikationsmethode mit mehreren Parametern
+
+Die Methode `multipliziereZahlen` gibt das Produkt zweier Zahlen zurück:
+
+[source, java, ident=0]
+----
+public class MultipliziereZahlen {
+
+    public static void main(String[] args) {
+        double rückgabe = multipliziereZahlen(5,4); // <1>
+        System.out.println(rückgabe);
+    }
+
+    static int multipliziereZahlen(int zahl1, int zahl2) { // <2>
+        return zahl1*zahl2; // <3>
+    }
+    
+}
+----
+<1> Werden mehrere Parameter an eine Methode übergeben, so werden diese mit einem Komma getrennt.
+<2> Die übergebenen Zahlen heißen ab hier `zahl1` und `zahl2`.
+<3> Anstatt, wie in den letzten Beispielen, eine Extra-Variable für das Ergebnis zu erzeugen, kann man in einem so einfachen Fall, wie diesem, die Rechnung direkt übergeben, wodurch das Ergebnis zurückgegeben wird.
+
+=== Ausgabemethode ohne Rückgabewert und mit verschiedenen Parametertypen
+
+In manchen Fällen ist ein Rückgabewert von Methoden nicht sinnvoll, wie beispielsweise beim Ausgeben Informationen. Aber auch dann muss ein Rückgabewert angegeben werden, der `void` heißt und der bedeutet, dass diese Methode eben nichts zurück liefert.
+
+Hier als Beispiel ein Programm, das eine Methode mit der Signatur `void gibOftAus(int anzahl, String satz)` enthält, die den übergebenen String `satz` so oft ausgibt, wie in `anzahl` enthalten ist:
+
+[source, java, ident=0]
+----
+public class Strafarbeit {
+
+    public static void main(String[] args) {
+        gibOftAus(100, "Ich darf im Informatikraum nicht essen!"); // <1>
+    }
+
+    static void gibOftAus(int anzahl, String satz) { // <2>
+        for (int i = 0; i < anzahl; i++) {
+            System.out.println(satz);
+        }
+    }
+
+}
+----
+<1> Übergabe von zwei Parametern: `100` vom Typ `int` und den Satz vom Typ `String`. Hier wird keine Rückgabe in einer Variable gespeichert, da kein solcher Wert zu erwarten ist.
+<2> Das Schlüsselwort `void` besagt, dass diese Methode _keinen Rückgabewert_ hat, also nichts zurückgibt. Deshalb ist in dieser Methode auch das Schlüsselwort `return` _nicht_ zu finden.

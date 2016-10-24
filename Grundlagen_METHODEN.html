@@ -427,6 +427,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_motivation">1. Motivation</a></li>
 <li><a href="#_syntax">2. Syntax</a></li>
+<li><a href="#_weitere_beispiele">3. Weitere Beispiele</a>
+<ul class="sectlevel2">
+<li><a href="#_anderer_parameter_und_rückgabetyp_für_die_quadratfunktion">3.1. Anderer Parameter- und Rückgabetyp für die Quadratfunktion</a></li>
+<li><a href="#_multiplikationsmethode_mit_mehreren_parametern">3.2. Multiplikationsmethode mit mehreren Parametern</a></li>
+<li><a href="#_ausgabemethode_ohne_rückgabewert_und_mit_verschiedenen_parametertypen">3.3. Ausgabemethode ohne Rückgabewert und mit verschiedenen Parametertypen</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -446,14 +453,206 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_syntax">2. Syntax</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Als Beispiel soll ein Programmteil dienen, der eine Zahl quadriert. Wir</p>
+<p>Als Beispiel soll ein Programmteil dienen, der eine Zahl quadriert. Wir übergeben eine Zahl <code>übergabe</code> und liefern das Ergebnis zurück.
+Dieser Programmteil könnte so aussehen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">static int quadriereZahl(int übergabe){ <i class="conum" data-value="1"></i><b>(1)</b>
+    int ergebnis=übergabe*übergabe; <i class="conum" data-value="2"></i><b>(2)</b>
+    return ergebnis; <i class="conum" data-value="3"></i><b>(3)</b>
+} <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Der Methode namens <code>quadriereZahl</code> wird ein Integer-Wert übergeben, der innerhalb dieser Methode <code>übergabe</code> heißt. Als Rückgabewert dieser Methode verlangt das <code>int</code> vor <code>quadriereZahl</code> einen Integerwert.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die Berechnung wird durchgeführt und das Ergebnis in der Integer-Variable <code>ergebnis</code> gespeichert.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Das Ergebnis der Berechnung wird zurückgegeben.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Ende der Methode</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Das Schlüsselwort <code>static</code> werden wir an anderer Stelle erklären.</p>
+</div>
+<div class="paragraph">
+<p>Zunächst soll gezeigt werden, wie diese Methode nun aufgerufen wird, wofür ausnahmsweise die gesamte Java-Klasse gezeigt wird:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class QuadratZahlBerechnung {
+
+    public static void main(String[] args) {
+        int rückgabe = quadriereZahl(5); <i class="conum" data-value="1"></i><b>(1)</b>
+        System.out.println(rückgabe);
+    }
+
+    static int quadriereZahl(int übergabe) { <i class="conum" data-value="2"></i><b>(2)</b>
+        int ergebnis = übergabe * übergabe; <i class="conum" data-value="3"></i><b>(3)</b>
+        return ergebnis; <i class="conum" data-value="4"></i><b>(4)</b>
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Aufruf der Methode <code>quadriereZahl</code> mit dem Integerwert 5. Der Rückgabewert der Methode wird in der Variable <code>rückgabe</code> gespeichert.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Beim Aufruf über <code>quadriereZahl(5)</code> nimmt <code>übergabe</code> den Wert 5 an.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Als <code>int ergebnis = übergabe * übergabe</code> wird dadurch <code>int ergebnis= 5 * 5</code>, also 25 berechnet.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Der in <code>ergebnis</code> gespeicherte Wert wird durch das Schlüsselwort <code>return</code> an die Stelle zurückgegeben, von der aus die Methode aufgerufen  wurde. In diesem Fall wird die Integer-Zahl 25 an die Variable <code>rückgabe</code> zurückgegeben.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_weitere_beispiele">3. Weitere Beispiele</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_anderer_parameter_und_rückgabetyp_für_die_quadratfunktion">3.1. Anderer Parameter- und Rückgabetyp für die Quadratfunktion</h3>
+<div class="paragraph">
+<p>Um eine Methode zum Quadrieren von Kommazahlen des Typs <code>double</code> umzusetzen, würde man so vorgehen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class QuadratZahlBerechnungDouble {
+
+    public static void main(String[] args) {
+        double rückgabe = quadriereZahl(5.2); <i class="conum" data-value="1"></i><b>(1)</b>
+        System.out.println(rückgabe);
+    }
+
+    static double quadriereZahl(double übergabe) { <i class="conum" data-value="2"></i><b>(2)</b>
+        double ergebnis = übergabe * übergabe; <i class="conum" data-value="3"></i><b>(3)</b>
+        return ergebnis;
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Der Typ des Rückgabewerts ist nun <code>double</code> und als Zahl kann auch eine Kommazahl übergeben werden.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die <strong>Signatur</strong> der Methode hat sich geändert: Sie heißt zwar weiterhin <code>quadriereZahl</code>, erwartet als Parameter nun aber einen Wert vom Typ <code>double</code> und gibt auch einen solchen Wert zurück.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Auch der Typ von <code>ergebnis</code> muss zu <code>double</code> angepasst werden, da die Multiplikation zweier Kommazahlen auch wieder eine Kommazahl ergibt.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multiplikationsmethode_mit_mehreren_parametern">3.2. Multiplikationsmethode mit mehreren Parametern</h3>
+<div class="paragraph">
+<p>Die Methode <code>multipliziereZahlen</code> gibt das Produkt zweier Zahlen zurück:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class MultipliziereZahlen {
+
+    public static void main(String[] args) {
+        double rückgabe = multipliziereZahlen(5,4); <i class="conum" data-value="1"></i><b>(1)</b>
+        System.out.println(rückgabe);
+    }
+
+    static int multipliziereZahlen(int zahl1, int zahl2) { <i class="conum" data-value="2"></i><b>(2)</b>
+        return zahl1*zahl2; <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Werden mehrere Parameter an eine Methode übergeben, so werden diese mit einem Komma getrennt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die übergebenen Zahlen heißen ab hier <code>zahl1</code> und <code>zahl2</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Anstatt, wie in den letzten Beispielen, eine Extra-Variable für das Ergebnis zu erzeugen, kann man in einem so einfachen Fall, wie diesem, die Rechnung direkt übergeben, wodurch das Ergebnis zurückgegeben wird.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ausgabemethode_ohne_rückgabewert_und_mit_verschiedenen_parametertypen">3.3. Ausgabemethode ohne Rückgabewert und mit verschiedenen Parametertypen</h3>
+<div class="paragraph">
+<p>In manchen Fällen ist ein Rückgabewert von Methoden nicht sinnvoll, wie beispielsweise beim Ausgeben Informationen. Aber auch dann muss ein Rückgabewert angegeben werden, der <code>void</code> heißt und der bedeutet, dass diese Methode eben nichts zurück liefert.</p>
+</div>
+<div class="paragraph">
+<p>Hier als Beispiel ein Programm, das eine Methode mit der Signatur <code>void gibOftAus(int anzahl, String satz)</code> enthält, die den übergebenen String <code>satz</code> so oft ausgibt, wie in <code>anzahl</code> enthalten ist:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class Strafarbeit {
+
+    public static void main(String[] args) {
+        gibOftAus(100, "Ich darf im Informatikraum nicht essen!"); <i class="conum" data-value="1"></i><b>(1)</b>
+    }
+
+    static void gibOftAus(int anzahl, String satz) { <i class="conum" data-value="2"></i><b>(2)</b>
+        for (int i = 0; i &lt; anzahl; i++) {
+            System.out.println(satz);
+        }
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Übergabe von zwei Parametern: <code>100</code> vom Typ <code>int</code> und den Satz vom Typ <code>String</code>. Hier wird keine Rückgabe in einer Variable gespeichert, da kein solcher Wert zu erwarten ist.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Das Schlüsselwort <code>void</code> besagt, dass diese Methode <em>keinen Rückgabewert</em> hat, also nichts zurückgibt. Deshalb ist in dieser Methode auch das Schlüsselwort <code>return</code> <em>nicht</em> zu finden.</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-17 15:04:35 Mitteleuropõische Sommerzeit
+Last updated 2016-10-24 12:56:12 Mitteleuropõische Sommerzeit
 </div>
 </div>
 <script type="text/x-mathjax-config">
