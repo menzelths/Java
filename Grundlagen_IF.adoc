@@ -1,0 +1,92 @@
+= [[IF]]Die if-Bedingung
+:stem: 
+:toc: left
+:toc-title: Inhaltsverzeichnis
+:sectnums:
+:icons: font
+:keywords: if-Bedingung
+
+== Motivation
+
+Im täglichen Leben gibt es viele Tätigkeiten, die durchgeführt werden, wenn bestimmte Bedingungen erfüllt sind. Beispielsweise sammelt man leere Wasserflaschen und geht neue kaufen, wenn die die Bedingung eintritt, dass die letzte Flasche getrunken wurde.
+
+Aktionen bzw. Vorgänge, die in Abhängigkeit von bestimmten Bedingungen ausgelöst werden, existieren auch in Programmiersprachen. In diesem Kapitel werden wir deshalb die *if-Bedingung* betrachten, die genau für diese Fälle gedacht ist.
+
+== Syntax
+
+Eine einfache Anwendung soll der folgende Programmausschnitt zeigen, der in Abhängigkeit einer Note einen entsprechenden Text ausgibt:
+
+[source, java, indent=0]
+----
+        int note = 4;
+        if (note < 4) { // <1>
+            System.out.println("Super");
+        } else if (note < 4) { // <2>
+            System.out.println("Ist in Ordnung");
+        } else if (note < 5) { // <3>
+            System.out.println("Wird langsam knapp!");
+        } else { // <4>
+            System.out.println("Hmm, vielleicht doch mal die Hausaufgaben machen?");
+        }
+----
+<1> Wenn die Variable `note` einen Zahlenwert kleiner als 2 enthält, führe den nachfolgenden Block aus.
+<2> Sonst, wenn die Note kleiner als 4 ist (also hier 2 oder 3), dann den nachfolgenden Block ausführen.
+<3> Sonst, wenn die Note kleiner als 5 ist (wird für den Fall erfüllt, dass `note` den Wert 4 enthält), dann den folgenden Block ausführen.
+<4> Sonst (also in allen anderen Fällen, die bisher noch nicht vorkamen, hier für 5 und 6) führe wieder den nachfolgenden Block aus.
+
+In diesem Beispiel wird der Satz "Wird langsam knapp!" ausgegeben, da weder die erste, noch die zweite Bedingung erfüllt wird, wohl aber die Bedingung, dass 4 kleiner als 5 ist. Wurde eine Bedingung erfüllt, werden alle nachfolgenden Bedingungen nicht mehr überprüft.
+
+So gibt das nachfolgende Beispiel wieder den Satz "Wird langsam knapp!" aus, obwohl hier als Note eine 3 übergeben wird. Im oberen Beispiel wäre hier "Ist in Ordnung" erschienen.
+
+[source, java, indent=0]
+----
+        int note = 3;
+        if (note < 2) {
+            System.out.println("Super");
+        } else if (note < 5) { // <1>
+            System.out.println("Wird langsam knapp!");
+        } else if (note < 4) { // <2>
+            System.out.println("Ist in Ordnung");
+        } else {
+            System.out.println("Hmm, vielleicht mal Hausaufgaben machen?");
+        }
+----
+<1> Diese Bedingung wird von der 3 erfüllt, also wird der Satz "Wird langsam knapp" ausgegeben.
+<2> Auch diese Bedingung wird von der 3 erfüllt. Allerdings gelangt die Progammausführung gar nicht mehr bis zu dieser Stelle, da bereits die Bedingung davor schon erfüllt wurde.
+
+== Der ternäre Operator ? :
+
+Einen Sonderfall stellt der *ternäre Operator* dar. Dabei handelt es sich um einen Operator mit _drei_ Argumenten. 
+
+Ein *unärer Operator* hat nur ein Argument, z. B. in `-5` ist das Minus ein unärer Operator, der aus seinem einzigen Argument, der 5, die negative Zahl -5 macht.
+
+Ein *binärer Operator* hat zwei Argumente, z. B. das Plus in `3+5`.
+
+Ein Beispiel für den ternären Operator `? :` wäre in folgender Zeile zu finden:
+
+[source, java, indent=0]
+----
+        int note = 3;
+        System.out.println("Die Note ist " + (note % 2 == 0 ? "gerade" : "ungerade"));
+----
+
+Der Ausdruck `note % 2 == 0 ? "gerade" : "ungerade"` "fragt": "Ist die Note durch 2 ohne Rest teilbar?". Lautet die Antwort "ja", so wird der Wert "gerade" zurückgegeben, sonst "ungerade".
+
+Im Prinzip macht das obige Programm das selbe wie der folgende Code:
+
+[source, java, indent=0]
+----
+        int note = 3;
+        System.out.print("Die Note ist ");
+        if (note%2==0){
+            System.out.println("gerade");
+        } else {
+            System.out.println("ungerade");
+        }
+----
+
+Der ternäre Operator wird gerne genutzt, wenn eine einfache Wahl zwischen zwei Werten stattfinden soll.
+
+
+
+

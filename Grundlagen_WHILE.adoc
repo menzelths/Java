@@ -29,7 +29,7 @@ Betrachten wir zunächst ein einfaches Beispiel. Es sollen solange zufällige Za
         System.out.println("Fertig"); // <4>
 ----
 <1> Eine Variable zur Speicherung von Kommazahlen namens `zufall` wird angelegt und mit einer Zufallszahl zwischen 0 und 1 belegt.
-<2> Solange diese Zufallszahl kleiner als 0.5 ist wird diese Zahl ausgegeben und
+<2> Solange diese Zufallszahl kleiner als 0.5 ist, wird diese Zahl ausgegeben und
 <3> eine neue Zufallszahl in `zufall` gespeichert.
 <4> Wenn die Bedingung der while-Schleife nicht mehr erfüllt ist, fährt das Programm hinter dem while-Block mit der Ausführung fort, gibt hier also "Fertig" aus.
 
@@ -37,6 +37,27 @@ Betrachten wir zunächst ein einfaches Beispiel. Es sollen solange zufällige Za
 ====
 Beachte, dass die Bedingung in den Klammern nach dem `while`-Schlüsselwort aus der While-Schleife heraus im Normalfall veränderbar sein sollte, da sonst die Gefahr einer *Endlosschleife* besteht. In unserem Beispiel findet eine solche Änderung statt, da der Wert von `zufall` in jedem Durchlauf zufällig neu bestimmt wird und die Wiederholung der Schleife somit irgendwann abgebrochen wird, da ein zufälliger Wert >= 0.5 in `zufall` gespeichert wird.
 ====
+
+=== Variante: die do-while-Schleife
+
+Eng verwandt mit der while-Schleife ist die *do-while-Schleife*: bei dieser wird die Wiederholungsbedingung erst nach der Durchführung der zu wiederholenden Ausdrücke überprüft, was bedeutet, dass diese Schleife immer mindestens ein Mal durchlaufen wird.
+
+[source, java, indent=0]
+----
+       double zufall = Math.random(); 
+        do { // <1>
+            System.out.println(zufall);
+            zufall = Math.random(); 
+        } while (zufall < 0.5); // <2>
+        System.out.println("Fertig"); // <3>
+----
+<1> Starte den zu wiederholenden Teil: ein Mal wird der Bereich zwischen den geschweiften Klammern mindestens durchlaufen.
+<2> Die Bedingung für die Wiederholungen wird hier erst _nach_ der ersten Durchführung überprüft.
+<3> Hierher gelangt die Programmausführung erst, wenn die Bedingung der do-while-Schleife nicht mehr erfüllt ist.
+
+Der Unterschied zum Programm mit der normalen while-Schleife, wird dieses Programm immer mindestens eine Zahl ausgeben, auch wenn sie größer als 0,5 sein sollte.
+
+Im folgenden wird aber fast ausschließlich mit der while-Schleife gearbeitet, da alle Anwendungsprobleme auch mit dieser zu lösen sind.
 
 == Beispiel: Collatz'sche Vermutung
 
