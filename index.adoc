@@ -6,7 +6,6 @@
 === Grundlagen
 
 <<Grundlagen_IF.adoc#IF,Die if-Bedingung>>
-<<Grundlagen_IF.adoc#IF,Die if-Bedingung>>
 
 <<Grundlagen_FOR.adoc#FOR,Die for-Schleife>>
 
