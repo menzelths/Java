@@ -81,6 +81,13 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 <hr>
 </div>
 </div></div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref83667832">Möglich in Javascript</h2>
+<div class="sectionbody">
+
+</div>
+</div></div><div class="originaltext" hidden="">== Möglich in Javascript
+</div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
 <h2 id="ref54606471">Variablen in Java</h2>
 <div class="sectionbody">
@@ -114,6 +121,9 @@ var hoehe=2;
 hoehe="2 cm";
 ----
 </div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Der folgende Code ist ein Problem. Wieso?</p>
+</div></div><div class="originaltext" hidden="">Der folgende Code ist ein Problem. Wieso?</div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
 <p>In der ersten Zeile wird der Variablen namens <code>hoehe</code> der Wert 2 zugewiesen, also eine Zahl.</p>
 </div>
@@ -148,6 +158,12 @@ hoehe=hoehe/2;
 ----
 
 </div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="_wie_funktioniert_das_mit_java">Wie funktioniert das mit Java?</h2>
+<div class="sectionbody">
+
+</div>
+</div></div><div class="originaltext" hidden="">== Wie funktioniert das mit Java?</div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
 <p>In diesem Fall wird sich das Javascript-Programm nach dem Starten nicht so verhalten wie gewünscht. Nicht mal eine Fehlermeldung wird ausgegeben!</p>
 </div>
@@ -176,6 +192,9 @@ Um eine Variable namens `hoehe` einzuführen, die nur ganze Zahlen speichern dar
 ----
 int hoehe=2; 
 ----</div></div></div>
+<div sb='P' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><code>int</code> ist der <em>Typ</em> der Variable und <code>hoehe</code> der <em>Name</em>.</p>
+</div></div><div class="originaltext" hidden="">`int` ist der _Typ_ der Variable und `hoehe` der _Name_. </div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
 <p>Versucht man nun, wie im Beispiel mit Javascript, einen Text in dieser Variablen zu speichern, so könnte man wieder schreiben</p>
 </div></div><div class="originaltext" hidden="">Versucht man nun, wie im Beispiel mit Javascript, einen Text in dieser Variablen zu speichern, so könnte man wieder schreiben</div></div></div>
@@ -187,6 +206,67 @@ int hoehe=2;
 ----
 hoehe="2 cm";
 ----</div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Das gibt schon einen Fehler <strong>vor dem Start</strong> des Programms!</p>
+</div>
+<div class="paragraph">
+<p>Einer Variablen, die nur ganze Zahlen speichern soll, darf kein Text zugewiesen werden.</p>
+</div></div><div class="originaltext" hidden="">Das gibt schon einen Fehler *vor dem Start* des Programms!
+
+Einer Variablen, die nur ganze Zahlen speichern soll, darf kein Text zugewiesen werden.</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect3">
+<h4 id="ref4395858">Ganzzahlen</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Typ</th>
+<th class="tableblock halign-left valign-top">Beispiel</th>
+<th class="tableblock halign-left valign-top">Bytes</th>
+<th class="tableblock halign-left valign-top">Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">byte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>byte b=23;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">short</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>short s=32767;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int hoehe=125234523;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>long m=208357209348;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+</tbody>
+</table>
+</div></div><div class="originaltext" hidden="">==== Ganzzahlen
+|===
+|Typ|Beispiel|Bytes|Bits
+
+|byte|`byte b=23;`|1|8 
+|short|`short s=32767;`|2|16
+|int|`int hoehe=125234523;`|4|32
+|long|`long m=208357209348;`|8|64  
+|===</div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
 <p>und erhält schon beim Compilieren, also vor dem Starten des Programms, eine entsprechende Fehlermeldung. In einer Entwicklungsumgebung wie Netbeans wird dieser Fehler schon während des Schreibens im Editor angezeigt. Sehr praktisch!</p>
 </div></div><div class="originaltext" hidden="">und erhält schon beim Compilieren, also vor dem Starten des Programms, eine entsprechende Fehlermeldung. In einer Entwicklungsumgebung wie Netbeans wird dieser Fehler schon während des Schreibens im Editor angezeigt. Sehr praktisch!</div></div></div>
