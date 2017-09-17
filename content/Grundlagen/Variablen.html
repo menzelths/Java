@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='toc tshareElement adoccss'><div><div class="adoccss"><div class="sect1">
+<h2 id="_inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+<div class="sectionbody">
+<div class="ulist none">
+<ul class="none">
+<li>
+<p><a href="#ref54606471">Variablen in Java</a></p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p><a href="#ref19895016">Motivation</a></p>
+</li>
+<li>
+<p><a href="#ref45752207">Wo liegt das Problem?</a></p>
+</li>
+<li>
+<p><a href="#ref21047072">Typisierte Variablen</a></p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p><a href="#ref6645658">Ganzzahlen (Integer)</a></p>
+</li>
+<li>
+<p><a href="#ref58407895">Kommazahlen</a></p>
+</li>
+<li>
+<p><a href="#ref43575074">Weitere Typen</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div></div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref54606471">Variablen in Java</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="ref19895016">Motivation</h3>
+<div class="paragraph">
+<p>In einigen Programmiersprachen, wie beispielsweise in Javascript, kann man einer Variablen ohne Fehlermeldung beliebige <em>Typen</em>  von Werten zuweisen.</p>
+</div>
+<div class="paragraph">
+<p>Zum Beispiel ist der folgende Code in Javascript ohne Fehlermeldung problemlos möglich:</p>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">==  Variablen in Java
+=== Motivation 
+In einigen Programmiersprachen, wie beispielsweise in Javascript, kann man einer Variablen ohne Fehlermeldung beliebige _Typen_  von Werten zuweisen.
+
+Zum Beispiel ist der folgende Code in Javascript ohne Fehlermeldung problemlos möglich:
+
+
+
+</div></div></div>
+<div sb='@P' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-javascript code-toolbar"><code class=" language-javascript" data-lang="JavaScript"><span class="token keyword">var</span> hoehe<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
+hoehe<span class="token operator">=</span><span class="token string">"2 cm"</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>JavaScript</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source, JavaScript] 
+----
+var hoehe=2;
+hoehe="2 cm";
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>In der ersten Zeile wird der Variablen namens <code>hoehe</code> der Wert 2 zugewiesen, also eine Zahl.</p>
+</div>
+<div class="paragraph">
+<p>In der nächsten Zeile wird der gleichen Variable die Zeichenkette <code>2 cm</code> zugewiesen.</p>
+</div></div><div class="originaltext" hidden="">In der ersten Zeile wird der Variablen namens `hoehe` der Wert 2 zugewiesen, also eine Zahl.
+
+In der nächsten Zeile wird der gleichen Variable die Zeichenkette `2 cm` zugewiesen.</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref45752207">Wo liegt das Problem?</h3>
+<div class="paragraph">
+<p>Auf den ersten Blick erscheint das einfach und praktisch.</p>
+</div>
+<div class="paragraph">
+<p>Was aber, wenn diese beiden Zeilen nicht direkt hintereinander im Code stehen, sondern beispielsweise 200 Zeilen voneinander entfernt sind? Weiter unten im Programm möchte man etwas mit der Höhe berechnen und schaut oben im Code nach, in welcher Variable der Wert gespeichert war.
+So könnte man beispielsweise die Höhe halbieren wollen und berechnet</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Wo liegt das Problem?
+Auf den ersten Blick erscheint das einfach und praktisch.
+
+Was aber, wenn diese beiden Zeilen nicht direkt hintereinander im Code stehen, sondern beispielsweise 200 Zeilen voneinander entfernt sind? Weiter unten im Programm möchte man etwas mit der Höhe berechnen und schaut oben im Code nach, in welcher Variable der Wert gespeichert war.
+So könnte man beispielsweise die Höhe halbieren wollen und berechnet
+</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-javascript code-toolbar"><code class=" language-javascript" data-lang="javascript">hoehe<span class="token operator">=</span>hoehe<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>JavaScript</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">
+[source,javascript]
+----
+hoehe=hoehe/2;
+----
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>In diesem Fall wird sich das Javascript-Programm nach dem Starten nicht so verhalten wie gewünscht. Nicht mal eine Fehlermeldung wird ausgegeben!</p>
+</div>
+<div class="paragraph">
+<p>Ein solcher Fehler ist nur schwer zu finden. Wie kann man es vermeiden, dass in eine Variable, die Zahlen speichern soll, Text geschrieben wird? Das muss besser gehen, aber wie?</p>
+</div></div><div class="originaltext" hidden="">In diesem Fall wird sich das Javascript-Programm nach dem Starten nicht so verhalten wie gewünscht. Nicht mal eine Fehlermeldung wird ausgegeben!
+
+Ein solcher Fehler ist nur schwer zu finden. Wie kann man es vermeiden, dass in eine Variable, die Zahlen speichern soll, Text geschrieben wird? Das muss besser gehen, aber wie?</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref21047072">Typisierte Variablen</h3>
+<div class="paragraph">
+<p>In Java muss man beim ersten Erstellen einer Variablen immer auch den <em>Typ</em> einer Variable festlegen.</p>
+</div>
+<div class="paragraph">
+<p>Um eine Variable namens <code>hoehe</code> einzuführen, die nur ganze Zahlen speichern darf (auf englisch eine "integer"-Zahl), so geschieht dies durch</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Typisierte Variablen
+In Java muss man beim ersten Erstellen einer Variablen immer auch den _Typ_ einer Variable festlegen.
+
+Um eine Variable namens `hoehe` einzuführen, die nur ganze Zahlen speichern darf (auf englisch eine "integer"-Zahl), so geschieht dies durch</div></div></div>
+<div sb='@P' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> hoehe<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java]
+----
+int hoehe=2; 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Versucht man nun, wie im Beispiel mit Javascript, einen Text in dieser Variablen zu speichern, so könnte man wieder schreiben</p>
+</div></div><div class="originaltext" hidden="">Versucht man nun, wie im Beispiel mit Javascript, einen Text in dieser Variablen zu speichern, so könnte man wieder schreiben</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">hoehe<span class="token operator">=</span><span class="token string">"2 cm"</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java]
+----
+hoehe="2 cm";
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>und erhält schon beim Compilieren, also vor dem Starten des Programms, eine entsprechende Fehlermeldung. In einer Entwicklungsumgebung wie Netbeans wird dieser Fehler schon während des Schreibens im Editor angezeigt. Sehr praktisch!</p>
+</div></div><div class="originaltext" hidden="">und erhält schon beim Compilieren, also vor dem Starten des Programms, eine entsprechende Fehlermeldung. In einer Entwicklungsumgebung wie Netbeans wird dieser Fehler schon während des Schreibens im Editor angezeigt. Sehr praktisch!</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="_welche_typen_von_variablen_gibt_es_in_java">Welche Typen von Variablen gibt es in Java?</h3>
+
+</div></div><div class="originaltext" hidden="">=== Welche Typen von Variablen gibt es in Java?</div></div></div>
+<div sb='@' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect3">
+<h4 id="ref6645658">Ganzzahlen (Integer)</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Typ</th>
+<th class="tableblock halign-left valign-top">Beispiel</th>
+<th class="tableblock halign-left valign-top">Minimal</th>
+<th class="tableblock halign-left valign-top">Maximal</th>
+<th class="tableblock halign-left valign-top">Bytes</th>
+<th class="tableblock halign-left valign-top">Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">byte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>byte b=23;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-128</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+127</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">short</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>short s=32767;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-32768</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+32767</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int hoehe=2;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-2147483648</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+2147483647</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>long milis=2083572098432234;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-9223372036854775808</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+9223372036854775807</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+</tbody>
+</table>
+</div></div><div class="originaltext" hidden="">==== Ganzzahlen (Integer)
+|===
+|Typ|Beispiel|Minimal|Maximal|Bytes|Bits
+
+|byte|`byte b=23;`|-128|+127|1|8 
+|short|`short s=32767;`|-32768|+32767|2|16
+|int|`int hoehe=2;`|-2147483648|+2147483647|4|32
+|long|`long milis=2083572098432234;`|-9223372036854775808|+9223372036854775807|8|64
+|===</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect3">
+<h4 id="ref58407895">Kommazahlen</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Typ</th>
+<th class="tableblock halign-left valign-top">Beispiel</th>
+<th class="tableblock halign-left valign-top">Bytes</th>
+<th class="tableblock halign-left valign-top">Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>float f=2.3f;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>double d=2.3;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+</tbody>
+</table>
+</div></div><div class="originaltext" hidden="">==== Kommazahlen
+|===
+|Typ|Beispiel|Bytes|Bits
+
+|float|`float f=2.3f;`|4|32
+|double|`double d=2.3;`|8|64
+
+|===</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Der Unterschied zwischen den beiden Typen liegt in der Genauigkeit, also wie weit zwei benachbarte Zahlen voneinander entfernt sind, und der größten bzw. kleinsten Zahl, die jeweils gespeichert werden kann.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Note" class="fa icon-note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Üblicherweise verwendet man für Kommazahlen den Typ <code>double</code>, da dieser auch von modernen Prozessoren direkt unterstützt wird.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Mehr Informationen zu den minimalen und maximalen Werten dieser Variablentypen findet man für <code>float</code> <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Float.html">hier</a> und für <code>double</code> <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Double.html">hier</a>.</p>
+</div></div><div class="originaltext" hidden="">Der Unterschied zwischen den beiden Typen liegt in der Genauigkeit, also wie weit zwei benachbarte Zahlen voneinander entfernt sind, und der größten bzw. kleinsten Zahl, die jeweils gespeichert werden kann.
+
+[NOTE]
+====
+Üblicherweise verwendet man für Kommazahlen den Typ `double`, da dieser auch von modernen Prozessoren direkt unterstützt wird.
+==== 
+
+Mehr Informationen zu den minimalen und maximalen Werten dieser Variablentypen findet man für `float` http://docs.oracle.com/javase/7/docs/api/java/lang/Float.html[hier] und für `double` http://docs.oracle.com/javase/7/docs/api/java/lang/Double.html[hier]. </div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect3">
+<h4 id="ref43575074">Weitere Typen</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Typ</th>
+<th class="tableblock halign-left valign-top">Beispiel</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String t="Hallo";</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zeichenketten</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean b=true;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wahrheitswerte <code>true</code> oder <code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">char</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>char c='a';</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Einzelnes Unicode-Zeichen (Buchstabe)</p></td>
+</tr>
+</tbody>
+</table>
+</div></div><div class="originaltext" hidden="">==== Weitere Typen
+|===
+|Typ|Beispiel|Beschreibung
+
+|String|`String t="Hallo";`|Zeichenketten
+|boolean|`boolean b=true;`|Wahrheitswerte `true` oder `false`
+|char|`char c='a';`|Einzelnes Unicode-Zeichen (Buchstabe) 
+|=== 
+</div></div></div>
+</body></html>
