@@ -56,6 +56,59 @@
     }
 
 ----</div></div></div>
+<span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref28270019">Anwendung</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">Vektor v1<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Vektor v2<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Vektor ergebnis<span class="token operator">=</span>v1<span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span>v2<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Anwendung
+[source,java]
+----
+Vektor v1=new Vektor(1,2,3);
+Vektor v2=new Vektor(2,3,5);
+Vektor ergebnis=v1.plus(v2);
+----
+</div></div></div>
+</span></section><section><section><div sb='P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref49997922">Prototyp</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testPlus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"plus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Vektor that <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Vektor instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Vektor expResult <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Vektor result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// TODO review the generated test code and remove the default call to fail.</span>
+    <span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"The test case is a prototype."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Prototyp
+[source,java,indent=0]  
+----
+    @Test
+    public void testPlus() {
+        System.out.println("plus");
+        Vektor that = null;
+        Vektor instance = null;
+        Vektor expResult = null;
+        Vektor result = instance.plus(that);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+----</div></div></div>
 </section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
 <h2 id="ref45162910">Angepasster Prototyp</h2>
 <div class="sectionbody">
