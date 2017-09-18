@@ -1,0 +1,883 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='toc tshareElement adoccss'><div><div class="adoccss"><div class="sect1">
+<h2 id="_inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+<div class="sectionbody">
+<div class="ulist none">
+<ul class="none">
+<li>
+<p><a href="#ref88348000">Testen mit JUnit in Netbeans</a></p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p><a href="#ref64877718">Vorbereitungen</a></p>
+</li>
+<li>
+<p><a href="#ref11504561">Anpassung der Tests</a></p>
+</li>
+<li>
+<p><a href="#ref4562735">Durchführung der Tests</a></p>
+</li>
+<li>
+<p><a href="#ref30147726">Aufgaben</a></p>
+</li>
+<li>
+<p><a href="#ref26846037">Dateien zu diesem Kapitel</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div></div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref88348000">Testen mit JUnit in Netbeans</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bei größeren Programmen ist es sinnvoll, Teile von Programmen automatisch testen zu lassen. Dadurch ist es beispielsweise möglich, zu überprüfen, ob die Änderung an einer Stelle im Programm nicht aus Versehen andere Abschnitte beeinflusst, die sich dadurch anders verhalten als gewünscht.</p>
+</div>
+<div class="paragraph">
+<p>Im folgenden wird betrachtet, wie solche Tests mit Hilfe von Netbeans und <a href="http://junit.org/junit4/">jUnit 4</a> erstellt werden können.</p>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Testen mit JUnit in Netbeans
+Bei größeren Programmen ist es sinnvoll, Teile von Programmen automatisch testen zu lassen. Dadurch ist es beispielsweise möglich, zu überprüfen, ob die Änderung an einer Stelle im Programm nicht aus Versehen andere Abschnitte beeinflusst, die sich dadurch anders verhalten als gewünscht.
+
+Im folgenden wird betrachtet, wie solche Tests mit Hilfe von Netbeans und http://junit.org/junit4/[jUnit 4] erstellt werden können.</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref64877718">Vorbereitungen</h3>
+<div class="paragraph">
+<p>Nach dem Erstellen eines neuen Projekts erstellen wir eine Klasse namens <code>Vektor</code>, die einige Grundrechenarten von Vektoren definiert, nämlich die Addition, die Subtraktion, das Skalarprodukt und das Kreuzprodukt.</p>
+</div>
+<div class="paragraph">
+<p>Der Code von <code>Vektor.java</code> könnte beispielsweise so ausssehen:</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Vorbereitungen
+Nach dem Erstellen eines neuen Projekts erstellen wir eine Klasse namens `Vektor`, die einige Grundrechenarten von Vektoren definiert, nämlich die Addition, die Subtraktion, das Skalarprodukt und das Kreuzprodukt.
+
+Der Code von `Vektor.java` könnte beispielsweise so ausssehen:</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Vektor</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">double</span> v1<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>v2<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>v3<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Vektor</span><span class="token punctuation">(</span><span class="token keyword">double</span> v1<span class="token punctuation">,</span><span class="token keyword">double</span> v2<span class="token punctuation">,</span> <span class="token keyword">double</span> v3<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>v1<span class="token operator">=</span>v1<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>v2<span class="token operator">=</span>v2<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>v3<span class="token operator">=</span>v3<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Vektor <span class="token function">plus</span><span class="token punctuation">(</span>Vektor that<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>v1<span class="token operator">+</span>that<span class="token punctuation">.</span>v1<span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>v2<span class="token operator">+</span>that<span class="token punctuation">.</span>v2<span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>v3<span class="token operator">+</span>that<span class="token punctuation">.</span>v3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Vektor <span class="token function">minus</span><span class="token punctuation">(</span>Vektor that<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>v1<span class="token operator">-</span>that<span class="token punctuation">.</span>v1<span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>v2<span class="token operator">-</span>that<span class="token punctuation">.</span>v2<span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>v3<span class="token operator">-</span>that<span class="token punctuation">.</span>v3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">skalar</span><span class="token punctuation">(</span>Vektor that<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>v1<span class="token operator">*</span>that<span class="token punctuation">.</span>v1<span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>v2<span class="token operator">*</span>that<span class="token punctuation">.</span>v2<span class="token operator">+</span><span class="token keyword">this</span><span class="token punctuation">.</span>v3<span class="token operator">*</span>that<span class="token punctuation">.</span>v3<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Vektor <span class="token function">kreuz</span><span class="token punctuation">(</span>Vektor that<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>v2<span class="token operator">*</span>that<span class="token punctuation">.</span>v3<span class="token operator">-</span><span class="token keyword">this</span><span class="token punctuation">.</span>v3<span class="token operator">*</span>that<span class="token punctuation">.</span>v2<span class="token punctuation">,</span><span class="token operator">-</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>v1<span class="token operator">*</span>that<span class="token punctuation">.</span>v3<span class="token operator">-</span><span class="token keyword">this</span><span class="token punctuation">.</span>v3<span class="token operator">*</span>that<span class="token punctuation">.</span>v1<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>v1<span class="token operator">*</span>that<span class="token punctuation">.</span>v2<span class="token operator">-</span><span class="token keyword">this</span><span class="token punctuation">.</span>v2<span class="token operator">*</span>that<span class="token punctuation">.</span>v1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"("</span><span class="token operator">+</span>v1<span class="token operator">+</span><span class="token string">","</span><span class="token operator">+</span>v2<span class="token operator">+</span><span class="token string">","</span><span class="token operator">+</span>v3<span class="token operator">+</span><span class="token string">")"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java] 
+----
+public class Vektor {
+    private double v1=0,v2=0,v3=0;
+    
+    public Vektor(double v1,double v2, double v3){
+        this.v1=v1;
+        this.v2=v2;
+        this.v3=v3;
+    }
+    
+    public Vektor plus(Vektor that){
+        return new Vektor(this.v1+that.v1,this.v2+that.v2,this.v3+that.v3);
+    }
+    
+    public Vektor minus(Vektor that){
+        return new Vektor(this.v1-that.v1,this.v2-that.v2,this.v3-that.v3);
+    }
+    
+    public double skalar(Vektor that){
+        return this.v1*that.v1+this.v2*that.v2+this.v3*that.v3;
+    }
+    
+    public Vektor kreuz(Vektor that){
+        return new Vektor(this.v2*that.v3-this.v3*that.v2,-(this.v1*that.v3-this.v3*that.v1),this.v1*that.v2-this.v2*that.v1);
+    }
+    
+    @Override
+    public String toString(){
+        return "("+v1+","+v2+","+v3+")";
+    }
+}
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Im Folgenden soll überprüft werden, ob diese Rechenoperationen korrekt implementiert wurden.</p>
+</div>
+<div class="paragraph">
+<p>Dazu erstellen wir zur Klasse <code>Vektor</code> eine <em>Testklasse</em>. In Netbeans funktioniert das folgendermaßen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Klick mit der rechten Maustaste auf die Datei <code>Vektor.java</code></p>
+</li>
+<li>
+<p>Wähle <strong>Tools → Create/Update Tests</strong></p>
+</li>
+</ul>
+</div></div><div class="originaltext" hidden="">Im Folgenden soll überprüft werden, ob diese Rechenoperationen korrekt implementiert wurden.
+
+Dazu erstellen wir zur Klasse `Vektor` eine _Testklasse_. In Netbeans funktioniert das folgendermaßen:
+
+* Klick mit der rechten Maustaste auf die Datei `Vektor.java`
+* Wähle *Tools -&gt; Create/Update Tests*  </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='zeichenflaeche tshareElement' onClick='nextLayer(this)' ><svg xmlns="http://www.w3.org/2000/svg" class="qreator_svg" viewBox="0 0 998 455" width="100%" height="100%" heightoriginal="701" hoehegesetzt="455" breitegesetzt="998"><g id="global" fill="none" stroke-linecap="round"><g id="layer_2"><image x="339" y="0" width="328" height="455" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,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" bildnr="0" /></g></g></svg></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="ulist">
+<ul>
+<li>
+<p>Als Klassenname wird VektorTest vorgeschlagen, unter <em>Generated Code</em> die beiden obersten Einträge abwählen.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Nach einem Klick auf OK wird automatisch die Datei <code>VektorTest.java</code> angelegt, die für jede Methode aus <code>Vektor.java</code> einen Test anlegt, der noch angepasst werden muss. <a href="#tags_b">Hier</a> findest du eine mögliche, von Netbeans erzeugte Datei <code>VektorTest.java</code>.</p>
+</div></div><div class="originaltext" hidden="">* Als Klassenname wird VektorTest vorgeschlagen, unter _Generated Code_ die beiden obersten Einträge abwählen.
+
+Nach einem Klick auf OK wird automatisch die Datei `VektorTest.java` angelegt, die für jede Methode aus `Vektor.java` einen Test anlegt, der noch angepasst werden muss. &lt;&lt;tags_b,Hier&gt;&gt; findest du eine mögliche, von Netbeans erzeugte Datei `VektorTest.java`.
+
+
+
+</div></div></div>
+<div sb='B' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref77227018">Eine mögliche Datei <code>VektorTest.java</code> nach der Generierung durch Netbeans</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token comment" spellcheck="true">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */</span>
+<span class="token keyword">package</span> vektorrechnung<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>AfterClass<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>BeforeClass<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>Test<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token keyword">static</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>Assert<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ *
+ * @author menze
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VektorTest</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token function">VektorTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@BeforeClass</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">setUpClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@AfterClass</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">tearDownClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Test of plus method, of class Vektor.
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testPlus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"plus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor that <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Vektor instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Vektor expResult <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Vektor result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// TODO review the generated test code and remove the default call to fail.</span>
+        <span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"The test case is a prototype."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Test of minus method, of class Vektor.
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testMinus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"minus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor that <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Vektor instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Vektor expResult <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Vektor result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">minus</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// TODO review the generated test code and remove the default call to fail.</span>
+        <span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"The test case is a prototype."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Test of skalar method, of class Vektor.
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testSkalar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"skalar"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor that <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Vektor instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">double</span> expResult <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
+        <span class="token keyword">double</span> result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">skalar</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">,</span> result<span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// TODO review the generated test code and remove the default call to fail.</span>
+        <span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"The test case is a prototype."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Test of kreuz method, of class Vektor.
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testKreuz</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"kreuz"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor that <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Vektor instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Vektor expResult <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        Vektor result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">kreuz</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// TODO review the generated test code and remove the default call to fail.</span>
+        <span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"The test case is a prototype."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment" spellcheck="true">/**
+     * Test of toString method, of class Vektor.
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"toString"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        String expResult <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        String result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// TODO review the generated test code and remove the default call to fail.</span>
+        <span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"The test case is a prototype."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="#tags_@">Zurück zur Hauptseite</a></p>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Eine mögliche Datei `VektorTest.java` nach der Generierung durch Netbeans
+
+[source,java]
+----
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package vektorrechnung;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author menze
+ */
+public class VektorTest {
+    
+    public VektorTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    /**
+     * Test of plus method, of class Vektor.
+     */
+    @Test
+    public void testPlus() {
+        System.out.println("plus");
+        Vektor that = null;
+        Vektor instance = null;
+        Vektor expResult = null;
+        Vektor result = instance.plus(that);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of minus method, of class Vektor.
+     */
+    @Test
+    public void testMinus() {
+        System.out.println("minus");
+        Vektor that = null;
+        Vektor instance = null;
+        Vektor expResult = null;
+        Vektor result = instance.minus(that);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of skalar method, of class Vektor.
+     */
+    @Test
+    public void testSkalar() {
+        System.out.println("skalar");
+        Vektor that = null;
+        Vektor instance = null;
+        double expResult = 0.0;
+        double result = instance.skalar(that);
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of kreuz method, of class Vektor.
+     */
+    @Test
+    public void testKreuz() {
+        System.out.println("kreuz");
+        Vektor that = null;
+        Vektor instance = null;
+        Vektor expResult = null;
+        Vektor result = instance.kreuz(that);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+   
+
+    /**
+     * Test of toString method, of class Vektor.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Vektor instance = null;
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
+}
+ 
+----
+&lt;&lt;tags_@,Zurück zur Hauptseite&gt;&gt; </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref11504561">Anpassung der Tests</h3>
+<div class="paragraph">
+<p>So kann beispielsweise der Test der Addition angepasst werden zu</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Anpassung der Tests 
+So kann beispielsweise der Test der Addition angepasst werden zu </div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref38035044">Zu testende Methode</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> Vektor <span class="token function">plus</span><span class="token punctuation">(</span>Vektor that<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>v1<span class="token operator">+</span>that<span class="token punctuation">.</span>v1<span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>v2<span class="token operator">+</span>that<span class="token punctuation">.</span>v2<span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>v3<span class="token operator">+</span>that<span class="token punctuation">.</span>v3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Zu testende Methode
+[source,java,indent=0]
+----
+    public Vektor plus(Vektor that){
+        return new Vektor(this.v1+that.v1,this.v2+that.v2,this.v3+that.v3);
+    }
+
+----</div></div></div>
+<div sb='P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref49997922">Prototyp</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testPlus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"plus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Vektor that <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Vektor instance <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Vektor expResult <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Vektor result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// TODO review the generated test code and remove the default call to fail.</span>
+    <span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"The test case is a prototype."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Prototyp
+[source,java,indent=0]  
+----
+    @Test
+    public void testPlus() {
+        System.out.println("plus");
+        Vektor that = null;
+        Vektor instance = null;
+        Vektor expResult = null;
+        Vektor result = instance.plus(that);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+----</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref45162910">Angepasster Prototyp</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testPlus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"plus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Vektor that <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Vektor für that erzeugen</span>
+    Vektor instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// unser Vektor</span>
+    Vektor expResult <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">3.0</span><span class="token punctuation">,</span><span class="token number">5.0</span><span class="token punctuation">,</span><span class="token number">8.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// erwartetes Resultat</span>
+    Vektor result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>result<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Angepasster Prototyp
+[source,java,indent=0 ]
+----
+    @Test
+    public void testPlus() {
+        System.out.println("plus");
+        Vektor that = new Vektor(1,2,3); // Vektor für that erzeugen
+        Vektor instance = new Vektor(2,3,5); // unser Vektor
+        Vektor expResult = new Vektor(3.0,5.0,8.0); // erwartetes Resultat
+        Vektor result = instance.plus(that);
+        assertEquals(expResult.toString(),result.toString());
+    }
+----</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref50513261">Kurzschreibweise</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testPlus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"plus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"(3.0,5.0,8.0)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Kurzschreibweise 
+[source,java,indent=0 ]
+----
+    @Test
+    public void testPlus() {
+        System.out.println("plus");
+        assertEquals(""+new Vektor(1,2,3).plus(new Vektor(2,3,5)), "(3.0,5.0,8.0)");
+    } 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><code>assertEquals</code> vergleicht dabei zwei Objekte auf Gleichheit. Neben dieser Überprüfung auf Gleichheit zweier Objekte gibt es noch viele andere Tests. Eine Übersicht aller Möglichkeiten findet man <a href="https://github.com/junit-team/junit4/wiki/Assertions">hier</a>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Warning" class="fa icon-warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Der Versuch, eine Gleichheit der Vektoren <code>result</code> und <code>expResult</code> über</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="Java"><span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">,</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>zu überprüfen, scheitert an der Tatsache, dass diese Instanzen zwar jeweils die gleichen Einträge haben, aber eben unterschiedliche Instanzen des selben Objekts sind.</p>
+</div>
+<div class="paragraph">
+<p>Deshalb vergleichen wir mit <code>toString()</code> die Repräsentationen der Instanzen als Zeichenketten, um die Gleichheit zu überprüfen. Bei einfachen Objekten wie Strings funktioniert dieser Vergleich.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">`assertEquals` vergleicht dabei zwei Objekte auf Gleichheit. Neben dieser Überprüfung auf Gleichheit zweier Objekte gibt es noch viele andere Tests. Eine Übersicht aller Möglichkeiten findet man https://github.com/junit-team/junit4/wiki/Assertions[hier]. 
+
+[WARNING]
+====
+Der Versuch, eine Gleichheit der Vektoren `result` und `expResult` über
+
+[source, Java]
+----
+assertEquals(expResult,result);
+
+---- 
+zu überprüfen, scheitert an der Tatsache, dass diese Instanzen zwar jeweils die gleichen Einträge haben, aber eben unterschiedliche Instanzen des selben Objekts sind.
+
+Deshalb vergleichen wir mit `toString()` die Repräsentationen der Instanzen als Zeichenketten, um die Gleichheit zu überprüfen. Bei einfachen Objekten wie Strings funktioniert dieser Vergleich.
+====
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Note" class="fa icon-note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Man kann den Code des Beispiels auch deutlich knapper schreiben, wie z. B.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testPlus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"plus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"(3.0,5.0,8.0)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Im linken Teil von <code>assertEquals</code> werden die beiden Vektoren addiert und das Ergebnis durch die doppelten Anführungszeichen und dem Pluszeichen in einen String umgewandelt. Dieses wird mit dem erwarteten String verglichen.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">[NOTE]
+====
+Man kann den Code des Beispiels auch deutlich knapper schreiben, wie z. B.
+
+[source,java]
+----
+    @Test
+    public void testPlus() {
+        System.out.println("plus");
+        assertEquals(""+new Vektor(1,2,3).plus(new Vektor(2,3,5)), "(3.0,5.0,8.0)");
+    } 
+----
+Im linken Teil von `assertEquals` werden die beiden Vektoren addiert und das Ergebnis durch die doppelten Anführungszeichen und dem Pluszeichen in einen String umgewandelt. Dieses wird mit dem erwarteten String verglichen. 
+====  </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref4562735">Durchführung der Tests</h3>
+<div class="paragraph">
+<p>Um die Tests durchführen zu lassen, kann man über <strong>Run → Test File</strong> den Test durchführen lassen.</p>
+</div>
+<div class="paragraph">
+<p>Je nach Erfolg oder Misserfolg erscheint eine entsprechende Ausgabe in Netbeans.</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Durchführung der Tests
+Um die Tests durchführen zu lassen, kann man über *Run -&gt; Test File* den Test durchführen lassen.
+
+Je nach Erfolg oder Misserfolg erscheint eine entsprechende Ausgabe in Netbeans.
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref86012314">Aufgaben</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Passe alle Tests der generierten Datei so an, dass die Tests korrekt durchlaufen.</p>
+<div class="paragraph">
+<p>Eine mögliche Lösung findest du <a href="#tags_A">hier</a>.</p>
+</div>
+</li>
+<li>
+<p>Baue absichtliche Fehler in die Berechnung des Kreuz- und Skalarprodukts ein und verifiziere, dass der Test danach nicht mehr durchläuft.</p>
+</li>
+<li>
+<p>Probiere einige andere der Testarten aus, die <a href="https://github.com/junit-team/junit4/wiki/Assertions">hier</a> zu finden sind.</p>
+</li>
+</ol>
+</div>
+</div></div><div class="originaltext" hidden="">=== Aufgaben
+. Passe alle Tests der generierten Datei so an, dass die Tests korrekt durchlaufen.
++
+Eine mögliche Lösung findest du &lt;&lt;tags_A,hier&gt;&gt;. 
+. Baue absichtliche Fehler in die Berechnung des Kreuz- und Skalarprodukts ein und verifiziere, dass der Test danach nicht mehr durchläuft.
+. Probiere einige andere der Testarten aus, die https://github.com/junit-team/junit4/wiki/Assertions[hier] zu finden sind.</div></div></div>
+<div sb='A' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref14094070">Mögliche Lösung für die Datei <code>VektorTest</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">package</span> vektorrechnung<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>AfterClass<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>BeforeClass<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>Test<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token keyword">static</span> org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>Assert<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VektorTest</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token function">VektorTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@BeforeClass</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">setUpClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Test aller Methoden von Vektor"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@AfterClass</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">tearDownClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Test of plus method, of class Vektor.
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testPlus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"plus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor that <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor expResult <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">3.0</span><span class="token punctuation">,</span><span class="token number">5.0</span><span class="token punctuation">,</span><span class="token number">8.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">plus</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>result<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Test of minus method, of class Vektor.
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testMinus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"minus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor that <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor expResult <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">minus</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> result<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Test of skalar method, of class Vektor.
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testSkalar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"skalar"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor that <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">double</span> expResult <span class="token operator">=</span> <span class="token number">19.0</span><span class="token punctuation">;</span>
+        <span class="token keyword">double</span> result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">skalar</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">,</span> result<span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Test of kreuz method, of class Vektor.
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testKreuz</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"kreuz"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor that <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor expResult <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">kreuz</span><span class="token punctuation">(</span>that<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> result<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Test of toString method, of class Vektor.
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"toString"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Vektor instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vektor</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String expResult <span class="token operator">=</span> <span class="token string">"(1.0,2.0,3.0)"</span><span class="token punctuation">;</span>
+        String result <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">assertEquals</span><span class="token punctuation">(</span>expResult<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="#tags_@">Zurück zur Hauptseite dieses Artikels</a></p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Mögliche Lösung für die Datei `VektorTest`
+[source,java]
+----
+package vektorrechnung;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class VektorTest {
+    
+    public VektorTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+        System.out.println("Test aller Methoden von Vektor");
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    /**
+     * Test of plus method, of class Vektor.
+     */
+    @Test
+    public void testPlus() {
+        System.out.println("plus");
+        Vektor that = new Vektor(1,2,3);
+        Vektor instance = new Vektor(2,3,5);
+        Vektor expResult = new Vektor(3.0,5.0,8.0);
+        Vektor result = instance.plus(that);
+        assertEquals(expResult.toString(),result.toString());
+    }
+
+    /**
+     * Test of minus method, of class Vektor.
+     */
+    @Test
+    public void testMinus() {
+        System.out.println("minus");
+        Vektor that = new Vektor(1,2,3);
+        Vektor instance = new Vektor(2,3,5);
+        Vektor expResult = new Vektor(1,1,2);
+        Vektor result = instance.minus(that);
+        assertEquals(expResult.toString(), result.toString());
+    }
+
+    /**
+     * Test of skalar method, of class Vektor.
+     */
+    @Test
+    public void testSkalar() {
+        System.out.println("skalar");
+        Vektor that = new Vektor(1,2,3);
+        Vektor instance = new Vektor(2,4,3);
+        double expResult = 19.0;
+        double result = instance.skalar(that);
+        assertEquals(expResult, result, 0.1);
+    }
+
+    /**
+     * Test of kreuz method, of class Vektor.
+     */
+    @Test
+    public void testKreuz() {
+        System.out.println("kreuz");
+        Vektor that = new Vektor(2,4,5);
+        Vektor instance = new Vektor(1,2,3);
+        Vektor expResult = new Vektor(-2,1,0);
+        Vektor result = instance.kreuz(that);
+        assertEquals(expResult.toString(), result.toString());
+    }
+
+    /**
+     * Test of toString method, of class Vektor.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Vektor instance = new Vektor(1,2,3);
+        String expResult = "(1.0,2.0,3.0)";
+        String result = instance.toString();
+        assertEquals(expResult, result);      
+    }
+}
+ 
+----
+
+&lt;&lt;tags_@,Zurück zur Hauptseite dieses Artikels&gt;&gt; </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref26846037">Dateien zu diesem Kapitel</h3>
+<div class="paragraph">
+<p>Das Grundprogramm ohne Lösungen kannst du hier als gezipptes Netbeans-Projekt herunterladen:</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Dateien zu diesem Kapitel
+Das Grundprogramm ohne Lösungen kannst du hier als gezipptes Netbeans-Projekt herunterladen:</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='datei tshareElement'><div style="background-color: #f8f8f7"><object name="Vektorrechnung.zip" data="data:application/x-zip-compressed;base64,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" type="application/x-zip-compressed" style="display:none"></object><button onclick="saveObject()">Vektorrechnung.zip herunterladen</button><div class="adoccss"><table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><span class="icon"><i class="fa fa-file-o fa-5x"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dateiname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vektorrechnung.zip</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Größe in Bytes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">19736</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Einfügezeitpunkt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18.9.2017, 15:20:27</p></td>
+</tr>
+</tbody>
+</table></div></div></div>
+</body></html>
