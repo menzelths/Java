@@ -1,0 +1,793 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref432254">Die WHILE-Schleife</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref10667043">Motivation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Beim Einsatz der <em>for-Schleife</em>, weiß man im Prinzip beim Schreiben eines Programms, wie oft diese Schleife durchlaufen werden muss. Allerdings gibt es viele Probleme, die sich zwar mit Programmen lösen lassen, bei denen aber zu Beginn nicht klar ist, wie oft bestimmte Schritte wiederholt werden müssen.</p>
+</div>
+<div class="paragraph">
+<p>Ein einfaches Beispiel ist das Auffinden von Teilern einer Zahl: Manche Zahlen haben nur 2 Teiler (Primzahlen), andere 5 oder 30, etc.</p>
+</div>
+<div class="paragraph">
+<p>In solchen Fällen kann die Anzahl der Wiederholungen nicht einfach beim Schreiben eines Programms angegeben werden. Ein solches Problem kann aber über eine Wahrheitsbedingung gelöst werden, indem das Programm so lange läuft, wie eine Bedingung erfüllt ist.</p>
+</div>
+<div class="paragraph">
+<p>Genau für diesen Zweck existiert die <strong>while-Schleife</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref75506535">Syntax</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="ref14419826">Grundsyntax</h3>
+<div class="paragraph">
+<p>Betrachten wir zunächst ein einfaches Beispiel. Es sollen solange zufällige Zahlen ausgegeben bis eine Zahl größer als 0.5 ist. Dies könnte mit Hilfe der while-Schleife folgendermaßen bewerkstelligt werden:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>double zufall = Math.random(); <i class="conum" data-value="1"></i><b>(1)</b>
+while (zufall &lt; 0.5) { <i class="conum" data-value="2"></i><b>(2)</b>
+    System.out.println(zufall);
+    zufall = Math.random(); <i class="conum" data-value="3"></i><b>(3)</b>
+}
+System.out.println("Fertig"); <i class="conum" data-value="4"></i><b>(4)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Eine Variable zur Speicherung von Kommazahlen namens <code>zufall</code> wird angelegt und mit einer Zufallszahl zwischen 0 und 1 belegt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Solange diese Zufallszahl kleiner als 0.5 ist, wird diese Zahl ausgegeben und</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>eine neue Zufallszahl in <code>zufall</code> gespeichert.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Wenn die Bedingung der while-Schleife nicht mehr erfüllt ist, fährt das Programm hinter dem while-Block mit der Ausführung fort, gibt hier also "Fertig" aus.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Note" class="fa icon-note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Beachte, dass die Bedingung in den Klammern nach dem <code>while</code>-Schlüsselwort aus der While-Schleife heraus im Normalfall veränderbar sein sollte, da sonst die Gefahr einer <strong>Endlosschleife</strong> besteht. In unserem Beispiel findet eine solche Änderung statt, da der Wert von <code>zufall</code> in jedem Durchlauf zufällig neu bestimmt wird und die Wiederholung der Schleife somit irgendwann abgebrochen wird, da ein zufälliger Wert &gt;= 0.5 in <code>zufall</code> gespeichert wird.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref59798019">Variante: die do-while-Schleife</h3>
+<div class="paragraph">
+<p>Eng verwandt mit der while-Schleife ist die <strong>do-while-Schleife</strong>: bei dieser wird die Wiederholungsbedingung erst nach der Durchführung der zu wiederholenden Ausdrücke überprüft, was bedeutet, dass diese Schleife immer mindestens ein Mal durchlaufen wird.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>double zufall = Math.random();
+ do { <i class="conum" data-value="1"></i><b>(1)</b>
+     System.out.println(zufall);
+     zufall = Math.random();
+ } while (zufall &lt; 0.5); <i class="conum" data-value="2"></i><b>(2)</b>
+ System.out.println("Fertig"); <i class="conum" data-value="3"></i><b>(3)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Starte den zu wiederholenden Teil: ein Mal wird der Bereich zwischen den geschweiften Klammern mindestens durchlaufen.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die Bedingung für die Wiederholungen wird hier erst <em>nach</em> der ersten Durchführung überprüft.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Hierher gelangt die Programmausführung erst, wenn die Bedingung der do-while-Schleife nicht mehr erfüllt ist.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Der Unterschied zum Programm mit der normalen while-Schleife, wird dieses Programm immer mindestens eine Zahl ausgeben, auch wenn sie größer als 0,5 sein sollte.</p>
+</div>
+<div class="paragraph">
+<p>Im folgenden wird aber fast ausschließlich mit der while-Schleife gearbeitet, da alle Anwendungsprobleme auch mit dieser zu lösen sind.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref31758942">Beispiel: Collatz’sche Vermutung</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="ref13460797">Grundproblem</h3>
+<div class="paragraph">
+<p>Stellen wir uns eine Art Spiel vor: Man denke sich eine natürliche Zahl ungleich der 1.</p>
+</div>
+<div class="paragraph">
+<p>Handelt es sich dabei um eine <em>gerade</em> Zahl, so dividieren wir sie durch 2.</p>
+</div>
+<div class="paragraph">
+<p>Ist die Zahl jedoch <em>ungerade</em>, so multiplizieren wir sie mit 3 und addieren 1, also kurz:</p>
+</div>
+<div class="paragraph">
+<p><span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi>z</mi></mrow><mtext>&nbsp;</mtext><mtext><mtext>&nbsp;</mtext><mi mathvariant="normal">g</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mtext>&nbsp;</mtext></mtext><mtext>&nbsp;</mtext><mo>⇒</mo><msub><mrow><mi>z</mi></mrow><mrow><mtext><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">u</mi></mtext></mrow></msub><mo>=</mo><mfrac><mrow><mrow><mi>z</mi></mrow></mrow><mrow><mrow><mn>2</mn></mrow></mrow></mfrac></mrow><annotation encoding="application/x-tex"> {z}\ \text{ gerade }\ \Rightarrow{z}_{\text{neu}}=\frac{{z}}{{2}} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height: 0.69em;"></span><span class="strut bottom" style="height: 1.04em; vertical-align: -0.34em;"></span><span class="base textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathit" style="margin-right: 0.04em;">z</span></span><span class="mord text textstyle uncramped"><span class="mspace">&nbsp;</span><span class="mord mathrm">&nbsp;gerade&nbsp;</span></span><span class="mrel"><span class="mspace">&nbsp;</span><span class="mrel">⇒</span></span><span class="mord"><span class="mord textstyle uncramped"><span class="mord mathit" style="margin-right: 0.04em;">z</span></span><span class="msupsub"><span class="vlist"><span style="top: 0.15em; margin-right: 0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;">​</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord text scriptstyle cramped mtight"><span class="mord mathrm mtight">neu</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;">​</span></span>​</span></span></span></span><span class="mrel">=</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top: 0.34em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;">​</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">2</span></span></span></span></span><span style="top: -0.23em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top: -0.39em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right: 0.04em;">z</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;">​</span></span>​</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></span>,</p>
+</div>
+<div class="paragraph">
+<p><span><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi>z</mi></mrow><mtext>&nbsp;</mtext><mtext><mtext>&nbsp;</mtext><mi mathvariant="normal">u</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mtext>&nbsp;</mtext></mtext><mtext>&nbsp;</mtext><mo>⇒</mo><msub><mrow><mi>z</mi></mrow><mrow><mtext><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">u</mi></mtext></mrow></msub><mo>=</mo><mrow><mn>3</mn></mrow><mo>⋅</mo><mrow><mi>z</mi></mrow><mo>+</mo><mrow><mn>1</mn></mrow></mrow><annotation encoding="application/x-tex"> {z}\ \text{ ungerade }\ \Rightarrow{z}_{\text{neu}}={3}\cdot{z}+{1} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height: 0.69em;"></span><span class="strut bottom" style="height: 0.88em; vertical-align: -0.19em;"></span><span class="base textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathit" style="margin-right: 0.04em;">z</span></span><span class="mord text textstyle uncramped"><span class="mspace">&nbsp;</span><span class="mord mathrm">&nbsp;ungerade&nbsp;</span></span><span class="mrel"><span class="mspace">&nbsp;</span><span class="mrel">⇒</span></span><span class="mord"><span class="mord textstyle uncramped"><span class="mord mathit" style="margin-right: 0.04em;">z</span></span><span class="msupsub"><span class="vlist"><span style="top: 0.15em; margin-right: 0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;">​</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord text scriptstyle cramped mtight"><span class="mord mathrm mtight">neu</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size: 0em;">​</span></span>​</span></span></span></span><span class="mrel">=</span><span class="mord textstyle uncramped"><span class="mord mathrm">3</span></span><span class="mbin">⋅</span><span class="mord textstyle uncramped"><span class="mord mathit" style="margin-right: 0.04em;">z</span></span><span class="mbin">+</span><span class="mord textstyle uncramped"><span class="mord mathrm">1</span></span></span></span></span></span></p>
+</div>
+<div class="paragraph">
+<p>Mit der neuen Zahl wiederholt man dieses "Spiel" und verfährt solange nach dieser Regel, bis man für z die Zahl 1 erhält.</p>
+</div>
+<div class="paragraph">
+<p>Die <strong>Collatz’sche Vermutung</strong> besagt nun, dass man, unabhängig von der Startzahl, immer bei 1 landet. <em>Vermutung</em>, da man bis heute keinen mathematischen Beweis dafür hat, dass dies tatsächlich immer gelingt.</p>
+</div>
+<div class="paragraph">
+<p>Dieses Problem ist gut für eine While-Schleife geeignet, da man zum Zeitpunkt des Programmierens noch nicht weiß, wie oft das Spiel durchlaufen werden muss. Man weiß nur, dass es läuft, <em>solange</em> z&gt;1 ist. Und immer, wenn das Wort "solange" einen Wiederholungsvorgang beschreibt, ist die While-Schleife ein guter Kandidat zur Lösung des Problems mit Hilfe eines Algorithmus.</p>
+</div>
+<div class="paragraph">
+<p>Eine mögliche Lösung könnte so aussehen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>int z=5; <i class="conum" data-value="1"></i><b>(1)</b>
+System.out.println("Startwert: "+z);
+while (z&gt;1){ <i class="conum" data-value="2"></i><b>(2)</b>
+    if (z%2==0){ <i class="conum" data-value="3"></i><b>(3)</b>
+        z/=2; <i class="conum" data-value="4"></i><b>(4)</b>
+    } else {
+        z=3*z+1;
+    }
+    System.out.println(z);
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Die Ganzzahlvariable z enthält die betrachtete Zahl</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Der folgende Prozess wird wiederholt, <em>solange</em> z&gt;1 ist</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>z%2</code> (sprich: "z modulo 2") liefert den Rest der Division von z durch 2: ist z also gerade, erhält man 0, sonst 1</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>z/=2</code> ist die abkürzende Schreibweise für <code>z=z/2</code></td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Nach dem Starten liefert das Programm die Ausgabe:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Startwert: 5
+16
+8
+4
+2
+1</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref39608466">Erweiterung 1: Zählen der Schritte bis zur 1</h3>
+<div class="paragraph">
+<p>Möchte man zählen, wie viele Schritte benötigt werden, bis man zur 1 gelangt, so muss man einen Zähler einbauen. Dies gelingt beispielsweise folgendermaßen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>int z=5;
+int zaehler=0; <i class="conum" data-value="1"></i><b>(1)</b>
+System.out.println("Startwert: "+z);
+while (z&gt;1){
+    if (z%2==0){
+        z/=2;
+    } else {
+        z=3*z+1;
+    }
+    zaehler++; <i class="conum" data-value="2"></i><b>(2)</b>
+    System.out.println(z);
+}
+System.out.println("Anzahl der Schritte: "+zaehler); <i class="conum" data-value="3"></i><b>(3)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Deklaration und Initialisierung der Zählvariable <code>zaehler</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>An diese Stelle kommt das Programm jedes Mal, wenn z verändert wird. Somit ist das die perfekte Stelle, um die Anzahl der Schritte zu zählen</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>An diese Stelle kommt das Programm erst <em>nach</em> dem Beenden der While-Schleife. Somit kann hier nun die Anzahl der Schritte ausgegeben werden.</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref82508747">Erweiterung 2: Ausgeben der Schritte und Schrittzahlen für alle Zahlen von 2 bis 10</h3>
+<div class="paragraph">
+<p>Nun soll nicht nur eine Zahl, sondern mehrere untersucht werden, was man intuitiv zunächst so umsetzen könnte:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>for (int z = 2; z&lt;=10; z++) {<i class="conum" data-value="1"></i><b>(1)</b>
+    int zaehler = 0;
+    System.out.println("Startwert: " + z);
+    while (z &gt; 1) {
+        if (z % 2 == 0) {
+            z /= 2;
+        } else {
+            z = 3 * z + 1;
+        }
+        zaehler++;
+        System.out.print(z + " ");<i class="conum" data-value="2"></i><b>(2)</b>
+    }
+    System.out.println(", Anzahl der Schritte: " + zaehler);
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Anstatt <code>z</code> auf einen festen Wert zu setzen, wird <code>z</code> nun über die for-Schleife festgelegt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Statt <code>println</code> verwenden wir hier nur <code>print</code>, wodurch nach der Ausgabe <em>keine</em> neue Zeile bgeonnen wird. Das Leerzeichen hinter der Ausgabe von <code>z</code> wird eingefügt, damit die Ausgabe schöner formatiert wird.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Startet man das Programm, so erhält man überraschenderweise <em>nicht</em> das gewünschte Ergebnis, sondern immer wieder die gleiche Ausgabe</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>...
+Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 2
+1 , Anzahl der Schritte: 1
+...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Was haben wir falsch gemacht?</p>
+</div>
+<div class="paragraph">
+<p>Innerhalb der while-Schleife wird der Wert von <code>z</code> verändert und ist nach Beendigung der while-Schleife immer 1.</p>
+</div>
+<div class="paragraph">
+<p>Da <code>z</code> aber gleichzeitig steuert, wie oft die for-Schleife durchlaufen wird, haben wir hier ein Problem: die for-Schleife läuft solange, wie <code>z &lt; = 10</code> ist und da z durch die while-Schleife immer wieder auf 1 gesetzt wird, erhöht die for-Schleife den Wert um 1 (also auf 2) und beginnt das Spiel von vorne.</p>
+</div>
+<div class="paragraph">
+<p>Letzten Endes haben wir hier eine <strong>Endlosschleife</strong> erzeugt.</p>
+</div>
+<div class="paragraph">
+<p>Abhilfe schafft das Einführen einer neuen Variable innerhalb der for-Schleife, wie folgt:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>for (int i = 2; i&lt;=10; i++) {<i class="conum" data-value="1"></i><b>(1)</b>
+    int z=i;<i class="conum" data-value="2"></i><b>(2)</b>
+    int zaehler = 0;
+    System.out.println("Startwert: " + z);
+    while (z &gt; 1) {
+        if (z % 2 == 0) {
+            z /= 2;
+        } else {
+            z = 3 * z + 1;
+        }
+        zaehler++;
+        System.out.print(z + " ");
+    }
+    System.out.println(", Anzahl der Schritte: " + zaehler);
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Benutze als Laufvariable <code>i</code> statt <code>z</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Übergabe von <code>i</code> an <code>z</code>: dadurch hat die Änderung von <code>z</code> keinen Einfluss auf das Laufverhalten der Schleife</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Das <code>z</code> wird innerhalb der while-Schleife nach wie vor jedes Mal auf 1 abgeändert, was allerdings keinen Einfluss auf das <code>i</code> hat, das für die Steuerung der Schleife verantwortlich ist.</p>
+</div>
+<div class="paragraph">
+<p>Nun liefert das Programm die Ausgabe</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 3
+10 5 16 8 4 2 1 , Anzahl der Schritte: 7
+Startwert: 4
+2 1 , Anzahl der Schritte: 2
+Startwert: 5
+16 8 4 2 1 , Anzahl der Schritte: 5
+Startwert: 6
+3 10 5 16 8 4 2 1 , Anzahl der Schritte: 8
+Startwert: 7
+22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1 , Anzahl der Schritte: 16
+Startwert: 8
+4 2 1 , Anzahl der Schritte: 3
+Startwert: 9
+28 14 7 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1 , Anzahl der Schritte: 19
+Startwert: 10
+5 16 8 4 2 1 , Anzahl der Schritte: 6</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref39598555">Erweiterung 3: Collatz mit "grafischer Ausgabe"</h3>
+<div class="paragraph">
+<p>Eine letzte Erweiterung soll mit Hilfe von <code>#</code> -Symbolen die Anzahl der notwendigen Schritte anzeigen, um besser zu visualisieren, wo viele oder wenige Schritte benötigt werden.</p>
+</div>
+<div class="paragraph">
+<p>Eine Möglichkeit wäre:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>for (int i = 2; i &lt;=10; i++) {
+    int z=i;
+    int zaehler = 0;
+    System.out.println("Startwert: " + z);
+    while (z &gt; 1) {
+        if (z % 2 == 0) {
+            z /= 2;
+        } else {
+            z = 3 * z + 1;
+        }
+        zaehler++;
+        System.out.print(z + " ");
+    }
+    System.out.println("");
+    for (int j=0;j&lt;zaehler;j++){ <i class="conum" data-value="1"></i><b>(1)</b>
+        System.out.print("#"); <i class="conum" data-value="2"></i><b>(2)</b>
+    }
+    System.out.println("\n");<i class="conum" data-value="3"></i><b>(3)</b>
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Neue Schleife mit so vielen Durchläufen, wie <code>zaehler</code> gezählt hat. Hier wird eine neue Laufvariable <code>j</code> eingeführt, da wir uns noch in der for-Schleife mit der Laufvariable <code>i</code> befinden.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Wieder <code>print</code> statt <code>println</code>, damit nicht nach jedem <code>#</code> eine neue Zeile beginnt</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>println</code> beendet mit seiner Ausgabe die aktuelle Zeile und springt in die nächste. Das Gleiche erreicht man mit <code>\n</code>: Kommt dieses in einem String vor, steht dies für eine neue Zeile. Durch die Kombination aus beidem, wie hier, springt der Cursor sogar in die übernächste Zeile, so dass jeweils eine Leerzeile entsteht.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Die Ausgabe sieht dann so aus:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Startwert: 2
+1
+#
+
+Startwert: 3
+10 5 16 8 4 2 1
+#######
+
+Startwert: 4
+2 1
+##
+
+Startwert: 5
+16 8 4 2 1
+#####
+
+Startwert: 6
+3 10 5 16 8 4 2 1
+########
+
+Startwert: 7
+22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1
+################
+
+Startwert: 8
+4 2 1
+###
+
+Startwert: 9
+28 14 7 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1
+###################
+
+Startwert: 10
+5 16 8 4 2 1
+######</pre>
+</div>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Die WHILE-Schleife 
+== Motivation
+Beim Einsatz der _for-Schleife_, weiß man im Prinzip beim Schreiben eines Programms, wie oft diese Schleife durchlaufen werden muss. Allerdings gibt es viele Probleme, die sich zwar mit Programmen lösen lassen, bei denen aber zu Beginn nicht klar ist, wie oft bestimmte Schritte wiederholt werden müssen.
+
+Ein einfaches Beispiel ist das Auffinden von Teilern einer Zahl: Manche Zahlen haben nur 2 Teiler (Primzahlen), andere 5 oder 30, etc.
+
+In solchen Fällen kann die Anzahl der Wiederholungen nicht einfach beim Schreiben eines Programms angegeben werden. Ein solches Problem kann aber über eine Wahrheitsbedingung gelöst werden, indem das Programm so lange läuft, wie eine Bedingung erfüllt ist.
+
+Genau für diesen Zweck existiert die *while-Schleife*.
+
+== Syntax
+=== Grundsyntax
+Betrachten wir zunächst ein einfaches Beispiel. Es sollen solange zufällige Zahlen ausgegeben bis eine Zahl größer als 0.5 ist. Dies könnte mit Hilfe der while-Schleife folgendermaßen bewerkstelligt werden:
+
+[  indent=0]
+----
+        double zufall = Math.random(); //&lt;1&gt;
+        while (zufall &lt; 0.5) { // &lt;2&gt;
+            System.out.println(zufall);
+            zufall = Math.random(); // &lt;3&gt;
+        }
+        System.out.println("Fertig"); // &lt;4&gt;
+----
+&lt;1&gt; Eine Variable zur Speicherung von Kommazahlen namens `zufall` wird angelegt und mit einer Zufallszahl zwischen 0 und 1 belegt.
+&lt;2&gt; Solange diese Zufallszahl kleiner als 0.5 ist, wird diese Zahl ausgegeben und
+&lt;3&gt; eine neue Zufallszahl in `zufall` gespeichert.
+&lt;4&gt; Wenn die Bedingung der while-Schleife nicht mehr erfüllt ist, fährt das Programm hinter dem while-Block mit der Ausführung fort, gibt hier also "Fertig" aus.
+
+[NOTE]
+====
+Beachte, dass die Bedingung in den Klammern nach dem `while`-Schlüsselwort aus der While-Schleife heraus im Normalfall veränderbar sein sollte, da sonst die Gefahr einer *Endlosschleife* besteht. In unserem Beispiel findet eine solche Änderung statt, da der Wert von `zufall` in jedem Durchlauf zufällig neu bestimmt wird und die Wiederholung der Schleife somit irgendwann abgebrochen wird, da ein zufälliger Wert &gt;= 0.5 in `zufall` gespeichert wird.
+====
+
+=== Variante: die do-while-Schleife
+
+Eng verwandt mit der while-Schleife ist die *do-while-Schleife*: bei dieser wird die Wiederholungsbedingung erst nach der Durchführung der zu wiederholenden Ausdrücke überprüft, was bedeutet, dass diese Schleife immer mindestens ein Mal durchlaufen wird.
+
+[ indent=0]
+----
+       double zufall = Math.random(); 
+        do { // &lt;1&gt;
+            System.out.println(zufall);
+            zufall = Math.random(); 
+        } while (zufall &lt; 0.5); // &lt;2&gt;
+        System.out.println("Fertig"); // &lt;3&gt;
+----
+&lt;1&gt; Starte den zu wiederholenden Teil: ein Mal wird der Bereich zwischen den geschweiften Klammern mindestens durchlaufen.
+&lt;2&gt; Die Bedingung für die Wiederholungen wird hier erst _nach_ der ersten Durchführung überprüft.
+&lt;3&gt; Hierher gelangt die Programmausführung erst, wenn die Bedingung der do-while-Schleife nicht mehr erfüllt ist.
+
+Der Unterschied zum Programm mit der normalen while-Schleife, wird dieses Programm immer mindestens eine Zahl ausgeben, auch wenn sie größer als 0,5 sein sollte.
+
+Im folgenden wird aber fast ausschließlich mit der while-Schleife gearbeitet, da alle Anwendungsprobleme auch mit dieser zu lösen sind.
+
+== Beispiel: Collatz'sche Vermutung
+
+=== Grundproblem 
+
+Stellen wir uns eine Art Spiel vor: Man denke sich eine natürliche Zahl ungleich der 1. 
+
+Handelt es sich dabei um eine _gerade_ Zahl, so dividieren wir sie durch 2.
+
+Ist die Zahl jedoch _ungerade_, so multiplizieren wir sie mit 3 und addieren 1, also kurz:
+
+stem:[z text( gerade ) =&gt; z_text(neu)=z/2],
+
+stem:[z text( ungerade ) =&gt; z_text(neu)=3*z+1]
+
+Mit der neuen Zahl wiederholt man dieses "Spiel" und verfährt solange nach dieser Regel, bis man für z die Zahl 1 erhält.
+
+Die *Collatz'sche Vermutung* besagt nun, dass man, unabhängig von der Startzahl, immer bei 1 landet. _Vermutung_, da man bis heute keinen mathematischen Beweis dafür hat, dass dies tatsächlich immer gelingt.
+
+Dieses Problem ist gut für eine While-Schleife geeignet, da man zum Zeitpunkt des Programmierens noch nicht weiß, wie oft das Spiel durchlaufen werden muss. Man weiß nur, dass es läuft, _solange_ z&gt;1 ist. Und immer, wenn das Wort "solange" einen Wiederholungsvorgang beschreibt, ist die While-Schleife ein guter Kandidat zur Lösung des Problems mit Hilfe eines Algorithmus.
+
+Eine mögliche Lösung könnte so aussehen:
+
+[ indent=0]
+----
+        int z=5; // &lt;1&gt;
+        System.out.println("Startwert: "+z);
+        while (z&gt;1){ // &lt;2&gt;
+            if (z%2==0){ // &lt;3&gt;
+                z/=2; //&lt;4&gt;
+            } else {
+                z=3*z+1;
+            }
+            System.out.println(z);
+        }
+----
+&lt;1&gt; Die Ganzzahlvariable z enthält die betrachtete Zahl
+&lt;2&gt; Der folgende Prozess wird wiederholt, _solange_ z&gt;1 ist
+&lt;3&gt; `z%2` (sprich: "z modulo 2") liefert den Rest der Division von z durch 2: ist z also gerade, erhält man 0, sonst 1
+&lt;4&gt; `z/=2` ist die abkürzende Schreibweise für `z=z/2`
+
+Nach dem Starten liefert das Programm die Ausgabe:
+
+....
+Startwert: 5
+16
+8
+4
+2
+1
+....
+
+=== Erweiterung 1: Zählen der Schritte bis zur 1
+
+Möchte man zählen, wie viele Schritte benötigt werden, bis man zur 1 gelangt, so muss man einen Zähler einbauen. Dies gelingt beispielsweise folgendermaßen:
+
+[indent=0]
+----
+        int z=5;
+        int zaehler=0; // &lt;1&gt;
+        System.out.println("Startwert: "+z);
+        while (z&gt;1){
+            if (z%2==0){
+                z/=2;
+            } else {
+                z=3*z+1;
+            }
+            zaehler++; //&lt;2&gt;
+            System.out.println(z);
+        }
+        System.out.println("Anzahl der Schritte: "+zaehler); //&lt;3&gt;
+----
+&lt;1&gt; Deklaration und Initialisierung der Zählvariable `zaehler`
+&lt;2&gt; An diese Stelle kommt das Programm jedes Mal, wenn z verändert wird. Somit ist das die perfekte Stelle, um die Anzahl der Schritte zu zählen
+&lt;3&gt; An diese Stelle kommt das Programm erst _nach_ dem Beenden der While-Schleife. Somit kann hier nun die Anzahl der Schritte ausgegeben werden.
+
+=== Erweiterung 2: Ausgeben der Schritte und Schrittzahlen für alle Zahlen von 2 bis 10
+
+Nun soll nicht nur eine Zahl, sondern mehrere untersucht werden, was man intuitiv zunächst so umsetzen könnte:
+
+[indent=0]
+----
+        for (int z = 2; z&lt;=10; z++) {//&lt;1&gt;
+            int zaehler = 0;
+            System.out.println("Startwert: " + z);
+            while (z &gt; 1) {
+                if (z % 2 == 0) {
+                    z /= 2;
+                } else {
+                    z = 3 * z + 1;
+                }
+                zaehler++;
+                System.out.print(z + " ");//&lt;2&gt;
+            }
+            System.out.println(", Anzahl der Schritte: " + zaehler);
+        }
+----
+&lt;1&gt; Anstatt `z` auf einen festen Wert zu setzen, wird `z` nun über die for-Schleife festgelegt.
+&lt;2&gt; Statt `println` verwenden wir hier nur `print`, wodurch nach der Ausgabe _keine_ neue Zeile bgeonnen wird. Das Leerzeichen hinter der Ausgabe von `z` wird eingefügt, damit die Ausgabe schöner formatiert wird.
+
+Startet man das Programm, so erhält man überraschenderweise _nicht_ das gewünschte Ergebnis, sondern immer wieder die gleiche Ausgabe
+
+....
+...
+Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 2
+1 , Anzahl der Schritte: 1
+...
+....
+
+Was haben wir falsch gemacht?
+
+Innerhalb der while-Schleife wird der Wert von `z` verändert und ist nach Beendigung der while-Schleife immer 1.
+
+Da `z` aber gleichzeitig steuert, wie oft die for-Schleife durchlaufen wird, haben wir hier ein Problem: die for-Schleife läuft solange, wie `z &lt; = 10` ist und da z durch die while-Schleife immer wieder auf 1 gesetzt wird, erhöht die for-Schleife den Wert um 1 (also auf 2) und beginnt das Spiel von vorne.
+
+Letzten Endes haben wir hier eine *Endlosschleife* erzeugt.
+
+Abhilfe schafft das Einführen einer neuen Variable innerhalb der for-Schleife, wie folgt:
+
+[indent=0]
+----
+        for (int i = 2; i&lt;=10; i++) {//&lt;1&gt;
+            int z=i;//&lt;2&gt;
+            int zaehler = 0;
+            System.out.println("Startwert: " + z);
+            while (z &gt; 1) {
+                if (z % 2 == 0) {
+                    z /= 2;
+                } else {
+                    z = 3 * z + 1;
+                }
+                zaehler++;
+                System.out.print(z + " ");
+            }
+            System.out.println(", Anzahl der Schritte: " + zaehler);
+        }
+----
+&lt;1&gt; Benutze als Laufvariable `i` statt `z`
+&lt;2&gt; Übergabe von `i` an `z`: dadurch hat die Änderung von `z` keinen Einfluss auf das Laufverhalten der Schleife
+
+Das `z` wird innerhalb der while-Schleife nach wie vor jedes Mal auf 1 abgeändert, was allerdings keinen Einfluss auf das `i` hat, das für die Steuerung der Schleife verantwortlich ist.
+
+Nun liefert das Programm die Ausgabe
+
+....
+Startwert: 2
+1 , Anzahl der Schritte: 1
+Startwert: 3
+10 5 16 8 4 2 1 , Anzahl der Schritte: 7
+Startwert: 4
+2 1 , Anzahl der Schritte: 2
+Startwert: 5
+16 8 4 2 1 , Anzahl der Schritte: 5
+Startwert: 6
+3 10 5 16 8 4 2 1 , Anzahl der Schritte: 8
+Startwert: 7
+22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1 , Anzahl der Schritte: 16
+Startwert: 8
+4 2 1 , Anzahl der Schritte: 3
+Startwert: 9
+28 14 7 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1 , Anzahl der Schritte: 19
+Startwert: 10
+5 16 8 4 2 1 , Anzahl der Schritte: 6
+....
+
+=== Erweiterung 3: Collatz mit "grafischer Ausgabe"
+
+Eine letzte Erweiterung soll mit Hilfe von `#` -Symbolen die Anzahl der notwendigen Schritte anzeigen, um besser zu visualisieren, wo viele oder wenige Schritte benötigt werden.
+
+Eine Möglichkeit wäre:
+
+[indent=0]
+----
+        for (int i = 2; i &lt;=10; i++) {
+            int z=i;
+            int zaehler = 0;
+            System.out.println("Startwert: " + z);
+            while (z &gt; 1) {
+                if (z % 2 == 0) {
+                    z /= 2;
+                } else {
+                    z = 3 * z + 1;
+                }
+                zaehler++;
+                System.out.print(z + " ");
+            }
+            System.out.println("");
+            for (int j=0;j&lt;zaehler;j++){ // &lt;1&gt;
+                System.out.print("#"); // &lt;2&gt;
+            }
+            System.out.println("\n");//&lt;3&gt;
+        }
+---- 
+&lt;1&gt; Neue Schleife mit so vielen Durchläufen, wie `zaehler` gezählt hat. Hier wird eine neue Laufvariable `j` eingeführt, da wir uns noch in der for-Schleife mit der Laufvariable `i` befinden.
+&lt;2&gt; Wieder `print` statt `println`, damit nicht nach jedem `#` eine neue Zeile beginnt
+&lt;3&gt; `println` beendet mit seiner Ausgabe die aktuelle Zeile und springt in die nächste. Das Gleiche erreicht man mit `\n`: Kommt dieses in einem String vor, steht dies für eine neue Zeile. Durch die Kombination aus beidem, wie hier, springt der Cursor sogar in die übernächste Zeile, so dass jeweils eine Leerzeile entsteht.
+
+Die Ausgabe sieht dann so aus:
+
+....
+Startwert: 2
+1 
+#
+
+Startwert: 3
+10 5 16 8 4 2 1 
+#######
+
+Startwert: 4
+2 1 
+##
+
+Startwert: 5
+16 8 4 2 1 
+#####
+
+Startwert: 6
+3 10 5 16 8 4 2 1 
+########
+
+Startwert: 7
+22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1 
+################
+
+Startwert: 8
+4 2 1 
+###
+
+Startwert: 9
+28 14 7 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1 
+###################
+
+Startwert: 10
+5 16 8 4 2 1 
+######
+.... </div></div></div>
+</body></html>

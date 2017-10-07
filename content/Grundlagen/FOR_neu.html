@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref32127539">Die FOR-Schleife</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref26016485">Motivation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Aufgabe:</strong></p>
+</div>
+<div class="paragraph">
+<p>Gib alle geraden Zahlen zwischen 0 und 10 einschließlich aus.</p>
+</div>
+<div class="paragraph">
+<p><strong>Mögliche Lösung:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"6"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Es handelt sich hierbei zwar um eine Lösung, allerdings könnte man für diese Vorgehensweise genauso eine Textverarbeitung für die Ausgabe wählen, der Aufwand wäre dann sogar etwas geringer.</p>
+</div>
+<div class="paragraph">
+<p>Spätestens aber, wenn man alle geraden Zahlen zwischen 0 und 1000 einschließlich ausgeben will, wird niemand die Aufgabe wie in der dargestellten Lösung beantworten.</p>
+</div>
+<div class="paragraph">
+<p>Zu diesem Zweck gibt es die <strong>for-Schleife</strong>, die dazu da ist, Anweisungen zu wiederholen.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref56197296">Syntax</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="ref29493413">Grundsyntax</h3>
+<div class="paragraph">
+<p>Die for-Schleife wird am einfachsten anhand eines Beispiels erklärt, das tatsächlich die geraden Zahlen zwischen 0 und 10 einschließlich ausgibt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>for (int i=0; i&lt;=10; i++){ <i class="conum" data-value="1"></i><b>(1)</b>
+    if (i%2==0){ <i class="conum" data-value="2"></i><b>(2)</b>
+        System.out.println(i); <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+} <i class="conum" data-value="4"></i><b>(4)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Kopf der for-Schleife</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Überprüfung auf die Eigenschaft "Zahl gerade" mit Modulo ("Teilbarkeit durch 2 wahr?")</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Ausgabe der Zahl.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Hier endet die for-Schleife, d.h. alle Anweisungen bis hierher werden wiederholt.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Sehen wir uns den Kopf der for-Schleife genauer an: Dieser besteht aus drei Abschnitten, die untereinander durch Strichpunkte getrennt sind.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>int i=0</code> führt die Integer-Variable i ein, die mit dem Wert 0 initialisiert wird. Sie wird auch als <strong>Laufvariable</strong> bezeichnet.</p>
+</li>
+<li>
+<p><code>i &lt; = 10</code> ist die Bedingung, die <em>vor</em> jedem Durchlauf auf Wahrheit überprüft wird. Sobald diese Bedingung nicht mehr erfüllt ist, wird die for-Schleife verlassen und der Code hinter der for-Schleife wird ausgeführt.</p>
+</li>
+<li>
+<p><code>i++</code> erhöht den Wert von i nach jedem Durchlauf um 1</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Da der Wert von i nach jedem Durchlauf um 1 erhöht wird, läuft die Schleife folgendermaßen ab:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>i</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ist <code>i &lt; = 10</code> ?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wahr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">falsch</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Sobald also <code>i</code> den Wert 11 annimmt, ist die Bedingung <code>i &lt; = 10</code> zum wiederholten Durchlaufen der Schleife nicht mehr erfüllt und der Code <em>hinter</em> der for-Schleife wird als nächstes ausgeführt.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Important" class="fa icon-important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Beachte, dass <code>i</code> nur innerhalb der geschweiften Klammern des for-Blocks bekannt ist: die Variable wird im Kopf der Schleife mittels <code>int i=0</code> <strong>deklariert</strong> (dem Programm vorgestellt) und <strong>initialisiert</strong> (mit einem Startwert belegt, hier 0) und <em>lebt</em> zwischen den geschweiften Klammern der for-Schleife.</p>
+</div>
+<div class="paragraph">
+<p>Dahinter ist sie wieder unbekannt und der Buchstabe <code>i</code> kann erneut verwendet werden. Somit ergibt das folgende Programm einen Fehler:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>for (int i=0; i&lt;=10; i++){
+    System.out.println(i); <i class="conum" data-value="1"></i><b>(1)</b>
+} <i class="conum" data-value="2"></i><b>(2)</b>
+System.out.println(i); <i class="conum" data-value="3"></i><b>(3)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Zwischen den geschweiften Klammern der for-Schleife: das <code>i</code> ist hier bekannt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>for-Schleife zu Ende: ab hier ist das <code>i</code> nicht mehr bekannt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Fehler! Hier ist das <code>i</code> dem Programm nicht mehr bekannt. Man hätte es z. B. eine Zeile davor mittels <code>int i=8;</code> erneut einführen können.</td>
+</tr>
+</tbody></table>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref42651299">Anderer Startwert</h3>
+<div class="paragraph">
+<p>Natürlich muss <code>i</code> zu Beginn nicht auf 0 gesetzt werden, man könnte auch schon bei 4 starten und nur bis 8 laufen lassen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>i<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token operator">+</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref51419593">Zählen in Zweierschritten</h3>
+<div class="paragraph">
+<p>Auch der letzte Abschnitt muss nicht immer nur um 1 erhöhen. Man könnte das ganze Programm vereinfachen, indem man bei 0 startet und die Zahlen in Zweierschritten durchläuft:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>for (int i=0; i&lt;=10; i+=2){ <i class="conum" data-value="1"></i><b>(1)</b>
+    System.out.println(i);
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Statt <code>i+=2</code> könnte man auch <code>i=i+2</code> schreiben, was einer Erhöhung um 2 entspricht.</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref75918102">Rückwärts laufende for-Schleife</h3>
+<div class="paragraph">
+<p>Ebenso kann man eine for-Schleife abwärts zählen lassen, indem man statt <code>i++</code> den Ausdruck <code>i--</code> verwendet. So könnte man einen Countdown umsetzen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>for (int i=10; i&gt;=0; i--){ <i class="conum" data-value="1"></i><b>(1)</b>
+    System.out.println(i);
+    System.out.println(i);
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Beachte, dass neben dem Startwert auch noch die Bedingung für den nächsten Schleifendurchlauf angepasst werden muss!</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref11540781">Verschachtelte Schleifen</h3>
+<div class="paragraph">
+<p>Will man beispielsweise das kleine Einmaleins tabellarisch ausgeben, so gelingt das mit zwei ineinander verschachtelten Schleifen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>for (int i=1; i&lt;=10; i++){ <i class="conum" data-value="1"></i><b>(1)</b>
+    for (int j=1; j&lt;=10; j++){ <i class="conum" data-value="2"></i><b>(2)</b>
+        System.out.print(i*j+"\t"); <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+    System.out.println(""); <i class="conum" data-value="4"></i><b>(4)</b>
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Äußere Schleife für die einzelnen Zeilen (Laufvariable <code>i</code>)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Innere Schleifen für die Spalten (Laufvariable <code>j</code>)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>print</code> und nicht <code>println</code>: dadurch kein Zeilenvorschub nach der Ausgabe. Das <code>\t</code> fügt einen Tabulator ein, damit die Ausgabe besser aussieht.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Dieses <code>println</code> wird nach der Ausgabe einer kompletten Zeile aufgerufen und fügt einen Zeilenvorschub ein, springt also in die nächste Zeile.</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Die innerer Schleife läuft pro Einzelschritt der äußeren Schleife jeweils 10 Mal durch.</p>
+</div>
+<div class="paragraph">
+<p>Die Ausgabe sieht folgendermaßen aus:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>1	2	3	4	5	6	7	8	9	10
+2	4	6	8	10	12	14	16	18	20
+3	6	9	12	15	18	21	24	27	30
+4	8	12	16	20	24	28	32	36	40
+5	10	15	20	25	30	35	40	45	50
+6	12	18	24	30	36	42	48	54	60
+7	14	21	28	35	42	49	56	63	70
+8	16	24	32	40	48	56	64	72	80
+9	18	27	36	45	54	63	72	81	90
+10	20	30	40	50	60	70	80	90	100</pre>
+</div>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Die FOR-Schleife 
+== Motivation
+
+*Aufgabe:*
+
+Gib alle geraden Zahlen zwischen 0 und 10 einschließlich aus.
+
+*Mögliche Lösung:*
+
+[source, java]
+----
+System.out.println("0");
+System.out.println("2");
+System.out.println("4");
+System.out.println("6");
+System.out.println("8");
+System.out.println("10");
+----
+
+Es handelt sich hierbei zwar um eine Lösung, allerdings könnte man für diese Vorgehensweise genauso eine Textverarbeitung für die Ausgabe wählen, der Aufwand wäre dann sogar etwas geringer.
+
+Spätestens aber, wenn man alle geraden Zahlen zwischen 0 und 1000 einschließlich ausgeben will, wird niemand die Aufgabe wie in der dargestellten Lösung beantworten.
+
+Zu diesem Zweck gibt es die *for-Schleife*, die dazu da ist, Anweisungen zu wiederholen.
+
+== Syntax 
+=== Grundsyntax
+
+Die for-Schleife wird am einfachsten anhand eines Beispiels erklärt, das tatsächlich die geraden Zahlen zwischen 0 und 10 einschließlich ausgibt.
+
+ 
+----
+for (int i=0; i&lt;=10; i++){ // &lt;1&gt;
+    if (i%2==0){ // &lt;2&gt;
+        System.out.println(i); // &lt;3&gt;
+    }
+} // &lt;4&gt;
+----
+&lt;1&gt; Kopf der for-Schleife
+&lt;2&gt; Überprüfung auf die Eigenschaft "Zahl gerade" mit Modulo ("Teilbarkeit durch 2 wahr?")
+&lt;3&gt; Ausgabe der Zahl. 
+&lt;4&gt; Hier endet die for-Schleife, d.h. alle Anweisungen bis hierher werden wiederholt.
+
+Sehen wir uns den Kopf der for-Schleife genauer an: Dieser besteht aus drei Abschnitten, die untereinander durch Strichpunkte getrennt sind.
+
+. `int i=0` führt die Integer-Variable i ein, die mit dem Wert 0 initialisiert wird. Sie wird auch als *Laufvariable* bezeichnet.
+. `i &lt; = 10` ist die Bedingung, die _vor_ jedem Durchlauf auf Wahrheit überprüft wird. Sobald diese Bedingung nicht mehr erfüllt ist, wird die for-Schleife verlassen und der Code hinter der for-Schleife wird ausgeführt.
+. `i++` erhöht den Wert von i nach jedem Durchlauf um 1
+
+Da der Wert von i nach jedem Durchlauf um 1 erhöht wird, läuft die Schleife folgendermaßen ab:
+
+|===
+|`i`|Ist `i &lt; = 10` ? 
+| 0|wahr
+| 1|wahr
+| 2|wahr
+| 3|wahr
+| 4|wahr
+| 5|wahr
+| 6|wahr
+| 7|wahr
+| 8|wahr
+| 9|wahr
+| 10|wahr
+| 11|falsch
+|===
+
+Sobald also `i` den Wert 11 annimmt, ist die Bedingung `i &lt; = 10` zum wiederholten Durchlaufen der Schleife nicht mehr erfüllt und der Code _hinter_ der for-Schleife wird als nächstes ausgeführt.
+
+[IMPORTANT]
+====
+Beachte, dass `i` nur innerhalb der geschweiften Klammern des for-Blocks bekannt ist: die Variable wird im Kopf der Schleife mittels `int i=0` *deklariert* (dem Programm vorgestellt) und *initialisiert* (mit einem Startwert belegt, hier 0) und _lebt_ zwischen den geschweiften Klammern der for-Schleife.
+
+Dahinter ist sie wieder unbekannt und der Buchstabe `i` kann erneut verwendet werden. Somit ergibt das folgende Programm einen Fehler:
+
+
+----
+for (int i=0; i&lt;=10; i++){ 
+    System.out.println(i); // &lt;1&gt;
+} // &lt;2&gt;
+System.out.println(i); // &lt;3&gt;
+----
+&lt;1&gt; Zwischen den geschweiften Klammern der for-Schleife: das `i` ist hier bekannt.
+&lt;2&gt; for-Schleife zu Ende: ab hier ist das `i` nicht mehr bekannt.
+&lt;3&gt; Fehler! Hier ist das `i` dem Programm nicht mehr bekannt. Man hätte es z. B. eine Zeile davor mittels `int i=8;` erneut einführen können.
+====
+
+=== Anderer Startwert
+Natürlich muss `i` zu Beginn nicht auf 0 gesetzt werden, man könnte auch schon bei 4 starten und nur bis 8 laufen lassen:
+
+[source, java]
+----
+for (int i=4; i&lt;=8; i++){
+    if (i%2==0){ 
+        System.out.println(""+i);
+    }
+} 
+----
+
+=== Zählen in Zweierschritten
+Auch der letzte Abschnitt muss nicht immer nur um 1 erhöhen. Man könnte das ganze Programm vereinfachen, indem man bei 0 startet und die Zahlen in Zweierschritten durchläuft:
+
+
+----
+for (int i=0; i&lt;=10; i+=2){ // &lt;1&gt;
+    System.out.println(i);
+} 
+----
+&lt;1&gt; Statt `i+=2` könnte man auch `i=i+2` schreiben, was einer Erhöhung um 2 entspricht.
+
+
+=== Rückwärts laufende for-Schleife
+Ebenso kann man eine for-Schleife abwärts zählen lassen, indem man statt `i++` den Ausdruck `i--` verwendet. So könnte man einen Countdown umsetzen.
+
+
+----
+for (int i=10; i&gt;=0; i--){ // &lt;1&gt;
+    System.out.println(i);
+    System.out.println(i);
+} 
+----
+&lt;1&gt; Beachte, dass neben dem Startwert auch noch die Bedingung für den nächsten Schleifendurchlauf angepasst werden muss!
+
+=== Verschachtelte Schleifen
+Will man beispielsweise das kleine Einmaleins tabellarisch ausgeben, so gelingt das mit zwei ineinander verschachtelten Schleifen:
+
+
+----
+for (int i=1; i&lt;=10; i++){ // &lt;1&gt;
+    for (int j=1; j&lt;=10; j++){ // &lt;2&gt;
+        System.out.print(i*j+"\t"); // &lt;3&gt;
+    } 
+    System.out.println(""); // &lt;4&gt; 
+}
+----
+&lt;1&gt; Äußere Schleife für die einzelnen Zeilen (Laufvariable `i`)
+&lt;2&gt; Innere Schleifen für die Spalten (Laufvariable `j`)
+&lt;3&gt; `print` und nicht `println`: dadurch kein Zeilenvorschub nach der Ausgabe. Das `\t` fügt einen Tabulator ein, damit die Ausgabe besser aussieht.
+&lt;4&gt; Dieses `println` wird nach der Ausgabe einer kompletten Zeile aufgerufen und fügt einen Zeilenvorschub ein, springt also in die nächste Zeile.
+
+Die innerer Schleife läuft pro Einzelschritt der äußeren Schleife jeweils 10 Mal durch.
+
+Die Ausgabe sieht folgendermaßen aus:
+
+....
+1	2	3	4	5	6	7	8	9	10	
+2	4	6	8	10	12	14	16	18	20	
+3	6	9	12	15	18	21	24	27	30	
+4	8	12	16	20	24	28	32	36	40	
+5	10	15	20	25	30	35	40	45	50	
+6	12	18	24	30	36	42	48	54	60	
+7	14	21	28	35	42	49	56	63	70	
+8	16	24	32	40	48	56	64	72	80	
+9	18	27	36	45	54	63	72	81	90	
+10	20	30	40	50	60	70	80	90	100	
+.... </div></div></div>
+</body></html>

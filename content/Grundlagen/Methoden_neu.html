@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref31320105">Methoden</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref93648038">Motivation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Beim Programmieren kommt es oft vor, dass bestimmte Programmteile mehrfach im Programm auftauchen. Über "Copy and Paste" kann man natürlich einen einmal geschriebenen Teil auch an einer anderen Stelle wieder einsetzen; allerdings ist das keine einfach zu wartende Lösung, da, falls in diesem Programmteil ein Fehler verbessert werden muss, dieser auch an allen anderen Stellen korrigiert werden muss.</p>
+</div>
+<div class="paragraph">
+<p>Unter anderem zu diesem Zweck gibt es <strong>Methoden</strong> (in anderen Programmiersprachen häufig auch als <strong>Funktionen</strong> bekannt), die oft benötigte Programmteile einfach wiederverwendbar machen.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref60805043">Syntax</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Als Beispiel soll ein Programmteil dienen, der eine Zahl quadriert. Wir übergeben eine Zahl <code>übergabe</code> und liefern das Ergebnis zurück.
+Dieser Programmteil könnte so aussehen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>static int quadriereZahl(int übergabe){ <i class="conum" data-value="1"></i><b>(1)</b>
+    int ergebnis=übergabe*übergabe; <i class="conum" data-value="2"></i><b>(2)</b>
+    return ergebnis; <i class="conum" data-value="3"></i><b>(3)</b>
+} <i class="conum" data-value="4"></i><b>(4)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Der Methode namens <code>quadriereZahl</code> wird ein Integer-Wert übergeben, der innerhalb dieser Methode <code>übergabe</code> heißt. Als Rückgabewert dieser Methode verlangt das <code>int</code> vor <code>quadriereZahl</code> einen Integerwert.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die Berechnung wird durchgeführt und das Ergebnis in der Integer-Variable <code>ergebnis</code> gespeichert.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Das Ergebnis der Berechnung wird zurückgegeben.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Ende der Methode</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Das Schlüsselwort <code>static</code> werden wir an anderer Stelle erklären.</p>
+</div>
+<div class="paragraph">
+<p>Zunächst soll gezeigt werden, wie diese Methode nun aufgerufen wird, wofür ausnahmsweise die gesamte Java-Klasse gezeigt wird:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public class QuadratZahlBerechnung {
+
+    public static void main(String[] args) {
+        int rückgabe = quadriereZahl(5); <i class="conum" data-value="1"></i><b>(1)</b>
+        System.out.println(rückgabe);
+    }
+
+    static int quadriereZahl(int übergabe) { <i class="conum" data-value="2"></i><b>(2)</b>
+        int ergebnis = übergabe * übergabe; <i class="conum" data-value="3"></i><b>(3)</b>
+        return ergebnis; <i class="conum" data-value="4"></i><b>(4)</b>
+    }
+
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Aufruf der Methode <code>quadriereZahl</code> mit dem Integerwert 5. Der Rückgabewert der Methode wird in der Variable <code>rückgabe</code> gespeichert.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Beim Aufruf über <code>quadriereZahl(5)</code> nimmt <code>übergabe</code> den Wert 5 an.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Als <code>int ergebnis = übergabe * übergabe</code> wird dadurch <code>int ergebnis= 5 * 5</code>, also 25 berechnet.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Der in <code>ergebnis</code> gespeicherte Wert wird durch das Schlüsselwort <code>return</code> an die Stelle zurückgegeben, von der aus die Methode aufgerufen  wurde. In diesem Fall wird die Integer-Zahl 25 an die Variable <code>rückgabe</code> zurückgegeben.</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref50594777">Weitere Beispiele</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="ref12546512">Anderer Parameter- und Rückgabetyp für die Quadratfunktion</h3>
+<div class="paragraph">
+<p>Um eine Methode zum Quadrieren von Kommazahlen des Typs <code>double</code> umzusetzen, würde man so vorgehen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public class QuadratZahlBerechnungDouble {
+
+    public static void main(String[] args) {
+        double rückgabe = quadriereZahl(5.2); <i class="conum" data-value="1"></i><b>(1)</b>
+        System.out.println(rückgabe);
+    }
+
+    static double quadriereZahl(double übergabe) { <i class="conum" data-value="2"></i><b>(2)</b>
+        double ergebnis = übergabe * übergabe; <i class="conum" data-value="3"></i><b>(3)</b>
+        return ergebnis;
+    }
+
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Der Typ des Rückgabewerts ist nun <code>double</code> und als Zahl kann auch eine Kommazahl übergeben werden.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die <strong>Signatur</strong> der Methode hat sich geändert: Sie heißt zwar weiterhin <code>quadriereZahl</code>, erwartet als Parameter nun aber einen Wert vom Typ <code>double</code> und gibt auch einen solchen Wert zurück.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Auch der Typ von <code>ergebnis</code> muss zu <code>double</code> angepasst werden, da die Multiplikation zweier Kommazahlen auch wieder eine Kommazahl ergibt.</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref78881345">Multiplikationsmethode mit mehreren Parametern</h3>
+<div class="paragraph">
+<p>Die Methode <code>multipliziereZahlen</code> gibt das Produkt zweier Zahlen zurück:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public class MultipliziereZahlen {
+
+    public static void main(String[] args) {
+        double rückgabe = multipliziereZahlen(5,4); <i class="conum" data-value="1"></i><b>(1)</b>
+        System.out.println(rückgabe);
+    }
+
+    static int multipliziereZahlen(int zahl1, int zahl2) { <i class="conum" data-value="2"></i><b>(2)</b>
+        return zahl1*zahl2; <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Werden mehrere Parameter an eine Methode übergeben, so werden diese mit einem Komma getrennt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die übergebenen Zahlen heißen ab hier <code>zahl1</code> und <code>zahl2</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Anstatt, wie in den letzten Beispielen, eine Extra-Variable für das Ergebnis zu erzeugen, kann man in einem so einfachen Fall, wie diesem, die Rechnung direkt übergeben, wodurch das Ergebnis zurückgegeben wird.</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref82436304">Ausgabemethode ohne Rückgabewert und mit verschiedenen Parametertypen</h3>
+<div class="paragraph">
+<p>In manchen Fällen ist ein Rückgabewert von Methoden nicht sinnvoll, wie beispielsweise beim Ausgeben Informationen. Aber auch dann muss ein Rückgabewert angegeben werden, der <code>void</code> heißt und der bedeutet, dass diese Methode eben nichts zurück liefert.</p>
+</div>
+<div class="paragraph">
+<p>Hier als Beispiel ein Programm, das eine Methode mit der Signatur <code>void gibOftAus(int anzahl, String satz)</code> enthält, die den übergebenen String <code>satz</code> so oft ausgibt, wie in <code>anzahl</code> enthalten ist:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public class Strafarbeit {
+
+    public static void main(String[] args) {
+        gibOftAus(100, "Ich darf im Informatikraum nicht essen!"); <i class="conum" data-value="1"></i><b>(1)</b>
+    }
+
+    static void gibOftAus(int anzahl, String satz) { <i class="conum" data-value="2"></i><b>(2)</b>
+        for (int i = 0; i &lt; anzahl; i++) {
+            System.out.println(satz);
+        }
+    }
+
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Übergabe von zwei Parametern: <code>100</code> vom Typ <code>int</code> und den Satz vom Typ <code>String</code>. Hier wird keine Rückgabe in einer Variable gespeichert, da kein solcher Wert zu erwarten ist.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Das Schlüsselwort <code>void</code> besagt, dass diese Methode <em>keinen Rückgabewert</em> hat, also nichts zurückgibt. Deshalb ist in dieser Methode auch das Schlüsselwort <code>return</code> <em>nicht</em> zu finden.</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Methoden
+
+== Motivation
+
+Beim Programmieren kommt es oft vor, dass bestimmte Programmteile mehrfach im Programm auftauchen. Über "Copy and Paste" kann man natürlich einen einmal geschriebenen Teil auch an einer anderen Stelle wieder einsetzen; allerdings ist das keine einfach zu wartende Lösung, da, falls in diesem Programmteil ein Fehler verbessert werden muss, dieser auch an allen anderen Stellen korrigiert werden muss.
+
+Unter anderem zu diesem Zweck gibt es *Methoden* (in anderen Programmiersprachen häufig auch als *Funktionen* bekannt), die oft benötigte Programmteile einfach wiederverwendbar machen.
+
+== Syntax
+
+Als Beispiel soll ein Programmteil dienen, der eine Zahl quadriert. Wir übergeben eine Zahl `übergabe` und liefern das Ergebnis zurück.
+Dieser Programmteil könnte so aussehen:
+
+[indent=0]
+----
+static int quadriereZahl(int übergabe){ //&lt;1&gt;
+    int ergebnis=übergabe*übergabe; // &lt;2&gt;
+    return ergebnis; // &lt;3&gt;
+} // &lt;4&gt;
+----
+&lt;1&gt; Der Methode namens `quadriereZahl` wird ein Integer-Wert übergeben, der innerhalb dieser Methode `übergabe` heißt. Als Rückgabewert dieser Methode verlangt das `int` vor `quadriereZahl` einen Integerwert.
+&lt;2&gt; Die Berechnung wird durchgeführt und das Ergebnis in der Integer-Variable `ergebnis` gespeichert.
+&lt;3&gt; Das Ergebnis der Berechnung wird zurückgegeben.
+&lt;4&gt; Ende der Methode
+
+Das Schlüsselwort `static` werden wir an anderer Stelle erklären.
+
+Zunächst soll gezeigt werden, wie diese Methode nun aufgerufen wird, wofür ausnahmsweise die gesamte Java-Klasse gezeigt wird:
+
+[indent=0]
+----
+public class QuadratZahlBerechnung {
+
+    public static void main(String[] args) {
+        int rückgabe = quadriereZahl(5); // &lt;1&gt; 
+        System.out.println(rückgabe);
+    }
+
+    static int quadriereZahl(int übergabe) { // &lt;2&gt;
+        int ergebnis = übergabe * übergabe; // &lt;3&gt;
+        return ergebnis; // &lt;4&gt;
+    }
+    
+}
+----
+&lt;1&gt; Aufruf der Methode `quadriereZahl` mit dem Integerwert 5. Der Rückgabewert der Methode wird in der Variable `rückgabe` gespeichert.
+&lt;2&gt; Beim Aufruf über `quadriereZahl(5)` nimmt `übergabe` den Wert 5 an.
+&lt;3&gt; Als `int ergebnis = übergabe * übergabe` wird dadurch `int ergebnis= 5 * 5`, also 25 berechnet.
+&lt;4&gt; Der in `ergebnis` gespeicherte Wert wird durch das Schlüsselwort `return` an die Stelle zurückgegeben, von der aus die Methode aufgerufen  wurde. In diesem Fall wird die Integer-Zahl 25 an die Variable `rückgabe` zurückgegeben.
+
+== Weitere Beispiele
+
+=== Anderer Parameter- und Rückgabetyp für die Quadratfunktion
+
+Um eine Methode zum Quadrieren von Kommazahlen des Typs `double` umzusetzen, würde man so vorgehen:
+
+[indent=0]
+----
+public class QuadratZahlBerechnungDouble {
+
+    public static void main(String[] args) {
+        double rückgabe = quadriereZahl(5.2); //&lt;1&gt;
+        System.out.println(rückgabe);
+    }
+
+    static double quadriereZahl(double übergabe) { // &lt;2&gt;
+        double ergebnis = übergabe * übergabe; // &lt;3&gt;
+        return ergebnis;
+    }
+    
+}
+----
+&lt;1&gt; Der Typ des Rückgabewerts ist nun `double` und als Zahl kann auch eine Kommazahl übergeben werden.
+&lt;2&gt; Die *Signatur* der Methode hat sich geändert: Sie heißt zwar weiterhin `quadriereZahl`, erwartet als Parameter nun aber einen Wert vom Typ `double` und gibt auch einen solchen Wert zurück.
+&lt;3&gt; Auch der Typ von `ergebnis` muss zu `double` angepasst werden, da die Multiplikation zweier Kommazahlen auch wieder eine Kommazahl ergibt.
+
+=== Multiplikationsmethode mit mehreren Parametern
+
+Die Methode `multipliziereZahlen` gibt das Produkt zweier Zahlen zurück:
+
+[indent=0]
+----
+public class MultipliziereZahlen {
+
+    public static void main(String[] args) {
+        double rückgabe = multipliziereZahlen(5,4); // &lt;1&gt;
+        System.out.println(rückgabe);
+    }
+
+    static int multipliziereZahlen(int zahl1, int zahl2) { // &lt;2&gt;
+        return zahl1*zahl2; // &lt;3&gt;
+    }
+    
+}
+----
+&lt;1&gt; Werden mehrere Parameter an eine Methode übergeben, so werden diese mit einem Komma getrennt.
+&lt;2&gt; Die übergebenen Zahlen heißen ab hier `zahl1` und `zahl2`.
+&lt;3&gt; Anstatt, wie in den letzten Beispielen, eine Extra-Variable für das Ergebnis zu erzeugen, kann man in einem so einfachen Fall, wie diesem, die Rechnung direkt übergeben, wodurch das Ergebnis zurückgegeben wird.
+
+=== Ausgabemethode ohne Rückgabewert und mit verschiedenen Parametertypen
+
+In manchen Fällen ist ein Rückgabewert von Methoden nicht sinnvoll, wie beispielsweise beim Ausgeben Informationen. Aber auch dann muss ein Rückgabewert angegeben werden, der `void` heißt und der bedeutet, dass diese Methode eben nichts zurück liefert.
+
+Hier als Beispiel ein Programm, das eine Methode mit der Signatur `void gibOftAus(int anzahl, String satz)` enthält, die den übergebenen String `satz` so oft ausgibt, wie in `anzahl` enthalten ist:
+
+[indent=0] 
+----
+public class Strafarbeit {
+
+    public static void main(String[] args) {
+        gibOftAus(100, "Ich darf im Informatikraum nicht essen!"); // &lt;1&gt;
+    }
+
+    static void gibOftAus(int anzahl, String satz) { // &lt;2&gt;
+        for (int i = 0; i &lt; anzahl; i++) {
+            System.out.println(satz);
+        }
+    }
+
+}
+----
+&lt;1&gt; Übergabe von zwei Parametern: `100` vom Typ `int` und den Satz vom Typ `String`. Hier wird keine Rückgabe in einer Variable gespeichert, da kein solcher Wert zu erwarten ist.
+&lt;2&gt; Das Schlüsselwort `void` besagt, dass diese Methode _keinen Rückgabewert_ hat, also nichts zurückgibt. Deshalb ist in dieser Methode auch das Schlüsselwort `return` _nicht_ zu finden. </div></div></div>
+</body></html>
