@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref33477278">Grundprogramm: Java-Programm mit Ausgabe von Variablen</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref42029112">Einführung</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Beim Arbeiten mit großen Projekten, werden einzelne Programmteile auf mehrere Dateien verteilt. Für das grundlegende Erlernen im Umgang mit Java genügt zu Beginn aber eine einzelne Datei, die die Endung <code>.java</code> aufweist und eine <code>main</code>-Methode enthält.</p>
+</div>
+<div class="paragraph">
+<p>Einfach ausgedrückt sucht der Java-Compiler in einer Programmdatei nach einer <code>main</code>-Methode um an dieser Stelle in das Programm einzusteigen. Ist keine <code>main</code>-Methode vorhanden, so kann diese Datei nicht als Einstiegspunkt genutzt werden.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Was bedeutet <strong>Einstiegspunkt</strong>?</p>
+</div>
+<div class="paragraph">
+<p>Eine Programmdatei kann sehr viele verschiedene Abschnitte enthalten. Der Einstiegspunkt teilt dem Compiler mit, wo mit der Ausführung des Programms begonnen werden muss. Es ist nämlich <em>nicht</em> so, dass ein Programmabschnitt, der weiter oben vorkommt, auch als erstes ausgeführt wird.</p>
+</div>
+<div class="paragraph">
+<p><em>Per Konvention</em> ist der Einstiegspunkt eine <em>Methode</em>, die <code>main</code> heißt. Mehr dazu, was eine Methode ist, folgt in einem späteren Kapitel.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref79315492">Grundprogramm "Hello world"</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Programmiererkreisen ist es üblich, eine neue Programmiersprache mit dem Programm "Hello world" vorzustellen, einem Programm, das nichts anderes macht, als "Hello world!" auszugeben.</p>
+</div>
+<div class="paragraph">
+<p>In Java sieht dieses Programm beispielsweise folgendermaßen aus:</p>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Grundprogramm: Java-Programm mit Ausgabe von Variablen
+
+== Einführung
+Beim Arbeiten mit großen Projekten, werden einzelne Programmteile auf mehrere Dateien verteilt. Für das grundlegende Erlernen im Umgang mit Java genügt zu Beginn aber eine einzelne Datei, die die Endung `.java` aufweist und eine `main`-Methode enthält.
+
+Einfach ausgedrückt sucht der Java-Compiler in einer Programmdatei nach einer `main`-Methode um an dieser Stelle in das Programm einzusteigen. Ist keine `main`-Methode vorhanden, so kann diese Datei nicht als Einstiegspunkt genutzt werden.
+
+====
+Was bedeutet *Einstiegspunkt*?
+
+Eine Programmdatei kann sehr viele verschiedene Abschnitte enthalten. Der Einstiegspunkt teilt dem Compiler mit, wo mit der Ausführung des Programms begonnen werden muss. Es ist nämlich _nicht_ so, dass ein Programmabschnitt, der weiter oben vorkommt, auch als erstes ausgeführt wird.
+
+_Per Konvention_ ist der Einstiegspunkt eine _Methode_, die `main` heißt. Mehr dazu, was eine Methode ist, folgt in einem späteren Kapitel. 
+====
+
+== Grundprogramm "Hello world"
+In Programmiererkreisen ist es üblich, eine neue Programmiersprache mit dem Programm "Hello world" vorzustellen, einem Programm, das nichts anderes macht, als "Hello world!" auszugeben.
+
+In Java sieht dieses Programm beispielsweise folgendermaßen aus:
+</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Beispiel</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span> <span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello world!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java] 
+----
+public class Beispiel {
+    public static void main (String[] args){  
+        System.out.println("Hello world!"); 
+    } 
+}  
+
+----
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>In der zweiten Zeile sieht man die bereits angekündigte Methode <code>main</code>, die von der ersten bis zur letzten Zeile reicht. Dies ist daran zu erkennen, dass die geschweifte Klammer, die in der ersten Zeile geöffnet wird, erst in der dritten Zeile geschlossen wird.</p>
+</div>
+<div class="paragraph">
+<p>Alles, was sich zwischen diesen beiden geschweiften Klammern befindet, gehört zur Methode <code>main</code>. Ein solcher Abschnitt, der zwischen zwei geschweiften Klammern steht, wird als <strong>Block</strong> bezeichnet.</p>
+</div>
+<div class="paragraph">
+<p>Die Zeile</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hello world!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>gibt <em>in der Konsole</em> den Text "Hello world!" aus und wechselt danach in die nächste Zeile.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Note" class="fa icon-note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Beachte, dass jede <em>normale Zeile</em> in Java mit einem Strichpunkt beendet wird. Ausgenommen davon sind Definitionen von Methoden (wie hier die <code>main</code>-Methode) oder Kontrollstrukturen (<code>if</code>-Bedingung, <code>for</code>- und <code>while</code>- Schleife, etc), die am Ende einer Zeile einen neuen Block über eine geschweifte Klammer öffnen.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">In der zweiten Zeile sieht man die bereits angekündigte Methode `main`, die von der ersten bis zur letzten Zeile reicht. Dies ist daran zu erkennen, dass die geschweifte Klammer, die in der ersten Zeile geöffnet wird, erst in der dritten Zeile geschlossen wird.
+
+Alles, was sich zwischen diesen beiden geschweiften Klammern befindet, gehört zur Methode `main`. Ein solcher Abschnitt, der zwischen zwei geschweiften Klammern steht, wird als *Block* bezeichnet.
+
+Die Zeile
+[source,java]
+----
+System.out.println("Hello world!");
+----
+gibt _in der Konsole_ den Text "Hello world!" aus und wechselt danach in die nächste Zeile.
+
+[NOTE ]
+====
+Beachte, dass jede _normale Zeile_ in Java mit einem Strichpunkt beendet wird. Ausgenommen davon sind Definitionen von Methoden (wie hier die `main`-Methode) oder Kontrollstrukturen (`if`-Bedingung, `for`- und `while`- Schleife, etc), die am Ende einer Zeile einen neuen Block über eine geschweifte Klammer öffnen.
+==== 
+
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref96584214">Wie führt man dieses Programm aus?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Da dieses Programm eine <em>öffentliche Klasse</em> (auch dazu später mehr) namens <code>Beispiel</code> enthält, <strong>muss</strong> dieses Programm als <code>Beispiel.java</code> gespeichert werden.</p>
+</div>
+<div class="paragraph">
+<p>Nun muss das Programm in <a href="https://en.wikipedia.org/wiki/Java_bytecode"><span class="icon"><i class="fa fa-external-link"></i></span> <em>Java-Bytecode</em></a> übersetzt werden, so dass die <em>JVM</em> (Java Virtual Machine) das Programm ausführen kann.</p>
+</div>
+<div class="paragraph">
+<p>In der Eingabeaufforderung bzw. im Terminal steht bei korrekter Installtion des <em>JDK</em> (Java Development Kit) der Befehl <strong>javac</strong> zur Verfügung, der den Java-Compiler aufruft.</p>
+</div>
+<div class="paragraph">
+<p>Wenn man in das Verzeichnis unseres Programms <code>Beispiel.java</code> wechselt und den Befehl</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>javac Beispiel.java</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>eingibt, wird das Programm <em>kompiliert</em> und das Ergebnis in <code>Beispiel.class</code> gespeichert.</p>
+</div>
+<div class="paragraph">
+<p>Um das erzeugte Programm zu starten, wird es mit der <em>JVM</em> ausgeführt durch die Eingabe von</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>java Beispiel</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Daraufhin sollte auf dem Bildschirm der Text <code>Hello world!</code> erscheinen.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Warning" class="fa icon-warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Tatsächlich handelt es sich hier um keinen Tippfehler: man gibt <strong>nicht</strong> <code>java Beispiel.class</code> ein sondern nur <code>java Beispiel</code>.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Wie führt man dieses Programm aus?
+Da dieses Programm eine _öffentliche Klasse_ (auch dazu später mehr) namens `Beispiel` enthält, *muss* dieses Programm als `Beispiel.java` gespeichert werden.
+
+Nun muss das Programm in https://en.wikipedia.org/wiki/Java_bytecode[icon:external-link[] _Java-Bytecode_] übersetzt werden, so dass die _JVM_ (Java Virtual Machine) das Programm ausführen kann.
+
+In der Eingabeaufforderung bzw. im Terminal steht bei korrekter Installtion des _JDK_ (Java Development Kit) der Befehl *javac* zur Verfügung, der den Java-Compiler aufruft.
+
+Wenn man in das Verzeichnis unseres Programms `Beispiel.java` wechselt und den Befehl
+----
+javac Beispiel.java
+----
+eingibt, wird das Programm _kompiliert_ und das Ergebnis in `Beispiel.class` gespeichert.
+
+Um das erzeugte Programm zu starten, wird es mit der _JVM_ ausgeführt durch die Eingabe von 
+
+----
+java Beispiel
+----
+Daraufhin sollte auf dem Bildschirm der Text `Hello world!` erscheinen.
+
+[WARNING]
+====
+Tatsächlich handelt es sich hier um keinen Tippfehler: man gibt *nicht* `java Beispiel.class` ein sondern nur `java Beispiel`.
+====
+
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref58658436">Geht das auch einfacher?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ja!</p>
+</div>
+<div class="paragraph">
+<p>Denn zum Glück gibt es Entwicklungsumgebungen wie <em>Netbeans</em>, wo man zum Kompilieren und Starten eines Programms einfach auf <span class="icon green"><i class="fa fa-play"></i></span>  drücken muss.</p>
+</div>
+<div class="paragraph">
+<p>Nach kurzer Übersetzungszeit sollte auch hier der Text "Hello world!" erscheinen.</p>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Geht das auch einfacher?
+Ja!
+
+Denn zum Glück gibt es Entwicklungsumgebungen wie _Netbeans_, wo man zum Kompilieren und Starten eines Programms einfach auf icon:play[role=green]  drücken muss.
+
+Nach kurzer Übersetzungszeit sollte auch hier der Text "Hello world!" erscheinen.</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref12896807">Ausgabe von Variablen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Um Inhalte von Variablen auszugeben, verwendet man auch den Befehl <code>System.out.println</code>, z. B. so:</p>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Ausgabe von Variablen
+Um Inhalte von Variablen auszugeben, verwendet man auch den Befehl `System.out.println`, z. B. so:
+</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Beispiel</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span> <span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> zahl<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
+        String name<span class="token operator">=</span><span class="token string">"Peter"</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hallo "</span><span class="token operator">+</span>name<span class="token operator">+</span><span class="token string">"!\nDeine Glückszahl ist"</span><span class="token operator">+</span>zahl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java] 
+----
+public class Beispiel {
+    public static void main (String[] args){  
+        int zahl=10;
+        String name="Peter";
+        System.out.println("Hallo "+name+"!\nDeine Glückszahl ist"+zahl);  
+    } 
+}  
+
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Dieses Programm gibt eine Zeichenkette (also den Inhalt der Variable <code>name</code> vom Typ <code>String</code>) aus und eine ganze Zahl (gespeicher in der Ganzzahl-Variable <code>zahl</code>).
+Nach dem Starten des Programms sollte der Text</p>
+</div></div><div class="originaltext" hidden="">Dieses Programm gibt eine Zeichenkette (also den Inhalt der Variable `name` vom Typ `String`) aus und eine ganze Zahl (gespeicher in der Ganzzahl-Variable `zahl`). 
+Nach dem Starten des Programms sollte der Text
+</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>Hallo Peter!
+Deine Glückszahl ist 10</pre>
+</div>
+</div></div><div class="originaltext" hidden="">
+----
+Hallo Peter!
+Deine Glückszahl ist 10
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>erscheinen.</p>
+</div>
+<div class="paragraph">
+<p>Woher kommt aber der Zeilenumbruch? Dieser wird durch <code>\n</code> erzeugt. Dieses kann wie im Beispiel direkt in den Text eingebettet werden, wird aber durch das vorgestellte <code>\</code> als Steuercode interpretiert.</p>
+</div>
+<div class="paragraph">
+<p>Möchte man tatsächlich den Text <code>\n</code> ausgeben, so gelingt dies über</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Eine neue Zeile erzeugt man durch \\n!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die Ausgabe ergibt dann</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Eine neue Zeile erzeugt man durch \n!</pre>
+</div>
+</div></div><div class="originaltext" hidden="">erscheinen.
+
+Woher kommt aber der Zeilenumbruch? Dieser wird durch `\n` erzeugt. Dieses kann wie im Beispiel direkt in den Text eingebettet werden, wird aber durch das vorgestellte `\` als Steuercode interpretiert.
+
+Möchte man tatsächlich den Text `\n` ausgeben, so gelingt dies über 
+
+[source, java]
+----
+System.out.println("Eine neue Zeile erzeugt man durch \\n!");
+----
+
+Die Ausgabe ergibt dann
+----
+Eine neue Zeile erzeugt man durch \n! 
+----</div></div></div>
+</body></html>
