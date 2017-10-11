@@ -357,7 +357,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>Hierbei gibt die 14 die Anzahl der gewürfelten Einser wieder, die 16 die Anzahl der Zweier, usw.</p>
 </div>
 <div class="paragraph">
-<p>Das Programm funktioniert zwar, ist aber recht viel Schreibarbeit für im Prinzip immer wieder das selbe.</p>
+<p>Das Programm funktioniert zwar, ist aber recht viel Schreibarbeit für im Prinzip immer wieder dasselbe.</p>
 </div>
 <div class="paragraph">
 <p>Wäre es nicht schön, wenn man statt der ganzen if-Bedingung einfach etwas ähnliches wie</p>
@@ -368,7 +368,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </div>
 </div>
 <div class="paragraph">
-<p>schreiben könnte, was bedeuten soll, das je nach Inhalt der Variable zz die zugehörige Summe erhöht wird? Für <code>zz=1</code> wird daraus</p>
+<p>schreiben könnte, was bedeuten soll, dass je nach Inhalt der Variable zz die zugehörige Summe erhöht wird? Für <code>zz=1</code> wird daraus</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -390,13 +390,13 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>Tatsächlich ist so etwas möglich, nur mit einer etwas anderen Schreibweise.</p>
 </div></div><div class="originaltext" hidden="">Hierbei gibt die 14 die Anzahl der gewürfelten Einser wieder, die 16 die Anzahl der Zweier, usw.
 
-Das Programm funktioniert zwar, ist aber recht viel Schreibarbeit für im Prinzip immer wieder das selbe.
+Das Programm funktioniert zwar, ist aber recht viel Schreibarbeit für im Prinzip immer wieder dasselbe.
 
 Wäre es nicht schön, wenn man statt der ganzen if-Bedingung einfach etwas ähnliches wie  
 ----
 s_zz++ 
 ----
-schreiben könnte, was bedeuten soll, das je nach Inhalt der Variable zz die zugehörige Summe erhöht wird? Für `zz=1` wird daraus 
+schreiben könnte, was bedeuten soll, dass je nach Inhalt der Variable zz die zugehörige Summe erhöht wird? Für `zz=1` wird daraus 
 ----
 s_1++
 ----
@@ -459,7 +459,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Die Nummerierung bei Feldvariablen beginnt immer bei der 0. Deshalb ist <code>zahl[3]</code> auch der Eintrage in der "<strong>vierten</strong> Schublade".</p>
+<p>Die Nummerierung bei Feldvariablen beginnt immer bei der 0. Deshalb ist <code>zahl[3]</code> auch der Eintrag in der "<strong>vierten</strong> Schublade".</p>
 </div>
 </td>
 </tr>
@@ -484,7 +484,7 @@ System.out.println(zahl[3]);
 Die erste Zeile speichert die Zahl 5 in der "vierten Schublade". Der Inhalt dieser Schublade wird in der zweiten Zeile ausgegeben.
 [WARNING]
 ====
-Die Nummerierung bei Feldvariablen beginnt immer bei der 0. Deshalb ist `zahl[3]` auch der Eintrage in der "*vierten* Schublade".  
+Die Nummerierung bei Feldvariablen beginnt immer bei der 0. Deshalb ist `zahl[3]` auch der Eintrag in der "*vierten* Schublade".  
 ====
 
 
@@ -596,7 +596,7 @@ for (int i=0;i&lt;summe.length;i++){ <i class="conum" data-value="3"></i><b>(3)<
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Wird eine 1 gewürfelt, so wird der Inhalt von <code>summe[0]</code> um 1 erhöht. Grund für das <code>zz-1</code> ist die Tatsache, dass die Einträge einer Feldvariable ab 0 durchnummeriert sind.</td>
+<td>Wird eine 1 gewürfelt, so wird der Inhalt von <code>summe[0]</code> um 1 erhöht, bei einer 2 der Inhalt von <code>summe[1]</code>, usw.. Grund für das <code>zz-1</code> ist die Tatsache, dass die Einträge einer Feldvariable ab 0 durchnummeriert sind.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -621,7 +621,7 @@ for (int i=0;i&lt;summe.length;i++){ <i class="conum" data-value="3"></i><b>(3)<
         }
 ----
 &lt;1&gt; Eine neue Feldvariable mit dem Namen `summe` und 6 möglichen int-Einträgen wird erzeugt.
-&lt;2&gt; Wird eine 1 gewürfelt, so wird der Inhalt von `summe[0]` um 1 erhöht. Grund für das `zz-1` ist die Tatsache, dass die Einträge einer Feldvariable ab 0 durchnummeriert sind.
+&lt;2&gt; Wird eine 1 gewürfelt, so wird der Inhalt von `summe[0]` um 1 erhöht, bei einer 2 der Inhalt von `summe[1]`, usw.. Grund für das `zz-1` ist die Tatsache, dass die Einträge einer Feldvariable ab 0 durchnummeriert sind.
 &lt;3&gt; `summe.length` liefert die Anzahl der "Schubladen" unserer Feldvariable `summe` zurück.
 &lt;4&gt; Hier wird der "i-te" Eintrag unserer Feldvariable ausgegeben. </div></div></div>
 </body></html>
