@@ -1,0 +1,627 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref68788109">Zufallszahlen und Feldvariablen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In diesem Kapitel sollen anhand eines Beispiels zwei wichtige Hilfsmittel beim Programmieren vorgestellt werden. Zum einen <em>Zufallszahlen</em>, zum anderen <em>Feldvariablen</em>.</p>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Zufallszahlen und Feldvariablen
+In diesem Kapitel sollen anhand eines Beispiels zwei wichtige Hilfsmittel beim Programmieren vorgestellt werden. Zum einen _Zufallszahlen_, zum anderen _Feldvariablen_.
+ </div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="_zufallszahlen_mit_math_random">Zufallszahlen mit Math.random()</h3>
+
+</div></div><div class="originaltext" hidden="">=== Zufallszahlen mit Math.random()</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Im folgenden soll ein Programm erstellt werden, das zufällig 100 Mal würfelt und am Ende ausgibt, wie oft jede Augenzahl vorkam.</p>
+</div>
+<div class="paragraph">
+<p>Dazu benötigen wir Zufallszahlen, für dieses Beispiel zwischen 1 und 6 jeweils einschließlich. Eine solche Zufallszahl erhält man in Java mit Hilfe der Mathematik-Bibliothek, die die Funktion <code>Math.random()</code> zur Verfügung stellt.</p>
+</div>
+<div class="paragraph">
+<p>Dieses liefert eine Zufallszahl zwischen 0 einschließlich und 1 ausschließlich zurück. Wir können das an einem kleinen Beispiel überprüfen:</p>
+</div></div><div class="originaltext" hidden=""> 
+Im folgenden soll ein Programm erstellt werden, das zufällig 100 Mal würfelt und am Ende ausgibt, wie oft jede Augenzahl vorkam.
+
+Dazu benötigen wir Zufallszahlen, für dieses Beispiel zwischen 1 und 6 jeweils einschließlich. Eine solche Zufallszahl erhält man in Java mit Hilfe der Mathematik-Bibliothek, die die Funktion `Math.random()` zur Verfügung stellt.
+
+Dieses liefert eine Zufallszahl zwischen 0 einschließlich und 1 ausschließlich zurück. Wir können das an einem kleinen Beispiel überprüfen:
+
+</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">10</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">double</span> zz<span class="token operator">=</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>zz<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+        for (int i=0;i&lt;10;i++){
+            double zz=Math.random();
+            System.out.println(zz);
+        }
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>liefert die Ausgabe</p>
+</div></div><div class="originaltext" hidden="">liefert die Ausgabe
+</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>0.3238171227351645
+0.9100171211441673
+0.8780019536505819
+0.5904566444523177
+0.9567711972252289
+0.024513772922905464
+0.012812192915532705
+0.3807497414944764
+0.6158550994105622
+0.6342264238947978</pre>
+</div>
+</div></div><div class="originaltext" hidden="">----
+0.3238171227351645
+0.9100171211441673
+0.8780019536505819
+0.5904566444523177
+0.9567711972252289
+0.024513772922905464
+0.012812192915532705
+0.3807497414944764
+0.6158550994105622
+0.6342264238947978
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Startet man das Programm erneut, so erhält man 10 andere zufällige Zahlenwerte.</p>
+</div></div><div class="originaltext" hidden="">Startet man das Programm erneut, so erhält man 10 andere zufällige Zahlenwerte.
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref38790413">Anpassen des Bereichs von Math.random()</h3>
+<div class="paragraph">
+<p>Um einen Würfel zu simulieren müssen wir den Zufallszahlenbereich von 0 bis 1 auf den Bereich von 1 bis 6 ausdehnen.</p>
+</div>
+<div class="paragraph">
+<p>So ergibt</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Anpassen des Bereichs von Math.random()
+Um einen Würfel zu simulieren müssen wir den Zufallszahlenbereich von 0 bis 1 auf den Bereich von 1 bis 6 ausdehnen.
+
+So ergibt
+
+</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">double</span> zz<span class="token operator">=</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">6</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java]
+----
+double zz=Math.random()*6;
+----
+
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Zufallszahlen von 0 einschließlich bis 6 ausschließlich.</p>
+</div>
+<div class="paragraph">
+<p>Zählen wir noch 1 dazu, so erweitert sich der Bereich von 1 einschließlich bis 7 ausschließlich:</p>
+</div></div><div class="originaltext" hidden="">Zufallszahlen von 0 einschließlich bis 6 ausschließlich.
+
+Zählen wir noch 1 dazu, so erweitert sich der Bereich von 1 einschließlich bis 7 ausschließlich:
+
+</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">double</span> zz<span class="token operator">=</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">6</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java]
+----
+double zz=Math.random()*6+1;
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>liefert somit beispielsweise die folgenden Werte:</p>
+</div></div><div class="originaltext" hidden="">liefert somit beispielsweise die folgenden Werte:</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>4.703520713146365
+5.3047722406694735
+6.837098748234757
+1.5115187837494568
+1.40235950990028
+5.825933724770314
+3.292757861359862
+5.018622861225861
+5.765090973871817
+5.560527244387773</pre>
+</div>
+</div></div><div class="originaltext" hidden="">
+----
+4.703520713146365
+5.3047722406694735
+6.837098748234757
+1.5115187837494568
+1.40235950990028
+5.825933724770314
+3.292757861359862
+5.018622861225861
+5.765090973871817
+5.560527244387773
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Das sieht schon ganz gut aus. Nun schneiden wir noch die Nachkommastellen ab:</p>
+</div></div><div class="originaltext" hidden="">Das sieht schon ganz gut aus. Nun schneiden wir noch die Nachkommastellen ab:
+</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> zz<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">6</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java]
+----
+int zz=(int)(Math.random()*6+1);
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>und erhalten dadurch die Zahlen 4, 5, 6, 1, 1, 5, 3, 5, 5, 5.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Tip" class="fa icon-tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>int z=(int) 3.7</code> speichert in der Ganzzahl-Variable <code>z</code> den Wert 3. Über das <code>(int)</code> vor der 3.7 teilt der Programmierer dem Compiler mit, dass man weiß, was man tut, nämlich einen double-Wert (3.7) in einen Ganzzahlenwert zu konvertieren. Dabei werden alle Nachkommastellen der Kommazahl abgeschnitten.</p>
+</div>
+<div class="paragraph">
+<p><code>int z=3.7</code> würde zu einer Fehlermeldung führen, da in einer Ganzzahl-Variable keine Kommazahl gespeichert werden kann.</p>
+</div>
+<div class="paragraph">
+<p>Den Vorgang des bewussten Umwandelns eines Datentyps in einen anderen bezeichnet man als <em>Casting</em>.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Warning" class="fa icon-warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Das <em>Casting</em> funktioniert nicht zwischen beliebigen Datentypen!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>int z=(int)"5";</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>also ein Casting von String nach int ist beispielsweise nicht möglich, wohl aber von double nach int oder von double nach byte (falls der Zahlenwert selbst nicht zu groß ist).</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">und erhalten dadurch die Zahlen 4, 5, 6, 1, 1, 5, 3, 5, 5, 5.
+
+[TIP]
+====
+`int z=(int) 3.7` speichert in der Ganzzahl-Variable `z` den Wert 3. Über das `(int)` vor der 3.7 teilt der Programmierer dem Compiler mit, dass man weiß, was man tut, nämlich einen double-Wert (3.7) in einen Ganzzahlenwert zu konvertieren. Dabei werden alle Nachkommastellen der Kommazahl abgeschnitten.
+
+`int z=3.7` würde zu einer Fehlermeldung führen, da in einer Ganzzahl-Variable keine Kommazahl gespeichert werden kann.
+
+Den Vorgang des bewussten Umwandelns eines Datentyps in einen anderen bezeichnet man als _Casting_.
+====
+
+[WARNING]
+====
+Das _Casting_ funktioniert nicht zwischen beliebigen Datentypen!
+
+----
+int z=(int)"5"; 
+----
+also ein Casting von String nach int ist beispielsweise nicht möglich, wohl aber von double nach int oder von double nach byte (falls der Zahlenwert selbst nicht zu groß ist). 
+====
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref98069160">Häufigkeiten der Augenzahl zählen</h3>
+<div class="paragraph">
+<p>Wie bereits erwähnt, soll nun ein Programm entstehen, das die absolute Häufigkeit von Augenzahlen bei 100-maligem Würfeln zählt.</p>
+</div>
+<div class="paragraph">
+<p>Eine Möglichkeit wäre die folgende:</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Häufigkeiten der Augenzahl zählen
+Wie bereits erwähnt, soll nun ein Programm entstehen, das die absolute Häufigkeit von Augenzahlen bei 100-maligem Würfeln zählt.
+
+Eine Möglichkeit wäre die folgende:
+</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> s1<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>s2<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>s3<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>s4<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>s5<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>s6<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">100</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> zz<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">6</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s1<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s2<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s3<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s4<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s5<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s6<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s1<span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span>s2<span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span>s3<span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span>s4<span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span>s5<span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span>s6<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden=""> 
+[source,java,indent=0]
+----
+        int s1=0,s2=0,s3=0,s4=0,s5=0,s6=0;
+        for (int i=0;i&lt;100;i++){
+            int zz=(int)(Math.random()*6+1);
+            if (zz==1){
+                s1++;
+            } else if (zz==2){
+                s2++;
+            } else if (zz==3){
+                s3++;
+            } else if (zz==4){
+                s4++;
+            } else if (zz==5){
+                s5++;
+            } else if (zz==6){
+                s6++;
+            }
+        }
+        
+        System.out.println(s1+"\n"+s2+"\n"+s3+"\n"+s4+"\n"+s5+"\n"+s6); 
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Als Ausgabe erhält man beispielsweise</p>
+</div></div><div class="originaltext" hidden="">Als Ausgabe erhält man beispielsweise
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>14
+16
+12
+18
+22
+18</pre>
+</div>
+</div></div><div class="originaltext" hidden="">----
+14
+16
+12
+18
+22
+18 
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Hierbei gibt die 14 die Anzahl der gewürfelten Einser wieder, die 16 die Anzahl der Zweier, usw.</p>
+</div>
+<div class="paragraph">
+<p>Das Programm funktioniert zwar, ist aber recht viel Schreibarbeit für im Prinzip immer wieder das selbe.</p>
+</div>
+<div class="paragraph">
+<p>Wäre es nicht schön, wenn man statt der ganzen if-Bedingung einfach etwas ähnliches wie</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>s_zz++</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>schreiben könnte, was bedeuten soll, das je nach Inhalt der Variable zz die zugehörige Summe erhöht wird? Für <code>zz=1</code> wird daraus</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>s_1++</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>für <code>zz=2</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>s_2++</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>usw.</p>
+</div>
+<div class="paragraph">
+<p>Tatsächlich ist so etwas möglich, nur mit einer etwas anderen Schreibweise.</p>
+</div></div><div class="originaltext" hidden="">Hierbei gibt die 14 die Anzahl der gewürfelten Einser wieder, die 16 die Anzahl der Zweier, usw.
+
+Das Programm funktioniert zwar, ist aber recht viel Schreibarbeit für im Prinzip immer wieder das selbe.
+
+Wäre es nicht schön, wenn man statt der ganzen if-Bedingung einfach etwas ähnliches wie  
+----
+s_zz++ 
+----
+schreiben könnte, was bedeuten soll, das je nach Inhalt der Variable zz die zugehörige Summe erhöht wird? Für `zz=1` wird daraus 
+----
+s_1++
+----
+für `zz=2` 
+----
+s_2++
+----
+usw.
+
+Tatsächlich ist so etwas möglich, nur mit einer etwas anderen Schreibweise.</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref79950815">Einführung von Feldvariablen</h3>
+<div class="paragraph">
+<p>Eine Feldvariable kann man sich als durchnummerierte Variablen vorstellen.</p>
+</div>
+<div class="paragraph">
+<p>Könnte man sich eine Variable als eine Kiste vorstellen, die bestimmte Typen von Daten beinhalten kann, so ist eine Feldvariable ein Schrank mit mehreren Schubladen, die durchnummeriert sind und jeweils den gleichen Datentyp speichern können, so wie beispielsweise ein Schrank mit mehreren durchnummerierten Schubladen in die nur int-Variablen hineinpassen.</p>
+</div>
+<div class="paragraph">
+<p>Klicke mehrmals auf die Grafik, um den Unterschied zu verdeutlichen:</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Einführung von Feldvariablen
+Eine Feldvariable kann man sich als durchnummerierte Variablen vorstellen. 
+
+Könnte man sich eine Variable als eine Kiste vorstellen, die bestimmte Typen von Daten beinhalten kann, so ist eine Feldvariable ein Schrank mit mehreren Schubladen, die durchnummeriert sind und jeweils den gleichen Datentyp speichern können, so wie beispielsweise ein Schrank mit mehreren durchnummerierten Schubladen in die nur int-Variablen hineinpassen.
+
+Klicke mehrmals auf die Grafik, um den Unterschied zu verdeutlichen:</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='zeichenflaeche tshareElement' onClick='nextLayer(this)' ><svg xmlns="http://www.w3.org/2000/svg" class="qreator_svg" viewBox="0 0 998 622.39" width="100%" height="100%" breitegesetzt="998" hoehegesetzt="622.39013671875" heightoriginal="701"><g id="global" fill="none" stroke-linecap="round"><g id="layer_2"><path stroke="#000000" stroke-width="2" d="M 64.9 63.4 c 0.2 -1.7 1 -5.5 1 -5.5 c 0 0 -0.9 3.2 -1 3.5 c -0.7 3.3 -1.7 6.8 -2.5 10.5 c 0 0.4 -0.2 4 0.5 4 c 2 0 2.4 -3 3.5 -4.5 c 1.4 -1.9 5.7 -7.5 8.5 -7.5 c 2 0 0.7 8 0.5 9 c -0.2 0.5 -1 2 -0.5 2 c 0.5 0 1.2 -2 1.5 -2.5 c 0.4 -0.9 6.2 -8.2 7 -7.5 c 1.2 1.2 0 5.7 0 8 c 0 0.5 0 3.5 1 3 c 1.7 -0.9 2.2 -3.4 3 -5 c 2.5 -5 5.5 -10.1 8 -15.5 c 1.2 -2.7 2.4 -6 3 -9 c 0 -0.6 0.5 -2 0 -2 c -0.2 0 -2.2 6.6 -2.5 7 c -1.5 4.7 -2.4 9.5 -3.5 14.5 c -0.2 0.9 -0.7 4.7 0.5 5.5 c 2.2 1 0.5 -5 0.5 -5.5 c 0 -0.2 -3.2 -7.7 -3 -8 c 0.5 -0.6 8.7 -1 10 -1 M 67.9 41.9 c -1.9 0 -0.5 0.5 0 0.5 M 129.4 62.9 c 0 -0.6 0.5 -1.2 0.5 -2 M 129.9 60.4 c 1.8 -1.7 7.5 -3.2 6 1.5 c -1 3.6 -15.5 13.5 -6.5 13.5 c 1 0 2 0 3 0 c 1.4 -0.2 2.5 -0.5 4 -0.5 M 126.4 66.9 c -5.5 1.4 7.9 0.5 10 0.5 M 153.4 61.9 c 0 -1.1 1.3 -2.6 0.5 -3.5 c -1 -1.2 -3.5 2.2 -4 3 c -2 2.6 -8 8.6 -7 12.5 c 0.3 1 3.3 0.4 4 0 c 2.3 -1.7 3.5 -4.9 5 -7.5 c 0 -0.2 0.5 -3 0.5 -3 c 0 0 -0.4 2.4 -0.5 2.5 c -0.5 2.5 -0.9 5.2 -1.5 8 c 0 0 -0.8 2.5 0 2.5 c 1.5 0 3.5 -3.5 4.5 -4.5 c 4.5 -6.2 8.4 -13.7 11.5 -21 c 1.3 -3.1 2 -6.2 3 -9.5 c 0 -0.7 0 -1.6 0.5 -2.5 M 170.4 37.9 c -1 1 -1.4 4.1 -2 5.5 c -2.4 5.7 -3.8 11.8 -6 18 c -0.8 2.2 -3 6.8 -2.5 9.5 c 0 1 2 0.2 2.5 0 c 0.5 -0.4 7 -6.7 8 -6 c 1.4 1.4 -2 7.2 -0.5 9 c 0.5 0.5 1.8 -2.2 2 -2.5 c 1.5 -2.9 2.9 -6.5 5 -9.5 c 3.9 -5.6 9.9 -14.7 9.9 -22 M 186.4 40.9 c -0.5 1 -0.9 2.2 -1.5 3.5 c -1 2.1 -2.5 4.1 -3.4 6.5 c -2 5.2 -4.5 12.1 -4.5 18 c 0 3.9 3.9 5.5 6 1.5 M 198.4 66.4 c 0 0.7 2 1 3 1 c 3.3 0 6.9 -0.5 10.5 -0.5 M 200.4 61.9 c -0.5 -0.2 -1 -0.5 -1.5 -1 c -0.5 -0.5 1.5 -0.1 2.5 0 c 0.8 0.1 1.5 0.2 2.5 0.5 c 3 0.5 6.5 1 9.5 2 M 241.4 50.9 c 0 -3.7 7.5 -7.7 9.5 -4 c 1 2.2 -1.9 4.2 -3 5.5 c -3.5 4.2 -6 9.5 -9.5 14 c -1 1.7 -4.3 4.5 -3.5 7 c 1 3.2 11 -0.2 13.5 1" /><path stroke="#000000" stroke-width="4" d="M 75.2 174.9 c 0 40.2 0 80.6 0 120.9 M 76.4 300.1 c 40.8 0 81.6 0 122.4 0 M 199.2 175.9 c 0 38.4 0 76.9 0 115.4 M 78.9 177.9 c 39 0 78.2 0 117.4 0 M 196.4 300.9 c 16.3 -17.3 32.5 -34.6 49 -52 M 199.9 178.9 c 14.8 -10 29.5 -20.3 44.5 -30.4 M 249.9 151.9 c -1.5 32.2 -3 64.6 -4.5 96.9 M 76.9 177.4 c 15.9 -9 31.9 -18.3 47.9 -27.4 M 125.4 153.4 c 38 -1.3 76.2 -2.5 114.4 -4" /><path stroke="#ff0000" stroke-width="4" d="M 108.4 256.4 c 0 -1.5 4.7 -3.8 6 -1.5 c 0.5 1 -2 5.3 -2.5 6.5 c -1.7 4.5 -5 8.1 -7.9 11.8 c -0.2 0.3 -2.2 3.1 -1.5 3.5 c 3 1.5 7.7 -0.6 10.9 1 M 102.4 269.4 c -0.7 0.1 -2.5 0.3 -2 1 c 0.2 0.3 2.7 0.1 3.5 0 c 3.4 -0.6 6.7 -1 10.4 -1 M 138.4 258.9 c 3.8 -3.8 -3 -1.8 -5 -0.5 c -3.5 2.8 -5.7 9.8 -7.5 13.8 c -0.5 1.3 -1.5 2.6 -1 4.5 c 0.7 2.3 3.5 -1.5 4 -2 c 2.8 -3.6 5.9 -8.3 8 -12.3 c 0.3 -0.6 0.9 -2.5 0.5 -2.5 c -0.9 0 -1.5 2.3 -2 3 c -1 3.3 -3 6.3 -3 9.8 c 0 0.6 -0.4 3.1 0.5 3.5 c 2.5 0.8 5.8 -3.6 7 -5.5 c 4.9 -7.3 8.5 -14.8 11 -23.4 c 0.5 -2.5 1.3 -5 2.5 -7.5 c 0 0 0.5 -2.5 0.5 -2.5 c 0 0 -2.3 7 -2.5 8 c -1.5 7 -3.8 14.2 -5.5 21.4 c 0 0.5 -1.5 7.3 -0.5 7.3 c 4.8 0 6.5 -11.3 10 -11.3 c 0.8 0 0 1.6 0 2.5 c -0.5 3 -4 11.6 1.5 7.8 c 0.5 -0.3 1 -0.5 1.5 -1 c 1 -1.1 1.5 -2.6 2.5 -3.8 c 6 -8.1 9.5 -17.8 12.5 -27.5 c 0 -0.4 1.5 -9 1.5 -9 c -2.3 0 -3.5 9 -4 10.5 c -2.5 8.3 -5 16.6 -6 25.5 c -0.4 4.3 2.5 8.8 6 3.8" /><path stroke="#0000ff" stroke-width="4" d="M 213.4 239.9 c 0 0 0.5 -1.3 1 -1 c 0.8 0.8 -0.9 2.3 -1.5 3.5 c -1 2.5 -2.5 8 -2 11 c 1.3 5.2 4.5 -1.8 5 -3.5 M 215.9 224.4 c -0.5 0 -3.5 0.5 -1.5 0.5 M 220.4 235.4 c 1.9 0 1.5 8.3 1.5 10 c 0 0.3 -0.3 3 0.5 3 c 0.9 0 5 -7.5 6 -9 c 0 -0.3 1.3 -2.5 2 -2.5 c 0.8 0 0.5 2 0.5 2.5 c 0 1.5 -0.9 7.5 1 7.5 M 236.9 213.9 c 0 -2 -0.3 4.8 -0.5 6 c -0.5 4.9 -2.5 10.4 -1.5 15.5 c 0.5 3.3 2.5 6.5 5 2 M 231.9 226.9 c -1.3 0 1.8 0 2 0 c 1.5 0 3.5 -1.5 5 -1.5" /><path stroke="#008000" stroke-width="4" d="M 162.4 122.9 c -1.9 -1.9 5.5 -8.4 8.5 -8.4 c 4.8 0 6 8.7 5 11.9 c -1.5 5.3 -5.5 12.5 -9.5 16.5 c -4 4 -8.8 7 -12 12.5 c -1.5 2.8 -3.4 5.4 -4.5 8.5 c -0.3 0.9 -2.5 2 -2 3.5 c 0.5 1 4 0.5 5 0.5 c 5.3 0 10 -2.5 15 -4 c 1 -0.3 5 -2 5 0.5" /></g><g id="layer_3" visibility="hidden"><path stroke="#000000" stroke-width="4" d="M 498.9 601.3 c 80.1 0 160.3 0 240.4 0 M 502.4 600.8 c 0 -151.3 0 -302.6 0 -453.9 M 500.4 151.9 c 79.1 0 158.3 0 237.4 0 M 739.1 152.4 c 0 149.1 0 298.2 0 447.4 M 501.9 149.9 c 16 -7.3 32 -14.5 48 -22 M 738.3 153.4 c 14.1 -8.8 28.2 -17.5 42.5 -26.5 M 551.4 127.4 c 76.2 0 152.8 0 229.4 0 M 741.3 599.8 c 0.2 0 -1 1.2 -1 1 c 0 -0.7 3 -1.2 3.5 -1.5 c 2.6 -0.7 7 -2.7 9.5 -4.5 c 3 -2 8.1 -4.6 10.5 -7 c 2.6 -2.6 6.2 -7.2 10 -9 c 2.2 -1.1 4.7 -3.2 6.5 -4.7 c 0.5 -0.5 2.5 0 2.5 -1 M 783.1 130.9 c 0 148.9 0 297.9 0 446.9 M 504.9 525.6 c 78.2 0 156.6 0 234.9 0 M 504.9 449.9 c 77.6 0 155.3 0 232.9 0 M 504.4 376.9 c 76.7 0 153.6 0 230.4 0 M 508.4 299.4 c 0.1 0 0.3 0 0.5 0 M 508.4 298.6 c 76.2 0 152.6 0 228.9 0 M 504.4 227.9 c 76.1 0 152.3 0 228.4 0" /><path stroke="#000000" stroke-width="2" d="M 520.9 63.4 c 0.7 0 0.6 -2 1.5 -2 c 1.2 0 -1.2 2.6 -1.5 4 c -0.5 2.5 -2.2 8.4 -1 11 c 0.6 1.2 2.7 -1.7 3 -2 c 2.1 -2.7 3.2 -5.7 5.5 -8.5 c 0.1 0 2.1 -2.5 2.5 -2.5 c 0.7 0 0.5 3.2 0.5 3.5 c 0 1.4 -1.6 7.2 -0.5 8.5 c 0.2 0.4 2.2 -1.7 2.5 -2 c 0.5 -0.7 5.2 -9.7 6.5 -8.5 c 0.7 0.7 -1.7 10.5 0 10.5 c 1.2 0 3.7 -5 4.5 -6 c 3.6 -6.2 6.5 -12.7 9.5 -19.5 c 0.2 -0.6 3.5 -9 3.5 -9 c 0 0 -1.7 6.6 -2 7 c -2 6.7 -4 13.1 -4 20.5 c 0 1.2 -0.7 4 0 5 c 1 1 1 -4.2 1 -4.5 c 0 -0.5 -2.5 -7.2 -2.5 -7.5 c 0.5 -0.5 3.2 0.1 4 0 c 1.7 -0.2 3.2 -1.2 5 -2 M 529.9 42.4 c -4.2 -1.1 1.1 -0.5 2.5 -0.5 M 578.4 37.9 c 0.2 -0.2 1.2 0.5 3 0.5 c 0.7 0 4 -0.2 4 0.5 M 579.4 41.4 c 0 -0.2 0.5 -1.7 1 -1.2 c 0.7 0.6 -0.5 3.2 -0.5 3.7 c 0 4.5 -0.7 10.5 -2 15 c -1.5 5.3 -1.5 11.8 -1.5 17.5 c 0 1.2 -0.2 5 0.5 6 c 1.6 1.5 7.2 -1.7 10 -0.5 M 610.4 41.4 c -1 0 9.5 0 10 1 c 0.5 1 -0.7 2.7 -1 4 c -0.6 3.2 -0.5 7 -1 10.5 c -0.7 6.7 -0.7 14.9 -3 21.5 c -0.2 0.5 0 4 -0.5 4.5 c -0.2 0.2 -2.5 0 -3 0 c -1.7 0.4 -6.1 2.5 -3 -0.5 M 646.9 58.9 c 1.2 -0.6 2.7 -1.6 4 -2 c 0.7 -0.2 2.2 0 3 0 c 10.1 0 -3.2 10.3 -5.5 14.5 c -0.2 0.5 -2.2 4.2 -2 5 c 1.5 3 6.7 0.5 9 0.5 M 648.9 66.4 c -0.2 0 -0.6 -0.2 -1 -0.5 M 648.4 66.4 c 3.1 -0.7 7.2 -1.5 10.5 -1.5 M 674.9 58.4 c 0 -0.2 1.2 -2 1 -2.5 c -0.7 -0.7 -3.7 2.7 -4.5 3.5 c -2.7 2.7 -8.1 9.6 -6 14 c 0.2 0.5 3.6 -2.4 4 -3 c 1.5 -2.5 3.6 -4.7 5 -7.5 c 0.1 -0.2 1 -3 1.5 -3 c 1.2 0 -1 2.2 -1.5 3.5 c -0.5 1.2 -3.7 11.5 -1 11.5 c 1.6 0 4.6 -4.7 5.5 -6 c 4.2 -5.6 6.7 -12.2 9 -19 c 0.7 -2.7 2 -5.7 2.5 -9 c 0.1 -0.7 0.2 -1.6 0.5 -2.2 c 0.1 -0.2 0.5 -1.2 0.5 -1 c 0 8.7 -5.7 19.2 -8 27.8 c -0.2 0.9 -2.7 7.2 -1.5 8 c 0.1 0 2.2 -2.7 2.5 -3 c 1.7 -1.9 4.2 -5.5 7.5 -5.5 c 0.2 0 -1.7 6.5 -2 7.5 c -0.2 0.9 -1.5 3 -0.5 3 c 1.2 0 3.2 -4.7 4 -5.5 c 4.7 -6.7 8.7 -14.5 12.5 -22 c 0.6 -1.2 2.6 -9.2 4.5 -9.2 c 0 0 -1.7 3.7 -2 3.7 c -1.7 4.2 -4 8.2 -6 12.5 c -2.1 4.6 -5 11.2 -4 16.5 c 0.7 4.5 7.2 -2.2 8 -3.5 M 723.8 66.4 c -0.2 0 -0.7 0.2 -1 0.5 c -0.2 0.4 1.2 0 2 0 c 1 0 2 0 3 0 c 3.2 0 6.6 -0.5 10 -0.5 M 728.3 61.4 c -1.5 0 8.2 -0.7 11 -1.5" /><path stroke="#000000" stroke-width="2" d="M 759.8 58.9 c 0 -0.1 0 -0.2 0 -0.5 M 759.8 59.4 c -0.6 3.7 -2.5 6.8 -3.5 10.5 c 0 0.2 -0.2 3 -1 3 c -0.5 0 2.7 -4.2 3 -4.5 c 1.2 -1.7 3.2 -6.5 6 -6.5 c 0.6 0 1.5 2.7 1.5 3.5 c 0 2.4 -2.7 8.7 0.5 10 c 1.7 0.5 3.6 -1.5 5 -2.5 c 4.7 -3.2 10.2 -6 13 -11.5 c 1 -2 2.5 -3.7 0.5 -6 c -1.7 -1.7 -3.1 2.6 -4 4 c -2 3.2 -5.2 12 -2 15.5 c 1.2 1.2 3.2 -2.4 4 -3 c 4.2 -4.2 8.7 -9.2 11.5 -14.5 c 0.2 -0.5 -0.7 2 -1.5 3 c -1.1 1.5 -2.2 3.2 -3 5.5 c -0.7 3.2 4.7 4.7 7 5.5 c 7.1 2.4 11.6 -9.2 7.2 -13.5 M 826.8 60.4 c 0 -0.6 0 -2 1 -2 c 1.2 0 -1.7 2.5 -2 4 c -0.5 2.8 -5.1 11.3 -2.5 14 c 1.1 1 3 -2.9 3.5 -3.5 c 2.2 -2.7 3.7 -5.2 6.5 -8 c 0.5 -0.5 1.7 -3 3 -2.5 c 3.5 1.7 -0.7 8.9 -2.5 11.5 c -0.2 0.2 -2.2 2.7 -1.5 3.5 c 0.2 0.2 3.2 -3 3.5 -3.5 c 1.7 -2.4 6.2 -9.5 10 -9.5 c 0.7 0 -0.5 1.5 -1 2.5 c -0.5 1 -3 6.2 -1.5 7 c 0.7 0.4 4.6 -5.7 5 -6.5 c 2.7 -5.7 5.1 -11.7 8 -17.5 c 1.1 -2.2 3.5 -6 3.5 -8.5 c 0 -0.7 -0.1 1.7 -0.5 2.5 c -0.7 2.1 -2.1 4.2 -3 6.5 c -2.2 6.1 -4.2 12.1 -6 18.5 c 0 0.2 -1 4.5 -1 4.5 c 0 0 0.1 -8.5 0.5 -9 c 1.7 -1.7 6.2 -0.7 8.5 -3 M 830.3 44.9 c 0 -0.7 1.2 -0.5 2 -0.5 M 876.8 40.9 c 0 -0.5 2 0.5 4.5 0.5 c 1.2 0 7.1 -0.6 6 0.5 M 879.3 42.4 c 0.2 -0.2 0.5 -0.7 1 -1 c 0.1 0 -1.2 5.2 -1.5 5.5 c -1 4.2 -2.2 8.1 -3.5 12.5 c -1.7 7.6 -3.7 16.8 -3.7 24.5 c 0 0 3.1 -0.7 3.2 -1 c 2.1 -0.7 4.7 -1.2 6.5 -3 M 912.3 46.9 c -6 0 -13.5 10.1 -15.5 15.5 c -0.6 1.6 -1.2 5.8 0 7.5 c 1.6 2 6.5 1 8.5 0 c 1.2 -0.7 3.2 -2.7 1 -4 c -1 -0.5 -2.2 -0.2 -3.5 -0.5 c -1.6 -0.2 -3.2 0.5 -5 0.5 M 924.8 38.4 c -0.2 0 6.7 1 9 1 c 0.7 0 2 -0.2 2.5 0.5 c 0.7 1.7 -0.7 3.6 -1.5 4.7 c -1.2 2.7 -1 8.1 -1.5 11.5 c -0.6 4.2 -1.2 9.4 -0.5 13.9 c 0.2 1.9 1.1 5.4 0.5 7.5 c -1.2 3.7 -5.6 2.2 -8.5 3 c -0.2 0 -3.5 1 -3.5 0 c 0 -0.7 1.2 -0.5 1.5 -0.5" /></g><g id="layer_4" visibility="hidden"><path stroke="#ff0000" stroke-width="4" d="M 547.9 190.9 c 2.2 -2.4 7.7 -3.5 11 -1.9 c 1.2 0.5 3.7 1.3 3 3.4 c -1.7 5 -7.7 8.5 -11.5 12.5 c -0.6 0.5 -5 4 -5 5.5 c 0 2 8.7 1.3 10 1.5 c 1.7 0 4 1 6 1 M 545.9 201.9 c 6.2 0 12.7 -3 19 -1 M 586.9 194.4 c 0 -4.5 -3.6 -2.8 -6 0 c -2.7 3.5 -8.6 11.5 -7 16.5 c 0.7 2.5 4.7 -0.5 5.5 -1.5 c 2.5 -3 4 -6 6 -9.5 c 0 0 3.7 -5.5 3 -5.5 c -0.2 0 -1.7 3 -2 3.5 c -0.7 1.5 -4 11.9 -1 13 c 3.2 1 7.2 -4.5 9 -6.5 c 5.5 -7 8.7 -15 12 -23.4 c 0.7 -2.5 1.7 -4.9 3 -7.5 c 0.2 -0.5 0.5 -2 0.5 -2 c 0 0 -0.2 1.3 -0.5 2 c -1 2.4 -1.6 4.9 -2.5 7.5 c -2.2 7 -4.5 14 -5.5 21.4 c -0.1 1 -1.1 4 -0.5 5.5 c 0.2 0.5 3.2 -0.5 3.5 -1 c 0.5 -0.5 5 -7.5 6.5 -7 c 1.7 0.9 -1.2 9 2 9 c 1.6 0 3.6 -2.9 4.5 -4 c 4 -4.8 6.5 -11.5 9 -17.4 c 1.2 -3.4 2.6 -7 4.5 -10.5 c 0.7 -1.5 1.2 -2.8 2 -4.5 c 0.2 -0.5 1.7 -2 1 -2 c -2.1 0 -3.2 7.3 -4 8.5 c -3.5 7 -6.2 13.5 -8 21.4 c -0.7 3.5 -0.7 8.5 4 7 M 656.9 170.4 c -0.6 -0.5 2.2 1 4 1.5 c 2.5 0.5 5.2 -0.5 7.5 1.5 M 656.9 171.4 c 1.6 0 -0.1 10.4 -0.5 11.5 c -2.2 7 -3.5 14.5 -6 21.9 c -0.7 2.4 -4.7 8.4 -3.5 11 c 1.2 2.5 8.6 2.4 11.5 1.5 M 688.4 183.4 c 0.2 -0.5 0.7 -1.4 1.5 -2 M 690.4 180.4 c 0 -1.9 -4.1 4 -5 5.5 c -3.2 4.5 -5.2 9.4 -6.5 14.9 c -0.2 1.5 -1.5 7.3 1 8 c 2.2 0.5 4.2 -2 5.5 -3.5 c 4 -4.5 6.5 -11 8.5 -16.9 c 1.2 -4 0.7 -8.3 -4 -6 M 705.4 171.9 c -0.5 0 -0.7 -0.5 -1.5 -0.5 c -1.2 0 2.5 1.5 4 1.5 c 2.6 0 5.5 0.5 6.5 2.5 c 0.7 1.5 -1.6 4.3 -2 6 c -0.7 3.5 -2.5 7 -3 10.9 c -0.2 3.4 0 7 -0.5 10.5 c -0.5 4 -0.2 10.3 -4.5 13 c -1.6 1 -11 4 -8 1 M 546.9 265.4 c 0 -1.3 0 -4.1 1.5 -5 c 2.5 -1.1 7.2 1.6 8 4 c 2.2 7.3 -13.5 11.3 -13.5 17.8 c 0 1 3 1.3 3.5 1.5 c 4.5 0.6 8.7 -1.5 13 -1.5 M 546.4 273.9 c -0.6 0 -1.2 0 -2 0 c -0.6 0 1.2 0 2 0 c 1 0 2 0.1 3 0 c 2.6 -0.3 5.2 -1 8 -1 M 585.4 265.4 c 0 -6 -4 -3 -7 0.5 c -3.2 4 -10.7 11.6 -7 17.3 c 1.1 1.6 5.7 -2.3 6.5 -3 c 3.5 -3.5 6.2 -6.6 8.5 -11.5 c 0 -0.1 2 -4.3 2 -4.3 c 0 0 -1.2 3.3 -1.5 3.5 c -1.2 3.6 -2.5 7.6 -2.5 11.3 c 0 0.5 -0.2 4 1 4 c 2 0 5.7 -4.1 7 -5.5 c 5.2 -5.8 9.1 -14.5 12 -21.9 M 604.4 255.9 c 1.2 -3.3 3 -6.5 4 -10" /><path stroke="#ff0000" stroke-width="4" d="M 608.4 245.9 c 0.1 -0.5 0.5 -2 0.5 -2 c 0 0 -1.2 6 -1.5 6.5 c -2.2 7.4 -6.5 16.9 -6.5 24.9 c 0 5.1 7.2 -3.1 8 -2.5 c 1.2 1.3 -3.2 7.3 0 8.5 c 2.2 0.8 5.2 -4.1 6.5 -5.5 c 5.1 -6 8.1 -14.6 11.5 -21.9 c 0.1 -0.3 3 -9.5 3 -9.5 c 0 0 -3.7 8.4 -4 9 c -2.2 6.2 -5.2 12.7 -6.5 19.4 c -1.2 7.1 1.6 7.8 7.5 5 M 657.4 245.4 c 3.6 0 7.2 1.5 11.5 1.5 M 656.9 243.4 c -4.2 4.4 -2.7 12.5 -3.5 18.4 c -0.2 5.3 -2.2 10.6 -3 15.8 c -0.2 1.5 -2.6 9.8 -1 11.5 c 0.7 0.6 1.7 -0.5 3 -0.5 c 3 0 6 -1 9 -1 M 676.4 273.4 c -2.7 2.8 -0.2 1.6 1.5 0 c 3.2 -2.8 5.6 -6.6 8.5 -9.8 c 2 -2.3 3.1 -5.1 4.5 -8 c 0.2 -0.5 0.2 -2 1 -2 c 0.7 0 -1.7 7.3 -2 8 c -1.5 5 -3.5 10.1 -3.5 15.3 M 701.9 243.9 c -0.2 -0.5 -0.7 -1.5 -0.5 -2 c 0.2 0 2.7 0.5 3.5 0.5 c 2.1 0 9.5 -1 10.5 1.5 c 1.2 3.9 -1.7 11.8 -3 15.4 c -2.6 9.6 -0.7 21 -4 30.3 c -0.7 2.6 -5.6 3 -8 3 c -0.2 0 -2.1 0.8 -2.5 0.5 c -0.5 -0.5 1.2 -1 1.5 -1 M 547.4 335.4 c 2.5 -2.5 5.2 -2.5 9 -2.5 c 0.5 0 3.5 0.3 3.5 1.5 c 0 1.8 -4.2 4.6 -5.5 5.5 c -3.2 2 -8.2 8.3 -9.5 12.3 c -1.1 4.5 9.7 5 12 3 M 546.4 342.4 c -0.7 0.1 -3.1 0.3 -2.5 1 c 0.7 0.8 3.5 0.1 4.5 0 c 4.1 -0.5 8.7 -0.5 13 -0.5 M 582.9 336.4 c -3.2 -6.5 -12.2 5.8 -14 9.3 c -0.5 1.3 -2.2 5.1 -1 6.5 c 1.2 1.3 3.7 0 5 -1 c 3.2 -2.8 6.2 -6.1 9 -9.8 c 0.1 -0.1 2.5 -5.5 2.5 -5.5 c -0.7 0 -1.7 3.5 -2 4 c -0.6 2 -4.7 13.3 -1.5 14.3 c 2 0.6 4.1 -3.6 5 -5 c 4.7 -6.6 9.1 -12.8 11.5 -20.8 c 0 -0.1 3.5 -10.5 3.5 -10.5 c 0 0 -3.2 8.3 -3.5 9 c -2.5 6.8 -7.2 18.5 -5.5 25.8 c 0.2 1.3 2.5 -0.1 3 -0.5 c 2.2 -1.3 4.2 -3.8 6.5 -6 c 0 0 2 -0.8 2 -0.5 c 0 1.3 -3.2 12 0 12 c 2.5 0 5 -7.3 6 -9 c 4.5 -7.5 8.5 -15.1 12.5 -22.8 c 1.1 -2.3 2.2 -4.8 4 -7 c 0.2 -0.5 1 -2 1 -2 c 0 0 -3.2 6.1 -3.5 6.5 c -3.5 7.6 -6.7 15 -8.5 23.3 c -1.2 7.3 2 8.5 7.5 4.5 M 654.4 317.4 c 0 -0.3 1.2 0.5 2.5 0.5 c 2.1 0 4.2 0 6.5 0 M 655.4 313.9 c -2.7 1.8 -2.6 6.1 -3 9.5 c -0.2 4.6 -1.2 9.1 -2 14 c -1.1 7 -2.7 13.8 -4 20.8 c -0.1 1 -2.1 5.8 -1 7 c 1.6 1.6 10.5 -0.5 12.5 -0.5 M 674.4 331.9 c -2.1 -2.1 7.7 -7 9.5 -2.5 c 0.2 1.3 -2.1 5 -3 6 c -3.7 4.6 -10.2 10.6 -12 16.8" /><path stroke="#ff0000" stroke-width="4" d="M 668.9 352.2 c -1.1 4.3 9.6 3.3 11.5 2.5 M 701.9 319.9 c -0.2 -0.1 -1.2 -0.6 -1 -1 c 2 -1 10.5 0.5 11.5 2.5 c 0.2 0.6 -1.7 5.5 -2 6.5 c -1.5 5.3 -2.2 10.5 -3 15.8 c -0.7 7.5 0.7 18.3 -2 25.5 c -1.7 4.6 -3.2 3 -7 3 c -0.2 0 -3.2 1.5 -2 1.5 M 549.4 411.4 c -3 -4.5 6.7 -3.8 7.5 -1.5 c 1.7 5.3 -5.7 9.5 -8.5 12.8 c -3.1 3.8 -4.5 5.5 1 6.5 c 1 0.1 1.7 0.5 3 0.5 c 1.7 0 3.2 -0.5 5 -0.5 M 544.9 420.9 c -5.5 0 6.6 0 8.5 0 M 582.4 410.9 c -6.1 -3 -12.7 7.8 -14.5 12.3 c -0.2 1.3 -1.2 3 -0.7 4.5 c 0.2 1.3 3.2 -0.1 3.7 -0.5 c 4.6 -1.5 7.6 -6.3 10 -10.3 c 0.5 -1 1.2 -1.8 2 -3 c 0.2 -0.6 1.5 -2.8 1.5 -2 c 0 4.5 -4 8.6 -4 13.3 c 0 1.1 -0.5 5.1 2 4.5 c 2.6 -0.6 3.7 -3.1 5.5 -5 c 6.6 -7.5 9 -18 13.5 -26.8 c 1.2 -2.3 2.2 -4.8 3.5 -7.5 c 0.1 -0.3 0.7 -3 1.5 -3 c 1.2 0 0 2.6 -0.5 4 c -1.7 5.5 -3.7 10.8 -5.5 16.5 c -1.2 4.3 -3 8.6 -4.5 13 c -0.2 1.1 -1.1 3.3 0 4.3 c 1.2 1.3 7.6 -3.1 8 -2.5 c 1.1 2.3 -1.1 5.6 2.5 7 c 1.7 0.6 6.5 -3.3 7.5 -4.5 c 5.2 -6.1 8.2 -16.3 11.5 -23.8 c 1.2 -3.3 3.1 -6.6 5 -10 c 0.5 -0.8 1 -2 1.5 -3 c 0.2 -0.5 1.6 -1.5 1 -1.5 c -1.5 0 -3.2 7.3 -4 8.5 c -3.7 6.8 -8.2 16 -9 24 c -0.6 6.6 2.7 7.1 7.5 3.8 M 656.4 394.9 c 0 -3.3 9.6 -3.3 12.5 -2 M 658.4 388.9 c -4.7 1.1 -3.2 10.3 -4.5 15 c -1.6 6.5 -4.5 14.1 -4.5 20.8 c 0 1.3 -0.5 4.8 0.5 6 c 1.2 1.3 5.6 0 7.5 0 M 680.4 403.9 c -2.7 0 9.5 -3.8 9.5 -1 c 0 2.8 -5.7 5.1 -6.5 8.5 c -0.6 3.3 3.5 5.8 2.5 9 c -1.2 3.8 -14.2 5.3 -10.5 1.5 M 700.4 392.4 c -0.7 0 3.2 -1.3 4.5 -1.5 c 3 -0.5 10.2 -3.1 8.5 2 c -2.7 8.5 -4.7 17.8 -6 27 c -0.5 4.6 0.1 9.8 -1 14.3 c -0.7 3.1 -4.1 4.5 -7.5 4.5 c -0.5 0 -2 0.8 -2.5 0.5 c -0.2 -0.3 1.2 -0.8 1.5 -1 M 547.9 481.9 c 0 -3.6 9 -3.8 9 -0.5 c 0 3.8 -18.7 14 -5.5 14 c 1.7 0 3.2 -0.5 5 -0.5 M 545.9 489.9 c -0.6 0 -1.2 0.1 -2 0 c -0.6 -0.1 1.2 -0.3 2 -0.5 c 1.1 -0.1 2.2 -0.3 3.5 -0.5 c 4.2 -0.5 8.5 -2.5 13 -2.5 M 577.4 484.4 c 0.7 -0.8 0.6 -3 -1 -2.5 c -4.7 1.6 -12.7 9.8 -11.2 15.5 c 0.6 2.6 2.5 0.8 3.7 0 c 4.1 -2.6 6.7 -5.6 10 -9.5 c 0 -0.1 2.6 -3.5 1.5 -3.5 c -1 0 -0.5 2 -1 3 c -0.5 1 -2.2 11.3 0.5 11.3" /><path stroke="#ff0000" stroke-width="4" d="M 579.9 498.8 c 2.7 0 5.2 -4.8 6.5 -6.3 c 4.6 -6.1 8.5 -12.5 11 -20 c 0.2 -0.8 2.6 -10.5 4 -10.5 c 1.1 0 -1 2 -1.5 3 c -0.7 1.8 -1.7 3.6 -2.5 5.5 c -1.7 5 -3.2 10.3 -5 15.5 c -1.1 3.5 -3.2 8.5 -2.5 12.3 c 0.6 2.6 10.6 -5.1 12 -6.3 c 0.2 -0.3 2.5 -2.3 3.5 -1.5 c 0.5 0.5 -0.2 1.6 -0.5 2 c -0.5 2.5 -1.6 7.1 -0.5 9.3 c 0.2 0.8 2.2 -0.8 2.5 -1 c 1.6 -2 2.7 -4.3 4.5 -6.3 c 5.5 -7.3 8.1 -16.1 13 -24 c 1.2 -1.8 1.7 -4.8 3.5 -6.5 c 0.2 -0.1 -0.2 0.6 -0.5 1 c -0.2 0.8 -1 2 -1.5 3 c -1.2 2.8 -3 6 -4.5 9 c -2.6 5.3 -4.7 11.1 -6 17 c -0.2 1.5 -1.5 5.3 0.5 6.3 c 1.7 0.8 6.6 -3 8 -3.8 M 655.4 467.9 c 2.1 -1 8.2 -1.6 10 0 M 655.4 463.9 c -1.7 9.8 -2.2 20.3 -4.5 30.5 c -0.2 1.1 -2.2 10.5 -1 11.8 c 0.6 0.6 7.7 -0.5 9 -0.5 M 686.9 471.9 c 0 0 0.5 -1 0.5 -1 c 0 0 -2.2 2.6 -2.5 3 c -2.2 2.8 -6.2 8 -5 12 c 1.5 4.6 11 2.3 14 1 M 692.4 476.9 c -2.7 8.3 -5.6 16.6 -8.5 24.8 M 706.4 467.9 c -1.2 -0.6 5.2 0 7.5 0 c 0.2 0 3.1 -0.3 3.5 0 c 0.7 0.6 -1.5 8.3 -1.5 9.5 c 0 9.3 2.2 29.3 -10 29.3 M 548.4 556.8 c 2.2 -2.2 6.2 -2.6 9.5 -2 c 1.2 0.2 3.7 -0.1 3 2 c -1.5 4.5 -7.5 7.7 -10.5 11.5 c -1.7 2.1 -3.2 5.2 0.5 6 c 1.5 0.2 2.7 0.2 4.5 0.5 c 1.7 0.2 3.5 0.5 5.5 0.5 M 552.9 566.3 c -11 -1.2 6.7 0 10 0 M 585.9 557.8 c 1.2 -4.2 -3 -0.1 -4.5 1 c -3.2 2.7 -6.2 6.2 -8.5 10 c -0.2 0.7 -2.6 3.7 -1.5 5 c 0.7 0.7 3.7 -0.5 4.5 -1 c 4 -2.6 5.6 -5.2 8 -9.5 c 0.2 -0.2 3 -5 3 -5 c 0 0 -1.2 3.6 -1.5 4 c -0.2 2.1 -2.7 9.2 0.5 10.5 c 2.2 0.7 5.2 -3.1 6.5 -4.5 c 5.7 -7.2 9.6 -14.2 13 -23 c 0.7 -2.2 2 -4.7 3 -7 c 0.2 -1 2.2 -3.7 1.5 -3 c -1.7 1.7 -1.7 5.7 -2.5 8 c -2.1 6.2 -4.6 12.7 -6.5 19.5 c -0.2 1 -2.7 6.2 -1.5 7.5 c 2 2 6.6 -6.1 7.5 -7 c 0.5 -0.5 1.6 -1.6 2 -1 c 1 2.1 -2.2 6.2 1 8 c 3.6 1.7 7.2 -3.7 9 -6 c 4.6 -6.2 6.5 -12.7 9.5 -20 c 1.1 -2.7 4.5 -7.2 4.5 -10.5 c 0 -1.2 -1.6 1.7 -2 3 c -0.5 1.7 -1.6 3.7 -2.5 5.5 c -3.7 6.7 -6.6 14.5 -7.5 22.5 c -0.2 4.2 0.5 7.7 5 5 M 662.4 543.8 c -0.2 -0.7 -0.5 -1.6 -0.5 -2.5 M 662.4 541.3 c 1.2 -1.2 8.2 -3 10 -1.5 M 663.9 537.8 c -1.2 0 -1.1 2.7 -1.5 4 c -1.2 4.2 -2.7 9.2 -3.5 14" /><path stroke="#ff0000" stroke-width="4" d="M 658.9 555.8 c -0.7 5.1 -2 10.2 -3.5 15.5 c -0.2 1 -2.1 5.1 -0.5 5.7 c 1.1 0.5 3.7 -0.7 5 -1 c 1.7 -0.2 4.5 0 6.5 0 M 693.9 548.8 c 2.5 -3.7 -3.5 0.2 -3.5 3.5 c 0 4.7 4.5 9.2 2.5 14.5 c -1.2 3.2 -9.6 5.7 -7.5 1.5 M 694.9 546.8 c -1.1 0 2 0 2.5 0 c 2.2 -0.2 4.5 -0.5 7 -0.5 M 711.9 538.8 c -3.1 -1 5.2 0 7 0.5 c 0.5 0.1 3 -0.2 3.2 0 c 0.2 0.2 0 2.7 0 3.5 c 0 4.2 -1.5 7.7 -1.7 12 c -0.7 6.2 -1.5 13.1 -1.5 19.5 c 0 1.2 -1.2 5.7 -3 6.2 c -3.1 1 -5.2 0.5 -8.5 0.5" /></g><g id="layer_5" visibility="hidden"><path stroke="#ffa500" stroke-width="10" d="M 591.9 39.9 c -1.5 0 -7.9 -1 -8.5 -0.5 c -0.5 0.5 -2.4 -0.5 -3 0 c -1.3 1.3 -0.5 8 -0.5 10 c 0 6.3 0.4 13 -1 19 c -0.6 2.4 0 5.8 -1 8 c -0.4 0.8 -2.3 6.6 -1.5 7.5 c 0.4 0.4 1.5 0 2 -0.5 c 1.8 -1.8 6.4 -2 9 -2 M 606.9 40.4 c 1.7 1.7 8.5 0.5 11 0.5 c 0.1 0 3.5 -0.8 3.5 -0.5 c 0 6.7 -3.3 15.4 -4.5 22.5 c -0.8 5.3 1.8 13.2 -0.5 18 c -0.7 1.5 -0.6 2.6 -1.5 3.5 c -1.6 1.6 -9.6 -1.5 -6.5 -1.5" /></g><g id="layer_6" visibility="hidden"><path stroke="#ffa500" stroke-width="20" d="M 502.9 148.9 c 34.9 0 69.9 0 104.9 0 M 500.9 147.4 c 0 150.3 0 300.6 0 450.9 M 508.9 601.3 c 33.4 0 66.9 0 100.4 0 M 647.4 151.9 c -0.6 -0.1 -1.3 -0.3 -2 -0.5 M 645.4 152.1 c 32.6 0 65.3 0 97.9 0 M 739.3 154.9 c 0 147.6 0 295.2 0 442.9 M 643.4 602.3 c 29.3 0 58.6 0 87.9 0" /></g><g id="layer_7" visibility="hidden"><path stroke="#0000ff" stroke-width="2" d="M 555.4 22.4 c 0 -2.9 -14.8 -2.3 -19 -1 c -1.6 0.5 -3.3 0.5 -5 1 c -3.4 0.9 -6.8 3.4 -10 4.9 c -6.8 3.4 -15.5 6.7 -20.5 13 c -3 3.7 -5 9.5 -8.5 13 c -3.6 3.6 -6.3 10.9 -4.9 16.5 c 1 4 2.7 6.6 4.9 10 c 1 1.5 4.7 2.9 5.5 4.5 c 5.7 11.4 25.9 12.5 37.5 14.5 c 6.2 1 12.9 -1.3 19 -0.5 c 12 1.7 26.3 1.3 37.9 -1 c 3 -0.6 6.4 0.2 9.5 -0.5 c 8.9 -2.2 19.5 -5.7 25 -14 c 1.2 -1.8 4.2 -3.3 5 -5.5 c 3.7 -11.2 6.8 -25.9 -0.5 -37 c -2.4 -3.6 -6.4 -5.9 -9.5 -9 c -2 -2 -3.5 -3.2 -6 -4.5 c -2.3 -1.1 -4.3 -3.9 -6.5 -5.4 c -2.6 -2 -7.6 -3.4 -11 -4 c -4.9 -0.8 -10 -0.1 -15 -1 c -4.2 -0.7 -10.1 -1.8 -14.5 -1 c -6.4 1.2 -14.5 3 -20.9 3 M 388.9 73.4 c -0.3 -0.1 -0.8 -1 -0.5 -1 c 0.8 0 -2.4 7.2 -2.5 7.5 c -1.5 4.6 -2.3 9.7 -3.5 14.5 c -0.5 2.2 -2 4.7 -2 6.9 M 371.9 77.9 c -0.9 0 6.9 -2.6 8.5 -3 c 5.9 -1.3 13.2 -2.5 19 -4.5 M 396.4 86.9 c -2.4 0 -2.5 6 -3 8.5 c -0.1 0.8 -1.3 3.8 0 4.5 c 2.4 1.2 8.7 -4.9 10 -7 c 0.4 -0.7 0.5 -1.7 1 -2.5 c 0.3 -0.5 1.4 -1.9 1 -1.5 c -0.8 0.8 -0.6 3 -1 4 c -1.1 3.5 -2 7 -2.5 10.9 c -0.6 5.3 -4.5 11.9 -8 16 c -2.5 3 -7.7 5.7 -11.5 6.5 c -0.7 0.1 -8.1 1.2 -7.5 -1.5 c 0.3 -1.2 1.8 -2 2.5 -3 c 0.8 -1.1 1.4 -2.4 2.5 -3.5 M 413.9 85.4 c 0.1 -0.5 0 -1.5 0.5 -1.5 c 1.3 0 -0.2 2.6 -0.5 4 c -0.6 2.9 -0.6 6 -1.4 9 c -2.1 7.8 -7.5 17.3 -7.5 25.4 c 0 1.2 1.1 -2.2 1.5 -3.5 c 0.6 -2.3 1.3 -4.6 2 -7 c 1.9 -6.3 4.1 -19.5 10.9 -22.9 c 2.4 -1.2 2.6 2.7 2 4 c -1.3 2.6 -9.9 14.6 -7 6" /></g></g></svg></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Um eine Feldvariable zu <em>deklarieren</em> (einzuführen), gibt man an, wie viele "Schubladen" es gibt und welche Datentypen in den Schubladen gespeichert werden können.</p>
+</div>
+<div class="paragraph">
+<p>So erzeugt</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> zahl<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>eine neue Feldvariable mit dem Namen <code>zahl</code>, die Platz für sechs von 0 bis 5 durchnummerierte mögliche Einträge vom Typ <code>int</code> erhält.</p>
+</div>
+<div class="paragraph">
+<p>Über eine Nummer in eckigen Klammern kann man auf die entsprechenden Einträge zugreifen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="Java">zahl<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>zahl<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die erste Zeile speichert die Zahl 5 in der "vierten Schublade". Der Inhalt dieser Schublade wird in der zweiten Zeile ausgegeben.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Warning" class="fa icon-warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Die Nummerierung bei Feldvariablen beginnt immer bei der 0. Deshalb ist <code>zahl[3]</code> auch der Eintrage in der "<strong>vierten</strong> Schublade".</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">Um eine Feldvariable zu _deklarieren_ (einzuführen), gibt man an, wie viele "Schubladen" es gibt und welche Datentypen in den Schubladen gespeichert werden können.
+
+So erzeugt
+
+[source,java,indent=0]
+----
+int[] zahl=new int[6];
+----
+eine neue Feldvariable mit dem Namen `zahl`, die Platz für sechs von 0 bis 5 durchnummerierte mögliche Einträge vom Typ `int` erhält.
+
+Über eine Nummer in eckigen Klammern kann man auf die entsprechenden Einträge zugreifen:
+
+[source, Java]
+----
+zahl[3]=5;
+System.out.println(zahl[3]);
+---- 
+Die erste Zeile speichert die Zahl 5 in der "vierten Schublade". Der Inhalt dieser Schublade wird in der zweiten Zeile ausgegeben.
+[WARNING]
+====
+Die Nummerierung bei Feldvariablen beginnt immer bei der 0. Deshalb ist `zahl[3]` auch der Eintrage in der "*vierten* Schublade".  
+====
+
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref99815517">Verbesserung unseres Programms mit Hilfe von Feldvariablen</h3>
+<div class="paragraph">
+<p>Unser Programm mit dem Code</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> s1<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>s2<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>s3<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>s4<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>s5<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>s6<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">100</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> zz<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">6</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s1<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s2<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s3<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s4<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s5<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>zz<span class="token operator">==</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        s6<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s1<span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span>s2<span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span>s3<span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span>s4<span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span>s5<span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span>s6<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>kann durch die Verwendung von Feldvariablen umgeschrieben werden zu:</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Verbesserung unseres Programms mit Hilfe von Feldvariablen
+Unser Programm mit dem Code 
+[source,java,indent=0]
+----
+        int s1=0,s2=0,s3=0,s4=0,s5=0,s6=0;
+        for (int i=0;i&lt;100;i++){
+            int zz=(int)(Math.random()*6+1);
+            if (zz==1){
+                s1++;
+            } else if (zz==2){
+                s2++;
+            } else if (zz==3){
+                s3++;
+            } else if (zz==4){
+                s4++;
+            } else if (zz==5){
+                s5++;
+            } else if (zz==6){
+                s6++;
+            }
+        }
+        
+        System.out.println(s1+"\n"+s2+"\n"+s3+"\n"+s4+"\n"+s5+"\n"+s6); 
+---- 
+
+kann durch die Verwendung von Feldvariablen umgeschrieben werden zu:
+
+</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> summe<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">100</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> zz<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">6</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    summe<span class="token punctuation">[</span>zz<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>summe<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>summe<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0] 
+----
+        int[] summe=new int[6]; //&lt;1&gt;
+
+        for (int i=0;i&lt;100;i++){
+            int zz=(int)(Math.random()*6+1);
+            summe[zz-1]++; //&lt;2&gt; 
+        }
+        
+        for (int i=0;i&lt;summe.length;i++){ //&lt;3&gt;
+            System.out.println(summe[i]); //&lt;4&gt; 
+        }
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>int[] summe=new int[6]; <i class="conum" data-value="1"></i><b>(1)</b>
+
+for (int i=0;i&lt;100;i++){
+    int zz=(int)(Math.random()*6+1);
+    summe[zz-1]++; <i class="conum" data-value="2"></i><b>(2)</b>
+}
+
+for (int i=0;i&lt;summe.length;i++){ <i class="conum" data-value="3"></i><b>(3)</b>
+    System.out.println(summe[i]); <i class="conum" data-value="4"></i><b>(4)</b>
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Eine neue Feldvariable mit dem Namen <code>summe</code> und 6 möglichen int-Einträgen wird erzeugt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Wird eine 1 gewürfelt, so wird der Inhalt von <code>summe[0]</code> um 1 erhöht. Grund für das <code>zz-1</code> ist die Tatsache, dass die Einträge einer Feldvariable ab 0 durchnummeriert sind.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>summe.length</code> liefert die Anzahl der "Schubladen" unserer Feldvariable <code>summe</code> zurück.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Hier wird der "i-te" Eintrag unserer Feldvariable ausgegeben.</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">[indent=0] 
+----
+        int[] summe=new int[6]; //&lt;1&gt;
+
+        for (int i=0;i&lt;100;i++){
+            int zz=(int)(Math.random()*6+1);
+            summe[zz-1]++; //&lt;2&gt; 
+        }
+        
+        for (int i=0;i&lt;summe.length;i++){ //&lt;3&gt;
+            System.out.println(summe[i]); //&lt;4&gt; 
+        }
+----
+&lt;1&gt; Eine neue Feldvariable mit dem Namen `summe` und 6 möglichen int-Einträgen wird erzeugt.
+&lt;2&gt; Wird eine 1 gewürfelt, so wird der Inhalt von `summe[0]` um 1 erhöht. Grund für das `zz-1` ist die Tatsache, dass die Einträge einer Feldvariable ab 0 durchnummeriert sind.
+&lt;3&gt; `summe.length` liefert die Anzahl der "Schubladen" unserer Feldvariable `summe` zurück.
+&lt;4&gt; Hier wird der "i-te" Eintrag unserer Feldvariable ausgegeben. </div></div></div>
+</body></html>
