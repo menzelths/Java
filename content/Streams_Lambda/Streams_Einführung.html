@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref32020996">Lambda-Ausdrücke und Streams</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Seit Java 8 gibt es die Möglichkeit mit Streams zu arbeiten. Der Begriff kommt auch beim "Streamen von Filmen" vor. Das bedeutet einfach, dass ein Datenstrom (<em>stream</em>) schon während des Einlesens bearbeitet werden kann und nicht erst, wenn alles heruntergeladen ist.</p>
+</div>
+<div class="paragraph">
+<p>Somit kann ein Film relativ schnell nach dem Drücken des <span class="icon"><i class="fa fa-play"></i></span>-Knopfes betrachtet werden, ohne erst den gesamten Film heruntergeladen zu haben.</p>
+</div>
+<div class="paragraph">
+<p>Das ist auch mit Hilfe von Streams in Java möglich. Dafür einige hilfreiche Links:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://blog.codecentric.de/2013/10/java-8-erste-schritte-mit-lambdas-und-streams/">Einführung von Lambda-Ausdrücken und Streams</a></p>
+</li>
+<li>
+<p><a href="http://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/">Streams anhand von Beispielen</a></p>
+</li>
+<li>
+<p><a href="https://www4.fh-swf.de/media/downloads/fbtbw/download_8/devries_1/Funktionen-Streams.pdf">Fortgeschrittene Betrachtungen zu Streams und Lambda-Funktionen der Fachhochschule Südwestfalen</a></p>
+</li>
+<li>
+<p><a href="http://rxmarbles.com/">Visualisierung verschiedener Stream-Funktionen</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Lambda-Ausdrücke und Streams
+Seit Java 8 gibt es die Möglichkeit mit Streams zu arbeiten. Der Begriff kommt auch beim "Streamen von Filmen" vor. Das bedeutet einfach, dass ein Datenstrom (_stream_) schon während des Einlesens bearbeitet werden kann und nicht erst, wenn alles heruntergeladen ist.
+
+Somit kann ein Film relativ schnell nach dem Drücken des icon:play[]-Knopfes betrachtet werden, ohne erst den gesamten Film heruntergeladen zu haben.
+
+Das ist auch mit Hilfe von Streams in Java möglich. Dafür einige hilfreiche Links:
+
+* https://blog.codecentric.de/2013/10/java-8-erste-schritte-mit-lambdas-und-streams/[Einführung von Lambda-Ausdrücken und Streams] 
+* http://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/[Streams anhand von Beispielen] 
+* https://www4.fh-swf.de/media/downloads/fbtbw/download_8/devries_1/Funktionen-Streams.pdf[Fortgeschrittene Betrachtungen zu Streams und Lambda-Funktionen der Fachhochschule Südwestfalen] 
+* http://rxmarbles.com/[Visualisierung verschiedener Stream-Funktionen] 
+</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="_parametrisierte_listen">Parametrisierte Listen</h2>
+<div class="sectionbody">
+
+</div>
+</div></div><div class="originaltext" hidden="">== Parametrisierte Listen</div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="Java">ArrayList<span class="token operator">&lt;</span>Integer<span class="token operator">&gt;</span> liste<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">1000</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    liste<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source, Java, indent=0]
+----
+        ArrayList&lt;Integer&gt; liste=new ArrayList&lt;&gt;();
+        for (int i=0;i&lt;1000;i++){
+            liste.add((int)(Math.random()*100));
+        }
+---- </div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref10607303">Aufgaben</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Gib alle Zahlen aus.</p>
+</li>
+<li>
+<p>Gib alle Zahlen aus, die größer als 80 sind.</p>
+</li>
+<li>
+<p>Gib für jede Zahl die negative Hälfte aus, wenn sie gerade ist, sonst die Zahl selbst.</p>
+</li>
+<li>
+<p>Addiere alle Zahlen.</p>
+</li>
+<li>
+<p>Gib von allen Zahlen, die größer als 80 sind, die Summe aus, wobei gerade Zahlen vor dem Addieren halbiert und negiert werden.</p>
+</li>
+</ol>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Aufgaben
+. Gib alle Zahlen aus.
+. Gib alle Zahlen aus, die größer als 80 sind.
+. Gib für jede Zahl die negative Hälfte aus, wenn sie gerade ist, sonst die Zahl selbst.
+. Addiere alle Zahlen.
+. Gib von allen Zahlen, die größer als 80 sind, die Summe aus, wobei gerade Zahlen vor dem Addieren halbiert und negiert werden.
+
+
+</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref19293828">Gib alle Zahlen aus</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>liste<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>liste<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Gib alle Zahlen aus
+
+[source,java,indent=0]
+----
+        for (int i=0;i&lt;liste.size();i++){
+            System.out.println(liste.get(i));
+        }
+----</div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span>Integer wert<span class="token operator">:</span>liste<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>wert<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+        for (Integer wert:liste){
+            System.out.println(wert);
+        }
+----</div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">liste<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>z<span class="token operator">-</span><span class="token operator">&gt;</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+        liste.stream().forEach(z-&gt;System.out.println(z));
+----</div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">liste<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+        liste.stream().forEach(System.out::println);
+----</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref73391024">Alle Zahlen größer als 80</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>liste<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>liste<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">8000</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>liste<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Alle Zahlen größer als 80
+[source,java,indent=0]
+----
+        for (int i=0;i&lt;liste.size();i++){
+            if (liste.get(i)&gt;8000){
+                System.out.println(liste.get(i));
+            }
+        }
+---- </div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">liste<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>z<span class="token operator">-</span><span class="token operator">&gt;</span>z<span class="token operator">&gt;</span><span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+liste.stream().filter(z-&gt;z&gt;80).forEach(System.out::println);
+----</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref48520954">Für gerade Zahlen die negative Hälfte</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>liste<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Integer ausgabe<span class="token operator">=</span>liste<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ausgabe<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        ausgabe<span class="token operator">=</span><span class="token operator">-</span>ausgabe<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>ausgabe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Für gerade Zahlen die negative Hälfte
+[source,java,indent=0]
+----
+        for (int i=0;i&lt;liste.size();i++){
+            Integer ausgabe=liste.get(i);
+            if (ausgabe%2==0){
+                ausgabe=-ausgabe/2;
+            } 
+            System.out.println(ausgabe);
+        } 
+---- </div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">liste<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>z<span class="token operator">-</span><span class="token operator">&gt;</span>z<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token operator">?</span><span class="token operator">-</span>z<span class="token operator">/</span><span class="token number">2</span><span class="token operator">:</span>z<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+liste.stream().map(z-&gt;z%2==0?-z/2:z).forEach(System.out::println);
+---- </div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref19180575">Addiere alle Zahlen</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">Integer summe<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>liste<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    summe<span class="token operator">+=</span>liste<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Summe: "</span><span class="token operator">+</span>summe<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Addiere alle Zahlen
+[source,java,indent=0]
+----
+        Integer summe=0;
+        for (int i=0;i&lt;liste.size();i++){
+            summe+=liste.get(i);
+        }
+        System.out.println("Summe: "+summe); 
+----</div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Summe: "</span><span class="token operator">+</span>liste<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">&gt;</span>x<span class="token operator">+</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+System.out.println("Summe: "+liste.stream().reduce(0,(x,y)-&gt;x+y));
+----</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref55704687">Alles zusammen</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">Integer summe<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>liste<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Integer wert<span class="token operator">=</span>liste<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>wert<span class="token operator">&lt;=</span><span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        wert<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>wert<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        wert<span class="token operator">=</span><span class="token operator">-</span>wert<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    summe<span class="token operator">+=</span>wert<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>summe<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Alles zusammen
+[source,java,indent=0]
+----
+        Integer summe=0;
+        for (int i=0;i&lt;liste.size();i++){
+            Integer wert=liste.get(i);
+            if (wert&lt;=80){
+                wert=0;
+            }
+            if (wert%2==0){
+                wert=-wert/2;
+            }
+            summe+=wert;
+        }
+        System.out.println(summe); 
+----</div></div></div>
+<div sb='P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Summe: "</span><span class="token operator">+</span>liste
+        <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>z<span class="token operator">-</span><span class="token operator">&gt;</span>z<span class="token operator">&gt;</span><span class="token number">80</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>z<span class="token operator">-</span><span class="token operator">&gt;</span>z<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token operator">?</span><span class="token operator">-</span>z<span class="token operator">/</span><span class="token number">2</span><span class="token operator">:</span>z<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">&gt;</span>x<span class="token operator">+</span>y<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+        System.out.println("Summe: "+liste
+                .stream()
+                .filter(z-&gt;z&gt;80)
+                .map(z-&gt;z%2==0?-z/2:z)
+                .reduce(0,(x,y)-&gt;x+y)
+        ); 
+---- </div></div></div>
+</body></html>
