@@ -43,13 +43,13 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 ""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
 </script>
 </head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
-<h2 id="ref32127539">Die FOR-Schleife</h2>
+<h2 id="ref36984652">Die FOR-Schleife</h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref26016485">Motivation</h2>
+<h2 id="ref69017896">Motivation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Aufgabe:</strong></p>
@@ -82,10 +82,10 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref56197296">Syntax</h2>
+<h2 id="ref82848208">Syntax</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="ref29493413">Grundsyntax</h3>
+<h3 id="ref77985504">Grundsyntax</h3>
 <div class="paragraph">
 <p>Die for-Schleife wird am einfachsten anhand eines Beispiels erklärt, das tatsächlich die geraden Zahlen zwischen 0 und 10 einschließlich ausgibt.</p>
 </div>
@@ -243,7 +243,7 @@ System.out.println(i); <i class="conum" data-value="3"></i><b>(3)</b></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref42651299">Anderer Startwert</h3>
+<h3 id="ref42162110">Anderer Startwert</h3>
 <div class="paragraph">
 <p>Natürlich muss <code>i</code> zu Beginn nicht auf 0 gesetzt werden, man könnte auch schon bei 4 starten und nur bis 8 laufen lassen:</p>
 </div>
@@ -258,7 +258,7 @@ System.out.println(i); <i class="conum" data-value="3"></i><b>(3)</b></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref51419593">Zählen in Zweierschritten</h3>
+<h3 id="ref18126589">Zählen in Zweierschritten</h3>
 <div class="paragraph">
 <p>Auch der letzte Abschnitt muss nicht immer nur um 1 erhöhen. Man könnte das ganze Programm vereinfachen, indem man bei 0 startet und die Zahlen in Zweierschritten durchläuft:</p>
 </div>
@@ -279,7 +279,7 @@ System.out.println(i); <i class="conum" data-value="3"></i><b>(3)</b></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref75918102">Rückwärts laufende for-Schleife</h3>
+<h3 id="ref93161545">Rückwärts laufende for-Schleife</h3>
 <div class="paragraph">
 <p>Ebenso kann man eine for-Schleife abwärts zählen lassen, indem man statt <code>i++</code> den Ausdruck <code>i--</code> verwendet. So könnte man einen Countdown umsetzen.</p>
 </div>
@@ -301,7 +301,7 @@ System.out.println(i); <i class="conum" data-value="3"></i><b>(3)</b></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref11540781">Verschachtelte Schleifen</h3>
+<h3 id="ref23995930">Verschachtelte Schleifen</h3>
 <div class="paragraph">
 <p>Will man beispielsweise das kleine Einmaleins tabellarisch ausgeben, so gelingt das mit zwei ineinander verschachtelten Schleifen:</p>
 </div>
@@ -502,6 +502,130 @@ Die innerer Schleife läuft pro Einzelschritt der äußeren Schleife jeweils 10 
 Die Ausgabe sieht folgendermaßen aus:
 
 ....
+1	2	3	4	5	6	7	8	9	10	
+2	4	6	8	10	12	14	16	18	20	
+3	6	9	12	15	18	21	24	27	30	
+4	8	12	16	20	24	28	32	36	40	
+5	10	15	20	25	30	35	40	45	50	
+6	12	18	24	30	36	42	48	54	60	
+7	14	21	28	35	42	49	56	63	70	
+8	16	24	32	40	48	56	64	72	80	
+9	18	27	36	45	54	63	72	81	90	
+10	20	30	40	50	60	70	80	90	100	
+.... </div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="_die_for_schleife">Die FOR-Schleife</h2>
+<div class="sectionbody">
+
+</div>
+</div></div><div class="originaltext" hidden="">== Die FOR-Schleife</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"6"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source, java]
+----
+System.out.println("0");
+System.out.println("2");
+System.out.println("4");
+System.out.println("6");
+System.out.println("8");
+System.out.println("10");
+----</div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>i<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java] 
+----
+for (int i=0; i&lt;=10; i++){ 
+    if (i%2==0){ 
+        System.out.println(i); 
+    }
+} 
+----</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>i<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token operator">+</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">
+[source, java]
+----
+for (int i=4; i&lt;=8; i++){
+    if (i%2==0){ 
+        System.out.println(""+i);
+    }
+} 
+----</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">+=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java] 
+----
+for (int i=0; i&lt;=10; i+=2){ 
+    System.out.println(i);
+} 
+----</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">&gt;=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java]
+----
+for (int i=10; i&gt;=0; i--){ 
+    System.out.println(i);
+} 
+----</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">&lt;=</span><span class="token number">10</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>i<span class="token operator">*</span>j<span class="token operator">+</span><span class="token string">"\t"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java]
+----
+for (int i=1; i&lt;=10; i++){ // &lt;1&gt;
+    for (int j=1; j&lt;=10; j++){ // &lt;2&gt;
+        System.out.print(i*j+"\t"); // &lt;3&gt;
+    } 
+    System.out.println(""); // &lt;4&gt; 
+}
+----</div></div></div>
+<div sb='P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="literalblock">
+<div class="content">
+<pre>1	2	3	4	5	6	7	8	9	10
+2	4	6	8	10	12	14	16	18	20
+3	6	9	12	15	18	21	24	27	30
+4	8	12	16	20	24	28	32	36	40
+5	10	15	20	25	30	35	40	45	50
+6	12	18	24	30	36	42	48	54	60
+7	14	21	28	35	42	49	56	63	70
+8	16	24	32	40	48	56	64	72	80
+9	18	27	36	45	54	63	72	81	90
+10	20	30	40	50	60	70	80	90	100</pre>
+</div>
+</div></div><div class="originaltext" hidden="">....
 1	2	3	4	5	6	7	8	9	10	
 2	4	6	8	10	12	14	16	18	20	
 3	6	9	12	15	18	21	24	27	30	

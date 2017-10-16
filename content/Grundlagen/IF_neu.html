@@ -43,13 +43,13 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 ""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
 </script>
 </head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
-<h2 id="ref22919606">Die IF-Bedingung</h2>
+<h2 id="ref80952992">Die IF-Bedingung</h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref7124071">Motivation</h2>
+<h2 id="ref51691441">Motivation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Im täglichen Leben gibt es viele Tätigkeiten, die durchgeführt werden, wenn bestimmte Bedingungen erfüllt sind. Beispielsweise sammelt man leere Wasserflaschen und geht neue kaufen, wenn die die Bedingung eintritt, dass die letzte Flasche getrunken wurde.</p>
@@ -60,7 +60,7 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref76931127">Syntax</h2>
+<h2 id="ref53633582">Syntax</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Eine einfache Anwendung soll der folgende Programmausschnitt zeigen, der in Abhängigkeit einer Note einen entsprechenden Text ausgibt:</p>
@@ -134,7 +134,7 @@ if (note &lt; 2) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref26703072">Der ternäre Operator ? :</h2>
+<h2 id="ref61229265">Der ternäre Operator ? :</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Einen Sonderfall stellt der <strong>ternäre Operator</strong> dar. Dabei handelt es sich um einen Operator mit <em>drei</em> Argumenten.</p>
@@ -300,4 +300,94 @@ public class SwitchDemoFallThrough {
 ////
 
  </div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="_die_if_bedingung">Die IF-Bedingung</h2>
+<div class="sectionbody">
+
+</div>
+</div></div><div class="originaltext" hidden="">== Die IF-Bedingung</div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>int note = 4;
+if (note &lt; 4) { <i class="conum" data-value="1"></i><b>(1)</b>
+    System.out.println("Super");
+} else if (note &lt; 4) { <i class="conum" data-value="2"></i><b>(2)</b>
+    System.out.println("Ist in Ordnung");
+} else if (note &lt; 5) { <i class="conum" data-value="3"></i><b>(3)</b>
+    System.out.println("Wird langsam knapp!");
+} else { <i class="conum" data-value="4"></i><b>(4)</b>
+    System.out.println("Hmm, vielleicht doch mal die Hausaufgaben machen?");
+}</pre>
+</div>
+</div></div><div class="originaltext" hidden="">[  indent=0]
+----
+        int note = 4;
+        if (note &lt; 4) { // &lt;1&gt;
+            System.out.println("Super");
+        } else if (note &lt; 4) { // &lt;2&gt;
+            System.out.println("Ist in Ordnung");
+        } else if (note &lt; 5) { // &lt;3&gt;
+            System.out.println("Wird langsam knapp!");
+        } else { // &lt;4&gt;
+            System.out.println("Hmm, vielleicht doch mal die Hausaufgaben machen?");
+        }
+----
+</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>int note = 3;
+if (note &lt; 2) {
+    System.out.println("Super");
+} else if (note &lt; 5) { <i class="conum" data-value="1"></i><b>(1)</b>
+    System.out.println("Wird langsam knapp!");
+} else if (note &lt; 4) { <i class="conum" data-value="2"></i><b>(2)</b>
+    System.out.println("Ist in Ordnung");
+} else {
+    System.out.println("Hmm, vielleicht mal Hausaufgaben machen?");
+}</pre>
+</div>
+</div></div><div class="originaltext" hidden="">[ indent=0]
+----
+        int note = 3;
+        if (note &lt; 2) {
+            System.out.println("Super");
+        } else if (note &lt; 5) { // &lt;1&gt;
+            System.out.println("Wird langsam knapp!");
+        } else if (note &lt; 4) { // &lt;2&gt;
+            System.out.println("Ist in Ordnung");
+        } else {
+            System.out.println("Hmm, vielleicht mal Hausaufgaben machen?");
+        }
+----</div></div></div>
+<div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> note <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Die Note ist "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>note <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token string">"gerade"</span> <span class="token operator">:</span> <span class="token string">"ungerade"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source, java, indent=0]
+----
+        int note = 3;
+        System.out.println("Die Note ist " + (note % 2 == 0 ? "gerade" : "ungerade"));
+----</div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> note <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Die Note ist "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>note<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"gerade"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ungerade"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">
+[source, java, indent=0]
+----
+        int note = 3;
+        System.out.print("Die Note ist ");
+        if (note%2==0){
+            System.out.println("gerade");
+        } else {
+            System.out.println("ungerade");
+        }
+----</div></div></div>
 </body></html>
