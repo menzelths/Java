@@ -1,0 +1,450 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/reveal.css'>
+<link rel='stylesheet' href='../../assets/css/serif.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/reveal.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+
+    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script><style>html{font-size:20px;}
+.reveal{font-size:20px;}
+</style></head><body><div class='reveal'><div class='slides'><section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref79514953">Maven</h3>
+
+</div></div><div class="originaltext" hidden="">=== Maven
+</div></div></div>
+<span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Inhalt der <strong>pom.xml</strong>:</p>
+</div></div><div class="originaltext" hidden="">Inhalt der *pom.xml*: </div></div></div>
+</span><span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-xml code-toolbar"><code class=" language-xml" data-lang="xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">&gt;</span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>de.qreator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>Vertx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>packaging</span><span class="token punctuation">&gt;</span></span>jar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>packaging</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project.build.sourceEncoding</span><span class="token punctuation">&gt;</span></span>UTF-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project.build.sourceEncoding</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>1.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>1.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">&gt;</span></span></code><div class="toolbar"><div class="toolbar-item"><span>XML</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,xml,indent=0]
+----
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;de.qreator&lt;/groupId&gt;
+    &lt;artifactId&gt;Vertx&lt;/artifactId&gt;
+    &lt;version&gt;1.0&lt;/version&gt;
+    &lt;packaging&gt;jar&lt;/packaging&gt;
+    &lt;properties&gt;
+         &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+    &lt;/properties&gt;
+&lt;/project&gt; 
+----</div></div></div>
+</span></section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-xml code-toolbar"><code class=" language-xml" data-lang="xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.vertx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>vertx-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.5.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.vertx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>vertx-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.5.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span></code><div class="toolbar"><div class="toolbar-item"><span>XML</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,xml, indent=0]  
+----
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.vertx&lt;/groupId&gt;
+            &lt;artifactId&gt;vertx-core&lt;/artifactId&gt;
+            &lt;version&gt;3.5.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.vertx&lt;/groupId&gt;
+            &lt;artifactId&gt;vertx-web&lt;/artifactId&gt;
+            &lt;version&gt;3.5.0&lt;/version&gt;
+        &lt;/dependency&gt; 
+    &lt;/dependencies&gt;
+---- 
+</div></div></div>
+</section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-xml code-toolbar"><code class=" language-xml" data-lang="xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">&gt;</span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>de.qreator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>Vertx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>packaging</span><span class="token punctuation">&gt;</span></span>jar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>packaging</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project.build.sourceEncoding</span><span class="token punctuation">&gt;</span></span>UTF-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project.build.sourceEncoding</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>1.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>1.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.vertx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>vertx-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.5.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.vertx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>vertx-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.5.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">&gt;</span></span></code><div class="toolbar"><div class="toolbar-item"><span>XML</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,xml,indent=0]
+----
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;de.qreator&lt;/groupId&gt;
+    &lt;artifactId&gt;Vertx&lt;/artifactId&gt;
+    &lt;version&gt;1.0&lt;/version&gt;
+    &lt;packaging&gt;jar&lt;/packaging&gt;
+    &lt;properties&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+    &lt;/properties&gt;
+ 
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.vertx&lt;/groupId&gt;
+            &lt;artifactId&gt;vertx-core&lt;/artifactId&gt;
+            &lt;version&gt;3.5.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.vertx&lt;/groupId&gt;
+            &lt;artifactId&gt;vertx-web&lt;/artifactId&gt;
+            &lt;version&gt;3.5.0&lt;/version&gt;
+        &lt;/dependency&gt; 
+    &lt;/dependencies&gt;
+&lt;/project&gt;
+----</div></div></div>
+</section></section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref12870609">Einfacher Web-Server in vert.x</h3>
+
+</div></div><div class="originaltext" hidden="">=== Einfacher Web-Server in vert.x
+
+</div></div></div>
+<span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">import</span> io<span class="token punctuation">.</span>vertx<span class="token punctuation">.</span>core<span class="token punctuation">.</span>Vertx<span class="token punctuation">;</span>
+<span class="token keyword">import</span> io<span class="token punctuation">.</span>vertx<span class="token punctuation">.</span>core<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> io<span class="token punctuation">.</span>vertx<span class="token punctuation">.</span>core<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServerResponse<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VertxSimple</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Vertx vertx <span class="token operator">=</span> Vertx<span class="token punctuation">.</span><span class="token function">vertx</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        HttpServer server <span class="token operator">=</span> vertx<span class="token punctuation">.</span><span class="token function">createHttpServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+        server<span class="token punctuation">.</span><span class="token function">requestHandler</span><span class="token punctuation">(</span>request <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+            HttpServerResponse response <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+            response<span class="token punctuation">.</span><span class="token function">putHeader</span><span class="token punctuation">(</span><span class="token string">"content-type"</span><span class="token punctuation">,</span> <span class="token string">"text/plain"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+            response<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        server<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0] 
+----
+import io.vertx.core.Vertx;
+import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerResponse;
+
+public class VertxSimple {
+
+    public static void main(String[] args) {
+        Vertx vertx = Vertx.vertx(); // &lt;1&gt; 
+        HttpServer server = vertx.createHttpServer(); //&lt;2&gt; 
+        server.requestHandler(request -&gt; { //&lt;3&gt; 
+            HttpServerResponse response = request.response(); //&lt;4&gt;
+            response.putHeader("content-type", "text/plain"); //&lt;5&gt; 
+            response.end("Hello World!"); //&lt;6&gt;
+        });
+        server.listen(8080); //&lt;7&gt; 
+    }
+}  
+----</div></div></div>
+</span></section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref62268300">Einfacher Web-Server mit vert.x-Web</h3>
+
+</div></div><div class="originaltext" hidden="">=== Einfacher Web-Server mit vert.x-Web
+</div></div></div>
+<span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">import</span> io<span class="token punctuation">.</span>vertx<span class="token punctuation">.</span>core<span class="token punctuation">.</span>Vertx<span class="token punctuation">;</span>
+<span class="token keyword">import</span> io<span class="token punctuation">.</span>vertx<span class="token punctuation">.</span>core<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServer<span class="token punctuation">;</span>
+<span class="token keyword">import</span> io<span class="token punctuation">.</span>vertx<span class="token punctuation">.</span>core<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServerResponse<span class="token punctuation">;</span>
+<span class="token keyword">import</span> io<span class="token punctuation">.</span>vertx<span class="token punctuation">.</span>ext<span class="token punctuation">.</span>web<span class="token punctuation">.</span>Router<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">VertxWeb</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Vertx vertx <span class="token operator">=</span> Vertx<span class="token punctuation">.</span><span class="token function">vertx</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        HttpServer server <span class="token operator">=</span> vertx<span class="token punctuation">.</span><span class="token function">createHttpServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Router router <span class="token operator">=</span> Router<span class="token punctuation">.</span><span class="token function">router</span><span class="token punctuation">(</span>vertx<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        router<span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handler</span><span class="token punctuation">(</span>routingContext <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+            HttpServerResponse response <span class="token operator">=</span> routingContext<span class="token punctuation">.</span><span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">putHeader</span><span class="token punctuation">(</span><span class="token string">"content-type"</span><span class="token punctuation">,</span> <span class="token string">"text/plain"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            response<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token string">"Hello World from Vert.x-Web!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        server<span class="token punctuation">.</span><span class="token function">requestHandler</span><span class="token punctuation">(</span>router<span class="token operator">:</span><span class="token operator">:</span>accept<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+import io.vertx.core.Vertx;
+import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerResponse;
+import io.vertx.ext.web.Router;
+
+public class VertxWeb {
+
+    public static void main(String[] args) {
+        Vertx vertx = Vertx.vertx();
+        HttpServer server = vertx.createHttpServer();
+        Router router = Router.router(vertx); //&lt;1&gt; 
+        router.route().handler(routingContext -&gt; { //&lt;2&gt; 
+            HttpServerResponse response = routingContext.response();
+            response.putHeader("content-type", "text/plain");          
+            response.end("Hello World from Vert.x-Web!");
+        });
+        server.requestHandler(router::accept).listen(8080); //&lt;3&gt; 
+    }
+}  
+----</div></div></div>
+</span></section><section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref52025292">Mehrere Routen</h3>
+<div class="paragraph">
+<p>Die Vorteile des Einsatzes eines Routers werden deutlicher, wenn man verschiedene Endpunkte erstellt.</p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Mehrere Routen
+Die Vorteile des Einsatzes eines Routers werden deutlicher, wenn man verschiedene Endpunkte erstellt.
+</div></div></div>
+</section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">router<span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handler</span><span class="token punctuation">(</span>routingContext <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    HttpServerResponse response <span class="token operator">=</span> routingContext<span class="token punctuation">.</span><span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">putHeader</span><span class="token punctuation">(</span><span class="token string">"content-type"</span><span class="token punctuation">,</span> <span class="token string">"text/plain"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token string">"Gib in der Adresszeile den Pfad \"daten\" oder \"produkte/Werkzeuge/Hammer\" ein."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+        router.route("/").handler(routingContext -&gt; {
+            HttpServerResponse response = routingContext.response();
+            response.putHeader("content-type", "text/plain");          
+            response.end("Gib in der Adresszeile den Pfad \"daten\" oder \"produkte/Werkzeuge/Hammer\" ein.");
+        }); 
+----</div></div></div>
+<span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>Beispiel:</strong> www.qreator.de</p>
+</div></div><div class="originaltext" hidden="">*Beispiel:* www.qreator.de</div></div></div>
+</span></section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">router<span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span><span class="token string">"/daten"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handler</span><span class="token punctuation">(</span>routingContext <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    HttpServerResponse response <span class="token operator">=</span> routingContext<span class="token punctuation">.</span><span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">putHeader</span><span class="token punctuation">(</span><span class="token string">"content-type"</span><span class="token punctuation">,</span> <span class="token string">"text/plain"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token string">"Hier eine Nachricht vom Unterpfad \"/daten\"!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+        router.route("/daten").handler(routingContext -&gt; {
+            HttpServerResponse response = routingContext.response();
+            response.putHeader("content-type", "text/plain");          
+            response.end("Hier eine Nachricht vom Unterpfad \"/daten\"!");
+        }); 
+----</div></div></div>
+<span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>Beispiel:</strong> www.qreator.de/daten</p>
+</div></div><div class="originaltext" hidden="">*Beispiel:* www.qreator.de/daten
+ </div></div></div>
+</span></section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">router<span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span><span class="token string">"/produkte/:produktTyp/:produktID"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handler</span><span class="token punctuation">(</span>routingContext <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    String produktTyp<span class="token operator">=</span>routingContext<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getParam</span><span class="token punctuation">(</span><span class="token string">"produktTyp"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String produktID<span class="token operator">=</span>routingContext<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getParam</span><span class="token punctuation">(</span><span class="token string">"produktID"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    HttpServerResponse response <span class="token operator">=</span> routingContext<span class="token punctuation">.</span><span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">putHeader</span><span class="token punctuation">(</span><span class="token string">"content-type"</span><span class="token punctuation">,</span> <span class="token string">"text/plain"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token string">"Die ProduktID ist "</span><span class="token operator">+</span>produktID<span class="token operator">+</span><span class="token string">" und der Produkttyp ist "</span><span class="token operator">+</span>produktTyp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+        router.route("/produkte/:produktTyp/:produktID").handler(routingContext -&gt; {
+            String produktTyp=routingContext.request().getParam("produktTyp");
+            String produktID=routingContext.request().getParam("produktID");
+            HttpServerResponse response = routingContext.response();
+            response.putHeader("content-type", "text/plain");          
+            response.end("Die ProduktID ist "+produktID+" und der Produkttyp ist "+produktTyp);
+        });  
+---- </div></div></div>
+<span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>Beispiel:</strong> www.qreator.de/produkte/Werkzeug/Hammer</p>
+</div></div><div class="originaltext" hidden="">*Beispiel:* www.qreator.de/produkte/Werkzeug/Hammer </div></div></div>
+</span></section></section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref19969986">Statischer Router</h3>
+
+</div></div><div class="originaltext" hidden="">=== Statischer Router
+</div></div></div>
+<div sb='@P' ft='='  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">router<span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span><span class="token string">"/static/*"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handler</span><span class="token punctuation">(</span>StaticHandler<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setDefaultContentEncoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0] 
+----
+        router.route("/static/*").handler(StaticHandler.create().setDefaultContentEncoding("UTF-8"));
+----</div></div></div>
+<span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>Beispiel:</strong> www.qreator.de/static/index.html</p>
+</div></div><div class="originaltext" hidden="">*Beispiel:* www.qreator.de/static/index.html </div></div></div>
+</span></section><section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref46115452">AJAX-Requests</h3>
+
+</div></div><div class="originaltext" hidden="">=== AJAX-Requests
+</div></div></div>
+<span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="_anfrage_durch_den_client_per_javascript">Anfrage durch den Client per Javascript</h3>
+
+</div></div><div class="originaltext" hidden="">=== Anfrage durch den Client per Javascript</div></div></div>
+</span><span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-javascript code-toolbar"><code class=" language-javascript" data-lang="javascript"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#eingabeKnopf"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>url<span class="token punctuation">:</span><span class="token string">"../anfrage"</span><span class="token punctuation">,</span> data<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                typ<span class="token punctuation">:</span> <span class="token string">"namenKnopf"</span><span class="token punctuation">,</span>
+                name<span class="token punctuation">:</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#eingabeName"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            success<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+                <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"body"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;div&gt;Daten: "</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>text<span class="token operator">+</span><span class="token string">"&lt;div&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>JavaScript</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source, javascript,indent=0]
+----
+    $("#eingabeKnopf").click(function () { // &lt;1&gt;
+        $.ajax({url:"../anfrage", data: // &lt;2&gt;
+                {
+                    typ: "namenKnopf",
+                    name: $("#eingabeName").val() //&lt;3&gt; 
+                },
+                success: function (data) { //&lt;4&gt;
+                    $("body").append("&lt;div&gt;Daten: " + data.text+"&lt;div&gt;"); 
+                }
+            });
+    }); 
+----</div></div></div>
+</span></section><section><div sb='P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="_bearbeitung_der_anfrage_auf_server_seite">Bearbeitung der Anfrage auf Server-Seite</h3>
+
+</div></div><div class="originaltext" hidden="">=== Bearbeitung der Anfrage auf Server-Seite</div></div></div>
+<span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">router<span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span><span class="token string">"/anfrage"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">handler</span><span class="token punctuation">(</span>routingContext <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    String typ <span class="token operator">=</span> routingContext<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getParam</span><span class="token punctuation">(</span><span class="token string">"typ"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String name <span class="token operator">=</span> routingContext<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getParam</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    HttpServerResponse response <span class="token operator">=</span> routingContext<span class="token punctuation">.</span><span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">putHeader</span><span class="token punctuation">(</span><span class="token string">"content-type"</span><span class="token punctuation">,</span> <span class="token string">"application/json"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    JsonObject jo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>typ<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"namenKnopf"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        jo<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"typ"</span><span class="token punctuation">,</span> <span class="token string">"antwort"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        jo<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">,</span> <span class="token string">"Der Text war "</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    response<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span>Json<span class="token punctuation">.</span><span class="token function">encodePrettily</span><span class="token punctuation">(</span>jo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+        router.route("/anfrage").handler(routingContext -&gt; {
+            String typ = routingContext.request().getParam("typ");
+            String name = routingContext.request().getParam("name");
+            HttpServerResponse response = routingContext.response();
+            response.putHeader("content-type", "application/json");
+            JsonObject jo = new JsonObject();
+
+            if (typ.equals("namenKnopf")) {
+                jo.put("typ", "antwort");
+                jo.put("text", "Der Text war " + name);
+            }
+            response.end(Json.encodePrettily(jo));
+        }); 
+----</div></div></div>
+</span><span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>Anfrage:</strong> <a class="bare" href="http://127.0.0.1:8080/anfrage?typ=namenKnopf&amp;name=Test">http://127.0.0.1:8080/anfrage?typ=namenKnopf&amp;name=Test</a></p>
+</div></div><div class="originaltext" hidden="">*Anfrage:* http://127.0.0.1:8080/anfrage?typ=namenKnopf&amp;name=Test </div></div></div>
+</span><span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>Antwort:</strong> {typ: "antwort", text: "Der Text war Test"}</p>
+</div></div><div class="originaltext" hidden="">*Antwort:* {typ: "antwort", text: "Der Text war Test"}  </div></div></div>
+</span></section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-javascript code-toolbar"><code class=" language-javascript" data-lang="javascript"><span class="token punctuation">{</span>typ<span class="token punctuation">:</span> <span class="token string">"antwort"</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">"Der Text war Test"</span><span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>JavaScript</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source, javascript]
+----
+{typ: "antwort", text: "Der Text war Test"} 
+----</div></div></div>
+<span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-javascript code-toolbar"><code class=" language-javascript" data-lang="javascript">success<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"body"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;div&gt;Daten: "</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>text<span class="token operator">+</span><span class="token string">"&lt;div&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>JavaScript</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,javascript,indent=0] 
+----
+                success: function (data) { 
+                    $("body").append("&lt;div&gt;Daten: " + data.text+"&lt;div&gt;"); 
+                }
+---- 
+</div></div></div>
+</span></section></section></div></div><script>Reveal.initialize();</script></body></html>
