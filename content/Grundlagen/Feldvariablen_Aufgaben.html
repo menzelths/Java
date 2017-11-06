@@ -43,7 +43,7 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 ""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
 </script>
 </head><body><div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
-<h2 id="ref82898184">Aufgaben</h2>
+<h2 id="ref23992234">Aufgaben</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -51,25 +51,25 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 <p>Schreibe das Programm <em>Noten</em>, das 5 zufällige Noten zwischen 1 und 15 erzeugt. Von diesen Noten soll erst die größte und dann die kleinste Note ausgegeben werden, dann der Durchschnitt und schließlich die Noten selbst. <a href="#tags_@a">Lösung</a></p>
 </li>
 <li>
-<p>Schreibe das Programm <em>Eratosthenes</em>, das die Primzahlen von 2 bis 1000 nach dem Verfahren des <a href="http://www.primzahlen.de/primzahltests/sieb_des_eratosthenes.htm"><span class="icon"><i class="fa fa-external-link"></i></span>  Sieb des Erathostenes</a> bestimmt.</p>
+<p>Schreibe das Programm <em>Eratosthenes</em>, das die Primzahlen von 2 bis 1000 nach dem Verfahren des <a href="http://www.primzahlen.de/primzahltests/sieb_des_eratosthenes.htm"><span class="icon"><i class="fa fa-external-link"></i></span>  Sieb des Eratosthenes</a> bestimmt. <a href="#tags_@b">Lösung</a></p>
 </li>
 <li>
-<p>Schreibe das Programm <em>ZweiWürfel</em>, das zwei Würfel 1000 Mal wirft und am Ende ausgibt, wie oft welche Summe geworfen wurde.</p>
+<p>Schreibe das Programm <em>ZweiWürfel</em>, das zwei Würfel 1000 Mal wirft und am Ende ausgibt, wie oft welche Summe geworfen wurde. <a href="#tags_@c">Lösung</a></p>
 </li>
 <li>
-<p>Erweitere das Programm <em>ZweiWürfel</em> zu <em>NWürfel</em> dahingehend, dass du im Programm die Anzahl der Würfel, die Anzahl der Würfelseiten und die Anzahl der Würfe einstellen kannst. Gib wieder aus, wie oft jede Summe vorkam.</p>
+<p>Erweitere das Programm <em>ZweiWürfel</em> zu <em>NWürfel</em> dahingehend, dass du im Programm die Anzahl der Würfel, die Anzahl der Würfelseiten und die Anzahl der Würfe einstellen kannst. Gib wieder aus, wie oft jede Summe vorkam. <a href="#tags_@d">Lösung</a></p>
 </li>
 </ol>
 </div>
 </div>
 </div></div><div class="originaltext" hidden="">== Aufgaben
 . Schreibe das Programm _Noten_, das 5 zufällige Noten zwischen 1 und 15 erzeugt. Von diesen Noten soll erst die größte und dann die kleinste Note ausgegeben werden, dann der Durchschnitt und schließlich die Noten selbst. &lt;&lt;tags_@a, Lösung&gt;&gt; 
-. Schreibe das Programm _Eratosthenes_, das die Primzahlen von 2 bis 1000 nach dem Verfahren des http://www.primzahlen.de/primzahltests/sieb_des_eratosthenes.htm[icon:external-link[]  Sieb des Erathostenes] bestimmt.
-. Schreibe das Programm _ZweiWürfel_, das zwei Würfel 1000 Mal wirft und am Ende ausgibt, wie oft welche Summe geworfen wurde.
-. Erweitere das Programm _ZweiWürfel_ zu _NWürfel_ dahingehend, dass du im Programm die Anzahl der Würfel, die Anzahl der Würfelseiten und die Anzahl der Würfe einstellen kannst. Gib wieder aus, wie oft jede Summe vorkam. 
+. Schreibe das Programm _Eratosthenes_, das die Primzahlen von 2 bis 1000 nach dem Verfahren des http://www.primzahlen.de/primzahltests/sieb_des_eratosthenes.htm[icon:external-link[]  Sieb des Eratosthenes] bestimmt. &lt;&lt;tags_@b, Lösung&gt;&gt; 
+. Schreibe das Programm _ZweiWürfel_, das zwei Würfel 1000 Mal wirft und am Ende ausgibt, wie oft welche Summe geworfen wurde. &lt;&lt;tags_@c, Lösung&gt;&gt; 
+. Erweitere das Programm _ZweiWürfel_ zu _NWürfel_ dahingehend, dass du im Programm die Anzahl der Würfel, die Anzahl der Würfelseiten und die Anzahl der Würfe einstellen kannst. Gib wieder aus, wie oft jede Summe vorkam. &lt;&lt;tags_@d, Lösung&gt;&gt; 
 </div></div></div>
 <div sb='AP' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref46168667">Noten</h3>
+<h3 id="ref24430935">Noten</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> note <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -110,6 +110,119 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
         System.out.println("Durchschnitt: " + ((double) summe / note.length));
         for (int i = 0; i &lt; note.length; i++) {
             System.out.println(note[i]);
+        } 
+----</div></div></div>
+<div sb='BP' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref54819236">Eratosthenes</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> anzahl <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> zahlen <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>anzahl<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 0 noch da, 1 gestrichen</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> anzahl <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>zahlen<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> anzahl<span class="token punctuation">;</span> j <span class="token operator">+=</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            zahlen<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// entspricht dem Streichen</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> anzahl<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>zahlen<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// noch nicht gestrichen</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">=== Eratosthenes
+[source,java,indent=0]
+----
+        int anzahl = 1000;
+        int[] zahlen = new int[anzahl]; // 0 noch da, 1 gestrichen
+
+        for (int i = 2; i &lt;= anzahl / 2; i++) {
+            if (zahlen[i] == 0) {
+                for (int j = i * 2; j &lt; anzahl; j += i) {
+                    zahlen[j] = 1; // entspricht dem Streichen
+                }
+            }
+        }
+        for (int i = 2; i &lt; anzahl; i++) {
+            if (zahlen[i] == 0) { // noch nicht gestrichen
+                System.out.println(i);
+            }
+        } 
+----</div></div></div>
+<div sb='CP' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref51726174">ZweiWürfel</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> anzahl <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">,</span> zz1<span class="token punctuation">,</span> zz2<span class="token punctuation">;</span>
+<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> summen <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> anzahl<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    zz1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">6</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    zz2 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">6</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    summen<span class="token punctuation">[</span>zz1 <span class="token operator">+</span> zz2 <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> summen<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> summen<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">=== ZweiWürfel
+[source,java,indent=0]
+----
+        int anzahl = 1000, zz1, zz2;
+        int[] summen = new int[11];
+        
+        for (int i = 0; i &lt; anzahl; i++) {
+            zz1 = (int) (Math.random() * 6 + 1);
+            zz2 = (int) (Math.random() * 6 + 1);
+            summen[zz1 + zz2 - 2]++;
+        }
+        for (int i = 0; i &lt; summen.length; i++) {
+            System.out.println((i + 2) + ": " + summen[i]);
+        } 
+----
+</div></div></div>
+<div sb='DP' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref86491618">NWürfel</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> anzahlWürfe<span class="token operator">=</span><span class="token number">10000</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> anzahlSeiten<span class="token operator">=</span><span class="token number">6</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> anzahlWürfel<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> summen<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>anzahlSeiten<span class="token operator">*</span>anzahlWürfel<span class="token operator">-</span>anzahlWürfel<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>anzahlWürfe<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> summeAugenzahlen<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>anzahlWürfel<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        summeAugenzahlen<span class="token operator">+=</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">6</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    summen<span class="token punctuation">[</span>summeAugenzahlen<span class="token operator">-</span>anzahlWürfel<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>summen<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">(</span>i<span class="token operator">+</span>anzahlWürfel<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">": "</span><span class="token operator">+</span>summen<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">=== NWürfel
+[source,java,indent=0]
+----
+        int anzahlWürfe=10000;
+        int anzahlSeiten=6;
+        int anzahlWürfel=5;
+        int [] summen=new int[anzahlSeiten*anzahlWürfel-anzahlWürfel+1];
+        
+        for (int i=0;i&lt;anzahlWürfe;i++){
+            int summeAugenzahlen=0;
+            for (int j=0;j&lt;anzahlWürfel;j++){
+                summeAugenzahlen+=(int)(Math.random()*6+1);
+            }
+            summen[summeAugenzahlen-anzahlWürfel]++;
+        }
+        for (int i=0;i&lt;summen.length;i++){
+            System.out.println((i+anzahlWürfel)+": "+summen[i]);
         } 
 ----</div></div></div>
 </body></html>
