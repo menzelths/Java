@@ -35,10 +35,10 @@
         
     var blob = new Blob(byteArrays, {type: typ});
 			saveAs(blob, name);
-    }</script><style>html{font-size:25px;}
-.reveal{font-size:25px;}
+    }</script><style>html{font-size:23px;}
+.reveal{font-size:23px;}
 </style></head><body><div class='reveal'><div class='slides'><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
-<h2 id="ref69842969">Aufgaben</h2>
+<h2 id="ref34489741">Aufgaben</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -59,7 +59,7 @@
 </div>
 </li>
 <li>
-<p>Erweitere Programm 2 so, dass alle Primzahlen zwischen 2 und 1000 ausgegeben werden.</p>
+<p>Erweitere Programm 2 so, dass alle Primzahlen zwischen 2 und 1000 ausgegeben werden. <a href="#tags_@d">Lösung</a></p>
 </li>
 </ol>
 </div>
@@ -73,7 +73,8 @@
 Um 1h00 wird ein Mal BAM ausgegeben, um 1h15 BAM-BIM, um 1h30 BAM-BIM-BIM, um 4h45 BAM-BAM-BAM-BAM-BIM-BIM-BIM.
 +
 Das Programm soll alle Turmschläge von 0h15 bis 12h00 ausgeben. &lt;&lt;tags_@c,Lösung&gt;&gt;
-. Erweitere Programm 2 so, dass alle Primzahlen zwischen 2 und 1000 ausgegeben werden.  
+. Erweitere Programm 2 so, dass alle Primzahlen zwischen 2 und 1000 ausgegeben werden. &lt;&lt;tags_@d,Lösung&gt;&gt;
+  
 
 </div></div></div>
 </section><section><div sb='AP' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
@@ -159,6 +160,41 @@ Das Programm soll alle Turmschläge von 0h15 bis 12h00 ausgeben. &lt;&lt;tags_@c
                     System.out.print("-BIM");
                 }
                 System.out.println("");
+            }
+        } 
+----</div></div></div>
+</section><section><div sb='DP' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref81478669">Primzahlen von 2 bis 1000</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> zahl <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> zahl <span class="token operator">&lt;=</span> <span class="token number">1000</span><span class="token punctuation">;</span> zahl<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> teilerZaehler <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> zahl<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>zahl <span class="token operator">%</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            teilerZaehler<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>teilerZaehler <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>zahl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Primzahlen von 2 bis 1000
+
+[source, java,indent=0]
+----
+        for (int zahl = 2; zahl &lt;= 1000; zahl++) {
+            int teilerZaehler = 0;
+            for (int i = 1; i &lt;= zahl; i++) {
+                if (zahl % i == 0) {
+                    teilerZaehler++;
+                }
+            }
+            if (teilerZaehler == 2) {
+                System.out.println(zahl);
             }
         } 
 ----</div></div></div>
