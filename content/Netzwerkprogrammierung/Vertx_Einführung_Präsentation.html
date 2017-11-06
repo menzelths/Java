@@ -331,7 +331,7 @@ Die Vorteile des Einsatzes eines Routers werden deutlicher, wenn man verschieden
 <span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
 <p><strong>Beispiel:</strong> www.qreator.de/produkte/Werkzeug/Hammer</p>
 </div></div><div class="originaltext" hidden="">*Beispiel:* www.qreator.de/produkte/Werkzeug/Hammer </div></div></div>
-</span></section></section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+</span></section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
 <h3 id="ref19969986">Statischer Router</h3>
 
 </div></div><div class="originaltext" hidden="">=== Statischer Router
@@ -347,7 +347,7 @@ Die Vorteile des Einsatzes eines Routers werden deutlicher, wenn man verschieden
 <span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
 <p><strong>Beispiel:</strong> www.qreator.de/static/index.html</p>
 </div></div><div class="originaltext" hidden="">*Beispiel:* www.qreator.de/static/index.html </div></div></div>
-</span></section><section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+</span></section></section><section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
 <h3 id="ref46115452">AJAX-Requests</h3>
 
 </div></div><div class="originaltext" hidden="">=== AJAX-Requests
@@ -426,7 +426,11 @@ Die Vorteile des Einsatzes eines Routers werden deutlicher, wenn man verschieden
 </span><span class='fragment'><div sb='P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
 <p><strong>Antwort:</strong> {typ: "antwort", text: "Der Text war Test"}</p>
 </div></div><div class="originaltext" hidden="">*Antwort:* {typ: "antwort", text: "Der Text war Test"}  </div></div></div>
-</span></section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+</span></section></section><section><div sb='P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="_wieder_beim_client">Wieder beim Client</h3>
+
+</div></div><div class="originaltext" hidden="">=== Wieder beim Client</div></div></div>
+<span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-javascript code-toolbar"><code class=" language-javascript" data-lang="javascript"><span class="token punctuation">{</span>typ<span class="token punctuation">:</span> <span class="token string">"antwort"</span><span class="token punctuation">,</span> text<span class="token punctuation">:</span> <span class="token string">"Der Text war Test"</span><span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>JavaScript</span></div></div></pre>
 </div>
@@ -434,7 +438,7 @@ Die Vorteile des Einsatzes eines Routers werden deutlicher, wenn man verschieden
 ----
 {typ: "antwort", text: "Der Text war Test"} 
 ----</div></div></div>
-<span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+</span><span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-javascript code-toolbar"><code class=" language-javascript" data-lang="javascript">success<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"body"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;div&gt;Daten: "</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>text<span class="token operator">+</span><span class="token string">"&lt;div&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -447,4 +451,4 @@ Die Vorteile des Einsatzes eines Routers werden deutlicher, wenn man verschieden
                 }
 ---- 
 </div></div></div>
-</span></section></section></div></div><script>Reveal.initialize();</script></body></html>
+</span></section></div></div><script>Reveal.initialize();</script></body></html>
