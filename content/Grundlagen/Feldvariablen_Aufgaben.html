@@ -42,13 +42,13 @@ a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","d
 zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
 ""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
 </script>
-</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
-<h2 id="ref77452039">Aufgaben</h2>
+</head><body><div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref82898184">Aufgaben</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Schreibe das Programm <em>Noten</em>, das 5 zufällige Noten zwischen 1 und 15 erzeugt. Von diesen Noten soll erst die größte und dann die kleinste Note ausgegeben werden, dann der Durchschnitt und schließlich die Noten selbst.</p>
+<p>Schreibe das Programm <em>Noten</em>, das 5 zufällige Noten zwischen 1 und 15 erzeugt. Von diesen Noten soll erst die größte und dann die kleinste Note ausgegeben werden, dann der Durchschnitt und schließlich die Noten selbst. <a href="#tags_@a">Lösung</a></p>
 </li>
 <li>
 <p>Schreibe das Programm <em>Eratosthenes</em>, das die Primzahlen von 2 bis 1000 nach dem Verfahren des <a href="http://www.primzahlen.de/primzahltests/sieb_des_eratosthenes.htm"><span class="icon"><i class="fa fa-external-link"></i></span>  Sieb des Erathostenes</a> bestimmt.</p>
@@ -63,9 +63,53 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 </div>
 </div>
 </div></div><div class="originaltext" hidden="">== Aufgaben
-. Schreibe das Programm _Noten_, das 5 zufällige Noten zwischen 1 und 15 erzeugt. Von diesen Noten soll erst die größte und dann die kleinste Note ausgegeben werden, dann der Durchschnitt und schließlich die Noten selbst.
+. Schreibe das Programm _Noten_, das 5 zufällige Noten zwischen 1 und 15 erzeugt. Von diesen Noten soll erst die größte und dann die kleinste Note ausgegeben werden, dann der Durchschnitt und schließlich die Noten selbst. &lt;&lt;tags_@a, Lösung&gt;&gt; 
 . Schreibe das Programm _Eratosthenes_, das die Primzahlen von 2 bis 1000 nach dem Verfahren des http://www.primzahlen.de/primzahltests/sieb_des_eratosthenes.htm[icon:external-link[]  Sieb des Erathostenes] bestimmt.
 . Schreibe das Programm _ZweiWürfel_, das zwei Würfel 1000 Mal wirft und am Ende ausgibt, wie oft welche Summe geworfen wurde.
 . Erweitere das Programm _ZweiWürfel_ zu _NWürfel_ dahingehend, dass du im Programm die Anzahl der Würfel, die Anzahl der Würfelseiten und die Anzahl der Würfe einstellen kannst. Gib wieder aus, wie oft jede Summe vorkam. 
 </div></div></div>
+<div sb='AP' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref46168667">Noten</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> note <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> note<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    note<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">15</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Maximum und Minimum suchen, Summe für Durchschnitt</span>
+<span class="token keyword">int</span> maximum <span class="token operator">=</span> note<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> minimum <span class="token operator">=</span> note<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> summe <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> note<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    summe <span class="token operator">+=</span> note<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    maximum <span class="token operator">=</span> maximum <span class="token operator">&lt;</span> note<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">?</span> note<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">:</span> maximum<span class="token punctuation">;</span>
+    minimum <span class="token operator">=</span> minimum <span class="token operator">&gt;</span> note<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">?</span> note<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">:</span> minimum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Größte Note: "</span> <span class="token operator">+</span> maximum <span class="token operator">+</span> <span class="token string">", kleinste Note: "</span> <span class="token operator">+</span> minimum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Durchschnitt: "</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> summe <span class="token operator">/</span> note<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> note<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>note<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">=== Noten 
+[source,java,indent=0]
+----
+        int[] note = new int[5];
+        for (int i = 0; i &lt; note.length; i++) {
+            note[i] = (int) (Math.random() * 15 + 1);
+        }
+
+        // Maximum und Minimum suchen, Summe für Durchschnitt
+        int maximum = note[0], minimum = note[0], summe = 0;
+        for (int i = 0; i &lt; note.length; i++) {
+            summe += note[i];
+            maximum = maximum &lt; note[i] ? note[i] : maximum;
+            minimum = minimum &gt; note[i] ? note[i] : minimum;
+        }
+        System.out.println("Größte Note: " + maximum + ", kleinste Note: " + minimum);
+        System.out.println("Durchschnitt: " + ((double) summe / note.length));
+        for (int i = 0; i &lt; note.length; i++) {
+            System.out.println(note[i]);
+        } 
+----</div></div></div>
 </body></html>
