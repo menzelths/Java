@@ -153,7 +153,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
         } 
 ----</div></div></div>
 <div sb='CP' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref51726174">ZweiWürfel</h3>
+<h3 id="ref76155161">ZweiWürfel</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> anzahl <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">,</span> zz1<span class="token punctuation">,</span> zz2<span class="token punctuation">;</span>
@@ -186,7 +186,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 ----
 </div></div></div>
 <div sb='DP' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref21138718">NWürfel</h3>
+<h3 id="ref47368101">NWürfel</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> anzahlWürfe <span class="token operator">=</span> <span class="token number">10000</span><span class="token punctuation">;</span>
@@ -197,7 +197,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> anzahlWürfe<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">int</span> summeAugenzahlen <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> anzahlWürfel<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        summeAugenzahlen <span class="token operator">+=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">6</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        summeAugenzahlen <span class="token operator">+=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> anzahlSeiten <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     summen<span class="token punctuation">[</span>summeAugenzahlen <span class="token operator">-</span> anzahlWürfel<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
@@ -217,7 +217,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
         for (int i = 0; i &lt; anzahlWürfe; i++) {
             int summeAugenzahlen = 0;
             for (int j = 0; j &lt; anzahlWürfel; j++) {
-                summeAugenzahlen += (int) (Math.random() * 6 + 1);
+                summeAugenzahlen += (int) (Math.random() * anzahlSeiten + 1);
             }
             summen[summeAugenzahlen - anzahlWürfel]++;
         }
