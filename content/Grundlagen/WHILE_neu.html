@@ -42,14 +42,34 @@ a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","d
 zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
 ""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
 </script>
-</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
-<h2 id="ref432254">Die WHILE-Schleife</h2>
+</head><body><div sb='@P' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref9007686">Die WHILE-Schleife</h2>
 <div class="sectionbody">
 
 </div>
+</div></div><div class="originaltext" hidden="">== Die WHILE-Schleife 
+</div></div></div>
+<div sb='P' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">double</span> zufall <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">do</span> <span class="token punctuation">{</span>
+     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>zufall<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     zufall <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>zufall <span class="token operator">&lt;</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Fertig"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
 </div>
-<div class="sect1">
-<h2 id="ref10667043">Motivation</h2>
+</div></div><div class="originaltext" hidden="">[source,java, indent=0]
+----
+       double zufall = Math.random(); 
+        do {  
+            System.out.println(zufall);
+            zufall = Math.random(); 
+        } while (zufall &lt; 0.5); 
+        System.out.println("Fertig"); 
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref86157652">Motivation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Beim Einsatz der <em>for-Schleife</em>, weiß man im Prinzip beim Schreiben eines Programms, wie oft diese Schleife durchlaufen werden muss. Allerdings gibt es viele Probleme, die sich zwar mit Programmen lösen lassen, bei denen aber zu Beginn nicht klar ist, wie oft bestimmte Schritte wiederholt werden müssen.</p>
@@ -66,10 +86,10 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref75506535">Syntax</h2>
+<h2 id="ref88520390">Syntax</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="ref14419826">Grundsyntax</h3>
+<h3 id="ref79984218">Grundsyntax</h3>
 <div class="paragraph">
 <p>Betrachten wir zunächst ein einfaches Beispiel. Es sollen solange zufällige Zahlen ausgegeben bis eine Zahl größer als 0.5 ist. Dies könnte mit Hilfe der while-Schleife folgendermaßen bewerkstelligt werden:</p>
 </div>
@@ -119,7 +139,7 @@ System.out.println("Fertig"); <i class="conum" data-value="4"></i><b>(4)</b></pr
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref59798019">Variante: die do-while-Schleife</h3>
+<h3 id="ref52645470">Variante: die do-while-Schleife</h3>
 <div class="paragraph">
 <p>Eng verwandt mit der while-Schleife ist die <strong>do-while-Schleife</strong>: bei dieser wird die Wiederholungsbedingung erst nach der Durchführung der zu wiederholenden Ausdrücke überprüft, was bedeutet, dass diese Schleife immer mindestens ein Mal durchlaufen wird.</p>
 </div>
@@ -159,10 +179,10 @@ System.out.println("Fertig"); <i class="conum" data-value="4"></i><b>(4)</b></pr
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref31758942">Beispiel: Collatz’sche Vermutung</h2>
+<h2 id="ref17463311">Beispiel: Collatz’sche Vermutung</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="ref13460797">Grundproblem</h3>
+<h3 id="ref69029391">Grundproblem</h3>
 <div class="paragraph">
 <p>Stellen wir uns eine Art Spiel vor: Man denke sich eine natürliche Zahl ungleich der 1.</p>
 </div>
@@ -239,7 +259,7 @@ while (z&gt;1){ <i class="conum" data-value="2"></i><b>(2)</b>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref39608466">Erweiterung 1: Zählen der Schritte bis zur 1</h3>
+<h3 id="ref29220060">Erweiterung 1: Zählen der Schritte bis zur 1</h3>
 <div class="paragraph">
 <p>Möchte man zählen, wie viele Schritte benötigt werden, bis man zur 1 gelangt, so muss man einen Zähler einbauen. Dies gelingt beispielsweise folgendermaßen:</p>
 </div>
@@ -278,7 +298,7 @@ System.out.println("Anzahl der Schritte: "+zaehler); <i class="conum" data-value
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref82508747">Erweiterung 2: Ausgeben der Schritte und Schrittzahlen für alle Zahlen von 2 bis 10</h3>
+<h3 id="ref64670502">Erweiterung 2: Ausgeben der Schritte und Schrittzahlen für alle Zahlen von 2 bis 10</h3>
 <div class="paragraph">
 <p>Nun soll nicht nur eine Zahl, sondern mehrere untersucht werden, was man intuitiv zunächst so umsetzen könnte:</p>
 </div>
@@ -405,7 +425,7 @@ Startwert: 10
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref39598555">Erweiterung 3: Collatz mit "grafischer Ausgabe"</h3>
+<h3 id="ref4054363">Erweiterung 3: Collatz mit "grafischer Ausgabe"</h3>
 <div class="paragraph">
 <p>Eine letzte Erweiterung soll mit Hilfe von <code>#</code> -Symbolen die Anzahl der notwendigen Schritte anzeigen, um besser zu visualisieren, wo viele oder wenige Schritte benötigt werden.</p>
 </div>
@@ -495,8 +515,7 @@ Startwert: 10
 </div>
 </div>
 </div>
-</div></div><div class="originaltext" hidden="">== Die WHILE-Schleife 
-== Motivation
+</div></div><div class="originaltext" hidden="">== Motivation
 Beim Einsatz der _for-Schleife_, weiß man im Prinzip beim Schreiben eines Programms, wie oft diese Schleife durchlaufen werden muss. Allerdings gibt es viele Probleme, die sich zwar mit Programmen lösen lassen, bei denen aber zu Beginn nicht klar ist, wie oft bestimmte Schritte wiederholt werden müssen.
 
 Ein einfaches Beispiel ist das Auffinden von Teilern einer Zahl: Manche Zahlen haben nur 2 Teiler (Primzahlen), andere 5 oder 30, etc.
