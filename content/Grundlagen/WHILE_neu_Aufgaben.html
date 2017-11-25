@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref51103767">Aufgaben</h2>
+<div class="sectionbody">
+
+</div>
+</div></div><div class="originaltext" hidden="">== Aufgaben
+</div></div></div>
+<div sb='@AP' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Schreibe das Programm <em>Faktorisierung</em>, das alle Primfaktoren einer Zahl ausgegeben werden. Im Unterschied zum Programm <em>Teiler</em> bei den Aufgaben zur FOR-Schleife sollen mehrfach vorkommende Teiler auch mehrfach ausgegeben werden. Die Faktoren ergeben miteinander multipliziert wieder die Zahl selbst.</p>
+<div class="paragraph">
+<p>Beispiel der Ausgaben der Programme:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Zahl</th>
+<th class="tableblock halign-left valign-top"><em>Teiler</em></th>
+<th class="tableblock halign-left valign-top"><em>Faktorisierung</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,2,3,4,6,12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2,2,3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,2,4,8,16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2,2,2,2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,2,3,4,5,6,10,12,15,20,30,60</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2,2,3,5</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><a href="#tags_A">Lösung</a></p>
+</div>
+</li>
+</ol>
+</div></div><div class="originaltext" hidden="">. Schreibe das Programm _Faktorisierung_, das alle Primfaktoren einer Zahl ausgegeben werden. Im Unterschied zum Programm _Teiler_ bei den Aufgaben zur FOR-Schleife sollen mehrfach vorkommende Teiler auch mehrfach ausgegeben werden. Die Faktoren ergeben miteinander multipliziert wieder die Zahl selbst.
++
+Beispiel der Ausgaben der Programme:
++ 
+|===
+|Zahl|_Teiler_|_Faktorisierung_
+
+|12|1,2,3,4,6,12|2,2,3
+|16|1,2,4,8,16|2,2,2,2 
+|60|1,2,3,4,5,6,10,12,15,20,30,60| 2,2,3,5 
+|===
+&lt;&lt;tags_A,Lösung&gt;&gt; </div></div></div>
+<div sb='@BP' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Schreibe das Programm <em>Kürzen</em>, das einen Bruch, der über einen Zähler und einen Nenner definiert ist, gekürzt ausgibt.  <a href="#tags_b">Lösung</a></p>
+</li>
+</ol>
+</div></div><div class="originaltext" hidden="">[start=2]
+. Schreibe das Programm _Kürzen_, das einen Bruch, der über einen Zähler und einen Nenner definiert ist, gekürzt ausgibt.  &lt;&lt;tags_b,Lösung&gt;&gt; </div></div></div>
+<div sb='AP' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref35033227">Faktorisierung</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>int zahl = 12;
+
+for (int i = 2; i &lt;= zahl; i++) { <i class="conum" data-value="1"></i><b>(1)</b>
+    while (zahl % i == 0) { <i class="conum" data-value="2"></i><b>(2)</b>
+        System.out.println(i); <i class="conum" data-value="3"></i><b>(3)</b>
+        zahl = zahl / i; <i class="conum" data-value="4"></i><b>(4)</b>
+    }
+}</pre>
+</div>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Faktorisierung
+[indent=0]
+----
+        int zahl = 12;
+ 
+        for (int i = 2; i &lt;= zahl; i++) { //&lt;1&gt;
+            while (zahl % i == 0) { //&lt;2&gt;
+                System.out.println(i); //&lt;3&gt;
+                zahl = zahl / i; //&lt;4&gt;
+            }
+        } 
+---- 
+</div></div></div>
+<div sb='A' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>i</code> durchläuft alle Werte von 2 bis zum aktuellen Wert von <code>zahl</code>. Beachte, dass in diesem Programm der Wert von <code>zahl</code> in der Schleife geändert wird, so dass die obere Grenze der Schleife sich ändern kann!</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Solange die aktuelle Zahl <code>zahl</code> durch das aktuelle <code>i</code> teilbar ist …​</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>…​ gib das zugehörige <code>i</code> aus (es ist dann automatisch ein Primfaktor) und …​</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>…​ speichere in <code>zahl</code> das Ergebnis von <code>zahl/i</code></td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Zur Verdeutlichung der Funktionsweise des Programms sei hier der Ablauf am Beispiel der Zahl 12 gezeigt, indem die Inhalte der Variablen im laufenden Programm dargestellt werden:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>zahl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>i</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>zahl%i==0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Neuer Wert von <code>zahl</code> (also <code>zahl/i</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Ausgeben werden die Werte, für die <code>zahl%i==0</code> erfüllt ist, hier also 2, 2 und 3.</p>
+</div>
+<div class="paragraph">
+<p>Am Ende, wenn die while-Schleife verlassen wird, ist das <code>i</code> größer als <code>zahl</code>, so dass auch die for-Schleife beendet wird und das Programm zu einem Ende kommt.</p>
+</div></div><div class="originaltext" hidden="">&lt;1&gt; `i` durchläuft alle Werte von 2 bis zum aktuellen Wert von `zahl`. Beachte, dass in diesem Programm der Wert von `zahl` in der Schleife geändert wird, so dass die obere Grenze der Schleife sich ändern kann!
+&lt;2&gt; Solange die aktuelle Zahl `zahl` durch das aktuelle `i` teilbar ist ...
+&lt;3&gt; ... gib das zugehörige `i` aus (es ist dann automatisch ein Primfaktor) und ...
+&lt;4&gt; ... speichere in `zahl` das Ergebnis von `zahl/i`
+
+Zur Verdeutlichung der Funktionsweise des Programms sei hier der Ablauf am Beispiel der Zahl 12 gezeigt, indem die Inhalte der Variablen im laufenden Programm dargestellt werden:
+
+|===
+
+|`zahl`|`i`|`zahl%i==0`| Neuer Wert von `zahl` (also `zahl/i`) 
+
+|12|2|true|6
+|6|2|true|3
+|3|2|false|3
+|3|3|true|1
+|1|3|false|1
+|===
+Ausgeben werden die Werte, für die `zahl%i==0` erfüllt ist, hier also 2, 2 und 3.
+
+Am Ende, wenn die while-Schleife verlassen wird, ist das `i` größer als `zahl`, so dass auch die for-Schleife beendet wird und das Programm zu einem Ende kommt.
+</div></div></div>
+<div sb='B' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>int zaehler = 12;
+int nenner = 60;
+
+int[] faktorenZaehler = new int[0]; <i class="conum" data-value="1"></i><b>(1)</b>
+int[] faktorenNenner = new int[0];
+
+int zahl = zaehler; <i class="conum" data-value="2"></i><b>(2)</b>
+
+for (int i = 2; i &lt;= zahl; i++) {
+    while (zahl % i == 0) {
+        int[] faktorenFeld = new int[faktorenZaehler.length + 1]; <i class="conum" data-value="3"></i><b>(3)</b>
+        for (int j = 0; j &lt; faktorenZaehler.length; j++) {
+            faktorenFeld[j] = faktorenZaehler[j]; <i class="conum" data-value="4"></i><b>(4)</b>
+        }
+        faktorenFeld[faktorenZaehler.length] = i; <i class="conum" data-value="5"></i><b>(5)</b>
+        faktorenZaehler = faktorenFeld; <i class="conum" data-value="6"></i><b>(6)</b>
+        zahl = zahl / i;
+    }
+}
+
+zahl = nenner; <i class="conum" data-value="7"></i><b>(7)</b>
+for (int i = 2; i &lt;= zahl; i++) {
+    while (zahl % i == 0) {
+        int[] faktorenFeld = new int[faktorenNenner.length + 1];
+        for (int j = 0; j &lt; faktorenNenner.length; j++) {
+            faktorenFeld[j] = faktorenNenner[j];
+        }
+        faktorenFeld[faktorenNenner.length] = i;
+        faktorenNenner = faktorenFeld;
+        zahl = zahl / i;
+    }
+}
+
+for (int i=0;i&lt;faktorenZaehler.length;i++){
+    for (int j=0;j&lt;faktorenNenner.length;j++){
+        if (faktorenZaehler[i]==faktorenNenner[j]){ <i class="conum" data-value="8"></i><b>(8)</b>
+            faktorenZaehler[i]=1; <i class="conum" data-value="9"></i><b>(9)</b>
+            faktorenNenner[j]=1;
+            j=faktorenNenner.length; <i class="conum" data-value="10"></i><b>(10)</b>
+        }
+    }
+}
+
+int zaehlerGekürzt=1;
+for (int i=0;i&lt;faktorenZaehler.length;i++){
+    zaehlerGekürzt*=faktorenZaehler[i]; <i class="conum" data-value="11"></i><b>(11)</b>
+}
+
+        int nennerGekürzt=1;
+for (int i=0;i&lt;faktorenNenner.length;i++){
+    nennerGekürzt*=faktorenNenner[i];
+}
+
+System.out.println("Der Bruch "+zaehler+"/"+nenner+" ist gekürzt "+zaehlerGekürzt+"/"+nennerGekürzt);</pre>
+</div>
+</div></div><div class="originaltext" hidden="">[indent=0]
+----
+        int zaehler = 12;
+        int nenner = 60;
+
+        int[] faktorenZaehler = new int[0]; //&lt;1&gt;
+        int[] faktorenNenner = new int[0];
+
+        int zahl = zaehler; //&lt;2&gt;
+
+        for (int i = 2; i &lt;= zahl; i++) {
+            while (zahl % i == 0) {
+                int[] faktorenFeld = new int[faktorenZaehler.length + 1]; //&lt;3&gt;
+                for (int j = 0; j &lt; faktorenZaehler.length; j++) {
+                    faktorenFeld[j] = faktorenZaehler[j]; //&lt;4&gt;
+                }
+                faktorenFeld[faktorenZaehler.length] = i; //&lt;5&gt;
+                faktorenZaehler = faktorenFeld; //&lt;6&gt;
+                zahl = zahl / i;
+            }
+        }
+
+        zahl = nenner; //&lt;7&gt;
+        for (int i = 2; i &lt;= zahl; i++) {
+            while (zahl % i == 0) {
+                int[] faktorenFeld = new int[faktorenNenner.length + 1];
+                for (int j = 0; j &lt; faktorenNenner.length; j++) {
+                    faktorenFeld[j] = faktorenNenner[j];
+                }
+                faktorenFeld[faktorenNenner.length] = i;
+                faktorenNenner = faktorenFeld;
+                zahl = zahl / i;
+            }
+        }
+
+        for (int i=0;i&lt;faktorenZaehler.length;i++){
+            for (int j=0;j&lt;faktorenNenner.length;j++){
+                if (faktorenZaehler[i]==faktorenNenner[j]){ //&lt;8&gt;
+                    faktorenZaehler[i]=1; //&lt;9&gt;
+                    faktorenNenner[j]=1;
+                    j=faktorenNenner.length; //&lt;10&gt; 
+                }
+            }
+        }
+        
+        int zaehlerGekürzt=1;
+        for (int i=0;i&lt;faktorenZaehler.length;i++){
+            zaehlerGekürzt*=faktorenZaehler[i]; //&lt;11&gt; 
+        }
+        
+                int nennerGekürzt=1;
+        for (int i=0;i&lt;faktorenNenner.length;i++){
+            nennerGekürzt*=faktorenNenner[i];
+        }
+        
+        System.out.println("Der Bruch "+zaehler+"/"+nenner+" ist gekürzt "+zaehlerGekürzt+"/"+nennerGekürzt);
+         
+----</div></div></div>
+<div sb='B' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Die Lösung dieses Programms ist sehr umfangreich und die Lösung ist nicht ganz einfach. Wir werden in Kürze Möglichkeiten kennenlernen, dieses Programm kompakter und übersichtlicher zu schreiben.</p>
+</div>
+<div class="paragraph">
+<p>Betrachten wir nun aber die angegebene Lösung:</p>
+</div>
+<div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Hier wird eine Feldvariable der Länge 0 erzeugt, also ohne einen einzigen freien Platz. Das mag etwas ungewöhnlich erscheinen, wird aber im Lauf des Programms angepasst.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Für den folgenden Abschnitt wird in <code>zahl</code> der Zähler des Bruchs gespeichert. Im Prinzip wird im Folgenden wie im Programm <em>Faktorisierung</em> vorgegangen, nur dass hier die Teiler nicht ausgegeben sondern gespeichert werden.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Eine Feldvariable namens <code>faktorenFeld</code> wird eingeführt, die einen Eintrag mehr hat als faktorenZaehler. Im ersten Durchlauf wird <code>faktorenFeld</code> also 0+1=1 freien Eintrag haben.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Nun werden alle Inhalte von <code>faktorenZaehler</code> nach <code>faktorenFeld</code> kopiert. Der letzte Platz von <code>faktorenFeld</code> ist danach noch frei, da es ja einen Eintrag mehr enthält als <code>faktorenZaehler</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Der letzte Platz von <code>faktorenZaehler</code> wird mit dem neuen Primfaktor belegt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><code>faktorenZaehler</code> wird mit <code>faktorenFeld</code> nun gleichgesetzt, enthält jetzt also einen Primfaktor mehr als davor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Für den Nenner passiert genau das Gleiche wie für den Zähler.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>In diesem Abschnitt werden Stück für Stück die Primfaktoren verglichen. &lt;9&gt; Stößt man auf einen Primfaktor der in beiden Primfaktormengen (die vom Zähler und die vom Nenner) vorkommt, so wird dieser Primfaktor in beiden Primfaktormengen auf 1 gesetzt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Nachdem ein solcher gemeinsamer Primfaktor gefunden wurde, wird zum nächsten Primfaktor des Zählers übergegangen. Das <code>j=faktorenNenner.length;</code> sorgt dafür, dass vorerst keine weiteren Einträge von <code>faktorenNenner</code> auf 1 gesetzt werden, da die Schleife für <code>j</code> dadurch nicht weiter durchlaufen wird, sondern erst wieder für das nächste <code>i</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>Multipliziere nun alle Primfaktoren miteinander. Da die in beiden Primfaktorenmengen vorkommenden Primfaktoren jeweils auf 1 gesetzt wurden, erhält man nur das Produkt der noch übrigen Primfaktoren.</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">Die Lösung dieses Programms ist sehr umfangreich und die Lösung ist nicht ganz einfach. Wir werden in Kürze Möglichkeiten kennenlernen, dieses Programm kompakter und übersichtlicher zu schreiben.
+
+Betrachten wir nun aber die angegebene Lösung:
+
+&lt;1&gt; Hier wird eine Feldvariable der Länge 0 erzeugt, also ohne einen einzigen freien Platz. Das mag etwas ungewöhnlich erscheinen, wird aber im Lauf des Programms angepasst.
+&lt;2&gt; Für den folgenden Abschnitt wird in `zahl` der Zähler des Bruchs gespeichert. Im Prinzip wird im Folgenden wie im Programm _Faktorisierung_ vorgegangen, nur dass hier die Teiler nicht ausgegeben sondern gespeichert werden.
+&lt;3&gt; Eine Feldvariable namens `faktorenFeld` wird eingeführt, die einen Eintrag mehr hat als faktorenZaehler. Im ersten Durchlauf wird `faktorenFeld` also 0+1=1 freien Eintrag haben.
+&lt;4&gt; Nun werden alle Inhalte von `faktorenZaehler` nach `faktorenFeld` kopiert. Der letzte Platz von `faktorenFeld` ist danach noch frei, da es ja einen Eintrag mehr enthält als `faktorenZaehler`.
+&lt;5&gt; Der letzte Platz von `faktorenZaehler` wird mit dem neuen Primfaktor belegt.
+&lt;6&gt; `faktorenZaehler` wird mit `faktorenFeld` nun gleichgesetzt, enthält jetzt also einen Primfaktor mehr als davor.
+&lt;7&gt; Für den Nenner passiert genau das Gleiche wie für den Zähler.
+&lt;8&gt; In diesem Abschnitt werden Stück für Stück die Primfaktoren verglichen. &lt;9&gt; Stößt man auf einen Primfaktor der in beiden Primfaktormengen (die vom Zähler und die vom Nenner) vorkommt, so wird dieser Primfaktor in beiden Primfaktormengen auf 1 gesetzt.
+&lt;10&gt; Nachdem ein solcher gemeinsamer Primfaktor gefunden wurde, wird zum nächsten Primfaktor des Zählers übergegangen. Das `j=faktorenNenner.length;` sorgt dafür, dass vorerst keine weiteren Einträge von `faktorenNenner` auf 1 gesetzt werden, da die Schleife für `j` dadurch nicht weiter durchlaufen wird, sondern erst wieder für das nächste `i`.
+&lt;11&gt; Multipliziere nun alle Primfaktoren miteinander. Da die in beiden Primfaktorenmengen vorkommenden Primfaktoren jeweils auf 1 gesetzt wurden, erhält man nur das Produkt der noch übrigen Primfaktoren.
+</div></div></div>
+<div sb='AB' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><a href="#tags_@">Zurück zu den Aufgaben</a></p>
+</div></div><div class="originaltext" hidden="">&lt;&lt;tags_@,Zurück zu den Aufgaben&gt;&gt;</div></div></div>
+</body></html>
