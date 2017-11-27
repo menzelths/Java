@@ -52,7 +52,7 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 <div sb='@AP' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Schreibe das Programm <em>Faktorisierung</em>, das alle Primfaktoren einer Zahl ausgegeben werden. Im Unterschied zum Programm <em>Teiler</em> bei den Aufgaben zur FOR-Schleife sollen mehrfach vorkommende Teiler auch mehrfach ausgegeben werden. Die Faktoren ergeben miteinander multipliziert wieder die Zahl selbst.</p>
+<p>Schreibe das Programm <em>Faktorisierung</em>, das alle Primfaktoren einer Zahl ausgibt. Im Unterschied zum Programm <a href="FOR_Aufgaben.html#tags_b"><em>Teiler</em></a> bei den Aufgaben zur FOR-Schleife sollen mehrfach vorkommende Teiler auch mehrfach ausgegeben werden. Die Faktoren ergeben miteinander multipliziert wieder die Zahl selbst.</p>
 <div class="paragraph">
 <p>Beispiel der Ausgaben der Programme:</p>
 </div>
@@ -92,8 +92,8 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 </div>
 </li>
 </ol>
-</div></div><div class="originaltext" hidden="">. Schreibe das Programm _Faktorisierung_, das alle Primfaktoren einer Zahl ausgegeben werden. Im Unterschied zum Programm _Teiler_ bei den Aufgaben zur FOR-Schleife sollen mehrfach vorkommende Teiler auch mehrfach ausgegeben werden. Die Faktoren ergeben miteinander multipliziert wieder die Zahl selbst.
-+
+</div></div><div class="originaltext" hidden="">. Schreibe das Programm _Faktorisierung_, das alle Primfaktoren einer Zahl ausgibt. Im Unterschied zum Programm link:FOR_Aufgaben.html#tags_b[_Teiler_] bei den Aufgaben zur FOR-Schleife sollen mehrfach vorkommende Teiler auch mehrfach ausgegeben werden. Die Faktoren ergeben miteinander multipliziert wieder die Zahl selbst.
++ 
 Beispiel der Ausgaben der Programme:
 + 
 |===
@@ -377,7 +377,7 @@ System.out.println("Der Bruch "+zaehler+"/"+nenner+" ist gekürzt "+zaehlerGekü
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Der letzte Platz von <code>faktorenZaehler</code> wird mit dem neuen Primfaktor belegt.</td>
+<td>Der letzte Platz von <code>faktorenFeld</code> wird mit dem neuen Primfaktor belegt.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
@@ -389,14 +389,18 @@ System.out.println("Der Bruch "+zaehler+"/"+nenner+" ist gekürzt "+zaehlerGekü
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
-<td>In diesem Abschnitt werden Stück für Stück die Primfaktoren verglichen. &lt;9&gt; Stößt man auf einen Primfaktor der in beiden Primfaktormengen (die vom Zähler und die vom Nenner) vorkommt, so wird dieser Primfaktor in beiden Primfaktormengen auf 1 gesetzt.</td>
+<td>In diesem Abschnitt werden Stück für Stück die Primfaktoren verglichen.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
-<td>Nachdem ein solcher gemeinsamer Primfaktor gefunden wurde, wird zum nächsten Primfaktor des Zählers übergegangen. Das <code>j=faktorenNenner.length;</code> sorgt dafür, dass vorerst keine weiteren Einträge von <code>faktorenNenner</code> auf 1 gesetzt werden, da die Schleife für <code>j</code> dadurch nicht weiter durchlaufen wird, sondern erst wieder für das nächste <code>i</code>.</td>
+<td>Stößt man auf einen Primfaktor, der in beiden Primfaktormengen (die vom Zähler und die vom Nenner) vorkommt, so wird dieser Primfaktor in beiden Primfaktormengen auf 1 gesetzt.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>Nachdem ein solcher gemeinsamer Primfaktor gefunden wurde, wird zum nächsten Primfaktor des Zählers übergegangen. Das <code>j=faktorenNenner.length;</code> sorgt dafür, dass vorerst keine weiteren Einträge von <code>faktorenNenner</code> auf 1 gesetzt werden, da die Schleife für <code>j</code> dadurch nicht weiter durchlaufen wird, sondern erst wieder für das nächste <code>i</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
 <td>Multipliziere nun alle Primfaktoren miteinander. Da die in beiden Primfaktorenmengen vorkommenden Primfaktoren jeweils auf 1 gesetzt wurden, erhält man nur das Produkt der noch übrigen Primfaktoren.</td>
 </tr>
 </tbody></table>
@@ -408,10 +412,11 @@ Betrachten wir nun aber die angegebene Lösung:
 &lt;2&gt; Für den folgenden Abschnitt wird in `zahl` der Zähler des Bruchs gespeichert. Im Prinzip wird im Folgenden wie im Programm _Faktorisierung_ vorgegangen, nur dass hier die Teiler nicht ausgegeben sondern gespeichert werden.
 &lt;3&gt; Eine Feldvariable namens `faktorenFeld` wird eingeführt, die einen Eintrag mehr hat als faktorenZaehler. Im ersten Durchlauf wird `faktorenFeld` also 0+1=1 freien Eintrag haben.
 &lt;4&gt; Nun werden alle Inhalte von `faktorenZaehler` nach `faktorenFeld` kopiert. Der letzte Platz von `faktorenFeld` ist danach noch frei, da es ja einen Eintrag mehr enthält als `faktorenZaehler`.
-&lt;5&gt; Der letzte Platz von `faktorenZaehler` wird mit dem neuen Primfaktor belegt.
+&lt;5&gt; Der letzte Platz von `faktorenFeld` wird mit dem neuen Primfaktor belegt.
 &lt;6&gt; `faktorenZaehler` wird mit `faktorenFeld` nun gleichgesetzt, enthält jetzt also einen Primfaktor mehr als davor.
 &lt;7&gt; Für den Nenner passiert genau das Gleiche wie für den Zähler.
-&lt;8&gt; In diesem Abschnitt werden Stück für Stück die Primfaktoren verglichen. &lt;9&gt; Stößt man auf einen Primfaktor der in beiden Primfaktormengen (die vom Zähler und die vom Nenner) vorkommt, so wird dieser Primfaktor in beiden Primfaktormengen auf 1 gesetzt.
+&lt;8&gt; In diesem Abschnitt werden Stück für Stück die Primfaktoren verglichen.  
+&lt;9&gt; Stößt man auf einen Primfaktor, der in beiden Primfaktormengen (die vom Zähler und die vom Nenner) vorkommt, so wird dieser Primfaktor in beiden Primfaktormengen auf 1 gesetzt.
 &lt;10&gt; Nachdem ein solcher gemeinsamer Primfaktor gefunden wurde, wird zum nächsten Primfaktor des Zählers übergegangen. Das `j=faktorenNenner.length;` sorgt dafür, dass vorerst keine weiteren Einträge von `faktorenNenner` auf 1 gesetzt werden, da die Schleife für `j` dadurch nicht weiter durchlaufen wird, sondern erst wieder für das nächste `i`.
 &lt;11&gt; Multipliziere nun alle Primfaktoren miteinander. Da die in beiden Primfaktorenmengen vorkommenden Primfaktoren jeweils auf 1 gesetzt wurden, erhält man nur das Produkt der noch übrigen Primfaktoren.
 </div></div></div>
