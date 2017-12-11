@@ -2,12 +2,13 @@
 <link rel='stylesheet' href='../../assets/css/style.css'>
 <link rel='stylesheet' href='../../assets/css/font-awesome.css'>
 <link rel='stylesheet' href='../../assets/css/katex.css'>
-<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/reveal.css'>
+<link rel='stylesheet' href='../../assets/css/serif.css'>
 <link rel='stylesheet' href='../../assets/css/prism.css'>
-<script src='../../assets/js/jquery.min.js'></script>
+<script src='../../assets/js/reveal.js'></script>
 <script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
-</script>
-<script>    this.saveObject=function(){
+
+    this.saveObject=function(){
         var e = window.event.srcElement;
 
         var objectData=e.previousSibling.getAttribute('data');
@@ -34,57 +35,15 @@
         
     var blob = new Blob(byteArrays, {type: typ});
 			saveAs(blob, name);
-    }</script>
-<script>function zeigeHashTags(t){var s=!1
-t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
-for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
-a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
-zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
-""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
-</script>
-</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
-<h2 id="ref39318544">Ergänzungen zum Datenbank-Programm mit vertx</h2>
-<div class="sectionbody">
-
-</div>
-</div></div><div class="originaltext" hidden="">== Ergänzungen zum Datenbank-Programm mit vertx
-
-</div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>In diesem Abschnitt werden einige Techniken beleuchtet, die im Datenbankprogramm Eingang finden.</p>
-</div>
-<div class="paragraph">
-<p>Diese sind sinnvoll, um für die weiteren Programmieraufgaben eine solide Basis zu haben. Einiges mag im ersten Moment aufwändig erscheinen, bewährt sich aber mit steigender Komplexität der Web-Anwendung.</p>
-</div>
-<div class="paragraph">
-<p>Der Code der Anwendung befindet sich  <a href="https://github.com/menzelths/VertxWeb/tree/master/src/main/java/de/qreator/vertx/VertxDatabase"><span class="icon"><i class="fa fa-external-link"></i></span>hier</a>.</p>
-</div></div><div class="originaltext" hidden="">In diesem Abschnitt werden einige Techniken beleuchtet, die im Datenbankprogramm Eingang finden.
-
-Diese sind sinnvoll, um für die weiteren Programmieraufgaben eine solide Basis zu haben. Einiges mag im ersten Moment aufwändig erscheinen, bewährt sich aber mit steigender Komplexität der Web-Anwendung.
-
-Der Code der Anwendung befindet sich  https://github.com/menzelths/VertxWeb/tree/master/src/main/java/de/qreator/vertx/VertxDatabase[icon:external-link[]hier].  
-</div></div></div>
-<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+    }</script><style>html{font-size:20px;}
+.reveal{font-size:20px;}
+</style></head><body><div class='reveal'><div class='slides'><section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
 <h3 id="ref30570147">Logger</h3>
 
 </div></div><div class="originaltext" hidden="">=== Logger
 
 </div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Insbesondere während der Entwicklung ist es praktisch, wenn ein Programm an bestimmten Stellen Informationen ausgibt. Dies ist in Java natürlich über <code>System.out.println()</code> möglich, allerdings gibt es für dieses Szenario auch eine häufig verwendete Bibliothek, die speziell für die Ausgabe von Logging-Informationen konzipiert wurde. Der Vorteil liegt darin, dass diese flexibel zu konfigurieren und einfach einzusetzen ist.</p>
-</div>
-<div class="paragraph">
-<p>Im Folgenden wird die Bibliothek <a href="https://logback.qos.ch/"><span class="icon"><i class="fa fa-external-link"></i></span>Logback</a> vorgestellt, die in vielen Projekten Verwendung findet.</p>
-</div>
-<div class="paragraph">
-<p>Per Maven kann die Bibliothek über</p>
-</div></div><div class="originaltext" hidden="">Insbesondere während der Entwicklung ist es praktisch, wenn ein Programm an bestimmten Stellen Informationen ausgibt. Dies ist in Java natürlich über `System.out.println()` möglich, allerdings gibt es für dieses Szenario auch eine häufig verwendete Bibliothek, die speziell für die Ausgabe von Logging-Informationen konzipiert wurde. Der Vorteil liegt darin, dass diese flexibel zu konfigurieren und einfach einzusetzen ist.
-
-Im Folgenden wird die Bibliothek https://logback.qos.ch/[icon:external-link[]Logback] vorgestellt, die in vielen Projekten Verwendung findet.
-
-Per Maven kann die Bibliothek über
-</div></div></div>
-<div sb='@P' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div sb='@P' ft='='  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-xml code-toolbar"><code class=" language-xml" data-lang="xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>ch.qos.logback<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
@@ -100,15 +59,7 @@ Per Maven kann die Bibliothek über
             &lt;version&gt;1.2.3&lt;/version&gt;
         &lt;/dependency&gt; 
 ----</div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>eingebunden werden.</p>
-</div>
-<div class="paragraph">
-<p>In jedem Programmteil, der Logging-Informationen ausgeben soll, wird eine Instanz des Loggers erstellt, z. B.</p>
-</div></div><div class="originaltext" hidden="">eingebunden werden. 
-
-In jedem Programmteil, der Logging-Informationen ausgeben soll, wird eine Instanz des Loggers erstellt, z. B. </div></div></div>
-<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+</section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="Java">Logger LOGGER <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token string">"meinLogger"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
 </div>
@@ -117,10 +68,7 @@ In jedem Programmteil, der Logging-Informationen ausgeben soll, wird eine Instan
 Logger LOGGER = LoggerFactory.getLogger("meinLogger");
 ----
 </div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>In diesem Fall heißt der Logger <code>meinLogger</code>, was dazu genutzt werden kann, um über den Namen eine Konfiguration für diesen Logger vorzunehmen. Dazu gleich mehr, zunächst aber: wie wird der Logger verwendet?</p>
-</div></div><div class="originaltext" hidden="">In diesem Fall heißt der Logger `meinLogger`, was dazu genutzt werden kann, um über den Namen eine Konfiguration für diesen Logger vorzunehmen. Dazu gleich mehr, zunächst aber: wie wird der Logger verwendet?</div></div></div>
-<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Programm wurde erfolgreich gestartet"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
 </div>
@@ -128,15 +76,7 @@ Logger LOGGER = LoggerFactory.getLogger("meinLogger");
 ----
 LOGGER.info("Programm wurde erfolgreich gestartet");
 ----</div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Das <code>info()</code> legt fest, dass der Text nur dann ausgegeben wird, wenn das Debug-Level auch die Ausgabe von Informationen ausgibt.</p>
-</div>
-<div class="paragraph">
-<p>Wenn ein Fehler ausgegeben werden soll, so würde man das folgendermaßen machen:</p>
-</div></div><div class="originaltext" hidden="">Das `info()` legt fest, dass der Text nur dann ausgegeben wird, wenn das Debug-Level auch die Ausgabe von Informationen ausgibt.
-
-Wenn ein Fehler ausgegeben werden soll, so würde man das folgendermaßen machen:</div></div></div>
-<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+</span><span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">LOGGER<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Es ist ein Fehler aufgetreten!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
 </div>
@@ -145,17 +85,11 @@ Wenn ein Fehler ausgegeben werden soll, so würde man das folgendermaßen machen
 LOGGER.error("Es ist ein Fehler aufgetreten!");
 ----
 </div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Neben <code>info</code> und <code>error</code> gibt es noch weitere Debug-Level:</p>
-</div></div><div class="originaltext" hidden="">Neben `info` und `error` gibt es noch weitere Debug-Level:</div></div></div>
-<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+</span><span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
 <p><code>TRACE &lt; DEBUG &lt; INFO &lt;  WARN &lt; ERROR</code></p>
 </div></div><div class="originaltext" hidden="">`TRACE &lt; DEBUG &lt; INFO &lt;  WARN &lt; ERROR` 
 </div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Aus vertx heraus kann man in der Konfigurationsdatei <code>logback.xml</code> direkt in <code>source/main/resources</code> festlegen, ab welchem Debug-Level unser Logger <em>meinLogger</em> etwas ausgibt. So könnte dort unter anderem beispielsweise die folgende Zeile stehen:</p>
-</div></div><div class="originaltext" hidden="">Aus vertx heraus kann man in der Konfigurationsdatei `logback.xml` direkt in `source/main/resources` festlegen, ab welchem Debug-Level unser Logger _meinLogger_ etwas ausgibt. So könnte dort unter anderem beispielsweise die folgende Zeile stehen:</div></div></div>
-<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+</span><span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-xml code-toolbar"><code class=" language-xml" data-lang="xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>logger</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>meinLogger<span class="token punctuation">"</span></span> <span class="token attr-name">level</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>info<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span></code><div class="toolbar"><div class="toolbar-item"><span>XML</span></div></div></pre>
 </div>
@@ -163,47 +97,12 @@ LOGGER.error("Es ist ein Fehler aufgetreten!");
 ----
 &lt;logger name="meinLogger" level="info"/&gt;
 ----</div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Das bedeutet, dass unser Logger immer dann etwas ausgibt, wenn es sich vom Level her mindestens um eine <code>info</code> handelt. Ausgaben auf <code>trace</code>-Level würden ignoriert werden.</p>
-</div></div><div class="originaltext" hidden="">Das bedeutet, dass unser Logger immer dann etwas ausgibt, wenn es sich vom Level her mindestens um eine `info` handelt. Ausgaben auf `trace`-Level würden ignoriert werden.</div></div></div>
-<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+</span></section></section><section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
 <h3 id="ref65096940">Asynchrone Programmierung</h3>
 
 </div></div><div class="originaltext" hidden="">=== Asynchrone Programmierung
 </div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>vertx zeichnet sich dadurch aus, dass sehr viele Anfragen von Clients an den Server gestellt werden können, ohne dass dieser Probleme hätte, diese Anfragen zu beantworten. Dabei ist es besonders wichtig, dass die Abarbeitung einer Anfrage nicht die Anfragen anderer Clients verlangsamt.</p>
-</div>
-<div class="paragraph">
-<p>Ein gutes Beispiel dafür ist der Zugriff auf eine Datenbank: bis eine komplexe Suchanfrage abgearbeitet wurde, können schon mal mehrere Sekunden vergehen. Wenn in dieser Zeit keine anderen Anfragen bearbeitet werden könnten, wäre das für eine Web-Seite von Nachteil.</p>
-</div>
-<div class="paragraph">
-<p>Aus diesem Grund ist es üblich, dass beispielsweise eine Datenbankabfrage zwar aufgerufen wird, das Hauptprogramm danach aber direkt fortfährt. Sobald die Daten der Datenbank vorliegen, werden die nächsten passenden Schritte durchgeführt.</p>
-</div>
-<div class="paragraph">
-<p>Man wartet also nicht ab, bis das Ergebnis vorliegt und blockiert dabei alles andere (das wäre <em>synchron</em>), sondern lässt die Datenbankabfrage parallel zum Hauptprogramm laufen und wenn die Ergebnisse vorliegen, werden diese erst dann weiterverarbeitet. Es lässt sich nicht vorhersagen, wann die Rückmeldung der Datenbank eintrifft (<em>asynchron</em>).</p>
-</div>
-<div class="paragraph">
-<p>Manchmal ist es notwendig, dass man einen asynchronen Aufruf abwartet, ehe man einen weiteren asynchronen Aufruf startet. Ein Beispiel wäre, dass man eine Datenbank zunächst anlegt (asynchroner Prozess) und wenn dies geschehen ist, könnten erste Benutzer darin angelegt werden (wieder ein asynchroner Prozess).</p>
-</div>
-<div class="paragraph">
-<p>Für solche Zwecke sind <code>Futures</code> in vertx ein brauchbares Mittel:</p>
-</div></div><div class="originaltext" hidden="">vertx zeichnet sich dadurch aus, dass sehr viele Anfragen von Clients an den Server gestellt werden können, ohne dass dieser Probleme hätte, diese Anfragen zu beantworten. Dabei ist es besonders wichtig, dass die Abarbeitung einer Anfrage nicht die Anfragen anderer Clients verlangsamt. 
-
-Ein gutes Beispiel dafür ist der Zugriff auf eine Datenbank: bis eine komplexe Suchanfrage abgearbeitet wurde, können schon mal mehrere Sekunden vergehen. Wenn in dieser Zeit keine anderen Anfragen bearbeitet werden könnten, wäre das für eine Web-Seite von Nachteil.
-
-Aus diesem Grund ist es üblich, dass beispielsweise eine Datenbankabfrage zwar aufgerufen wird, das Hauptprogramm danach aber direkt fortfährt. Sobald die Daten der Datenbank vorliegen, werden die nächsten passenden Schritte durchgeführt.
-
-Man wartet also nicht ab, bis das Ergebnis vorliegt und blockiert dabei alles andere (das wäre _synchron_), sondern lässt die Datenbankabfrage parallel zum Hauptprogramm laufen und wenn die Ergebnisse vorliegen, werden diese erst dann weiterverarbeitet. Es lässt sich nicht vorhersagen, wann die Rückmeldung der Datenbank eintrifft (_asynchron_).
-
-Manchmal ist es notwendig, dass man einen asynchronen Aufruf abwartet, ehe man einen weiteren asynchronen Aufruf startet. Ein Beispiel wäre, dass man eine Datenbank zunächst anlegt (asynchroner Prozess) und wenn dies geschehen ist, könnten erste Benutzer darin angelegt werden (wieder ein asynchroner Prozess).
-
-Für solche Zwecke sind `Futures` in vertx ein brauchbares Mittel:
-
-
-
-</div></div></div>
-<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span>Future<span class="token operator">&lt;</span>Void<span class="token operator">&gt;</span> startFuture<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	Future<span class="token operator">&lt;</span>Void<span class="token operator">&gt;</span> datenbankFuture <span class="token operator">=</span> <span class="token function">erstelleDatenbank</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -237,48 +136,7 @@ public void start(Future&lt;Void&gt; startFuture) {
 	}); 
 } 
 ----</div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
-<table>
-<tbody><tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>startFuture</code> wird erstellt, um Informationen aufzunehmen, ob der gesamte Prozess funktioniert hat oder nicht</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Zunächst wird die Datenbank erstellt (asynchron) und …​</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>…​ mittels <code>compose</code> im Anschluss auch ein neuer Benutzer erzeugt (auch asynchron).</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><code>datenbankFuture</code> enthält Informationen, ob die Operationen erfolgreich waren:</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><code>succeeded</code> nur dann, wenn beide Aufrufe (<code>erstelleDatenbank()</code> und <code>erstelleUser()</code>) erfolgreich waren</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Man kann auch von Hand festlegen, dass eine asynchrone Operation erfolgreich war mittels <code>complete</code></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>Im Falle eines Fehlschlags kann man mittels <code>fail</code> eine Fehlermeldung an die aufrufende Instanz weitergeben. Dort wird sie mittels <code>cause</code> ausgelesen.</td>
-</tr>
-</tbody></table>
-</div></div><div class="originaltext" hidden="">&lt;1&gt; `startFuture` wird erstellt, um Informationen aufzunehmen, ob der gesamte Prozess funktioniert hat oder nicht
-&lt;2&gt; Zunächst wird die Datenbank erstellt (asynchron) und ...
-&lt;3&gt; ... mittels `compose` im Anschluss auch ein neuer Benutzer erzeugt (auch asynchron).
-&lt;4&gt; `datenbankFuture` enthält Informationen, ob die Operationen erfolgreich waren: 
-&lt;5&gt; `succeeded` nur dann, wenn beide Aufrufe (`erstelleDatenbank()` und `erstelleUser()`) erfolgreich waren
-&lt;6&gt; Man kann auch von Hand festlegen, dass eine asynchrone Operation erfolgreich war mittels `complete`
-&lt;7&gt; Im Falle eines Fehlschlags kann man mittels `fail` eine Fehlermeldung an die aufrufende Instanz weitergeben. Dort wird sie mittels `cause` ausgelesen.</div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Die obige Methode kann von außen beispielsweise aufgerufen werden über:</p>
-</div></div><div class="originaltext" hidden="">Die obige Methode kann von außen beispielsweise aufgerufen werden über:</div></div></div>
-<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+</span></section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">Future<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> starteDatenbankVerticle <span class="token operator">=</span> Future<span class="token punctuation">.</span><span class="token function">future</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -306,43 +164,12 @@ starteDatenbankVerticle.setHandler(db-&gt;{ //&lt;2&gt;
 	}
 }); 
 ----</div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
-<table>
-<tbody><tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Ruft automatisch die <code>start</code>-Methode im Datenbank-Verticle auf.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Dieser Abschnitt wird aufgerufen, wenn der Aufruf der Datenbank zurückkehrt.</td>
-</tr>
-</tbody></table>
-</div></div><div class="originaltext" hidden="">&lt;1&gt; Ruft automatisch die `start`-Methode im Datenbank-Verticle auf.
-&lt;2&gt; Dieser Abschnitt wird aufgerufen, wenn der Aufruf der Datenbank zurückkehrt.</div></div></div>
-<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+</section></section><section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
 <h3 id="ref26887873">Der Eventbus</h3>
 
 </div></div><div class="originaltext" hidden="">=== Der Eventbus
 </div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Unter dem <em>Eventbus</em> kann man sich die Kommunikationszentrale von vertx vorstellen. Darüber können unterschiedliche Programmteile von vertx miteinander kommunizieren, auch über mehrere Rechner hinweg.</p>
-</div>
-<div class="paragraph">
-<p>Die Grundidee ist denkbar einfach: Für jedes Thema wird im einfachsten Fall eine Adresse festgelegt.</p>
-</div>
-<div class="paragraph">
-<p>An diese Adresse kann man etwas versenden und die Gegenstelle kann bei Erhalt einer Nachricht darauf reagieren und gegebenenfalls eine Antwort zurückschicken.</p>
-</div>
-<div class="paragraph">
-<p>Die Adresse könnte lauten:</p>
-</div></div><div class="originaltext" hidden="">Unter dem _Eventbus_ kann man sich die Kommunikationszentrale von vertx vorstellen. Darüber können unterschiedliche Programmteile von vertx miteinander kommunizieren, auch über mehrere Rechner hinweg.
-
-Die Grundidee ist denkbar einfach: Für jedes Thema wird im einfachsten Fall eine Adresse festgelegt.
-
-An diese Adresse kann man etwas versenden und die Gegenstelle kann bei Erhalt einer Nachricht darauf reagieren und gegebenenfalls eine Antwort zurückschicken.
- 
-Die Adresse könnte lauten:</div></div></div>
-<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">String EB_ADRESSE <span class="token operator">=</span> <span class="token string">"vertxdatabase.eventbus"</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
 </div>
@@ -350,10 +177,7 @@ Die Adresse könnte lauten:</div></div></div>
 ----
 String EB_ADRESSE = "vertxdatabase.eventbus";
 ---- </div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Hier wird die Anfrage vom Http-Server bearbeitet und die Passwortkontrolle an den Datenbank-Teil übergeben per <code>send</code>:</p>
-</div></div><div class="originaltext" hidden="">Hier wird die Anfrage vom Http-Server bearbeitet und die Passwortkontrolle an den Datenbank-Teil übergeben per `send`:</div></div></div>
-<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+</span></section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">JsonObject request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JsonObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
 <span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"passwort"</span><span class="token punctuation">,</span> passwort<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -399,11 +223,7 @@ vertx.eventBus().send(EB_ADRESSE, request, options, reply -&gt; {
 	}
 }); 
 ----</div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Beim Empfänger muss festgelegt werden, dass dort Nachrichten an die gewünschte Adresse angenommen werden:</p>
-</div></div><div class="originaltext" hidden="">Beim Empfänger muss festgelegt werden, dass dort Nachrichten an die gewünschte Adresse angenommen werden:
-</div></div></div>
-<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+</section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">vertx<span class="token punctuation">.</span><span class="token function">eventBus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">consumer</span><span class="token punctuation">(</span>EB_ADRESSE<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token operator">:</span><span class="token operator">:</span>onMessage<span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
 </div>
@@ -411,10 +231,7 @@ vertx.eventBus().send(EB_ADRESSE, request, options, reply -&gt; {
 ----
 vertx.eventBus().consumer(EB_ADRESSE, this::onMessage); 
 ----</div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>In der entsprechenden Methode <code>onMessage</code> werden die Nachrichten verarbeitet und beantwortet:</p>
-</div></div><div class="originaltext" hidden="">In der entsprechenden Methode `onMessage` werden die Nachrichten verarbeitet und beantwortet:</div></div></div>
-<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<span class='fragment'><div sb='@P' ft='/'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">onMessage</span><span class="token punctuation">(</span>Message<span class="token operator">&lt;</span>JsonObject<span class="token operator">&gt;</span> message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
@@ -448,4 +265,4 @@ private void onMessage(Message&lt;JsonObject&gt; message) {
 	}
 } 
 ----</div></div></div>
-</body></html>
+</span></section></section></div></div><script>Reveal.initialize();</script></body></html>
