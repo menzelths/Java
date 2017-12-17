@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="_aufgaben">Aufgaben</h2>
+<div class="sectionbody">
+
+</div>
+</div></div><div class="originaltext" hidden="">== Aufgaben</div></div></div>
+<div sb='@A' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="olist arabic">
+<ol class="arabic" start="1">
+<li>
+<p>Schreibe das Programm <em>Namen</em>, das alle Zeilen der Datei <em>namen.txt</em> ausgibt.</p>
+<div class="paragraph">
+<p><a href="#tags_a">Zur Lösung</a></p>
+</div>
+</li>
+</ol>
+</div></div><div class="originaltext" hidden="">[start=1]
+. Schreibe das Programm _Namen_, das alle Zeilen der Datei _namen.txt_ ausgibt. 
++ 
+&lt;&lt;tags_a, Zur Lösung&gt;&gt; </div></div></div>
+<div sb='@A' ft='='  style='display:none;' class='datei tshareElement'><div style="background-color: #f8f8f7"><object name="namen.txt" data="data:text/plain;base64,TmFiaWwNCk1heGltaWxpYW4NCkx5bm4NCkxlb24NCkxvdWlzDQpMZW5hDQpSb2Jpbg0KTGVuYQ0KSmVmZnJleQ0KS2F5DQpBeWtvbg0KVGltDQpOb2FoDQpTZXJoYXQNClRpbXVyDQpKdWxpYW4NCkRpbGFuDQpSb2Jpbg0KUm9iaW4NClJvbWV0aA0KSGF6YWwNCg==" type="text/plain" style="display:none"></object><button onclick="saveObject()">namen.txt herunterladen</button><div class="adoccss"><table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><span class="icon"><i class="fa fa-file-o fa-5x"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dateiname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">namen.txt</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Größe in Bytes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">148</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Einfügezeitpunkt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">17.12.2017, 13:34:32</p></td>
+</tr>
+</tbody>
+</table></div></div></div>
+<div sb='A' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref14288477">Lösung zu <em>Namen</em></h3>
+<div class="paragraph">
+<p>In diesem Fall kann das Beispielprogramm aus der Beschreibung direkt übernommen werden:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">try</span><span class="token punctuation">(</span>BufferedReader br<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">BufferedReader</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span><span class="token string">"Pfad meiner Datei"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    String zeile<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>zeile<span class="token operator">=</span>br<span class="token punctuation">.</span><span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>zeile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Ein Fehler ist beim Öffnen der Datei aufgetreten."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">=== Lösung zu _Namen_
+In diesem Fall kann das Beispielprogramm aus der Beschreibung direkt übernommen werden:
+[source,java,indent=0]
+----
+try(BufferedReader br=new BufferedReader(new FileReader("Pfad meiner Datei"))){ 
+    String zeile="";
+    while ((zeile=br.readLine())!=null){ 
+        System.out.println(zeile);
+    }
+} catch (Exception e){ 
+    System.out.println("Ein Fehler ist beim Öffnen der Datei aufgetreten.");
+} 
+----
+</div></div></div>
+<div sb='@B' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Schreibe das Programm <em>Durchschnitt</em>, das den Mittelwert aller Zahlen in der Datei <em>zahlen.txt</em> ausgibt.</p>
+<div class="paragraph">
+<p>Verwende dabei den Befehl <code>double Double.parseDouble(String s)</code>, der, falls möglich, einen String in eine double-Variable umwandelt.</p>
+</div>
+<div class="paragraph">
+<p><a href="#tags_b">Zur Lösung</a></p>
+</div>
+</li>
+</ol>
+</div></div><div class="originaltext" hidden="">[start=2]
+. Schreibe das Programm _Durchschnitt_, das den Mittelwert aller Zahlen in der Datei _zahlen.txt_ ausgibt.
++
+Verwende dabei den Befehl `double Double.parseDouble(String s)`, der, falls möglich, einen String in eine double-Variable umwandelt.
++
+&lt;&lt;tags_b,Zur Lösung&gt;&gt; 
+</div></div></div>
+<div sb='@B' ft='='  style='display:none;' class='datei tshareElement'><div style="background-color: #f8f8f7"><object name="zahlen.txt" data="data:text/plain;base64,MTIzNA0KMjM0MzINCjU0Mw0KMjQuNTQyMzUNCjIzNA0KNTM0NQ0KNDM1DQoyMw0KNTQNCjQzDQoyNDMyDQo0NTY2DQozNTQuNDM1DQo0Mw0KMjQzLjIzNA0KNDM1LjQ2NQ0KMzQ0DQoyMzQuMg0KNTg3Ng0KNTc2DQo4DQo0NjUNCjkNCjU2Nw0KMzU0DQo0NTYNCjM1NA0KMjQzLjQNCjIxMy42DQo=" type="text/plain" style="display:none"></object><button onclick="saveObject()">zahlen.txt herunterladen</button><div class="adoccss"><table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock"><span class="icon"><i class="fa fa-file-o fa-5x"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dateiname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zahlen.txt</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Größe in Bytes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">167</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Einfügezeitpunkt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">17.12.2017, 13:41:30</p></td>
+</tr>
+</tbody>
+</table></div></div></div>
+<div sb='B' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref38510551">Lösung zu <em>Durchschnitt</em></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">try</span> <span class="token punctuation">(</span>BufferedReader br <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedReader</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span><span class="token string">"C:\\Users\\menze\\Desktop/zahlen.txt"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    String zeile <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">double</span> summe <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> zaehler <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>zeile <span class="token operator">=</span> br<span class="token punctuation">.</span><span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        summe <span class="token operator">+=</span> Double<span class="token punctuation">.</span><span class="token function">parseDouble</span><span class="token punctuation">(</span>zeile<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        zaehler<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Durchschnitt: "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>summe <span class="token operator">/</span> zaehler<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">=== Lösung zu _Durchschnitt_ 
+[source,java,indent=0]
+----
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\menze\\Desktop/zahlen.txt"))) {
+            String zeile = "";
+            double summe = 0;
+            int zaehler = 0;
+            while ((zeile = br.readLine()) != null) {
+                summe += Double.parseDouble(zeile); //&lt;1&gt;
+                zaehler++; //&lt;2&gt;
+            }
+            System.out.println("Durchschnitt: " + (summe / zaehler));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+----
+</div></div></div>
+<div sb='B' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Wandle die aktuelle Zeile in eine double-Zahl um und zähle den Wert zu <code>summe</code> hinzu.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Zähle, wie viele Zahlen eingelesen wurden.</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">&lt;1&gt; Wandle die aktuelle Zeile in eine double-Zahl um und zähle den Wert zu `summe` hinzu.
+&lt;2&gt; Zähle, wie viele Zahlen eingelesen wurden.</div></div></div>
+<div sb='@C' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Schreibe das Programm <em>RateSpiel</em>, bei dem sich das Programm eine ganze Zahl zwischen 0 und 100 "denkt" und nach jeder Eingabe des Benutzers einen Tipp abgibt, ob die eingegebene Zahl zu groß oder zu klein ist.</p>
+<div class="paragraph">
+<p><a href="#tags_c">Zur Lösung</a></p>
+</div>
+</li>
+</ol>
+</div></div><div class="originaltext" hidden="">[start=3]
+. Schreibe das Programm _RateSpiel_, bei dem sich das Programm eine ganze Zahl zwischen 0 und 100 "denkt" und nach jeder Eingabe des Benutzers einen Tipp abgibt, ob die eingegebene Zahl zu groß oder zu klein ist. 
++ 
+&lt;&lt;tags_c,Zur Lösung&gt;&gt;  </div></div></div>
+<div sb='C' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref71078573">Lösung zu <em>RateSpiel</em></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">int</span> gedachteZahl <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">(</span>Scanner sc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> getippteZahl <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>getippteZahl <span class="token operator">!=</span> gedachteZahl<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Bitte gib eine Zahl ein: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        getippteZahl <span class="token operator">=</span> sc<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>getippteZahl <span class="token operator">&gt;</span> gedachteZahl<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Zahl zu groß"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>getippteZahl <span class="token operator">&lt;</span> gedachteZahl<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Zahl zu klein"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Gratulation, du hast gewonnen!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">=== Lösung zu _RateSpiel_
+[source,java,indent=0]
+----
+        int gedachteZahl = (int) (Math.random() * 100); //&lt;1&gt;
+
+        try (Scanner sc = new Scanner(System.in)) {
+            int getippteZahl = -1; //&lt;2&gt;
+            while (getippteZahl != gedachteZahl) { //&lt;3&gt; 
+                System.out.println("Bitte gib eine Zahl ein: ");
+                getippteZahl = sc.nextInt();
+                if (getippteZahl &gt; gedachteZahl) {
+                    System.out.println("Zahl zu groß");
+                } else if (getippteZahl &lt; gedachteZahl) {
+                    System.out.println("Zahl zu klein");
+                }
+            }
+            System.out.println("Gratulation, du hast gewonnen!");
+        } 
+----</div></div></div>
+<div sb='C' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Das Programm <em>denkt</em> sich eine zufällige Zahl zwischen 0 und 100.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die vom Benutzer eingegeben Zahl wird zunächst auf -1 gesetzt, damit die while-Schleife starten kann.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Das Programm läuft so lange, bis der Benutzer die richtige Zahl eingibt.</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">&lt;1&gt; Das Programm _denkt_ sich eine zufällige Zahl zwischen 0 und 100.
+&lt;2&gt; Die vom Benutzer eingegeben Zahl wird zunächst auf -1 gesetzt, damit die while-Schleife starten kann.
+&lt;3&gt; Das Programm läuft so lange, bis der Benutzer die richtige Zahl eingibt.</div></div></div>
+<div sb='ABC' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><a href="#tags_@">Zurück zu den Aufgaben</a></p>
+</div></div><div class="originaltext" hidden="">&lt;&lt;tags_@, Zurück zu den Aufgaben&gt;&gt; </div></div></div>
+</body></html>
