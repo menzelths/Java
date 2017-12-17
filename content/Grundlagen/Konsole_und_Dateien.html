@@ -42,7 +42,26 @@ a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","d
 zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
 ""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
 </script>
-</head><body><div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref8107620">Eingabe von Text in der Konsole und das Einlesen von Text-Dateien</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Um ein Programm interaktiv zu gestalten, besteht eine Möglichkeit darin, den Benutzer Texteingaben machen zu lassen.</p>
+</div>
+<div class="paragraph">
+<p>Dieses Kapitel stellt vor, wie Text über die Tastatur in der Konsole eingegeben werden kann und wie man Text aus einer Datei ausliest.</p>
+</div>
+<div class="paragraph">
+<p>Wir werden hier erstmals Funktionen aus der Standard-Java-Bibliothek verwenden, wobei wir uns um nicht besonders viel kümmern müssen, da unsere IDE uns dabei hilft, die richtigen Funktionen zu importieren.</p>
+</div>
+</div>
+</div></div><div class="originaltext" hidden="">== Eingabe von Text in der Konsole und das Einlesen von Text-Dateien
+Um ein Programm interaktiv zu gestalten, besteht eine Möglichkeit darin, den Benutzer Texteingaben machen zu lassen.
+
+Dieses Kapitel stellt vor, wie Text über die Tastatur in der Konsole eingegeben werden kann und wie man Text aus einer Datei ausliest.
+
+Wir werden hier erstmals Funktionen aus der Standard-Java-Bibliothek verwenden, wobei wir uns um nicht besonders viel kümmern müssen, da unsere IDE uns dabei hilft, die richtigen Funktionen zu importieren.</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
 <h3 id="ref598332">Eingabe von Text über die Tastatur</h3>
 
 </div></div><div class="originaltext" hidden="">=== Eingabe von Text über die Tastatur
@@ -65,6 +84,27 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
             System.out.println("Dein Name ist "+name+" und dein Alter ist "+alter);
         } 
 ----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Ein Objekt vom Typ <code>Scanner</code> kann aus der Konsole (<code>System.in</code>) Eingaben auslesen.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Mit <code>next()</code> wird der nächste String ausgelesen …​</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>…​ und mit <code>nextInt()</code> der nächste Integerwert. Die einzelnen Werte müssen dazu entweder durch Leerzeichen oder die Return-Taste getrennt eingegeben werden.</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">&lt;1&gt; Ein Objekt vom Typ `Scanner` kann aus der Konsole (`System.in`) Eingaben auslesen.
+&lt;2&gt; Mit `next()` wird der nächste String ausgelesen ...
+&lt;3&gt; ... und mit `nextInt()` der nächste Integerwert. Die einzelnen Werte müssen dazu entweder durch Leerzeichen oder die Return-Taste getrennt eingegeben werden.</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Der <code>try</code>-Block wird hier nur verwendet, da er am Ende automatisch den Scanner wieder schließt. Im nächsten Beispiel werden wir noch einen anderen Fall mit <code>try</code> kennenlernen.</p>
+</div></div><div class="originaltext" hidden="">Der `try`-Block wird hier nur verwendet, da er am Ende automatisch den Scanner wieder schließt. Im nächsten Beispiel werden wir noch einen anderen Fall mit `try` kennenlernen.</div></div></div>
 <div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
 <h3 id="ref74685591">Einlesen von Textdateien</h3>
 
@@ -92,4 +132,25 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
             System.out.println("Ein Fehler ist beim Öffnen der Datei aufgetreten.");
         } 
 ----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Ein <code>BufferedReader</code> kann zeilenweise Werte aus einer Datenquelle auslesen.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Hier wird mit <code>nextLine()</code> die nächste ganze Zeile geholt. Das wiederholt sich so lange, bis es keine nächste Zeile mehr gibt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Der <code>try</code>-Block hat hier unter anderem die Funktion, einen Programmteil einzuhüllen, von dem man zur Zeit der Programmierung noch nicht sicher sein kann, ob dieser Teil problemlos funkionieren wird: so könnte eine Datei nicht existieren oder das Laufwerk defekt sein. In einem solchen Fall kann das Programm nicht normal weiterlaufen sondern gelangt in einen <em>Ausnahmezustand</em> (Ausnahme auf englisch: <em>exception</em>). Mit dem <code>catch</code>-Block können solche Ausnahmen abgefangen und auf die Situation richtig reagiert werden.</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">&lt;1&gt; Ein `BufferedReader` kann zeilenweise Werte aus einer Datenquelle auslesen.
+&lt;2&gt; Hier wird mit `nextLine()` die nächste ganze Zeile geholt. Das wiederholt sich so lange, bis es keine nächste Zeile mehr gibt.
+&lt;3&gt; Der `try`-Block hat hier unter anderem die Funktion, einen Programmteil einzuhüllen, von dem man zur Zeit der Programmierung noch nicht sicher sein kann, ob dieser Teil problemlos funkionieren wird: so könnte eine Datei nicht existieren oder das Laufwerk defekt sein. In einem solchen Fall kann das Programm nicht normal weiterlaufen sondern gelangt in einen _Ausnahmezustand_ (Ausnahme auf englisch: _exception_). Mit dem `catch`-Block können solche Ausnahmen abgefangen und auf die Situation richtig reagiert werden.
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div></div><div class="originaltext" hidden=""></div></div></div>
 </body></html>
