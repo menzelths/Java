@@ -4301,4 +4301,193 @@ maehnenShampooMarke=msm;
 
 Hier benötigt man kein `this.` vor dem `maehnenShampooMarke`, da hier keine Verwechslung möglich ist. Es ist klar, dass `maehnenShampooMarke` das Feld des aktuellen Objekts ist und `msn` der übergebene Parameter.
 </div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref94787572">Überladen von Konstruktoren und Funktionen</h3>
+
+</div></div><div class="originaltext" hidden="">=== Überladen von Konstruktoren und Funktionen
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Unsere Zoohandlung muss im Normalfall bei der Aufnahme eines neuen Löwen die Futterzeit, die Anzahl der Beine und die Shampoo-Marke nicht gesondert angeben, da sich diese Eigenschaften üblicherweise nicht ändern. Deshalb wäre es praktisch, einen Konstruktor der Signatur</p>
+</div></div><div class="originaltext" hidden="">Unsere Zoohandlung muss im Normalfall bei der Aufnahme eines neuen Löwen die Futterzeit, die Anzahl der Beine und die Shampoo-Marke nicht gesondert angeben, da sich diese Eigenschaften üblicherweise nicht ändern. Deshalb wäre es praktisch, einen Konstruktor der Signatur
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token function">Loewe</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">double</span> gewicht<span class="token punctuation">)</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+Loewe(String name, double gewicht) 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>zur Verfügung zu haben und die anderen Werte mit Standardwerten zu belegen.</p>
+</div>
+<div class="paragraph">
+<p>Wir werden diesen Konstruktor also auch anlegen, den bisherigen aber lassen. Dadurch gibt es zwei Konstruktoren für <em>Loewe</em>:</p>
+</div></div><div class="originaltext" hidden="">zur Verfügung zu haben und die anderen Werte mit Standardwerten zu belegen.
+
+Wir werden diesen Konstruktor also auch anlegen, den bisherigen aber lassen. Dadurch gibt es zwei Konstruktoren für _Loewe_:
+
+
+
+
+</div></div></div>
+<div sb='@P' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token function">Loewe</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">double</span> gewicht<span class="token punctuation">)</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+Loewe(String name, double gewicht) 
+----
+
+
+</div></div></div>
+<div sb='@P' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token function">Loewe</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span>String futterzeit<span class="token punctuation">,</span><span class="token keyword">double</span> gewicht<span class="token punctuation">,</span><span class="token keyword">int</span> anzahlBeine<span class="token punctuation">,</span>String maehnenShampooMarke<span class="token punctuation">)</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+Loewe(String name,String futterzeit,double gewicht,int anzahlBeine,String maehnenShampooMarke)   
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Der Java-Compiler hat damit jedoch kein Problem, da beim Aufrufen der Konstruktoren aufgrund der Typen der übergebenen Argumente klar wird, welcher herangezogen werden muss:</p>
+</div></div><div class="originaltext" hidden="">Der Java-Compiler hat damit jedoch kein Problem, da beim Aufrufen der Konstruktoren aufgrund der Typen der übergebenen Argumente klar wird, welcher herangezogen werden muss:
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">Loewe leo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Loewe</span><span class="token punctuation">(</span><span class="token string">"Leo"</span><span class="token punctuation">,</span><span class="token number">123.2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Loewe leonie <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Loewe</span><span class="token punctuation">(</span><span class="token string">"Leonie"</span><span class="token punctuation">,</span><span class="token string">"14:00"</span><span class="token punctuation">,</span><span class="token number">121.1</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token string">"Lioness Gold"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+Loewe leo = new Loewe("Leo",123.2);
+Loewe leonie = new Loewe("Leonie","14:00",121.1,4,"Lioness Gold");
+----
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Im ersten Fall wird erst ein String und dann eine double-Zahl übergeben, also kommt nur der Konstruktor <code>Loewe(String name, double gewicht)</code> dafür in Frage, der zweite Aufruf passt dafür genau auf den anderen Konstruktor.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Warning" class="fa icon-warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Würde man zusätzlich noch einen Konstruktor wie <code>Loewe(String futterzeit, double gewicht)</code> einführen, so käme es zu einer Fehlermeldung, da der Compiler bei einem Aufruf von</p>
+</div>
+<div class="paragraph">
+<p><code>Loewe leo = new Loewe("Leo",123.2);</code></p>
+</div>
+<div class="paragraph">
+<p>nicht entscheiden kann, welchen Konstruktor er wählen soll:</p>
+</div>
+<div class="paragraph">
+<p><code>Loewe(String futterzeit, double gewicht)</code></p>
+</div>
+<div class="paragraph">
+<p>oder</p>
+</div>
+<div class="paragraph">
+<p><code>Loewe(String name, double gewicht)</code>?</p>
+</div>
+<div class="paragraph">
+<p>Beide erwarten an erster Stelle einen String und dann einen double-Wert. Ein solcher Fall darf nicht auftreten!</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">Im ersten Fall wird erst ein String und dann eine double-Zahl übergeben, also kommt nur der Konstruktor `Loewe(String name, double gewicht)` dafür in Frage, der zweite Aufruf passt dafür genau auf den anderen Konstruktor.
+
+[WARNING]
+====
+Würde man zusätzlich noch einen Konstruktor wie `Loewe(String futterzeit, double gewicht)` einführen, so käme es zu einer Fehlermeldung, da der Compiler bei einem Aufruf von 
+
+`Loewe leo = new Loewe("Leo",123.2);`
+
+nicht entscheiden kann, welchen Konstruktor er wählen soll: 
+
+`Loewe(String futterzeit, double gewicht)` 
+
+oder 
+
+`Loewe(String name, double gewicht)`? 
+
+Beide erwarten an erster Stelle einen String und dann einen double-Wert. Ein solcher Fall darf nicht auftreten! 
+====
+
+</div></div></div>
+<div sb='P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><code>Loewe(String futterzeit, double gewicht)</code></p>
+</div>
+<div class="paragraph">
+<p><code>Loewe(String name, double gewicht)</code></p>
+</div></div><div class="originaltext" hidden="">`Loewe(String futterzeit, double gewicht)`
+
+`Loewe(String name, double gewicht)`
+</div></div></div>
+<div sb='P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><code>Loewe leo = new Loewe("Leo",123.2);</code></p>
+</div></div><div class="originaltext" hidden="">`Loewe leo = new Loewe("Leo",123.2);`</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Man bezeichnet die Möglichkeit, mehrere Konstruktoren - jedoch mit unterschiedlichen Typen - verwenden zu können, als <strong>Überladen von Konstruktoren</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Eine Implementierung der beiden Konstruktoren könnte folgendermaßen aussehen:</p>
+</div></div><div class="originaltext" hidden="">Man bezeichnet die Möglichkeit, mehrere Konstruktoren - jedoch mit unterschiedlichen Typen - verwenden zu können, als *Überladen von Konstruktoren*.
+
+Eine Implementierung der beiden Konstruktoren könnte folgendermaßen aussehen:
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token function">Loewe</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> String futterzeit<span class="token punctuation">,</span> <span class="token keyword">double</span> gewicht<span class="token punctuation">,</span> <span class="token keyword">int</span> anzahlBeine<span class="token punctuation">,</span> String msm<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>anzahlBeine <span class="token operator">=</span> anzahlBeine<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>futterzeit <span class="token operator">=</span> futterzeit<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>gewicht <span class="token operator">=</span> gewicht<span class="token punctuation">;</span>
+    maehnenShampooMarke <span class="token operator">=</span> msm<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token function">Loewe</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">double</span> gewicht<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>gewicht <span class="token operator">=</span> gewicht<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+    public Loewe(String name, String futterzeit, double gewicht, int anzahlBeine, String msm) {
+        this.anzahlBeine = anzahlBeine;
+        this.futterzeit = futterzeit;
+        this.gewicht = gewicht;
+        maehnenShampooMarke = msm;
+        this.name = name;
+    }
+
+    public Loewe(String name, double gewicht) {
+        this.gewicht = gewicht;
+        this.name = name;
+    }
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Für die restlichen Werte (Gewicht, Futterzeit und Anzahl der Beine) müssen dazu Standardwerte in der Klasse festgelegt werden, also z. B.</p>
+</div></div><div class="originaltext" hidden="">Für die restlichen Werte (Gewicht, Futterzeit und Anzahl der Beine) müssen dazu Standardwerte in der Klasse festgelegt werden, also z. B.</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> String name<span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">double</span> gewicht<span class="token punctuation">;</span>
+<span class="token keyword">public</span> String futterzeit <span class="token operator">=</span> <span class="token string">"13:00"</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> String maehnenShampooMarke <span class="token operator">=</span> <span class="token string">"LeoGlanz Power 2"</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">int</span> anzahlBeine <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+    public String name;
+    public double gewicht;
+    public String futterzeit = "13:00";
+    public String maehnenShampooMarke = "LeoGlanz Power 2";
+    public int anzahlBeine = 4; 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div></div><div class="originaltext" hidden=""></div></div></div>
 </body></html>
