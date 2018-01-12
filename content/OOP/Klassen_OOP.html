@@ -3885,17 +3885,23 @@ pre.code-toolbar > .toolbar span:focus {
 <div class="ulist none">
 <ul class="none">
 <li>
-<p><a href="#ref51917916">Objektorientierte Programmierung (OOP)</a></p>
+<p><a href="#ref20355099">Objektorientierte Programmierung (OOP)</a></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p><a href="#ref60551604">Klassen und Objekte mit UML</a></p>
+<p><a href="#ref85038194">Klassen und Objekte mit UML</a></p>
 </li>
 <li>
-<p><a href="#ref69398883">Klassen und Objekte mit Java</a></p>
+<p><a href="#ref26324513">Klassen und Objekte mit Java</a></p>
 </li>
 <li>
-<p><a href="#ref35923759">Konstruktoren</a></p>
+<p><a href="#ref11089867">Konstruktoren</a></p>
+</li>
+<li>
+<p><a href="#ref37651564">Überladen von Konstruktoren und Funktionen</a></p>
+</li>
+<li>
+<p><a href="#ref81349720">Kapselung</a></p>
 </li>
 </ul>
 </div>
@@ -3906,7 +3912,7 @@ pre.code-toolbar > .toolbar span:focus {
 </div>
 </div></div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
-<h2 id="ref51917916">Objektorientierte Programmierung (OOP)</h2>
+<h2 id="ref20355099">Objektorientierte Programmierung (OOP)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Das Konzept der <em>objektorientierten Programmierung</em> lehnt sich an unsere Wahrnehmung der realen Welt an: wir strukturieren die Welt in Objekte und die damit verbundenen Attribute und Fähigkeiten.</p>
@@ -3931,7 +3937,7 @@ Ein weiteres wichtiges Konzept ist die _Kapselung_: Wenn wir beim Beispiel eines
 In der objektorientierten Programmierung (kurz OOP) wird diese für uns natürliche Strukturierung mit Attributen und Fähigkeiten sowie der Möglichkeit der Kapselung von Informationen zur Verfügung gestellt. Darüber hinaus ist sogar die Vererbung von Eigenschaften und Fähigkeiten möglich, als auch die Bereitstellung von Schnittstellen _Interfaces_) zur Zusammenarbeit zwischen verschiedenen Objekten.
  </div></div></div>
 <div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref60551604">Klassen und Objekte mit UML</h3>
+<h3 id="ref85038194">Klassen und Objekte mit UML</h3>
 
 </div></div><div class="originaltext" hidden="">=== Klassen und Objekte mit UML 
 </div></div></div>
@@ -3989,7 +3995,7 @@ Damit hätte man einen Löwen schon ganz gut beschrieben, allerdings kann ein L�
 Die Attribute einer Klasse (also beispielsweise futterzeit, Name, ...) werden in der OOP als _Felder_ bezeichnet, die Funktionen als _Methoden_. 
 ==== </div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref69398883">Klassen und Objekte mit Java</h3>
+<h3 id="ref26324513">Klassen und Objekte mit Java</h3>
 
 </div></div><div class="originaltext" hidden="">=== Klassen und Objekte mit Java
 </div></div></div>
@@ -4177,7 +4183,7 @@ Und wir haben Glück, genau so etwas gibt es, nämlich die sogenannten _Konstruk
 
 </div></div></div>
 <div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref35923759">Konstruktoren</h3>
+<h3 id="ref11089867">Konstruktoren</h3>
 
 </div></div><div class="originaltext" hidden="">=== Konstruktoren
 </div></div></div>
@@ -4302,7 +4308,7 @@ maehnenShampooMarke=msm;
 Hier benötigt man kein `this.` vor dem `maehnenShampooMarke`, da hier keine Verwechslung möglich ist. Es ist klar, dass `maehnenShampooMarke` das Feld des aktuellen Objekts ist und `msn` der übergebene Parameter.
 </div></div></div>
 <div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref94787572">Überladen von Konstruktoren und Funktionen</h3>
+<h3 id="ref37651564">Überladen von Konstruktoren und Funktionen</h3>
 
 </div></div><div class="originaltext" hidden="">=== Überladen von Konstruktoren und Funktionen
 </div></div></div>
@@ -4489,5 +4495,224 @@ Eine Implementierung der beiden Konstruktoren könnte folgendermaßen aussehen:
     public String maehnenShampooMarke = "LeoGlanz Power 2";
     public int anzahlBeine = 4; 
 ----</div></div></div>
-<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div></div><div class="originaltext" hidden=""></div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Note" class="fa icon-note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ebenso wie Konstruktoren lassen sich auch Methoden überladen: neben</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public void bruelle(int dezibel)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>könnte also beispielsweise problemlos noch</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public void bruelle(int dezibel, int dauer)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>definiert werden.</p>
+</div>
+<div class="paragraph">
+<p>Auch hier ist zu beachten, dass die Signaturen nicht identisch sein dürfen:</p>
+</div>
+<div class="paragraph">
+<p><code>public void bruelle(int dezibel)</code> und <code>public void bruelle(int dauer)</code> haben aus Sicht des Compilers identische Signaturen, da sie beide gleich heißen und jeweils genau einen Parameter vom Typ <code>int</code> erwarten.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">[NOTE]
+====
+Ebenso wie Konstruktoren lassen sich auch Methoden überladen: neben
+
+----
+public void bruelle(int dezibel)
+----
+
+könnte also beispielsweise problemlos noch
+
+----
+public void bruelle(int dezibel, int dauer)
+----
+
+definiert werden.
+
+Auch hier ist zu beachten, dass die Signaturen nicht identisch sein dürfen:
+
+`public void bruelle(int dezibel)` und `public void bruelle(int dauer)` haben aus Sicht des Compilers identische Signaturen, da sie beide gleich heißen und jeweils genau einen Parameter vom Typ `int` erwarten.
+====</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref81349720">Kapselung</h3>
+
+</div></div><div class="originaltext" hidden="">=== Kapselung
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Angenommen, wir geben unser bisheriges Programm an eine andere Zoohandlung weiter. Diese ist begeistert und fängt sofort an, damit zu arbeiten.</p>
+</div>
+<div class="paragraph">
+<p>Bei der ersten Benutzung schleicht sich leider ein Fehler ein, da ein Löwe fälschlicherweise folgendermaßen erstellt wird:</p>
+</div></div><div class="originaltext" hidden="">Angenommen, wir geben unser bisheriges Programm an eine andere Zoohandlung weiter. Diese ist begeistert und fängt sofort an, damit zu arbeiten.
+
+Bei der ersten Benutzung schleicht sich leider ein Fehler ein, da ein Löwe fälschlicherweise folgendermaßen erstellt wird:</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">Loewe leo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Loewe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+leo<span class="token punctuation">.</span>anzahlBeine <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+Loewe leo = new Loewe();
+leo.anzahlBeine = -4;
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Für die Anzahl der Beine wird also eine negative Zahl eingegeben. Unser Programm lässt das bisher zu, aber natürlich ergibt das keinen Sinn. Sollte der Fehler unbemerkt bleiben und die Fußpediküre für alle Tiere eingeteilt werden, so kann es hier zu Probleme im weiteren Ablauf in der anderen Zoohandlung kommen.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Erkenntnis:</strong></p>
+</div>
+<div class="paragraph">
+<p>Es ist nicht sinnvoll, dass andere Benutzer unseres Programms Felder von Objekten direkt ändern können. Wenn wir die korrekte Funktionsweise unseres Programms gewährleisten wollen, müssen wir verhindern, dass solche direkten Abänderungen vorgenommen werden können.</p>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i title="Note" class="fa icon-note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ähnlich verhält es sich heutzutage bei vielen Motoren von Fahrzeugen etablierter Automobilhersteller. Anstatt beim Öffnen der Motorhaube Zugriff auf den gesamten Motor zu erhalten, befindet sich dort häufig ein versiegelter Motorblock mit einem Diagnoseanschluss. Nur der Ölstand und das Kühlwasser lassen sich noch regeln.</p>
+</div>
+<div class="paragraph">
+<p>Ähnlich sollte auch unsere Klasse in der Lage sein, interne Felder vor äußerem Zugriff zu Schützen, diese Informationen von der Außenwelt also zu kapseln.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div></div><div class="originaltext" hidden="">Für die Anzahl der Beine wird also eine negative Zahl eingegeben. Unser Programm lässt das bisher zu, aber natürlich ergibt das keinen Sinn. Sollte der Fehler unbemerkt bleiben und die Fußpediküre für alle Tiere eingeteilt werden, so kann es hier zu Probleme im weiteren Ablauf in der anderen Zoohandlung kommen.
+
+====
+*Erkenntnis:*
+
+Es ist nicht sinnvoll, dass andere Benutzer unseres Programms Felder von Objekten direkt ändern können. Wenn wir die korrekte Funktionsweise unseres Programms gewährleisten wollen, müssen wir verhindern, dass solche direkten Abänderungen vorgenommen werden können.
+==== 
+
+[NOTE]
+====
+Ähnlich verhält es sich heutzutage bei vielen Motoren von Fahrzeugen etablierter Automobilhersteller. Anstatt beim Öffnen der Motorhaube Zugriff auf den gesamten Motor zu erhalten, befindet sich dort häufig ein versiegelter Motorblock mit einem Diagnoseanschluss. Nur der Ölstand und das Kühlwasser lassen sich noch regeln.
+
+Ähnlich sollte auch unsere Klasse in der Lage sein, interne Felder vor äußerem Zugriff zu Schützen, diese Informationen von der Außenwelt also zu kapseln.
+====
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Die Sichtbarkeit von Feldern und Methoden lassen sich über die Schlüsselwörter <code>public</code>, <code>private</code> und <code>protected</code> regeln, wobei wir zunächst die beiden zuerst genannten betrachten:</p>
+</div>
+<div class="paragraph">
+<p><code>public</code> bedeutet, dass auf diese Felder auch von außerhalb der Klasse zugegriffen werden kann, so wie es in den bisherigen Beispielen der Fall war. Mit Hilfe des Schlüsselworts <code>private</code> unterbinden wir den Zugriff von außen.</p>
+</div>
+<div class="paragraph">
+<p>So ändern wir</p>
+</div></div><div class="originaltext" hidden="">Die Sichtbarkeit von Feldern und Methoden lassen sich über die Schlüsselwörter `public`, `private` und `protected` regeln, wobei wir zunächst die beiden zuerst genannten betrachten:
+
+`public` bedeutet, dass auf diese Felder auch von außerhalb der Klasse zugegriffen werden kann, so wie es in den bisherigen Beispielen der Fall war. Mit Hilfe des Schlüsselworts `private` unterbinden wir den Zugriff von außen.
+
+So ändern wir </div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Loewe</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> String name<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">double</span> gewicht<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> String futterzeit <span class="token operator">=</span> <span class="token string">"13:00"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> String maehnenShampooMarke <span class="token operator">=</span> <span class="token string">"LeoGlanz Power 2"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> anzahlBeine <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+public class Loewe {
+
+    public String name;
+    public double gewicht;
+    public String futterzeit = "13:00";
+    public String maehnenShampooMarke = "LeoGlanz Power 2";
+    public int anzahlBeine = 4;
+....
+} 
+----
+
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>ab zu</p>
+</div></div><div class="originaltext" hidden="">ab zu</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Loewe</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">double</span> gewicht<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String futterzeit <span class="token operator">=</span> <span class="token string">"13:00"</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String maehnenShampooMarke <span class="token operator">=</span> <span class="token string">"LeoGlanz Power 2"</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> anzahlBeine <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+public class Loewe {
+
+    private String name;
+    private double gewicht;
+    private String futterzeit = "13:00";
+    private String maehnenShampooMarke = "LeoGlanz Power 2";
+    private int anzahlBeine = 4;
+....
+} 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>und schon ergibt</p>
+</div></div><div class="originaltext" hidden="">und schon ergibt</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">Loewe leo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Loewe</span><span class="token punctuation">(</span><span class="token string">"Leo"</span><span class="token punctuation">,</span><span class="token number">123.3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+leo<span class="token punctuation">.</span>anzahlBeine <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+Loewe leo = new Loewe("Leo",123.3);
+leo.anzahlBeine = 4;
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>eine Fehlermeldung, da auf das Feld <code>anzahlBeine</code> nicht von außerhalb der Klasse <em>Loewe</em> zugegriffen werden kann (die obigen Zeilen befinden sich in der Klasse <em>Zoohandlung</em>).</p>
+</div>
+<div class="paragraph">
+<p>Somit ist unser Feld vor unsachgemäßem Gebrauch hiermit geschützt.</p>
+</div>
+<div class="paragraph">
+<p>Aber bedeutet das, dass man die Anzahl der Beine nach einer Verletzung des Löwen nicht mehr ändern kann?</p>
+</div>
+<div class="paragraph">
+<p>Doch! Hierfür legt man beispielsweise gesonderte <em>Getter</em> und <em>Setter</em> fest.</p>
+</div></div><div class="originaltext" hidden="">eine Fehlermeldung, da auf das Feld `anzahlBeine` nicht von außerhalb der Klasse _Loewe_ zugegriffen werden kann (die obigen Zeilen befinden sich in der Klasse _Zoohandlung_).
+
+Somit ist unser Feld vor unsachgemäßem Gebrauch hiermit geschützt.
+
+Aber bedeutet das, dass man die Anzahl der Beine nach einer Verletzung des Löwen nicht mehr ändern kann?
+
+Doch! Hierfür legt man beispielsweise gesonderte _Getter_ und _Setter_ fest.</div></div></div>
 </body></html>
