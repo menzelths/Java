@@ -749,9 +749,8 @@ Sobald man eigene Konstruktoren für eine Klasse anlegt, sollte stets auch expli
 <p>Auch hier ist zu beachten, dass die Signaturen nicht identisch sein dürfen:</p>
 </div>
 <div class="paragraph">
-<p><code>public void bruelle(int dezibel)</code> und <code>public void bruelle(int dauer)</code> haben aus Sicht des Compilers identische Signaturen, da sie beide gleich heißen und jeweils genau einen Parameter vom Typ <code>int</code> erwarten.</p>
-</div></div><div class="originaltext" hidden="">
-Ebenso wie Konstruktoren lassen sich auch Methoden überladen: neben
+<p><code>public void bruelle(int dezibel)</code> und <code>public void bruelle(int dauer)</code> haben aus Sicht des Compilers identische Signaturen, da sie beide gleich heißen und jeweils genau einen Parameter vom Typ <code>int</code> erwarten. Das würde somit zu einem Compiler-Fehler führen.</p>
+</div></div><div class="originaltext" hidden="">Ebenso wie Konstruktoren lassen sich auch Methoden überladen: neben
 
 ----
 public void bruelle(int dezibel)
@@ -767,7 +766,7 @@ definiert werden.
 
 Auch hier ist zu beachten, dass die Signaturen nicht identisch sein dürfen:
 
-`public void bruelle(int dezibel)` und `public void bruelle(int dauer)` haben aus Sicht des Compilers identische Signaturen, da sie beide gleich heißen und jeweils genau einen Parameter vom Typ `int` erwarten.
+`public void bruelle(int dezibel)` und `public void bruelle(int dauer)` haben aus Sicht des Compilers identische Signaturen, da sie beide gleich heißen und jeweils genau einen Parameter vom Typ `int` erwarten. Das würde somit zu einem Compiler-Fehler führen.
 
 </div></div></div>
 <div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
@@ -838,14 +837,14 @@ Es ist nicht sinnvoll, dass andere Benutzer unseres Programms Felder von Objekte
 ====
 </div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Die Sichtbarkeit von Feldern und Methoden lassen sich über die Schlüsselwörter <code>public</code>, <code>private</code> und <code>protected</code> regeln, wobei wir zunächst die beiden zuerst genannten betrachten:</p>
+<p>Die Sichtbarkeit von Feldern und Methoden lassen sich über die <em>Sichtbarkeitsmodifikatoren</em> <code>public</code>, <code>private</code> und <code>protected</code> steuern, wobei wir zunächst die beiden zuerst genannten betrachten:</p>
 </div>
 <div class="paragraph">
 <p><code>public</code> bedeutet, dass auf diese Felder auch von außerhalb der Klasse zugegriffen werden kann, so wie es in den bisherigen Beispielen der Fall war. Mit Hilfe des Schlüsselworts <code>private</code> unterbinden wir den Zugriff von außen.</p>
 </div>
 <div class="paragraph">
 <p>So ändern wir</p>
-</div></div><div class="originaltext" hidden="">Die Sichtbarkeit von Feldern und Methoden lassen sich über die Schlüsselwörter `public`, `private` und `protected` regeln, wobei wir zunächst die beiden zuerst genannten betrachten:
+</div></div><div class="originaltext" hidden="">Die Sichtbarkeit von Feldern und Methoden lassen sich über die _Sichtbarkeitsmodifikatoren_ `public`, `private` und `protected` steuern, wobei wir zunächst die beiden zuerst genannten betrachten:
 
 `public` bedeutet, dass auf diese Felder auch von außerhalb der Klasse zugegriffen werden kann, so wie es in den bisherigen Beispielen der Fall war. Mit Hilfe des Schlüsselworts `private` unterbinden wir den Zugriff von außen.
 
@@ -940,8 +939,8 @@ Doch! Hierfür legt man beispielsweise gesonderte _Getter_ und _Setter_ fest.</d
 
 </div></div><div class="originaltext" hidden="">=== Getter und Setter</div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Bei Gettern und Settern handelt es sich um Methoden, die einen kontrollierten Zugriff auf private Felder erlauben. So könnte die Anzahl der Beine durch die folgenden Methoden gesetzt (Setter) und abgefragt werden (getter):</p>
-</div></div><div class="originaltext" hidden="">Bei Gettern und Settern handelt es sich um Methoden, die einen kontrollierten Zugriff auf private Felder erlauben. So könnte die Anzahl der Beine durch die folgenden Methoden gesetzt (Setter) und abgefragt werden (getter): </div></div></div>
+<p>Bei Gettern und Settern handelt es sich um Methoden, die einen kontrollierten Zugriff auf private Felder erlauben. So könnte die Anzahl der Beine durch die folgenden Methoden gesetzt (Setter) und abgefragt werden (Getter):</p>
+</div></div><div class="originaltext" hidden="">Bei Gettern und Settern handelt es sich um Methoden, die einen kontrollierten Zugriff auf private Felder erlauben. So könnte die Anzahl der Beine durch die folgenden Methoden gesetzt (Setter) und abgefragt werden (Getter): </div></div></div>
 <div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">private</span> <span class="token keyword">int</span> anzahlBeine <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
