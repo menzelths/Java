@@ -286,7 +286,87 @@ public class Main {
     
 } 
 ----</div></div></div>
-<div sb='EF' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<div sb='C' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Erstelle für die Zoohandlung die Klasse <em>Ort</em>, die als Felder den Gebäudenamen <em>gebaeude</em> und die Käfignummer <em>kaefig</em> (beide String) enthält und ergänze die Klasse für <em>Loewe</em> um das Feld <code>ort</code> vom Typ <em>Ort</em>. Denke auch an sinnvolle Konstruktoren und teste deine Klasse.</p>
+<div class="paragraph">
+<p><a href="#tags_g">Lösung</a></p>
+</div>
+</li>
+</ol>
+</div></div><div class="originaltext" hidden="">[start=3]
+. Erstelle für die Zoohandlung die Klasse _Ort_, die als Felder den Gebäudenamen _gebaeude_ und die Käfignummer _kaefig_ (beide String) enthält und ergänze die Klasse für _Loewe_ um das Feld `ort` vom Typ _Ort_. Denke auch an sinnvolle Konstruktoren und teste deine Klasse.
++
+&lt;&lt;tags_g,Lösung&gt;&gt; </div></div></div>
+<div sb='G' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>Ort.java:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Ort</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String gebäude<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String käfig<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> setGebä<span class="token function">ude</span><span class="token punctuation">(</span>String gebäude<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>gebäude <span class="token operator">=</span> gebäude<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String getGebä<span class="token function">ude</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> gebäude<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> setKä<span class="token function">fig</span><span class="token punctuation">(</span>String käfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>käfig <span class="token operator">=</span> käfig<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String getKä<span class="token function">fig</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> käfig<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Ort</span><span class="token punctuation">(</span>String gebäude<span class="token punctuation">,</span> String käfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>gebäude <span class="token operator">=</span> gebäude<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>käfig <span class="token operator">=</span> käfig<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Ort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">*Ort.java:*
+
+[source,java,indent=0]
+----
+public class Ort {
+    private String gebäude;
+    private String käfig;
+
+    public void setGebäude(String gebäude) {
+        this.gebäude = gebäude;
+    }
+
+    public String getGebäude() {
+        return gebäude;
+    }
+
+    public void setKäfig(String käfig) {
+        this.käfig = käfig;
+    }
+
+    public String getKäfig() {
+        return käfig;
+    }
+
+    public Ort(String gebäude, String käfig) {
+        this.gebäude = gebäude;
+        this.käfig = käfig;
+    }
+
+    public Ort() {
+    }    
+} 
+----</div></div></div>
+<div sb='EFG' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
 <p><a href="#tags_@">Zurück zu den Aufgaben</a></p>
 </div></div><div class="originaltext" hidden="">&lt;&lt;tags_@,Zurück zu den Aufgaben&gt;&gt;</div></div></div>
 </body></html>
