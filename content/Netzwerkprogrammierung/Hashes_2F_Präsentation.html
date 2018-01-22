@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/reveal.css'>
+<link rel='stylesheet' href='../../assets/css/serif.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/reveal.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+
+    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script><style>html{font-size:23px;}
+.reveal{font-size:23px;}
+</style></head><body><div class='reveal'><div class='slides'><section><div sb='@P' ft='='  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref18095898">Hashes und Zweifaktorauthentifizierung</h2>
+<div class="sectionbody">
+
+</div>
+</div></div><div class="originaltext" hidden="">== Hashes und Zweifaktorauthentifizierung
+</div></div></div>
+</section><section><section><div sb='P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref55695534">Seite zum Ausprobieren von Hash-Algorithmen</h3>
+<div class="paragraph">
+<p><a class="bare" href="http://www.xorbin.com/tools/sha256-hash-calculator">http://www.xorbin.com/tools/sha256-hash-calculator</a></p>
+</div>
+</div></div><div class="originaltext" hidden="">=== Seite zum Ausprobieren von Hash-Algorithmen
+
+http://www.xorbin.com/tools/sha256-hash-calculator </div></div></div>
+</section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref55237985">MD5</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Haus</p>
+<div class="paragraph">
+<p><code>ebacf61946ee81f386960ad2a09a147e</code></p>
+</div>
+</li>
+<li>
+<p>haus</p>
+<div class="paragraph">
+<p><code>195efe600e8ee7550c43b93116820275</code></p>
+</div>
+</li>
+<li>
+<p>Laus</p>
+<div class="paragraph">
+<p><code>c3694b483eed355a49954b09f345df09</code></p>
+</div>
+</li>
+</ul>
+</div>
+</div></div><div class="originaltext" hidden="">=== MD5
+
+* Haus
++
+`ebacf61946ee81f386960ad2a09a147e` 
+* haus
++
+`195efe600e8ee7550c43b93116820275`
+* Laus
++ 
+`c3694b483eed355a49954b09f345df09` 
+</div></div></div>
+</section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref55414827">SHA-1</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Haus</p>
+<div class="paragraph">
+<p><code>22b78e2d5e887ec315104ccbe9430c30ceeb82a3</code></p>
+</div>
+</li>
+<li>
+<p>haus</p>
+<div class="paragraph">
+<p><code>2b4e21824eae8daa555a12462de8ee95158d0167</code></p>
+</div>
+</li>
+<li>
+<p>Laus</p>
+<div class="paragraph">
+<p><code>26aff90edc2ce45c123b7bf55d215f0bbf9e5971</code></p>
+</div>
+</li>
+</ul>
+</div>
+</div></div><div class="originaltext" hidden="">=== SHA-1
+* Haus
++
+`22b78e2d5e887ec315104ccbe9430c30ceeb82a3` 
+* haus
++
+`2b4e21824eae8daa555a12462de8ee95158d0167`
+* Laus
++
+`26aff90edc2ce45c123b7bf55d215f0bbf9e5971` 
+</div></div></div>
+</section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref61296149">SHA-256</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Haus</p>
+<div class="paragraph">
+<p><code>50976ad58f5da02b7be89a224ef09b47ce3b5517623dd927576dc72ebca9214e</code></p>
+</div>
+</li>
+<li>
+<p>haus</p>
+<div class="paragraph">
+<p><code>1a21f58f9570039d5e23f3619c8e9749bca19443fda30d6ebe352a90e69777cc</code></p>
+</div>
+</li>
+<li>
+<p>Laus</p>
+<div class="paragraph">
+<p><code>e94a6083b91e11e50cbf911eef25c4fed3dd01c3848804801aa6b041fd2e76a3</code></p>
+</div>
+</li>
+</ul>
+</div>
+</div></div><div class="originaltext" hidden="">=== SHA-256
+* Haus
++
+`50976ad58f5da02b7be89a224ef09b47ce3b5517623dd927576dc72ebca9214e`
+* haus
++
+`1a21f58f9570039d5e23f3619c8e9749bca19443fda30d6ebe352a90e69777cc`
+* Laus
++
+`e94a6083b91e11e50cbf911eef25c4fed3dd01c3848804801aa6b041fd2e76a3` 
+</div></div></div>
+</section></section><section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">String passwort<span class="token operator">=</span><span class="token string">"passwort"</span><span class="token punctuation">;</span>
+InputStream stream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ByteArrayInputStream</span><span class="token punctuation">(</span>passwort
+        <span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span>StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// oder, um einen Hash für eine Datei zu bestimmen:</span>
+<span class="token comment" spellcheck="true">// InputStream stream = new FileInputStream("D:\\test.png");</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// SHA-1, MD5 oder SHA-256</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hash<span class="token punctuation">.</span><span class="token function">checksum</span><span class="token punctuation">(</span>stream<span class="token punctuation">,</span> <span class="token string">"SHA-256"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+            String passwort="passwort";
+            InputStream stream = new ByteArrayInputStream(passwort
+                    .getBytes(StandardCharsets.UTF_8));
+            // oder, um einen Hash für eine Datei zu bestimmen:
+            // InputStream stream = new FileInputStream("D:\\test.png"); 
+            try {
+                // SHA-1, MD5 oder SHA-256
+                System.out.println(Hash.checksum(stream, "SHA-256")); 
+            } catch (Exception e) {
+                e.printStackTrace();
+            } 
+----</div></div></div>
+</section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>InputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>DigestInputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>security<span class="token punctuation">.</span>MessageDigest<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>xml<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>DatatypeConverter<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Hash</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> String <span class="token function">checksum</span><span class="token punctuation">(</span>InputStream content<span class="token punctuation">,</span>
+            String hashFunction<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+
+        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">byte</span><span class="token punctuation">[</span><span class="token number">8192</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        MessageDigest md <span class="token operator">=</span> MessageDigest<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>hashFunction<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">try</span> <span class="token punctuation">(</span>DigestInputStream dis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DigestInputStream</span><span class="token punctuation">(</span>content<span class="token punctuation">,</span> md<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>dis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> DatatypeConverter<span class="token punctuation">.</span><span class="token function">printHexBinary</span><span class="token punctuation">(</span>md<span class="token punctuation">.</span><span class="token function">digest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div class="originaltext" hidden="">[source,java,indent=0]
+----
+import java.io.InputStream;
+import java.security.DigestInputStream;
+import java.security.MessageDigest;
+import javax.xml.bind.DatatypeConverter;
+
+public class Hash {
+    public static String checksum(InputStream content, 
+            String hashFunction) throws Exception {
+        
+        byte[] buffer = new byte[8192];
+        MessageDigest md = MessageDigest.getInstance(hashFunction);
+
+        try (DigestInputStream dis = new DigestInputStream(content, md)) {
+            while (dis.read(buffer) != -1);
+        }
+        return DatatypeConverter.printHexBinary(md.digest());
+    } 
+} 
+----</div></div></div>
+</section></section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><table class="tableblock frame-none grid-all">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-question-circle fa-3x"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Erkläre deinem Nachbarn den Unterschied zwischen Salt und Pepper.</p>
+</li>
+<li>
+<p>Erweitere dein Programm, das einen Benutzer auf korrekte Eingabe von Benutzernamen und zugehörigem Passwort überprüft, sukzessive um</p>
+<div class="ulist">
+<ul>
+<li>
+<p>gehashte Passwörter</p>
+</li>
+<li>
+<p>gehashte Passwörter mit Salt</p>
+</li>
+<li>
+<p>gehashte Passwörter mit Salt und Pepper</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table></div><div class="originaltext" hidden="">[%autowidth,frame=none , cols=2  ]
+|===
+ 
+|icon:question-circle[3x,role=red]  
+a| * Erkläre deinem Nachbarn den Unterschied zwischen Salt und Pepper.
+* Erweitere dein Programm, das einen Benutzer auf korrekte Eingabe von Benutzernamen und zugehörigem Passwort überprüft, sukzessive um
++ 
+** gehashte Passwörter
+** gehashte Passwörter mit Salt
+** gehashte Passwörter mit Salt und Pepper  
+|===</div></div></div>
+</section><section><section><div sb='@P' ft='+'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref67487048">Zwei-Faktor-Authentifizierung</h3>
+
+</div></div><div class="originaltext" hidden="">=== Zwei-Faktor-Authentifizierung
+</div></div></div>
+</section><section><div sb='@P' ft='++'  class='zeichenflaeche tshareElement' onClick='nextLayer(this)' ><svg xmlns="http://www.w3.org/2000/svg" class="qreator_svg" viewBox="0 0 998 599.694" width="100%" height="100%" breitegesetzt="998" hoehegesetzt="599.6935282776301" heightoriginal="701"><g id="global" fill="none" stroke-linecap="round"><g id="layer_2"><path stroke="#000000" stroke-width="2" d="M 148.3 77.1 c 0 33.8 0 67.7 0 101.6 c 92.5 0 185 0 277.6 0 c 0 -33.8 0 -67.7 0 -101.6 c -92.5 0 -185 0 -277.6 0 M 236.7 28.3 c 0 -3.6 -10.1 4.3 -11.1 6.3 c -2.6 5.3 7.7 6.7 6.4 10.8 c -0.4 1.3 -3.6 2.4 -4.8 2.7 c -4.7 1.5 -11.1 0.5 -11.1 -5.6 M 244.3 45.1 c 1.8 -0.9 2.7 -1.5 4.3 -2.7 c 6.3 -4.7 2.4 -12 -4.3 -5.2 c -1.4 1.4 -2.3 4.3 -2.8 6 c -0.4 1.9 -3.3 5.7 -0.3 7.2 c 1.3 0.6 2.9 -1 4 -1.6 c 3.3 -1.6 5.9 -5.8 9.5 -6.7 c 3.6 -0.9 2.4 5.2 2.3 5.1 c -5.5 -5.5 3.9 -11.5 9.2 -11.5 M 273.6 41.1 c 2 -6 -0.9 10.4 3.1 8.4 c 3.7 -1.8 4.3 -10.2 6 -13.6 M 285.6 46.3 c 5.1 0 13.3 -8.2 9.1 -12.3 c -1.5 -1.5 -4.4 1.6 -5.1 2.3 c -1.9 1.9 -6.2 13.5 -1.2 15.2 c 3.9 1.3 9.2 -5.6 12.3 -7.2 c 2.9 -1.4 3.1 2 4.8 2 c 0.1 0 -0.5 -2.7 -0.8 -3.2 c -0.6 -1.3 -0.6 -3.6 0 -5.1 c 1.5 -3.9 6.9 -3.2 10.3 -3.2 M 909.5 182.3 c 1.4 0.7 1.5 0.7 2.7 0.7 M 650.7 76.7 c 0 33.4 0 66.9 0 100.3 c 82.9 0 165.8 0 248.7 0 c 0 -33.4 0 -66.9 0 -100.3 c -82.9 0 -165.8 0 -248.7 0 M 715.2 30.3 c -1.9 -0.9 0.7 -2.7 0.7 -2.7 c 0 0 -2 3.3 -2.4 5.1 c -0.8 4 -2.3 7.9 -3.2 12 c -0.4 2.4 0 5.3 -1.1 7.6 M 709.2 43.6 c 3.2 0 8.5 0.3 11.5 -1.2 M 723.5 25.1 c -1.9 1.9 -0.8 4.1 -1.5 8 c -1.1 5.9 -3.6 13.6 -3.6 19.6 M 742 36.7 c 0 -0.7 -3.3 -1.4 -4 -0.7 c -2.5 2.5 -8.4 5.7 -8.4 10.7 c 0 0.2 -0.8 3.7 -0.3 4 c 2.8 1.4 7.5 -6.9 8.7 -8.7 c 0.2 -0.3 2 -3.6 2 -3.6 c 0 0 -0.4 2.2 -0.4 2.3 c 0 1.7 -2.8 5.9 -1.2 7.6 c 0.7 0.7 2.4 -1.2 2.8 -1.6 c 1.2 -1.5 4.2 -8 6.7 -8 c 0.6 0 -2.2 8 -2.4 8.3 c 0 0 -0.7 2 -0.3 2 c 0.3 0 2.1 -2.4 2.3 -2.7 c 1.1 -1.7 6 -10.3 8.4 -9.2 c 0.5 0.2 -0.3 2.8 -0.4 3.2 c -0.3 1.3 -2.8 12 0 12 M 769.5 38.7 c 2.5 -2.5 -1.6 -2.9 -3.5 -2 c -2.7 1.3 -6 6.9 -6 10 c 0 0.6 -0.6 3.2 0 3.6 c 1.7 0.8 3.5 -1.8 4.3 -2.7 c 4.2 -5 6 -10.8 8.8 -16.8 c 1 -2.2 2.2 -4.4 2.7 -6.7 c 0 -0.2 1.4 -3.6 0.7 -3.6 c -0.9 0 -3 6.6 -3.2 7.2 c -1.8 5.6 -3.6 10.1 -4.7 16 c -0.2 1.4 -0.9 3.3 0 4.7 c 1.7 2.6 7.5 -6.3 8.4 -7.6 c 0.1 -0.2 0.7 -2.7 0.7 -2.7 c 0 0 -2.4 6.2 -1.6 8 c 0.5 1 2.6 1.1 3.2 0 c 0.9 -1.9 6 -5.1 6 -8 c 0 -0.4 -0.3 0.7 -0.3 1.1" /><path stroke="#000000" stroke-width="2" d="M 785.2 39.1 c -0.2 1.3 -0.6 2.3 -1.2 3.6 c -1.4 3.5 -2.5 7.2 -4 10.8 c -1.8 4.5 -5.3 11.5 -9.6 14.3 c -4.9 3.2 -7.2 -1.1 -5.1 -5.2" /></g><g id="layer_3" visibility="hidden"><path stroke="#0000ff" stroke-width="2" d="M 495.1 49.6 c 0 -6.4 -8.9 -1.6 -11.1 1.1 c -4.1 5.2 -8.3 10.9 -10 17.6 c -2.6 10.4 10.6 8.1 15.1 3.6 M 508 62.7 c -0.7 -0.7 -0.7 -1.9 -1.6 -2.3 c -3.9 -1.9 -7.4 8.1 -7.9 10.3 c -0.3 1.5 -1.1 4.9 0.7 5.6 c 1.7 0.5 3 -0.8 4 -2 c 1.6 -2 2.5 -3.4 3.1 -6 c 0.4 -1.7 -0.5 -5.4 0.8 -6.7 c 2 -2 7.5 -1.7 10.7 -2.8 c 0.1 0 3.5 -1.1 3.5 -1.1 c 0 0 -4.2 1.6 -4.7 2 c -3.2 2.1 -5.4 6.9 -6.7 10.3 c -0.3 0.9 -2.7 6 0 6 c 1.5 0 3.4 -2.5 4.3 -3.6 c 3.9 -4.5 7.4 -11.5 9.6 -17.2 c 0.9 -2.4 1.7 -5.1 2.3 -7.5 c 0 -0.1 1.4 -3.2 1.2 -3.2 c -0.7 0 -2.2 6.2 -2.3 6.7 c -1.9 5.8 -5.3 10.9 -6 17.2 c -0.1 1.5 -1.2 4.9 0.7 6 c 0.8 0.4 2.4 -1.3 3.2 -1.6 c 3.8 -1.2 7.5 -7.1 10 -10.3 c 0.4 -0.6 3.1 -3.6 2 -4.7 c -1.5 -1.5 -3.8 0.4 -4.8 1.5 c -2.7 3.3 -5.5 6.3 -5.5 11.2 c 0 1.9 0.7 4.3 3.2 4.3 c 1.3 0 3.8 -1.4 5.2 -2 M 551.5 67.6 c 0 0.9 13.3 -7.9 7.6 -10.8 c -1.2 -0.6 -3.9 1.9 -4.8 2.8 c -2.6 2.6 -6.4 11.7 -2 14 c 3 1.5 6.3 -1.9 8.8 -2.8 c 1.2 -0.4 3.5 -1.9 5.1 -1.1 c 0.4 0.2 0.8 2 0.8 2 c 0 0 -0.6 -5.9 -0.4 -6.8 c 1.1 -3.5 3.2 -5.6 7.2 -5.6 M 586 60 c -3 0 -12.1 1.2 -9.2 7.1 c 0.8 1.6 3.3 4 2.4 6 c -0.8 1.6 -8.9 1.7 -6.8 -0.3 M 593.5 40.7 c 0 8.1 -2.8 16.8 -4.7 24.8 c -0.5 2.2 -1.4 4.5 -2 6.7 c 0 0.2 -1.4 4.5 -1.5 4.3 c -0.7 -0.7 0.6 -4.3 0.7 -5.1 c 1 -5.4 9.1 -3.9 13.2 -8 c 1.8 -1.8 5.5 -6.8 2.3 -8.4 c -1.1 -0.5 -3.1 1.6 -3.5 2.4 c -2.3 3.5 -4 9.3 -4 13.5 c 0 1.1 0.8 4.9 2.7 4 c 7.5 -3.7 12.6 -17.6 15.5 -24.7 c 0 -0.1 3.4 -9.3 2.8 -10 c -0.7 -0.7 -1.4 1.2 -1.6 1.6 c -1.3 3.2 -2.3 6.7 -3.5 10 c -2.2 6 -2.8 12.1 -4.4 18.3 c -0.3 1.4 -0.5 5 1.2 5.6 c 2 0.6 6 -6.4 6.7 -8 c 3.6 -8 10.4 -19.8 10.4 -28.3 c 0 -0.4 -0.2 0.7 -0.4 1.1 c -0.2 0.7 -0.5 1.5 -0.7 2.3 c -0.5 1.5 -0.8 3.2 -1.5 4.8 c -2.9 5.9 -4.1 12.4 -6 18.7 c -0.1 0.4 -1 5.2 0.3 5.2 c 4.2 0 10.4 -8.6 12.4 -11.6 c 0.6 -0.9 3.8 -4.2 2 -5.2 c -4.4 -2.2 -10.4 9.4 -10.4 12.8 c 0 1.5 -1.2 4.9 0.7 5.6 c 3.3 1.1 8.3 -7.1 10 -8.8 c 0.4 -0.4 2.2 -4.1 2.8 -3.6 c 1 1 -1.5 6.6 -2 7.6 c -0.3 0.7 -1.2 2.3 -0.4 2.3 c 1.5 0 5.1 -5.2 6 -6.3 c 0.1 -0.1 1.1 -2.4 1.5 -2" /><path stroke="#0000ff" stroke-width="2" d="M 638.3 62.7 c 0.4 0.4 -1 3.4 -1.1 4 c -0.4 2.2 -0.9 7 0.7 8.8 M 462 111.1 c 2.4 -2.4 -4.3 9.6 -1.6 12.4 c 0.6 0.6 2.9 -1.5 3.1 -2 c 2.3 -3.4 5.9 -6.9 7.2 -10.8 c 0.2 -0.8 1.2 -2 1.6 -2.7 c 0.2 -0.5 0.7 -2.1 0.7 -1.6 c 0 0.8 -1.6 3.2 -2 4 c -1.3 3 -5.3 13.1 -2 14.7 c 1.1 0.5 2.8 -2.5 3.2 -3.1 c 1.8 -3.1 3.2 -8.8 5.6 -11.2 c 0.4 -0.4 0.1 4.2 0 4.8 c -0.8 2.4 -1.2 6.1 -1.2 8.7 c 0 0.7 0.4 -1.3 0.7 -2 c 0.5 -0.8 0.9 -1.8 1.2 -2.7 c 0.5 -1.8 3.9 -9.2 6 -9.2 c 1.3 0 0.3 2.8 0 3.6 c -0.7 1.5 -2.8 9.5 -1.2 11.1 M 502.7 112.7 c 0 -0.3 2.3 -2 1.2 -3.1 c -2.2 -2.2 -6.2 3.3 -7.2 4.7 c -1.3 2 -2 4.6 -2.7 6.7 c -0.1 0.3 -0.2 2.6 0.3 2.4 c 7.2 -2.4 9.3 -17 10.8 -22.8 c 0.5 -2 1.1 -4.3 1.1 -6.3 c 0 -1 1.4 -3.2 0.4 -3.2 c -1.3 0 -2.4 5.5 -2.7 6.4 c -2.7 6.3 -4.4 13 -4.4 20 c 0 3 0.2 6.8 3.6 6 M 535.5 112 c 1 -1 0.2 -3.3 -1.5 -2.3 c -2.1 1 -3.8 2.6 -5.6 4.3 c -2.6 2.6 6.4 5.9 5.6 7.6 c -1.3 2.6 -3.7 2.3 -6.4 2.3 c -0.6 0 -2.3 0.3 -2.3 -0.3 M 542.3 110.7 c -3.5 7.1 -3.8 16.8 -6 24.8 c -0.3 1.3 -1 7 -2 8 c -0.4 0.4 -0.3 -3.7 -0.3 -4 c 0 -1.7 0.2 -4.3 0.7 -6 c 2.1 -6.3 4 -11.3 7.5 -17.2 c 0.5 -0.9 4.8 -7.9 6.4 -6.3 c 0.6 0.6 0.1 2.5 0 3.1 c -0.6 4 -2 10 -6.7 11.6 c -1 0.3 -5.2 0.8 -3.2 -1.1 M 553.2 120.7 c 0 -0.2 2.2 -1.6 2.7 -2 c 1.3 -0.8 9.8 -7.3 7.2 -10 c -1.8 -1.8 -4.6 0.6 -6 2 c -2.3 2.3 -7.4 13 -3.2 15.2 c 4.9 2.4 11.1 -9.2 13.5 -11.6 c 0.4 -0.4 3.2 -4.7 3.2 -4.7 c 0 0 -2.1 2.6 -2.4 3.1 c -0.8 1.6 -4.9 11 -3.1 12.8 c 0.3 0.3 1.3 -0.9 1.5 -1.2 c 2.3 -2.3 2.6 -4.9 4.4 -7.6 c 0.8 -1.2 3.4 -4.9 4.7 -5.6 c 0.2 -0.1 3.5 -0.8 2.7 -1.5 c -0.3 -0.3 -3.6 2.7 -4 3.1 c -2.1 3.1 -5.2 8.7 -2.4 11.6 c 1.7 1.7 6.2 -3.8 6.8 -4.7 c 3.8 -6.8 7.4 -12.8 10 -20.4 c 0.2 -0.7 2.9 -5.5 2 -6 c -0.8 -0.4 -3.6 8.6 -4 9.6 c -1.8 5.4 -4.8 11.4 -4.8 17.2 c 0 0.8 -1 3.7 -0.3 4.3 c 0.3 0.3 1.6 -2 2 -2.3 c 1.3 -1.3 4.6 -8.8 6.7 -8.8 c 0.9 0 0 2.6 0 2.8 c -0.3 1.5 -3.1 8.7 0.4 8.7 c 3.4 0 8.7 -5.7 10.7 -8.7 c 0.9 -1.4 3.4 -3.3 2 -4.8 c -4 -4 -11.7 9.7 -7.2 12 c 5.1 2.5 12.1 -0.7 14.4 -5.1 c 0.7 -1.4 -2.8 -6.3 -2 -7.2" /><path stroke="#0000ff" stroke-width="2" d="M 609.2 110.7 c 1.2 -1.2 5.1 -2.3 7.1 -2.3 M 618.3 108 c 0 3.7 -2.1 8 -3.5 11.6 c -0.1 0.3 -0.7 4.3 -0.7 4.3 c 0 0 2.1 -2.8 2.3 -3.2 c 1.8 -2.7 3.1 -5.4 5.2 -8 c 0.3 -0.3 2.2 -2.5 2.7 -2 c 1.4 1.4 -1.2 7.7 -1.5 9.6 c -0.2 1.3 -0.9 4.4 1.5 3.2 M 567.2 101.6 c 0.3 -0.6 1.1 -1.2 1.1 -1.6" /><path stroke="#ff0000" stroke-width="2" d="M 194.3 116 c -4 8.5 -8 17 -12 25.6 M 194.3 116 c 0 1.6 1.2 3.1 1.6 4.7 c 0.9 4.7 -0.7 10.1 0.3 14.8 c 0.4 1.8 1.1 4.6 1.1 6.3 M 188.3 132.3 c -4.6 0 5.8 -1.6 7.6 -1.6 M 210 123.1 c 0 -2.4 7.1 -5.6 9.1 -1.5 c 0.1 0.3 -1.5 2.2 -2 2.7 c -1.5 2 -4.5 4.5 -5.1 7.2 c -0.9 3.7 6 5.1 4.3 8.3 c -2 4.1 -7.2 4.3 -10 1.6 M 235.1 120.3 c 0 -2.9 8.1 -2.2 7.1 1.6 c -1.1 4.4 -8 8.9 -10.8 12.7 c -0.4 0.5 -2.6 4.5 -1.5 5.6 c 2.1 2.1 8 -1.2 10.7 -1.2 M 259.6 121.6 c -1.6 6.5 -3.2 13 -4.8 19.5 M 251.1 125.6 c -3.5 0 3.1 -4.5 3.6 -4.8 c 4.1 -2 9.2 -3.1 12.3 0 c 0.4 0.4 -1.1 2.5 -1.5 2.8 c -3 2 -5.5 4.8 -7.6 7.5 c -2.7 3.6 8.2 3.5 6 8 c -1.3 2.6 -7.9 2.8 -10.3 2.8 c -1.2 0 -6.3 0.7 -4 -1.6 M 284.3 120.3 c -1.7 7.3 -3.4 14.6 -5.2 22 M 274.3 122 c 4.5 -4.5 15.7 -7.2 22 -7.2 M 276.3 130.7 c -3.6 3.6 7.6 -0.2 10.3 -1.1 M 310.3 120.7 c 0 -2.4 -1.2 3.1 -1.6 4.3 c -1 4.3 -2.7 9.2 -2.7 13.6 M 301.6 125.1 c 0 -2.4 4.9 -4.8 7.1 -5.5 c 5.5 -1.8 9.3 0 10.3 6 c 1 6.3 -7.1 12.9 -11.1 16.3 c -1.7 1.5 -4.8 4.2 -7.6 3.6 c -2.3 -0.5 -0.4 -3.7 0.7 -4.4 M 331.1 121.6 c 1 0 0.4 -2 1.2 -2.8 c 1.2 -1.2 5.9 1.1 6.3 1.6 c 1.4 1.4 -0.7 4.3 -1.6 5.6 c -2.7 4.1 -6.6 7 -9.5 10.7 c -3.5 4.4 2.4 5.5 6 4.8 c 1.8 -0.3 2.9 -0.5 4.7 -1.2 M 346.7 122 c -1.1 -1.1 1.8 -2 2.8 -2.3 c 2.3 -0.7 6.1 0 7.1 2 c 0.6 1.3 -0.9 3.7 -1.6 4.7 c -1.7 2.6 -2.9 6.8 -4 10 c -0.2 0.7 -2.8 4.3 -1.5 4.3 M 346.7 133.1 c 1.4 0 10.1 -0.9 11.2 -2 M 371.6 136 c -1.1 1.1 3.1 -3.1 4 -4 c 3.5 -3.5 6.6 -7.2 9.5 -11.2 c 0.3 -0.4 2 -4.7 2 -4.7 c 0 0 -1.1 5.5 -1.1 5.6 c -1.2 5 -3.9 9.8 -5.2 14.7 c -0.2 1.1 -0.2 4.6 -0.7 5.2 M 402.3 118 c -1.9 0 -2.3 0.7 -4 1.6 c -7.2 3.6 -0.5 11.2 1.2 16.3 c 1.4 4.2 -6 7.8 -9.2 6.7 c -2.8 -0.9 1 -6 2 -7.1 c 3.8 -4.5 12.1 -7.1 14.7 -12.4 c 2.5 -5 -2.3 -5.1 -5.1 -5.1 M 696.3 116.3 c 0 -1 -0.6 0.1 -1.1 -0.3 c 0 0 1.1 -0.8 1.1 -0.8 c 0 0 -2.4 3.1 -2.7 3.6 c -3.3 4.4 -5.5 9.2 -8.3 14 c -1 1.8 -3.6 5.1 -3.6 7.2 M 695.2 116 c -2.2 0 0.7 -0.8 0.7 -0.8 c 0 0 0 1.3 0 2.4 c 0 6.2 0.7 11.8 1.5 18 c 0.3 2.3 2.5 4.2 0.7 6 M 686.3 133.1 c -0.3 0.3 8.8 -4.3 10.8 -2.3" /><path stroke="#ff0000" stroke-width="2" d="M 710 121.6 c 1.5 -0.7 1.2 -1.6 2.7 -2.4 c 1.5 -0.7 7.9 -0.1 7.2 2 c -0.8 2.5 -2.7 4.2 -4.7 6 c -0.5 0.4 -3.3 1.8 -3.6 2.8 c -0.9 3.9 10.3 2.8 9.2 6.3 c -0.9 2.7 -6.9 4.2 -9.5 4.7 c -1.2 0.2 -4.4 1.3 -4.4 -0.7 M 737.2 120.7 c 0 -4.4 8.9 -5 7.5 0.3 c -1.2 5.1 -8.4 9.4 -11.2 14 c -0.9 1.5 -3.2 2 -4 3.6 c -0.8 1.6 2.8 1.7 3.6 1.6 c 2.3 -0.4 8.4 -0.8 10 -2.3 M 762 120 c -1.8 6.5 -3.7 13 -5.6 19.6 M 754.3 124.3 c 0 -5.2 11.7 -10.6 16 -6.3 c 1 1 -1.7 3.1 -2.3 3.6 c -1.7 1.3 -9.6 6.8 -9.6 9.1 c 0 1.8 12.5 1 10 4.8 c -1.4 2.1 -9 5 -11.5 4.3 c -0.6 -0.1 -5.7 -2.3 -3.5 -2.3 M 789.2 120.7 c 1.6 -1.6 -1.2 3.4 -2 5.2 c -2 4.5 -1.7 9.5 -4 14 M 782 123.1 c -1.8 0 4.1 -0.4 5.2 -0.7 c 3.6 -1.2 7.9 -2.3 12 -2.3 M 780.3 130 c -1 0.5 7.8 -0.3 10 -0.3 M 810 122.7 c -0.9 0.9 -0.8 2.8 -1.2 4 c -1.2 3.6 -3.2 8.8 -3.2 12.8 M 804.7 124.7 c -5.3 -5.3 14.8 -8.5 12.3 2.3 c -1.2 5.5 -7.1 11 -12.3 12.8 c -1.5 0.5 -9.6 3.2 -6.7 0.3 M 826 123.6 c 0 -2.6 6.4 -7.1 8.7 -4.8 c 0.8 0.8 2 2 2.7 2.8 c 1.1 1.1 -1.8 3.8 -2.4 4.3 c -3.3 3.3 -6.7 6.5 -10 10.3 c -0.6 0.7 -2.9 3.2 -2.3 4.3 c 0.5 1 3.2 0.1 4 0 c 2.9 -0.7 6.8 -2.3 10 -2.3 M 843.5 123.1 c 2.8 -2.8 9.7 -4.5 8.4 2.4 c -0.9 4.9 -5.2 12.2 -8 16.3 M 840.3 135.6 c 0.9 0 2.1 -1.3 3.6 -1.6 c 3.3 -0.6 7.7 0 10.7 -1.6 M 862.3 135.6 c -0.7 0 -2.3 1.5 -1.5 1.5 c 1.3 0 3 -3.2 3.5 -4 c 2.1 -3 5.4 -5.2 7.6 -8.3 c 0.3 -0.5 3.1 -6 3.1 -6 c 0 0 -0.7 3.1 -0.7 3.2 c 0 3 -2.9 5.7 -3.5 8.7 c -0.5 2.7 -0.4 8 -2.4 10 M 887.1 121.6 c 1 -2.1 -6 -0.7 -7.1 1.5 c -0.7 1.5 1.5 5.1 2.3 6.4 c 1.6 2.4 2.9 7.8 2 10.7 c -0.9 2.7 -5.9 6.7 -8.7 4 c -1.5 -1.5 0 -5.5 1.2 -6.7 c 3.9 -3.9 10.9 -7.4 14 -12 c 0.7 -1.1 1.8 -2 2.3 -3.2 c 0.8 -1.6 -0.9 -3.4 -2.3 -2" /></g><g id="layer_4" visibility="hidden"><path stroke="#0000ff" stroke-width="2" d="M 445.1 265.6 c 1.3 -1.3 -3.1 13.1 1.6 10.7 c 1.8 -0.9 3.3 -3.9 4.3 -5.6 c 3.3 -5.3 7.6 -11.4 9.2 -17.6 c 0.6 -2.5 1.3 -5 2 -7.5 c 0.2 -1.1 0.6 -2.1 1.1 -3.2 c 0 -0.1 0.3 -1.6 0.4 -1.6 c 1.1 1.1 -0.1 4.2 -0.4 5.6 c -1 6.4 -2.3 13.9 -2.3 20.3 c 0 0.9 0 7.6 -1.1 7.6 c -0.4 0 -1 -3.6 -1.2 -4 c -0.6 -2 -2.5 -8.7 -6 -8.7 c -1.2 0 -0.2 2.5 0.3 3.1 c 1 1 3.2 2.4 5.2 2 c 2.1 -0.5 8.2 -5.8 9.1 -5.1 c 1.3 0.9 0.5 7.2 0 8.7 c -0.1 0.4 -1.6 3.2 -0.7 3.2 c 0.5 0 0.5 -2.2 0.7 -2.8 c 0.9 -2.4 3.4 -6.1 5.6 -7.6 c 0.3 -0.2 1.9 -2.4 2.3 -2 c 0.6 0.6 -1.7 9.3 -2 10.4 c -0.1 0.6 -0.4 2.7 0.4 2.7 c 1.6 0 4.4 -6.4 5.1 -7.6 c 0 -0.1 1.3 -3.1 2 -3.1 c 0.6 0 0 1.3 0 2 c 0 2.5 -1.6 5 -2 7.5 c -0.1 0.9 -1.3 2.8 -0.3 2.8 c 3.3 0 4.4 -10.3 7.2 -10.3 c 0.3 0 -0.7 8 -1.2 8 c -1.1 0 1.4 -1.7 2 -2.8 c 0.6 -1.3 3.9 -6.3 5.2 -6.3 c 0 0 -0.3 2.5 -0.4 2.7 c -0.5 1.7 -3.1 8.4 0.4 8.4 M 498 270 c 0 -0.9 5.7 -4.5 6.7 -5.6 c 1.1 -1.1 2.7 -5.2 0 -5.2 c -4.4 0 -7.6 9 -7.6 12.8 c 0 1.2 -0.9 6.1 2 5.1 c 3.3 -1.1 5.1 -5 7.1 -7.5 c 4.7 -5.7 7.3 -12.8 10.4 -19.6 c 0.4 -0.9 3.6 -8.3 3.5 -8.3 c -0.8 -0.8 -2.9 4.9 -3.1 5.5 c -2.2 6.8 -4.8 12.8 -5.6 20 c -0.1 1.7 -0.4 6.8 2.4 4 M 529.2 260.7 c 0 -3.3 -3 -1.8 -5.2 -0.7 c -2.4 1.2 -4.4 5.9 -4.4 8.3 c 0 1.1 -1.3 3 0.4 3.6 c 2 0.6 4.3 -3.7 5.2 -4.8 c 3.8 -5.1 6 -11.6 8.3 -17.5 c 0.2 -0.7 2 -6.8 2 -6.8 c 0 0 -2.5 5.6 -2.7 6.3 c -2.5 6.6 -3.4 13.1 -4.7 20 c -0.1 0.9 -1.1 5.6 0.7 5.6 c 0.5 0 2.1 -2.7 2.4 -3.1 c 1.5 -3.1 4.4 -5.6 6 -8.8 c 0.1 -0.2 1.8 -3.7 1.5 -4 c -0.6 -0.6 -2.5 2.9 -2.7 3.6 c -0.8 2.4 -3.2 9.1 -1.2 11.2 c 1.1 1.1 4.3 -2.3 4.7 -2.8 c 2.6 -2.6 4.3 -6.2 6 -9.6 c 0.2 -0.4 1.6 -2.7 1.6 -2.7 c 0 0 -1.7 2.2 -2 2.7 c -0.6 1.6 -4.6 9.8 -2 11.2 c 1.3 0.6 6 -8.4 6.3 -9.2 c 0.3 -0.6 1 -2.1 1.6 -1.5 c 0.5 0.5 -0.2 2.6 -0.4 3.1 c -0.8 2.5 -2 6.4 -2 8.8 c 0 1.3 0.8 -2.5 1.5 -3.6 c 0.6 -1 6.3 -9.6 7.6 -8.3 c 0.3 0.3 -1 2.8 -1.2 3.1 c -0.4 1.4 -3.1 8.8 -0.4 8.8 M 569.5 265.1 c 0 -0.4 1.7 -3.4 0.7 -4.3 c -2.7 -2.7 -10.4 9.3 -6.7 11.2 c 2.6 1.3 6.8 -5.2 7.6 -6.8 c 0.1 -0.3 1.7 -4.2 -0.4 -3.1" /><path stroke="#0000ff" stroke-width="2" d="M 570.7 262 c -1.4 0.7 -1.7 5.5 -2 6.7 c -1.2 6.7 -2.1 14.2 -5.2 20.3 c -2.3 4.7 -13.5 12.9 -13.5 3.6 M 594.3 260.7 c 0 -2.9 2.7 -3.8 4.8 -2.7 c 0.5 0.2 1.8 1.7 1.1 2.3 c -2.9 2.9 -8.4 6 -10.3 10 c -1.5 3.1 -1.6 4.9 2.3 4.3 c 1.3 -0.1 2.3 -0.8 3.6 -1.1 c 1.8 -0.5 3.4 -1.1 5.2 -2 M 590.3 269.1 c -0.6 0 -1.3 0 -2 0 c -0.6 0 1.3 -0.2 2 -0.3 c 1.4 -0.3 2.5 -0.9 4 -1.1 c 2.2 -0.3 12 -3.4 12 -5.6 c 0 -1.5 -2.4 0.6 -2.7 1.6 c -0.7 2.2 -1.9 4.3 -2.3 6.7 c 0 0.5 -0.2 3.6 0.7 3.6 c 3.1 0 6.7 -5.5 8.3 -8 c 0.6 -0.9 1.3 -1.8 2 -2.8 c 0.3 -0.4 1.2 -2 0.8 -1.5 c -2.4 2.4 -7.8 14.7 -2.4 14.7 M 445.1 322.3 c -0.6 0 3.4 -3.2 4.3 -4 c 2.4 -1.9 6.6 -7.7 4 -10.3 c -1 -1 -4 1.8 -4.3 2.7 c -1 3.1 -7.7 12.5 -2.3 15.2 c 4.3 2.1 12 -8.4 12.7 -11.6 c 0.1 -0.7 3.1 -4 2.4 -4.7 c -0.6 -0.6 -2.1 3.4 -2.4 4 c -0.8 1.7 -4.3 9.8 -1.5 11.1 c 1.1 0.5 2.2 -1.8 2.7 -2.3 c 1.8 -1.8 3.7 -6.5 5.2 -8.7 c 0.2 -0.4 0.8 -2.4 1.5 -2.4 c 1 0 -0.4 2.1 -0.7 3.2 c -0.7 2.3 -0.4 5.3 -1.6 7.6 c -0.2 0.4 -1.1 3.1 -0.7 2.7 c 2.6 -2.6 3.8 -9.5 8 -11.6 c 0.3 -0.1 2 -1.9 2.3 -1.5 c 0.7 0.7 -2.4 9.6 -2.7 10.7 c -0.2 0.6 -1 3.4 0 4 c 0.6 0.3 3.7 -1.9 4.3 -2.3 c 3.4 -2.3 7 -6.9 8.7 -10.3 c 0.2 -0.5 1.9 -2.1 1.6 -2.8 c -0.4 -0.9 -3.5 -1.2 -4.3 -0.3 c -3 3 -4.9 7.2 -6 11.6 c -0.2 1 -1.1 3.6 0 4.3 c 2.8 1.8 9.9 -7.9 11.1 -9.6 c 0.5 -0.7 3.6 -3.6 3.6 -3.6 c 0 0 0 1.5 0 1.6 c -1.2 2.4 -2.4 4.6 -3.1 7.6 c -0.2 1.1 -2.7 3.2 -1.6 3.2 c 1 0 1.3 -1.5 2 -2.4 c 1.2 -1.6 5.4 -9.8 7.6 -8.7 c 1.7 0.8 -0.7 6.3 -1.2 7.6 c 0 0.2 -0.3 2.7 -0.3 2.7 c 0 0 1.4 -2 1.6 -2.3 c 0.4 -1.4 5.7 -9 6.7 -8 c 0.2 0.2 -1 3 -1.2 3.6 c -1.3 3.9 0.8 7.1 4.7 7.1 c 0.8 0 1.6 -0.7 2.4 -1.1 M 468.7 295.6 c -1.2 -0.6 -3 0 -0.7 0 M 530 298.3 c 0.1 -0.3 0.7 -4 0.7 -4 c 0 0 -1.1 6.1 -1.2 6.3 c -0.9 5.1 -1.7 14.9 -5.5 18.8 c -0.3 0.3 1.4 -2.3 2 -3.2 c 1.1 -1.6 5.2 -5.1 6.7 -2 c 1.5 3.1 -8.4 9.8 -8.4 3.6 M 535.5 317.1 c 0.5 0 1 0.9 1.6 0.8 c 2.9 -0.5 11.5 -5.2 8.3 -8.3 c -1.2 -1.2 -3.8 0.2 -4.7 1.1 c -3.7 3.7 -8.8 17 1.2 12 c 1.2 -0.6 2.5 -1.3 3.5 -2.3 M 557.5 310.3 c 0.7 -3.7 -5.6 -2.3 -6.7 0" /><path stroke="#0000ff" stroke-width="2" d="M 550.7 310.3 c -1 2.1 7.7 5.8 5.5 8 c -1.6 1.6 -9.7 4.1 -9.1 3.6 M 569.2 298.3 c 0.1 -0.3 1.5 -3.6 1.1 -4 c -0.4 -0.4 -1 1.2 -1.1 1.6 c -1 3.1 -1.6 6.7 -2.4 10 c -1.3 5.9 -4.4 11.9 -4.4 18 M 562 319.1 c 0 -5.1 0.7 -6.3 5.5 -7.5 c 1.4 -0.3 5.3 -2 6.4 0 c 1.3 2.7 -1.9 9 -3.2 11.5 M 577.5 301.1 c -1.5 -1 -1.8 -0.7 -1.5 -0.7 M 579.5 313.1 c 2 -4.1 -1.1 5.9 -1.5 7.6 c 0 0.2 -1.4 3.6 -1.2 3.6 c 0.5 0 1.3 -2 1.5 -2.3 c 1.7 -2.5 2.7 -5.5 4.4 -8 c 0.2 -0.4 2.2 -2.9 2.7 -2.3 c 1.1 1.1 -1.8 8.4 -2.3 10 c 0 0.2 -1.2 3.1 -1.2 3.1 c 0 0 1.4 -3 1.5 -3.6 c 1.2 -3.8 4.4 -6.4 7.2 -9.1 c 0.4 -0.4 2.9 -2.6 3.5 -2 c 0.2 0.2 -1.2 3.4 -1.5 4 c -1.5 2 -4.4 8.3 -2.4 10.3 c 0.1 0.1 2.2 -1 2.4 -1.2 c 2.1 -2.1 3 -6.2 5.2 -8.3 c 0.3 -0.3 1.5 -2.7 1.5 -2.7 c 0 0 -0.3 2.6 -0.3 2.7 c -1.2 2.5 -2.8 6.6 -2.8 9.6 c 0 0.4 0.5 -0.7 0.8 -1.2 c 0.3 -0.7 0.5 -1.6 0.7 -2.3 c 0.4 -1.2 4.4 -8.3 6 -7.6 c 1.3 0.6 -1.1 6.2 -1.6 7.2 c -0.4 0.8 -1.4 3.4 -0.7 2.7 c 2.3 -2.3 3.9 -5.5 6.4 -8 c 0.3 -0.3 2.2 -1.7 2.3 -1.5 c 2 2 -5.7 9 -3.1 11.5 c 0.3 0.3 2.6 -1.3 2.7 -1.5 c 1 -1.5 1.9 -3.1 2.7 -4.8 c 2 -4.1 3.9 -7.8 5.2 -12.3 c 0.1 -0.4 1.1 -7.1 2 -8.3 c 0.4 -0.6 1 -6 1.5 -6 c 0.1 0 -1 4 -1.2 4.3 c -0.6 2.2 -0.8 4.8 -1.1 7.2 c -0.6 4.4 -1.9 8.8 -2.8 13.1 c 0 0.3 -1.3 4.5 -1.5 4.3 c -0.3 -0.1 -0.3 -7.2 0 -7.5 c 0 0 3.1 0.2 3.5 0 c 2 -1 13.7 -2.2 9.2 -6.8 c -1.2 -1.2 -3.5 0.9 -4.3 1.6 c -2.5 1.9 -7.3 9.4 -4.4 12.3 c 1.4 1.4 3.5 -0.1 4.7 -0.7 c 2.6 -1.3 4.4 -3.2 6.7 -4.8 c 0.7 -0.5 1.8 -2.3 2.8 -2.3 c 0.7 0 0 1.5 0 2.3 c 0 1 -2.4 7.2 -2.4 7.2 c 0 0 0.6 -1.6 1.2 -2.3 c 1.2 -1.6 2.7 -3.9 4.3 -5.6 c 0.2 -0.2 2.2 -1.5 2.4 -1.2 c 1.3 2.7 -1.9 8.2 1.5 10 M 450.3 352.7 c 0 -4.9 10.8 -4.1 9.1 -0.7 c -3.1 6.2 -9.9 10.7 -13.5 16.7 c -1.1 1.9 -3.4 4.5 -1.6 6.3 c 1.1 1.1 5.6 -1.3 6.7 -1.5 c 2.2 -0.4 4.3 -0.9 6.3 -2 M 448.7 367.6 c -6.2 0 4.1 0.6 6.3 -1.6 M 461.5 367.1 c 4.1 0 10.6 -5.3 7.6 -8.3 c -0.9 -0.9 -3.4 1.4 -4 2 c -1.8 1.8 -5.6 10.9 -2 12.8 c 4.6 2.3 10.9 -5.1 12.8 -8.8 c 0.2 -0.5 3.1 -5.1 3.1 -5.1 c 0 0 -1.5 3 -1.6 3.1 c -0.3 1.6 -3.5 10.2 -0.7 11.6" /><path stroke="#0000ff" stroke-width="2" d="M 476.7 374.3 c 1.5 0.7 4.3 -4.8 4.7 -5.6 c 3.5 -5.8 5.9 -11.4 7.6 -18 c 0.1 -0.7 2 -3.9 1.2 -4.7 c -0.7 -0.7 -2.9 5.3 -3.2 6 c -2 5.2 -2.7 11.8 -2.7 17.6 c 0 0.6 -0.3 6.3 -0.3 6.3 c 0 0 0.1 -3.2 0 -3.6 c -0.4 -1.2 -1.9 -6.8 -0.8 -8 c 1.3 -1.3 5 0.5 6.8 -1.2 M 479.5 348 c -0.8 0.2 -2.7 0.4 -1.5 1.6 M 494.3 364.7 c 0 -1.4 -0.3 5.4 -0.3 6.3 c 0 4.5 -1.5 9.8 -3.2 14 c -0.3 0.7 -3 6.5 -3.2 6.4 c -0.7 -0.7 1.8 -7 2 -7.6 c 2.1 -6.4 2.9 -13.7 6.4 -19.6 c 0.6 -1 2.9 -5.3 4.7 -4.3 c 1.5 0.7 0.6 3.2 0.3 4.3 c -0.8 3.5 -3 6.6 -5.1 9.6 c -0.3 0.4 -4.4 3.8 -4.4 3.6 c 0 -0.4 0.9 -1.5 1.2 -2 M 509.5 363.1 c 1.1 -1.1 -1 2.8 -1.2 3.2 c -0.8 2.4 -0.9 5.4 -2 7.6 c -0.3 0.6 0 2.1 0.8 2.3 c 0.9 0.3 1.9 -1.2 2.3 -2 c 2 -3 3.9 -6.1 6 -9.2 c 0.2 -0.3 2 -3.5 2 -3.5 c 0 0 -1.4 3.3 -1.5 3.5 c -1 1.5 -2.6 8.1 -1.2 9.6 c 0.5 0.5 2.4 -1.5 2.7 -2 c 0.5 -0.8 4.8 -9.6 6.4 -9.6 c 1.8 0 -1.2 7.4 -1.6 8.4 c 0 0.2 -1.4 1.7 -1.1 2 c 0.3 0.3 1.8 -1.7 2 -2 c 0.9 -1.9 4 -6 5.5 -6.8 c 0.2 -0.1 1.2 -1.9 2 -1.1 c 0.6 0.6 -0.5 2.2 -0.7 2.7 c -0.7 1.4 -2.7 8.2 -0.7 9.2 c 1.5 0.7 3.6 -4.4 4.3 -5.2 c 2.9 -2.9 3.1 -6.7 4.7 -10.3 c 1.7 -3.8 4.4 -9.9 4.4 -14 c 0 -0.7 -0.5 1.3 -0.7 2 c -0.8 2 -1.6 4.1 -2 6.3 c -0.8 5.1 -3.1 11.4 -4.7 16.3 c -0.1 0.4 -1 2.2 -0.8 2.8 c 0.6 1.2 2.7 -2.3 2.8 -2.4 c 2.7 -2.7 5.8 -5.4 8.3 -8 c 0.8 -0.8 2.4 -4 2.4 -2.7 c 0 0.3 -1.7 1.6 -2 2 c -1.3 2 -2.8 4.9 -3.6 7.2 c -0.4 1.3 0.4 4.9 2.4 4 c 1.4 -0.7 1.9 -2.7 2.7 -4 c 3.3 -5 6.9 -10 8 -16.4 c 0.3 -1.8 0 -3.7 0.4 -5.5 c 0 -0.1 0.7 -3.6 0.3 -3.6 c -2.1 0 -2.2 5.5 -2.3 6.7 c -0.8 6.1 -2.1 12.3 -3.2 18.3 c -0.2 1.6 0.4 4.7 -0.7 6 c -0.2 0.2 0.2 -0.7 0.3 -1.1 c 0.2 -0.8 0 -2.2 0 -3.2 c 0 -1.2 -0.5 -9.4 0.4 -10.3 c 1.5 -1.5 6.9 0 9.2 -1.2 M 588 350.7 c 0.2 -0.2 1.5 -2.6 1.5 -2.3 c 0 1.5 -2.7 4.8 -3.5 6 c -3.2 4.2 -6.3 10.8 -7.6 16 c -1.9 7.9 7.5 1.6 9.2 -1.6 M 578.3 362.7 c -1.7 0 1.2 1.1 2.4 0.8 c 1.6 -0.5 3.7 -1.2 5.5 -1.2 M 595.5 371.6 c 0 -0.5 0.6 -1.7 0.4 -2 c -0.6 -0.6 -2.7 3 -2.7 3.1 c -1.6 2.6 -3.3 7 -0.8 9.6 c 0.9 0.9 3.3 -0.7 4 -1.2 c 4 -2.7 5 -13.8 -1.5 -11.5" /></g><g id="layer_5" visibility="hidden"><path stroke="#008000" stroke-width="2" d="M 589.7 391.9 c 14.2 0 25.7 -11.5 25.7 -25.7 c 0 -14.2 -11.5 -25.7 -25.7 -25.7 c -14.2 0 -25.7 11.5 -25.7 25.7 c 0 14.2 11.5 25.7 25.7 25.7 M 788.3 105.6 c -1.1 0 -3.4 -1.5 -4.7 -2 c -4.7 -1.5 -11 -0.1 -15.5 -2.4 c -1.7 -0.8 -4.6 0.4 -6.4 -0.3 c -1.4 -0.7 -3.1 0 -4.7 -0.3 c -6.8 -1.3 -15 -0.7 -22 -0.7 c -19.8 0 -38.9 3.6 -56.7 9.5 c -1.9 0.6 -3 3.5 -4.7 4.4 c -10 5 -6.7 18.8 -0.4 25.1 c 1.8 1.8 4.8 2.8 7.2 4 c 13.2 6.6 27.3 6.5 41.2 11.2 c 12.4 4.1 30.3 4.2 43.5 2 c 5.5 -0.9 11.6 0.3 17.2 -0.3 c 8.7 -1.2 18 -0.4 26.7 -0.4 c 19.8 0 40.1 0.4 59.5 -2.7 c 6.3 -1 11.8 -2 18 -3.6 c 2.5 -0.6 7.6 -1.2 9.6 -3.1 c 5.4 -5.4 9.7 -11.9 13.1 -18.8 c 1 -2 -1 -3.6 -1.5 -5.1 c -0.5 -1.6 -0.4 -4 -1.5 -5.2 c -6 -6 -15.7 -8.4 -24 -9.6 c -10 -1.4 -20.8 -2 -30.8 -4 c -5.9 -1.1 -12.4 -0.2 -18.3 -1.1 c -11.5 -1.9 -25.4 -2.6 -37.2 -1.2 c -6.9 0.8 -18.9 -1.4 -24.3 4 M 790.3 159.1 c -2.3 56.9 -4.7 113.8 -7.1 170.8 M 780 321.1 c 0 3.9 2.5 7.5 4 11.2 c 0.4 1 2 3.9 3.5 3.2 c 1.9 -0.9 3.2 -6.4 4.4 -8.4 c 0.4 -0.7 3.1 -4.4 2.7 -4.7 c -0.2 -0.2 -3.1 0 -3.2 0 c -1.9 0 -10.3 -0.1 -10 -0.7 M 618.7 363.8 c 24.5 0 49 0 73.5 0 M 688.7 358 c -4.4 -4.4 6 2.9 9.2 4 c 0.4 0.1 3 1.7 2.3 2.3 c -3.1 3.1 -8.1 2 -12 4 c -0.5 0.2 -3.7 2.6 -4.3 2 c -1 -1 2.6 -4.5 3.2 -5.6 c 0.8 -1.7 2.3 -9.7 1.5 -7.6 M 724.3 350.7 c 1.4 0 0.8 2.7 0 4.3 c -1.8 3.6 -3.9 7.9 -6.3 11.2 c -0.9 1.2 -2.9 3.3 -2 5.2 c 2.7 5.4 7.7 2.6 13.2 1.5 c 2.5 -0.5 5.6 -0.4 8 -1.5 M 720 367.1 c -1.8 0 3.1 -1.4 4 -1.5 c 2.8 -0.4 6.2 -1.6 9.2 -1.6 M 723.5 356 c 0 -2.6 11.3 -4.3 14 -4.3 M 745.2 361.1 c 0 -0.3 1.1 -2.3 1.5 -2.3 c 1.2 0 -1.2 2.1 -2 3.2 c -1.7 2.3 -3.1 5.1 -4 8 c 0 0.1 -0.9 4.5 -0.4 4.7 c 0.9 0.4 2.2 -1.4 2.8 -2 c 2.6 -2.6 5 -5.6 7.1 -8.7 c 0.1 -0.1 2.8 -3.1 3.2 -2.3 c 0.9 1.8 -2.9 7.5 -3.5 9.1 c -0.5 1.2 -0.6 2.8 -1.2 4 c -0.1 0.2 -0.7 1.7 -0.7 1.6 c 0 -0.6 1.3 -1.4 1.5 -2 c 1.3 -2.7 3.4 -8.7 6.7 -10.3 c 0.6 -0.3 2.1 -2.2 2.8 -1.6 c 1.4 1.4 -2.1 8.3 -2.8 10 c -0.1 0.3 -1.2 3.1 -0.7 3.6 c 0.3 0.3 2.4 -1.9 2.7 -2.3 c 2.1 -3.2 4.3 -6.7 7.6 -9.2" /><path stroke="#008000" stroke-width="2" d="M 766 364.3 c 0.4 -0.3 1.4 -2.1 2 -1.6 c 0.4 0.4 -3 8 -3.2 8.3 c -0.1 0.3 -1.7 1.8 -1.2 2.4 c 0.2 0.2 2.2 -2.5 2.4 -2.8 c 0.5 -0.6 6.2 -8.9 7.5 -7.6 c 0.4 0.4 -1.7 6 -2 6.8 c -0.2 0.8 -2 2.3 -1.2 2.3 c 0.9 0 2.3 -3.5 2.8 -4 c 1.5 -1.5 3 -2.8 4.7 -4 c 0.4 -0.2 2.3 -2.4 2.7 -2 c 0 0 -1.4 2.9 -1.5 3.2 c -2.3 3.5 -1.6 10.2 4 6 c 0.7 -0.5 1.3 -1.3 2 -2 M 756 349.6 c -0.5 -0.1 -1 -0.4 -1.6 -0.4 M 796.7 364.3 c 0 -0.5 1.5 -0.7 1.5 -1.2 c 0 -1.3 -3.8 -1.2 -4.7 -0.7 c -1.7 0.8 -9.2 6.6 -7.5 10 c 2.5 5.1 9.4 -6.5 10.3 -8 c 0.3 -0.5 1.4 -1.8 2 -2.3 c 0 0 1.1 -1.2 0.8 -1.2 c -0.1 0 -1.4 2.1 -1.6 2.3 c -0.9 1.6 -4.8 9.9 -1.2 11.2 c 1.8 0.6 4.2 -3 5.2 -4 c 4.8 -4.8 5.4 -11.3 8.4 -17.2 c 1.2 -2.4 1.9 -5 2.7 -7.5 c 0.3 -0.9 2.2 -2.8 1.2 -2.8 c -1.1 0 -2.8 4.7 -3.2 5.6 c -2.4 5.7 -4.7 10.9 -5.5 17.2 c -0.4 3.3 0.3 8 4 4.3 M 818.3 360.3 c 0.7 0 -0.4 1.4 -0.7 2 c -0.9 1.3 -1.4 3.5 -2 5.2 c -1.6 4.9 -2.9 9.9 -4.7 14.7 c -0.7 1.9 -1.3 3.9 -2 6 c -0.3 0.9 -0.5 1.9 -0.7 2.7 c -0.1 0.4 -0.4 1.6 -0.4 1.2 c 0 -4.1 3 -8 4 -12 c 1.5 -6.2 4.3 -11.6 8.4 -16.7 c 0.8 -1 5.5 -6.8 7.1 -6 c 1.4 0.7 -0.1 3.5 -0.3 4.3 c -1.1 3.5 -3.8 6.3 -7.2 8 c -0.8 0.4 -6.6 2.6 -4.4 0.3 M 841.1 363.1 c -0.5 -0.5 -0.1 -1.6 -0.7 -2 c -2.7 -1.3 -7.1 3.1 -8.3 5.2 c -0.7 1.2 -3.4 4.5 -2 6 c 2.3 2.3 8.9 -6.4 10 -8 c 0.1 -0.1 2.9 -3.2 2.7 -3.2 c -0.4 0 -0.9 2 -1.2 2.4 c -1.3 1.9 -4.9 7.8 -2.4 10.3 M 856.3 359.6 c 0 -3.4 -9 0.9 -10 2.7 c -1.5 3.1 3.2 4.6 3.2 7.6 c 0 1.3 -5.5 2.6 -5.5 0.7 M 867.1 360.3 c 0.8 0 -1.1 -1.2 -2 -1.2 c -1.5 0 -5.2 1.3 -6 2.8 c -1.3 2.6 4 5.4 2.8 8 c -0.6 1.2 -6 2.3 -6 1.6 c 0 -1.1 0.7 -1.1 0.7 -2 M 877.1 357.1 c -3.5 0 -9.8 9.8 -8 13.6 c 0.2 0.5 2.1 0.7 2.4 0.8 c 2.3 0.2 9.6 0.6 10.7 -0.4 c 1.2 -1.2 -1.2 -8.8 -1.2 -10.3 M 894.3 364.3 c 1 0 4 -3.1 2.4 -4 c -1 -0.5 -2.9 1.3 -3.6 2 c -1.7 1.7 -8.2 6.1 -6.7 9.2 c 0.7 1.4 2.8 -0.8 3.2 -1.2 c 0.5 -0.4 7.9 -8.8 9.2 -7.6 c 0.5 0.5 2.6 8 -0.7 8 c -0.9 0 1.3 -6.3 1.5 -6.7 c 0.6 -1.2 4.3 -0.3 5.5 -0.3 M 916.3 336.7 c -1.5 1.5 -1.2 4.2 -1.5 6.3 c -0.9 5.6 -2 11.6 -3.6 17.2" /><path stroke="#008000" stroke-width="2" d="M 911.1 360.3 c -0.7 2.5 -1.2 3.9 -2.3 6.3 c -0.4 0.9 -0.9 1.8 -1.2 2.8 c -0.1 0.6 -0.4 2.6 -0.4 2 c 0 -1.9 1.1 -3.4 1.6 -5.2 c 0.6 -2.5 -1.7 -6.2 0.3 -8.3 c 1.3 -1.3 6.4 -0.1 8.4 -0.8 M 724 401.1 c 0.1 -0.1 1.1 -0.8 0.7 -1.1 c -0.5 -0.5 -0.3 1.4 -0.4 1.6 c -0.7 1.5 -1.2 2.6 -1.5 4.3 c -0.8 4.4 -1.5 8.9 -3.2 13.1 c -0.5 1.4 -0.5 3.1 -1.2 4.4 c -0.3 0.6 -0.7 2.7 -0.7 2 c 0 -2.8 6.2 -11.3 10 -7.6 c 3.4 3.4 -9.2 9.5 -9.2 6.3 M 733.5 419.6 c -0.5 0 9.8 -5.1 7.6 -9.6 c -0.9 -1.9 -3.2 0.2 -4 1.1 c -1.8 2.2 -6.9 8.6 -4 11.6 c 1.6 1.6 4.9 -0.8 6.3 -1.6 c 0.8 -0.4 3.6 -1.5 4.4 -1.1 c 0.4 0.2 1.7 1.1 2 0.3 c 0.5 -1.6 -0.7 -4.4 0 -6 c 1.1 -2.2 2.4 -2 4.7 -2.7 M 756.3 418.3 c -0.1 0.1 -1.1 0.3 -1.1 0.3 c 0 0 2.1 -1 2.3 -1.1 c 2.2 -1.1 4.8 -3.4 6 -5.2 c 0.2 -0.4 2 -1.5 1.2 -2.3 c -1.5 -1.5 -4.8 0 -6 1.1 c -3.9 3.9 -7.7 16.3 1.5 12.4 c 1.6 -0.6 2.8 -2 4.4 -2.8 M 775.5 410.3 c -4.6 0 -9.6 10.7 -6 14.3 c 1.3 1.3 7.8 -7 8 -7.1 c 5 -6.3 14.4 -18.6 14.4 -27.2 c 0 -0.1 -1.4 2.4 -1.6 2.7 c -1 2 -1.3 4.3 -2.3 6.4 c -2.9 5.8 -6.1 12.5 -8 18.7 c -0.1 0.5 -1.3 5 -1.2 5.2 c 0.4 0.4 2.1 -0.9 2.4 -1.2 c 2.2 -2.2 4.5 -6 7.5 -7.6 c 3.9 -1.9 -1.9 7.2 1.2 7.2 c 3.4 0 4.5 -8.3 8 -8.3 c 0.8 0 -0.5 1.5 -0.7 2.3 c -0.2 0.8 -3.6 7.1 -3.2 7.6 c 0 0 2.3 -3.1 2.7 -3.6 c 0.9 -0.9 8.3 -7.2 8.7 -6.3 c 1.3 2.6 -6.4 9.1 -1.5 11.5 M 810.7 419.6 c 3 0 7.7 -3.8 10.3 -5.6 c 0.8 -0.5 1.9 -3.6 1.2 -4.3 c -1.7 -1.7 -4.3 -0.4 -5.5 0.7 c -2.9 2.9 -10.5 12.2 -6 16.7 c 0.8 0.8 3.4 -0.5 4.3 -1.1 c 3.6 -2.7 6.8 -6 10 -9.2 c 1.1 -1.1 2.6 -1.9 3.6 -3.1 c 0.3 -0.4 1.2 -1.7 1.2 -1.2 c 0 1.9 -2.1 6.2 -3.2 8 c -0.6 1 -2.7 3.2 -1.6 3.2 c 0.7 0 1.3 -1.7 1.6 -2 c 1.8 -2.2 3.9 -4.3 6.3 -6 c 0.5 -0.3 1.7 -3 2.8 -2 c 0.2 0.2 -1 2.4 -1.2 2.7 c -1.3 4.1 -1.9 8.5 3.2 6.7 M 226.3 105.1 c 1.1 -1.1 -5.1 -1.5 -6.8 -1.5 c -6.3 0 -13.5 0.3 -19.5 2.3 c -12.2 4 -33.9 15.6 -26.4 30.7 c 1.2 2.5 3.6 5.3 6.4 7.2 c 15.5 10.3 38.4 9.1 56.7 11.1 c 14.7 1.6 29.6 1.5 44.3 3.2 c 5.2 0.5 10.8 -0.4 16 0.3 c 8.3 1.3 18.7 1.1 27.2 0.3 c 13.1 -1.1 27.2 -2.7 40.3 -2.7" /><path stroke="#008000" stroke-width="2" d="M 364.7 156.3 c 13 0 26.1 -1.8 38.7 -4.3 c 3.4 -0.6 6.5 -2.7 10 -3.6 c 3.2 -0.8 11.7 -3 13.2 -6 c 0.9 -1.8 1 -3.3 2 -5.2 c 0.5 -1 -0.5 -2.9 0 -4 c 1 -2 0.3 -5.2 -0.3 -6.7 c -0.6 -1.2 -0.4 -2.8 -1.2 -4 c -3.9 -5.9 -15 -8.4 -21.1 -10 c -3.3 -0.8 -6 -2.8 -9.6 -3.6 c -3.6 -0.7 -7 -2.1 -10.7 -2.7 c -22.3 -3.7 -44.7 -3.7 -67.2 -6 c -22.4 -2.2 -47.6 -2.7 -69.6 1.6 c -10.5 2.1 -24.2 -0.8 -34 4 M 274.3 160.3 c 0 54.6 0 109.3 0 164 M 267.1 319.6 c -0.8 -0.8 2.9 5.5 3.2 6.3 c 1 3.1 1.7 7.9 3.2 10.7 c 0.1 0.3 0.7 3.2 1.5 2.3 c 0.4 -0.4 1.2 -4.7 1.2 -5.5 c 0 -2.1 3.4 -5.6 4.3 -7.6 c 0.3 -0.6 0 -3.5 0.3 -4 c 0.4 -0.4 1 -2 0.4 -2 c -3.1 0 -9.3 -2.2 -12.4 -1.2 c -0.9 0.3 -2.6 1.6 -3.1 1.6 M 163.1 352.7 c 0.3 -0.3 0.3 -2 0.8 -2 c 0.3 0 -2.3 5.4 -2.8 6 c -2 2.6 -7.5 11 -6.3 14.3 c 2.1 6.3 14.4 0 18.7 -0.7 M 158 364 c -0.2 0 9.8 -0.2 12 -2.3 M 161.5 352 c -0.4 0 2.8 -0.9 3.6 -1.2 c 3.3 -1.1 5.9 -1.6 9.6 -1.6 M 179.5 361.6 c 0 0 -5.4 11 -2 12.7 c 2.8 1.4 7.1 -8.5 7.6 -10 c 0.1 -0.4 1.4 -2.5 2 -2 c 1.8 1.8 -3.3 10.2 -1.6 12 c 0.1 0.1 1.9 -2.2 2 -2.3 c 0.5 -1 4.8 -9.1 5.6 -8.3 c 0.1 0.1 0.1 2.5 0 2.7 c -0.7 1.4 -1.8 11 1.1 8 M 188.8 348.7 c 0 0 -4 -0.7 -2.8 -0.7 M 200.3 362 c 0 3.3 -1.1 6.5 -1.1 10 c 0 0.5 -0.7 2.4 -0.4 2.7 c 0.1 0.1 1.9 -2.4 2 -2.7 c 0.7 -2.9 8.5 -14.4 6.8 -5.6 c -0.1 0.5 -0.6 1.4 -0.8 2 c -0.2 1 -1.1 3.7 -1.1 4.3 c 0 0.2 1.8 -2.6 2 -2.7 c 1.9 -1.9 3.5 -4.3 5.6 -6.3 c 0.7 -0.7 1.9 -2.9 2.3 -2 c 1.8 3.7 -4.7 8 -1.1 11.5 M 228.7 361.6 c 0 -1.5 -1.4 -1.6 -2.7 -0.8 c -2.6 1.7 -8.5 11 -5.6 14 c 0.9 0.9 2.5 -1.3 2.8 -1.6 c 2.2 -2.2 3.7 -5.1 5.1 -8 c 0.1 -0.3 1.2 -2.3 0.8 -2.7 c -0.1 -0.1 -1 3.9 -1.1 4.3 c -0.3 0.9 -1.9 6 -0.4 6.8 c 1.5 0.7 3.4 -2.8 4 -4 c 2.8 -5.7 5.4 -11.6 8 -17.6 c 0.9 -2.2 1.8 -4.5 2.8 -6.8 c 0.4 -1 2 -4 1.1 -3.1 c -5.2 5.2 -7.8 15.8 -9.1 22.7 c 0 0.3 -1.3 12.5 2 9.2 M 245.5 360 c 0 8.2 -4.2 17.9 -6.8 25.6 c -0.2 0.7 -2.7 8 -2.7 8 c 0 0 2.7 -7.8 2.7 -8 c 3.1 -7.4 5.5 -15.3 9.6 -22.4 c 2.4 -4.2 6.9 -3.5 4.3 1.6 c -2 4.1 -5.6 6.8 -8.7 10 M 265.6 364 c 0 -1.2 2.5 -3.3 1.5 -5.2" /><path stroke="#008000" stroke-width="2" d="M 267.1 358.7 c -0.7 -1.5 -3.5 0.3 -4.7 1.6 c -2.3 2.3 -9.1 10 -5.6 13.6 c 2.7 2.7 8 -7.6 8.8 -8.8 c 0.1 -0.2 1.5 -3.1 1.5 -3.1 c 0 0 -1.4 3 -1.5 3.6 c -1.1 3.3 -2 5.9 -2 9.5 M 278 360.7 c 1.7 -1.7 -1.6 -2.2 -2.8 -2 c -2.3 0.5 -4.5 2.1 -6 3.6 c -0.7 0.7 0.7 2.7 1.2 3.2 c 2.3 2.4 5.6 5.1 0.7 6.3 c -1.1 0.2 -1.6 0.7 -2.7 0.7 M 288.7 361.6 c 2.7 -2.7 -3.7 -0.6 -4.7 0.3 c -0.5 0.5 -1.6 2 -1.6 2.7 c 0 1.6 2.4 4.3 1.6 6 c -0.8 1.6 -4.8 4.3 -6.8 2.3 M 294.7 360.3 c 0.4 0 0.3 -0.5 0.3 -0.7 c 0 -1.3 -1.7 2 -2.3 3.1 c -1.3 2.3 -2.9 5.3 -3.6 8 c -0.1 0.6 -1.1 5.2 0.4 5.2 c 3 0 5.4 -3.8 7.1 -5.6 c 0.3 -0.3 3.2 3.7 5.2 2.7 c 3.7 -1.8 2.1 -10.5 -0.8 -12 M 315.6 363.1 c 3 -3 0.8 -5.3 -2.8 -2.3 c -2.6 2.1 -4.6 5.1 -6 8.3 c -0.4 1 -1.8 4.7 -0.3 5.2 c 2 0.6 3.7 -2.5 4.7 -3.6 c 3.1 -3.1 5.5 -7.5 8.4 -10.3 c 1.1 -1.1 1.3 1.4 1.1 2 c -0.6 2 -2 4.8 -2 7.2 c 0 1 -0.7 4.2 -0.7 3.1 c 0 -0.3 1 -1.9 1.1 -2.3 c 1.9 -5.7 0.9 -10.7 8 -10.7 M 336.7 338.7 c -2.5 2.5 -3 6.8 -3.6 10.3 c -0.8 6 -3.5 11.8 -5.1 17.6 c -0.2 0.9 0.2 5.3 -0.3 6 c -0.5 0.5 0.1 -1.6 0.3 -2.3 c 0.6 -2 0 -3.8 0 -6 c 0 -6 3.2 -9.4 10 -7.2 M 160 397.6 c 0 -0.9 0.8 -3.7 0.8 -2.8 c 0 6.4 -3.2 12.1 -5.2 18 c -1.3 3.9 -2 10 -5.1 13.2 c -0.2 0.2 0.5 -0.4 0.8 -0.8 c 0.7 -1 1.4 -1.8 2.3 -2.7 c 1.2 -1.2 5.3 -8.1 8 -6.7 c 1 0.5 0.2 3.2 0 4 c -0.8 2.6 -2.9 5.3 -5.5 6.3 c -2.4 0.9 -6.5 2.6 -4.4 -1.6 M 166 419.6 c 2.4 0 11.6 -7.5 9.1 -10 c -1.1 -1.1 -4.2 1 -4.8 1.5 c -1.9 1.9 -8.6 11.8 -4.8 14.4 c 2.1 1.4 5.3 -0.8 7.2 -1.6 c 0.2 -0.1 7.1 -3.4 7.1 -3.2 c 0 0.8 -1.6 -2.7 -1.6 -3.6 c 0 -3.5 2.1 -4.1 4.4 -6.3 M 186 420.7 c -0.4 0 -1.4 0.6 -1.1 0.3 c 2.2 -2.2 6.4 -3.6 8.7 -6 c 0.5 -0.5 2.4 -3.1 0.8 -4 c -4.1 -2 -9.8 5.8 -10.3 8.8 c -0.5 2.6 0.3 6 3.5 5.1 c 2.1 -0.5 4.3 -1.5 6.4 -2.3 M 206.7 410.7 c 0 -2.3 -3.2 -1.6 -4.3 0 c -2.2 3.3 -3.1 6.6 -4.3 10.3 c -0.4 1.4 -0.5 5.4 2 4.4 c 7.2 -2.9 11.6 -13.7 14.7 -20 c 1.4 -2.9 2.9 -6.6 3.6 -10 c 0 -0.1 0.6 -2.4 0.3 -2.4 c -0.4 0 -2 6.4 -2.3 7.2 c -2.7 6.3 -4.2 13.3 -6.8 19.6 c -0.2 0.6 -2.2 5.7 -1.5 6.3" /><path stroke="#008000" stroke-width="2" d="M 208 426.3 c 0.3 0.3 2.6 -2.2 2.7 -2.3 c 1.9 -1.9 3.6 -5.3 5.2 -7.6 c 0.3 -0.5 1.6 -2.7 2.3 -2.7 c 0.4 0 -1.1 2.7 -1.1 2.7 c -0.6 1.2 -2.3 6 -0.8 6.7 c 2.4 1.2 6.9 -6.6 8 -8 c 0.1 -0.1 2.2 -2.3 2.3 -2 c 0.7 1.4 -1.9 7.4 -2.3 9.2 c -0.2 0.8 -2 2.3 -1.1 2.3 c 0.8 0 1.4 -1.8 2 -2.3 c 1.9 -1.9 4.6 -5.7 6 -8.3 c 0.1 -0.2 2.3 -1.7 2.3 -1.6 c 1.1 2.3 -6 8.7 -3.1 11.6 c 0.8 0.8 4.1 -1.6 4.8 -2 c 3.5 -2.1 7.2 -4 9.5 -7.6 c 0.5 -0.7 3.8 -3.8 2.4 -4.7 c -4.5 -3 -9.4 7.6 -10.4 10.3 c -0.4 1.3 -1.6 4.1 0 5.1 c 3.9 2.6 10.5 -5.3 12.3 -7.5 c 0.2 -0.2 3.2 -3.7 3.6 -3.6 c 1.3 0.6 -1.2 6.7 -1.6 8 c -0.1 0.6 -1.4 2.3 -0.7 2 c 2.7 -1.3 4.7 -5.9 6.7 -8 c 0.2 -0.2 2.4 -2.3 2.4 -2.3 c 0 0 -0.4 3.2 -0.8 4.7 c -0.7 3.5 -3.5 8.8 1.2 10.3 M 350.3 408.1 c 75.4 0 150.9 0 226.3 0 M 582.7 393.1 c 0.6 0 0.4 -0.7 0.4 -0.7 c 0 0 -0.7 2.5 -0.8 2.7 c -1.1 3.3 -2.8 6.5 -4 10 c -0.3 1 -1.5 4.6 -1.5 4.4 M 351.1 408.7 c -0.6 0 -2 1 -2 0.3 c 0 -0.8 3.5 -1.9 4 -2.3 c 1.8 -1.8 4.7 -4.3 6.8 -6.3 c 0.3 -0.3 2.3 -1 2.3 -1.6 c 0 -0.6 -1.1 1.1 -1.2 1.2 c -0.3 0.7 -0.3 2.8 -0.3 3.6 c 0 2.9 -0.9 5.3 -1.6 8 c -0.1 0.5 0.4 3.5 0 4 c -1.7 1.7 -10.9 -6.1 -9.1 -4.4" /><path stroke="#0000ff" stroke-width="2" d="M 188.3 330.7 c 0 -2.9 -7.6 -1.1 -9.5 -1.1 c -9.3 0 -17.5 3.1 -25.6 7.1 c -8.8 4.4 -11.1 15 -15.1 23.2 c -6.5 13 -10.4 29.7 -10.4 44.3 c 0 5.4 -0.8 11.5 1.6 16.3 c 3.5 7 11.4 15.2 18.3 19.2 c 4.8 2.7 10.3 3.6 15.6 5.1 c 5.6 1.6 11.4 4.4 17.1 5.2 c 5.3 0.6 11 0 16.3 0.7 c 11.6 1.9 25.5 2.1 37.2 -0.3 c 10.2 -2.2 21.4 -3.2 30.3 -9.1 c 14.6 -9.7 27.4 -21.9 42 -31.6 c 6.6 -4.4 11.1 -14.3 17.6 -17.6 c 4.5 -2.2 10.1 -5.6 14.7 -7.2 c 1.5 -0.5 2.1 -2.7 3.6 -3.1 c 2.6 -0.8 9 -4.5 10.3 -7.2 c 1.8 -3.7 3.8 -7.5 6 -11.1 c 1.1 -1.9 -0.6 -6.7 0 -8.8 c 4.2 -12.7 -3.8 -20.7 -16.7 -24 c -13.2 -3.3 -25.4 5.1 -37.6 7.6 c -5.4 1 -11.1 1.8 -16.7 2.7 c -15.8 2.6 -30.1 -4.3 -44.4 -7.1 c -13.9 -2.7 -28.1 -2 -42.4 -3.2 c -6.4 -0.5 -12.6 -1.3 -19.1 -0.3 M 43.1 309.6 c -4 -4 -11.9 7.7 -9.5 12.3 c 0.9 1.8 3.7 -0.5 4.4 -1.2 c 2.4 -2.4 4.8 -5.8 6 -9.1 c 0.1 -0.5 1.1 -3.2 1.1 -3.2 c 0 0 -1.4 2.5 -1.5 3.2 c -0.7 2.9 -4.8 11.1 -2.3 13.5 c 1.3 1.3 4.2 -4.1 4.3 -4.3 c 3.1 -5.6 7.2 -11.2 8.7 -17.6 c 0.1 -0.5 2 -6.3 1.2 -6.3 c -1 0 -2.2 5.3 -2.4 6 c -1.4 5.8 -3.6 11 -4.3 17.2 c 0 0.7 -0.5 4.7 0.3 5.1 c 1.8 0.9 3.9 -4.4 4.4 -5.1 c 3 -5.1 4.4 -11 6.8 -16.3 c 1.1 -2.7 3.1 -5.4 4 -8.4 c 0.1 -0.4 0.1 -2.4 0 -2.3 c -1.2 0.6 -2.2 5.2 -2.8 6.3 c -2.6 5.3 -4.3 11.3 -5.1 17.2 c -0.3 2.5 -2.3 6.4 -0.8 8.7 c 1.1 1.7 4.2 -0.7 5.1 -1.1 c 3.9 -1.9 7.2 -6.1 9.2 -10 c 0.7 -1.4 1.6 -4.9 -0.4 -5.6 c -5.9 -1.9 -14.8 18.2 -2.8 15.2 c 1.7 -0.4 3.2 -1.8 4.8 -2.8 M 93.5 303.6 c 0 -1.8 2.7 -6.9 4.7 -2.8 c 2.3 4.6 -8.5 8.7 -7.1 12.8 c 1.1 3.3 7.8 1.9 5.1 7.1 c -2.2 4.4 -15.5 5.7 -13.5 0 M 112.7 302 c -2.6 -1.3 -3.9 2.3 -4.7 4.3 c -1.3 3.3 -8.3 16.4 -2.4 18.3 c 2.1 0.7 4.4 -3.5 5.1 -4.7 c 2.6 -4.3 9.4 -19.6 -0.4 -19.6 M 144 300.7 c -2.1 -6.5 -12.7 2.1 -13.6 7.2 c -0.7 4.7 6 11.4 4 15.6 c -2.5 5 -12.4 0 -8.8 -3.6 M 143.1 315.1 c -0.7 0.7 5.5 -2.7 7.1 -4.3 c 1.2 -1.2 0.8 -3.1 -0.8 -3.1 c -4.5 0 -7.4 10 -8 13.1 c -0.3 1.8 0.4 5.6 2.8 5.6 c 3.1 0 5.5 -3.1 7.6 -5.2 c 4.9 -4.9 8.2 -13.2 10 -20 c 0.4 -1.8 0.5 -3.7 1.1 -5.5 c 0.1 -0.3 1.1 -1.6 0.8 -2.4" /><path stroke="#0000ff" stroke-width="2" d="M 164 293.1 c -0.4 -0.9 -1.2 1.7 -1.6 2.8 c -0.7 2.6 -1.9 4.9 -2.8 7.6 c -1.6 5 -8.4 15 -6 20 c 0.7 1.5 3.9 -1.9 4.4 -2.4 c 2.4 -2.4 4.2 -5.3 6.3 -8 c 0.3 -0.4 2.2 -2.5 2 -2.7 c -0.2 -0.2 -2 1.9 -2.3 2.3 c -1 1.5 -4.3 6.1 -3.1 8.3 c 0.9 1.9 2.3 1.2 4.7 0.8 M 177.1 312 c -1.3 -2.7 -5.3 6 -6.3 9.1 c -0.2 0.7 0 3.1 0.3 3.6 c 0.3 0.3 2.9 -0.9 3.1 -1.1 c 2.9 -2.9 3.9 -5.9 6.4 -9.2 c 0.4 -0.6 1.2 -1.2 1.5 -2 c 0.3 -0.6 0.8 -2.7 0.8 -2 c 0 2.2 -7.3 12.1 -3.6 14 c 2.1 1 7.3 -7.9 8.4 -9.6 c 0.2 -0.3 2.3 -3.2 2.3 -3.1 c 0.4 0.4 -0.2 1.9 -0.3 2.3 c -0.5 2 -1.2 4 -2 6 c -0.3 0.8 -1.1 3.5 -0.8 3.1 c 2.6 -2.6 4 -6.4 6.8 -9.1 c 0.8 -0.8 1.9 -3.2 2.7 -2.3 c 0.8 0.8 -2.1 10 -1.5 10 M 209.5 312.3 c 2.3 0 3 -4.7 0 -3.2 c -4.1 2 -5.3 5.8 -6.3 10 c -0.3 1.2 -1.5 3.2 -0.4 4.4 c 1.7 1.7 5.7 -3.9 6.4 -4.8 c 4.5 -6 7.6 -12.1 10.3 -19.1 c 0.6 -1.6 2.4 -4.2 2.4 -6 c 0 -0.8 -1.1 1.2 -1.6 2 c -1.1 1.6 -1.6 3.7 -2.3 5.5 c -2 5.2 -3.4 9.9 -4.8 15.2 c -0.2 1.1 -1.1 3.6 0.3 4.3 c 3.3 1.6 11.4 -7.7 13.1 -10 c 0.9 -1.2 2.2 -3.2 0.8 -4 c -4.1 -2 -8.9 6.9 -9.5 9.6 c -0.3 1.2 -1.9 4.6 0 5.6 c 6 3 11.1 -11.2 15.1 -11.2 c 0.1 0 -0.3 2.2 -0.4 2.3 c -1 2 -4.3 6 -4.3 8 c 0 1.1 1.5 -1.6 2.3 -2.3 c 0.9 -0.9 5.5 -8.4 6.8 -7.1 c 0.4 0.4 -1 2.7 -1.1 3.1 c -1.6 4 -0.2 9.3 4.8 6.8" /></g><g id="layer_6" visibility="hidden"><path stroke="#ff0000" stroke-width="2" d="M 708.7 346.3 c 0 30.9 0 61.8 0 92.7 c 77.3 0 154.6 0 232 0 c 0 -30.9 0 -61.8 0 -92.7 c -77.3 0 -154.6 0 -232 0 M 824.9 442.3 c 0 28.2 0 56.5 0 84.7 M 827.1 524.7 c -158.7 0 -317.5 0 -476.3 0 M 365.1 514.7 c -3.3 0 -12 5.6 -13.1 8 c -0.4 0.8 -1.5 0.3 -2 1.2 c -0.1 0.3 0.3 2.4 0.3 2.7 c 0 2.2 10.1 5 12 4.3 c 1.5 -0.5 0.1 -1.4 0.3 -2 c 2.2 -4.4 -1.6 -5.6 -1.6 -9.5 c 0 -1.6 1.2 -3.4 0.4 -4.8 M 426.3 489.6 c 0 -0.6 1.3 -2 0.7 -3.2 c -3.4 -6.8 -10.6 5.5 -12 9.6 c -0.3 1.1 -1.4 3.7 -0.3 4.7 c 1 1 3.5 -1.2 4 -1.6 c 2.6 -2.1 3.7 -5.2 5.6 -8 c 0.3 -0.4 2 -3.5 2 -3.5 c 0 0 -1.1 3.8 -1.2 4 c -0.5 3.1 -1.6 5.4 -1.6 8.7 c 0 0.4 -0.2 2.7 0.8 2.7 c 2.6 0 7.5 -9.4 8.7 -11.5 c 0.2 -0.4 1.7 -3.6 2.3 -3.6 c 0.9 0 0 1.9 -0.3 2.7 c -0.3 0.6 -2.9 7.8 -2.3 8.3 c 0.3 0.3 2.1 -2.1 2.3 -2.3 c 1.2 -1.2 5.5 -8 7.2 -8 c 1.3 0 -0.3 2.6 -0.3 4 c 0 3.5 -1.7 6.3 -0.8 10 M 478 477.1 c 0 -5.9 -7.8 -5.3 -9.6 0 c -1.9 5.9 2.7 11.6 0.7 17.6 c -1.9 5.8 -12 4.6 -12 -1.1 M 478.7 491.1 c -0.4 0.2 -1.2 0.8 -1.2 0.8 c 0 0 2.5 -1 2.8 -1.2 c 1.7 -1.1 7.4 -5.7 5.6 -7.6 c -1.4 -1.4 -4.1 0.1 -5.2 1.2 c -2.7 2.7 -5 6.8 -6 10.7 c -0.2 1.1 -1.2 3.5 0.3 4.4 c 3 1.5 9 -3.6 11.2 -5.2 c 0.6 -0.5 4.3 -2.3 4.7 -2 c 0.7 0.5 0.8 4.3 0.8 4.3 c 0 0 -0.4 -4.3 -0.4 -4.7 c 0 -2.8 2.1 -5.2 4.4 -6 M 502.7 488.3 c -0.5 -0.5 0 -2 0 -2 c 0 0 -1.1 2.3 -1.2 2.3 c -0.2 1.1 -0.5 10.3 0.8 10.3 c 0.7 0 2.4 -2.6 2.8 -3.1 c 1.6 -2.7 3.8 -5.9 4.7 -8.8 c 0.2 -0.8 0.3 -2.7 1.5 -2.7 M 511.2 494.7 c 2.6 2.6 6.1 -1.7 8.3 -4 c 1.5 -1.5 4.6 -2.2 3.2 -5.1 c -0.3 -0.7 -2.5 -1.4 -3.2 -0.8 c -1.9 1.9 -12.4 10.7 -8.3 14.8 c 1.3 1.3 9.1 -3.9 10 -4.4 c 1.5 -0.7 3.8 -2.1 5.5 -1.5 c 0.5 0.1 1.7 2.2 1.2 2.7 c -0.3 0.3 -0.4 -4.4 -0.4 -4.7 c 0.6 -3.6 1.2 -6 5.2 -6 M 556 488 c -0.1 0 -3 -3.8 -4.4 -1.2 c -0.7 1.5 -0.5 5.5 0 7.2 c 0.2 0.8 2 3 1.6 4 c -1.4 2.8 -12.9 3.7 -8.4 -0.8 M 566.7 485.6 c -3.6 0 -12.3 17.1 -5.2 14.7 c 1 -0.3 1.9 -2.1 2.7 -2.7 c 6.1 -4.6 9.5 -13.4 13.2 -20 c 0.2 -0.5 2.7 -8.4 2.7 -8.4 c 0 0 -2.2 5.9 -2.3 6.4 c -2.4 5.6 -4.7 11.1 -7.2 16.7 c -0.1 0.4 -2.3 5.2 -2 5.6" /><path stroke="#ff0000" stroke-width="2" d="M 568.7 498 c 0.7 0.7 1.5 -1.3 2 -1.6 c 2.5 -1.7 4.1 -4.6 6.7 -6.3 c 0.3 -0.2 1.8 -2.1 2 -2 c 1.3 1.3 -2.4 8.6 -2.7 10 c -0.1 0.5 -0.9 3.1 0.4 3.1 c 2.4 0 5.9 -6.3 7.1 -8 c 0.4 -0.5 4.1 -5.5 4 -5.5 c -0.5 0 -1 1.6 -1.1 2 c -1.3 2.6 -5.1 9.3 0.7 6.3 M 592.7 476.7 c -1 0 -1.5 -0.8 -2.4 0 M 601.5 488.3 c -3.1 -3.1 -8.6 6.7 -9.2 8.3 c -0.4 1.2 0 4.4 2 3.6 c 8 -3.2 13.1 -13.6 17.6 -20.3 c 2 -3.1 3.9 -6.4 4.7 -10 c 0 -0.1 0.6 -2.8 0.4 -2.8 c -0.7 0 -3.6 6.6 -4 7.2 c -3.5 6.3 -6.1 13.2 -8.8 20 c -0.4 1 -3.1 5.6 -2.3 6.3 c 0.5 0.5 3.7 -3 4 -3.1 c 3.3 -2.9 6.8 -6 10 -9.2 c 0.2 -0.2 2.3 -2.3 2.3 -2.3 c 0 0 -1.5 1.9 -2 2.3 c -1.2 1.2 -6.6 9.3 -6.3 9.6 c 1.2 1.2 3.3 0 4.3 -0.3 c 4.3 -1.4 8.3 -4.3 11.6 -7.6 c 0.6 -0.6 4.9 -3.4 3.5 -4.8 c -1 -1 -3.8 0.6 -4.7 1.6 c -1.9 1.9 -8.2 9.7 -5.2 12.8 c 3.3 3.3 10.9 -6.1 13.2 -8.4 c 0.4 -0.4 2.9 -4.2 3.5 -3.5 c 0.8 0.8 -2.6 7.3 -3.1 8.3 c -0.2 0.4 -1.6 2 -1.6 2 c 0 0 2.2 -1.8 2.4 -2 c 1.2 -1.2 5.3 -6.3 7.2 -6.3 c 0.4 0 0.9 1.6 0.7 2 c -0.9 2.8 -3.8 6.1 -2.7 9.1 M 669.2 488 c 0.5 0 0.7 -1.9 0.3 -1.6 c -2.2 2.2 -3 6.8 -4.3 9.6 c -0.1 0.2 -0.8 3.1 -0.4 3.6 c 1.2 1.2 3.2 -1.9 4 -2.4 c 3 -2 5.5 -5.5 8 -8 c 0.4 -0.4 1.1 -3.1 2 -3.1 c 0.1 0 -0.6 1.4 -0.7 1.6 c -0.5 0.5 -1.2 2 -1.6 2.7 c -0.9 1.9 -3.8 7.7 -2.3 9.2 c 0.3 0.3 2.8 -1.3 3.2 -1.6 c 3.2 -2.1 5 -5.8 7.5 -8.3 c 0.2 -0.2 -0.6 6.2 -1.2 7.5 c -0.3 0.7 -1.3 2.9 -0.7 2.4 c 2.9 -2.9 4.6 -8.3 8.7 -10.4 c 0.2 -0.1 3.6 -1.4 3.6 -1.1 c 0 3.7 -4.4 6.8 -4.4 11.6 M 713.5 487.1 c -0.5 0 -1.6 -5.1 -4 -2.7 c -2.6 2.6 -6.7 6.3 -7.5 10.3 c 0 0 0 2.3 0 2.3 c -0.1 0.7 -1.5 2 -0.7 2 c 2.8 0 4.6 -3.4 6 -5.1 c 4.2 -5.6 7.7 -8.9 10.3 -15.6 c 1.1 -2.9 2.7 -5.6 4.4 -8.3 c 0.2 -0.4 0.5 -1.6 0 -1.6 c -1.5 0 -3.2 6.5 -3.6 7.6 c -1.8 5 -5.8 10.2 -6.3 15.6 c -0.1 1 -0.6 7.8 1.5 5.5 M 440 560.3 c 3 0 2.1 11.3 4 13.2 c 0.9 0.9 4 -6 4.3 -6.8 c 1 -2.1 6 -6.4 6 -8.3 M 457.1 569.1 c 3.6 0 8.4 -4 10.8 -6.3 c 0.8 -0.8 1.2 -2.5 0 -3.1 c -4.8 -2.4 -12.7 9.7 -10 13.5 c 2.3 3.2 9.9 -3.7 12 -4.7 c 4.9 -2.4 4.7 4.3 4.7 4.3 c 0 0 0.3 -5.5 0.3 -5.6" /><path stroke="#ff0000" stroke-width="2" d="M 475.1 567.1 c 0.9 -2.7 2 -2.6 4.8 -3.5 M 493.5 566 c -0.3 -0.3 -0.6 -2.3 -1.1 -2.3 c -2.7 0 -9 5.8 -7.6 8.7 c 1.5 3.1 6.7 -3.8 7.2 -4.7 c 0.5 -1 2.7 -3.2 1.5 -3.2 c -0.8 0 -0.7 3.7 -0.7 4 c -0.5 3 -1 7.1 -2.3 10 c -2.9 5.9 -7.3 12.8 -13.2 16.3 c -3.2 1.9 -13 2.8 -10 -3.1 M 509.2 552.7 c 0.1 -0.3 2.3 -5.6 2.3 -5.6 c 0 0 -2.6 4.8 -3.2 5.6 c -0.8 1.1 -1.2 2.7 -2 4 c -1.6 2.8 -7.3 13 -4.3 16 c 1 1 3.9 -0.7 4.7 -1.1 c 3.6 -1.8 7.4 -5.6 10 -8.8 c 0.6 -0.8 2.6 -3 0.7 -4 c -1.3 -0.6 -3.6 1.2 -4.3 2 c -2.2 2.2 -7.7 9.6 -3.6 12.3 c 3.5 2.3 11.9 -7.1 14 -9.1 c 0.8 -0.8 1.8 -2.4 2.4 -3.2 c 0.5 -0.7 2.4 -2.8 1.5 -2.3 c -1.7 0.8 -6.1 8.6 -6.3 10.3 c -0.6 4.4 2.2 5.3 5.1 2.3 M 530.7 548 c -0.2 0 -4.1 0.7 -2 0.7 M 536.7 560.3 c 0 -1.2 -3.2 0.8 -3.5 1.6 c -1.2 2.5 -2.9 4.4 -3.6 7.6 c -0.1 0.6 -0.6 5.1 1.6 4 c 7.5 -3.7 13.9 -13 17.5 -20.4 c 1.1 -2.3 2.5 -4.7 3.5 -7.1 c 0.3 -0.8 0.7 -2.3 1.2 -3.2 c 0 -0.1 0.7 -1.4 0.7 -1.1 c 0 2 -2.4 5.3 -3.1 7.1 c -2.3 5.6 -3.6 11.2 -6.4 16.8 c -0.4 0.8 -3.7 7.4 -3.5 7.5 c 0.6 0.6 2.7 -3 2.7 -3.1 c 2 -2.5 4.3 -6.1 7.5 -7.2 c 0.7 -0.2 0.5 1.2 0.4 1.6 c -0.6 1.9 -3.9 6 -2 8 c 0.9 0.9 4.5 -1.3 5.2 -2 c 3 -3 6.8 -5.2 10 -8.3 c 0.6 -0.6 2.9 -2.9 2.3 -4 c -0.8 -1.7 -3.8 0.1 -4.7 0.7 c -2.1 1.6 -9.1 11.2 -6.4 14 c 1.5 1.5 4.1 -0.9 5.2 -2 c 2.5 -2.5 5.1 -5.1 7.6 -7.6 c 0.4 -0.4 1.1 -2 2 -2 c 0.6 0 0.2 1.3 0 2 c -0.4 1.4 -5.4 8.5 -4 10 c 0.4 0.4 2.5 -3.1 2.7 -3.5 c 0.9 -1.9 4.2 -3.9 6 -5.2 c 0.2 -0.2 1.7 -1.4 2 -1.2 c 0.5 0.5 -1.1 5.3 -1.2 6 c -0.2 2.1 0 3.7 0 5.6" /></g></g></svg></div>
+</section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><table class="tableblock frame-none grid-all">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-question-circle fa-3x"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Erstelle ein Programm, das die Zwei-Faktor-Authentifizierung mit Hilfe von <em>Google Authenticator</em> testet.</p>
+</li>
+<li>
+<p>Erweitere deinen Webserver um die Zweifaktor-Authentifizierung, indem zu jedem Benutzer der zugehörige geheime Schlüssel gespeichert und bei der Passwort-Abfrage berücksichtigt wird.</p>
+<div class="paragraph">
+<p>Teste die Zwei-Faktor-Authentifizierung am Webserver mit deinem Handy.</p>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table></div><div class="originaltext" hidden="">[%autowidth,frame=none , cols=2  ]
+|===
+ 
+|icon:question-circle[3x,role=red]  
+a| * Erstelle ein Programm, das die Zwei-Faktor-Authentifizierung mit Hilfe von _Google Authenticator_ testet.
+* Erweitere deinen Webserver um die Zweifaktor-Authentifizierung, indem zu jedem Benutzer der zugehörige geheime Schlüssel gespeichert und bei der Passwort-Abfrage berücksichtigt wird. 
++ 
+Teste die Zwei-Faktor-Authentifizierung am Webserver mit deinem Handy. 
+|=== </div></div></div>
+</section></section></div></div><script>Reveal.initialize();</script></body></html>
