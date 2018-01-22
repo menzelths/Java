@@ -42,15 +42,38 @@ a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","d
 zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
 ""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
 </script>
-</head><body><div sb='@P' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
-<h2 id="ref18095898">Hashes und Zweifaktorauthentifizierung</h2>
+</head><body><div sb='@' ft='='  style='display:none;' class='toc tshareElement adoccss'><div><div class="adoccss"><div class="sect1">
+<h2 id="_inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+<div class="sectionbody">
+<div class="ulist none">
+<ul class="none">
+<li>
+<p><a href="#ref91774576">Hashes und Zweifaktorauthentifizierung</a></p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p><a href="#ref13899479">Einsatz beim Speichern von Passwörtern</a></p>
+</li>
+<li>
+<p><a href="#ref78489520">Zwei-Faktor-Authentifizierung</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div></div></div></div>
+<div sb='@P' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref91774576">Hashes und Zweifaktorauthentifizierung</h2>
 <div class="sectionbody">
 
 </div>
 </div></div><div class="originaltext" hidden="">== Hashes und Zweifaktorauthentifizierung
 </div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Immer wieder liest man in den Nachrichten, dass eine Datenbank geknackt wurde und somit alle Benutzernamen mit Passwörtern entwendet wurden. Häufig wird eine Kombination aus Benutzername und Passwort von einem Benutzer bei unterschiedlichen Diensten genutzt, so dass diese zum Missbrauch verschiedenster Dienst führen könnte.</p>
+<p>Immer wieder liest man in den Nachrichten, dass eine Datenbank geknackt wurde und somit alle Benutzernamen mit Passwörtern entwendet wurden. Häufig wird eine Kombination aus Benutzername und Passwort von einem Benutzer bei unterschiedlichen Diensten genutzt, so dass die Kenntnis dieser zum Missbrauch verschiedenster Dienst führen könnte.</p>
 </div>
 <div class="paragraph">
 <p>Somit ist die minimale Sicherheitsidee die, dass Passwörter nicht im Klartext gespeichert werden. Für diesen Zweck bieten sich <em>Hash-Funktionen</em> an, die zu jedem Eingangstext einen Ausgabewert (<em>Hash-Wert</em>) mit fester Länge (also beispielsweise genau 256 Bit) erstellen, wobei es nahezu unmöglich sein soll , unter der Kenntnis eines solchen Hash-Wertes den ursprünglichen Eingangstext zu rekonstruieren (bedeutet: die Rechenzeit dafür soll so groß sein, dass es quasi unmöglich ist).</p>
@@ -62,15 +85,15 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 <p>Wichtig ist, dass identische Eingangstexte immer zu identischen Hash-Werten führen.</p>
 </div>
 <div class="paragraph">
-<p>Es gibt unterschiedliche Algorithmen, solche Hash-Werte zu berechnen. So gibt es beispielsweise die Algorithmen MD5, SHA-1 und SHA-256, die man beispielsweise auf der Seite
+<p>Es gibt unterschiedliche Algorithmen, solche Hash-Werte zu berechnen. So wären da die Algorithmen MD5, SHA-1 und SHA-256, die man auf der Seite
 <a class="bare" href="http://www.xorbin.com/tools/sha256-hash-calculator">http://www.xorbin.com/tools/sha256-hash-calculator</a> ausprobieren kann.</p>
 </div>
 <div class="paragraph">
 <p>Je nach Einsatzgebiet ist mal der eine, mal der andere Algorithmus besser geeignet. So wird MD5 häufig verwendet, um die Integrität von Daten zu überprüfen, also beispielsweise, ob eine Datei richtig heruntergeladen wurde.</p>
 </div>
 <div class="paragraph">
-<p>Hier Beispiele für Hash-Werte:</p>
-</div></div><div class="originaltext" hidden="">Immer wieder liest man in den Nachrichten, dass eine Datenbank geknackt wurde und somit alle Benutzernamen mit Passwörtern entwendet wurden. Häufig wird eine Kombination aus Benutzername und Passwort von einem Benutzer bei unterschiedlichen Diensten genutzt, so dass diese zum Missbrauch verschiedenster Dienst führen könnte.
+<p>Hier einige Beispiele für Hash-Werte:</p>
+</div></div><div class="originaltext" hidden="">Immer wieder liest man in den Nachrichten, dass eine Datenbank geknackt wurde und somit alle Benutzernamen mit Passwörtern entwendet wurden. Häufig wird eine Kombination aus Benutzername und Passwort von einem Benutzer bei unterschiedlichen Diensten genutzt, so dass die Kenntnis dieser zum Missbrauch verschiedenster Dienst führen könnte.
 
 Somit ist die minimale Sicherheitsidee die, dass Passwörter nicht im Klartext gespeichert werden. Für diesen Zweck bieten sich _Hash-Funktionen_ an, die zu jedem Eingangstext einen Ausgabewert (_Hash-Wert_) mit fester Länge (also beispielsweise genau 256 Bit) erstellen, wobei es nahezu unmöglich sein soll , unter der Kenntnis eines solchen Hash-Wertes den ursprünglichen Eingangstext zu rekonstruieren (bedeutet: die Rechenzeit dafür soll so groß sein, dass es quasi unmöglich ist).
 
@@ -78,15 +101,15 @@ Es kann vorkommen, dass unterschiedliche Eingangstexte zu gleichen Hashes führe
 
 Wichtig ist, dass identische Eingangstexte immer zu identischen Hash-Werten führen.
 
-Es gibt unterschiedliche Algorithmen, solche Hash-Werte zu berechnen. So gibt es beispielsweise die Algorithmen MD5, SHA-1 und SHA-256, die man beispielsweise auf der Seite
+Es gibt unterschiedliche Algorithmen, solche Hash-Werte zu berechnen. So wären da die Algorithmen MD5, SHA-1 und SHA-256, die man auf der Seite
 http://www.xorbin.com/tools/sha256-hash-calculator ausprobieren kann. 
 
 Je nach Einsatzgebiet ist mal der eine, mal der andere Algorithmus besser geeignet. So wird MD5 häufig verwendet, um die Integrität von Daten zu überprüfen, also beispielsweise, ob eine Datei richtig heruntergeladen wurde.
 
-Hier Beispiele für Hash-Werte:
+Hier einige Beispiele für Hash-Werte:
 </div></div></div>
 <div sb='P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref55695534">Seite zum Ausprobieren von Hash-Algorithmen</h3>
+<h3 id="ref54444218">Seite zum Ausprobieren von Hash-Algorithmen</h3>
 <div class="paragraph">
 <p><a class="bare" href="http://www.xorbin.com/tools/sha256-hash-calculator">http://www.xorbin.com/tools/sha256-hash-calculator</a></p>
 </div>
@@ -94,7 +117,7 @@ Hier Beispiele für Hash-Werte:
 
 http://www.xorbin.com/tools/sha256-hash-calculator </div></div></div>
 <div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref55237985">MD5</h3>
+<h3 id="ref14033182">MD5</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -130,7 +153,7 @@ http://www.xorbin.com/tools/sha256-hash-calculator </div></div></div>
 `c3694b483eed355a49954b09f345df09` 
 </div></div></div>
 <div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref55414827">SHA-1</h3>
+<h3 id="ref8753947">SHA-1</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -165,7 +188,7 @@ http://www.xorbin.com/tools/sha256-hash-calculator </div></div></div>
 `26aff90edc2ce45c123b7bf55d215f0bbf9e5971` 
 </div></div></div>
 <div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref61296149">SHA-256</h3>
+<h3 id="ref61468790">SHA-256</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -303,7 +326,7 @@ public class Hash {
 } 
 ----</div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref46367608">Einsatz beim Speichern von Passwörtern</h3>
+<h3 id="ref13899479">Einsatz beim Speichern von Passwörtern</h3>
 <div class="paragraph">
 <p>Somit sollte man in Datenbanken nicht die Passwörter im Klartext speichern, sondern zumindest gehashte Passwörter.</p>
 </div>
@@ -364,19 +387,19 @@ a| * Erkläre deinem Nachbarn den Unterschied zwischen Salt und Pepper.
 ** gehashte Passwörter mit Salt und Pepper  
 |===</div></div></div>
 <div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
-<h3 id="ref67487048">Zwei-Faktor-Authentifizierung</h3>
+<h3 id="ref78489520">Zwei-Faktor-Authentifizierung</h3>
 
 </div></div><div class="originaltext" hidden="">=== Zwei-Faktor-Authentifizierung
 </div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
-<p>Um die Sicherheit bei der Anmeldung nochmals deutlich zu erhöhen, kann neben Benutzername und Passwort noch ein weiteres Passwort abgefragt werden, das über ein weiteres Gerät (nicht das Gerät, mit dem man sich anmeldet) zur Verfügung gestellt wird. Diese zusätzliche Information wird als zweiter Faktor bezeichnet, woher der Name des Verfahrens kommt.</p>
+<p>Um die Sicherheit bei der Anmeldung nochmals deutlich zu erhöhen, kann neben Benutzername und Passwort noch ein weiteres und jedes mal anderes Passwort abgefragt werden, das über ein weiteres Gerät (nicht das Gerät, mit dem man sich anmeldet) zur Verfügung gestellt wird. Diese zusätzliche Information wird als zweiter Faktor bezeichnet, woher der Name des Verfahrens kommt. Beim Online-Banking ist der zweite Faktor eine TAN aus der TAN-Liste.</p>
 </div>
 <div class="paragraph">
 <p>Ein Gerät, das jeder von uns dabei hat, ist normalerweise ein Smartphone. Für dieses gibt es beispielsweise den Google-Authenticator für <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8"><span class="icon"><i class="fa fa-external-link"></i></span>iOS</a> oder <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"><span class="icon"><i class="fa fa-external-link"></i></span>Android</a>.</p>
 </div>
 <div class="paragraph">
 <p>Das Prinzip, das hinter der Zwei-Faktor-Authentifizierung steckt, ist das folgende (mehrmals klicken):</p>
-</div></div><div class="originaltext" hidden="">Um die Sicherheit bei der Anmeldung nochmals deutlich zu erhöhen, kann neben Benutzername und Passwort noch ein weiteres Passwort abgefragt werden, das über ein weiteres Gerät (nicht das Gerät, mit dem man sich anmeldet) zur Verfügung gestellt wird. Diese zusätzliche Information wird als zweiter Faktor bezeichnet, woher der Name des Verfahrens kommt.
+</div></div><div class="originaltext" hidden="">Um die Sicherheit bei der Anmeldung nochmals deutlich zu erhöhen, kann neben Benutzername und Passwort noch ein weiteres und jedes mal anderes Passwort abgefragt werden, das über ein weiteres Gerät (nicht das Gerät, mit dem man sich anmeldet) zur Verfügung gestellt wird. Diese zusätzliche Information wird als zweiter Faktor bezeichnet, woher der Name des Verfahrens kommt. Beim Online-Banking ist der zweite Faktor eine TAN aus der TAN-Liste.
 
 Ein Gerät, das jeder von uns dabei hat, ist normalerweise ein Smartphone. Für dieses gibt es beispielsweise den Google-Authenticator für https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8[icon:external-link[]iOS] oder https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2[icon:external-link[]Android].   
 
