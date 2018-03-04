@@ -1,0 +1,1360 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='toc tshareElement adoccss'><div><div class="adoccss"><div class="sect1">
+<h2 id="_inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+<div class="sectionbody">
+<div class="ulist none">
+<ul class="none">
+<li>
+<p><a href="#ref49819056">Verkettete Liste</a></p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p><a href="#ref42452920">Ein erster Versuch</a></p>
+</li>
+<li>
+<p><a href="#ref64660423">Abhängigkeit vom Package zoohandlung reduzieren</a></p>
+</li>
+<li>
+<p><a href="#ref97982147">Generische Klassen und Methoden</a></p>
+</li>
+<li>
+<p><a href="#ref78661363">Zugabe: Implementieren der Interfaces Iterable und Iterator</a></p>
+</li>
+<li>
+<p><a href="#ref89068150">Code zu diesem Kapitel</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+</div></div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref49819056">Verkettete Liste</h2>
+<div class="sectionbody">
+
+</div>
+</div></div><div class="originaltext" hidden="">== Verkettete Liste
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Für viele Probleme benötigt man Datenstrukturen, die mehrere Elemente gleichen Typs speichern können. So wollen wir in unserer Zoohandlung beispielsweise eine Liste mit allen Tieren erstellen und diese etwa ausgeben oder nach dem Alphabet ordnen können.</p>
+</div>
+<div class="paragraph">
+<p>Wir haben bereits ein Beispiel dafür gesehen, nämlich eine Variante, um alle Füße im Zoo zu zählen:</p>
+</div></div><div class="originaltext" hidden="">Für viele Probleme benötigt man Datenstrukturen, die mehrere Elemente gleichen Typs speichern können. So wollen wir in unserer Zoohandlung beispielsweise eine Liste mit allen Tieren erstellen und diese etwa ausgeben oder nach dem Alphabet ordnen können.
+
+Wir haben bereits ein Beispiel dafür gesehen, nämlich eine Variante, um alle Füße im Zoo zu zählen:</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>externesPackage/ExterneMainKlasse.java:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">package</span> externesPackage<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> zoohandlung<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExterneMainKlasse</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Laufen<span class="token punctuation">[</span><span class="token punctuation">]</span> tiere <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Laufen</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// neues Array für zwei Objekte vom Typ Laufen erstellen</span>
+
+        Papagei p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Papagei</span><span class="token punctuation">(</span><span class="token string">"Ara"</span><span class="token punctuation">,</span> <span class="token number">1.3</span><span class="token punctuation">,</span> <span class="token string">"Hallo"</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        p<span class="token punctuation">.</span><span class="token function">setAnzahlBeine</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Loewe leo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Loewe</span><span class="token punctuation">(</span><span class="token string">"Leo"</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        leo<span class="token punctuation">.</span><span class="token function">setAnzahlBeine</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        tiere<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> p<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// p und leo im Array speichern</span>
+        tiere<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> leo<span class="token punctuation">;</span>
+
+        <span class="token keyword">int</span> summe <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// in Summe steht am Ende die Gesamtzahl der Beine</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> tiere<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            summe <span class="token operator">+=</span> tiere<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getAnzahlBeine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Jetzt geht alles!</span>
+        <span class="token punctuation">}</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>summe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">*externesPackage/ExterneMainKlasse.java:*
+[source,java,indent=0]
+----
+package externesPackage;
+
+import zoohandlung.*;
+
+public class ExterneMainKlasse {
+
+    public static void main(String[] args) {
+        Laufen[] tiere = new Laufen[2]; // neues Array für zwei Objekte vom Typ Laufen erstellen
+
+        Papagei p = new Papagei("Ara", 1.3, "Hallo", 40);
+        p.setAnzahlBeine(2);
+
+        Loewe leo = new Loewe("Leo", 115);
+        leo.setAnzahlBeine(4);
+
+        tiere[0] = p; // p und leo im Array speichern
+        tiere[1] = leo;
+
+        int summe = 0; // in Summe steht am Ende die Gesamtzahl der Beine
+
+        for (int i = 0; i &lt; tiere.length; i++) {
+            summe += tiere[i].getAnzahlBeine(); // Jetzt geht alles!
+        }
+        System.out.println(summe);
+    }
+}
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Das hat schon ganz gut funktioniert, allerdings ist ein normales Array im Java nicht immer die beste Datenstruktur, allein schon deshalb, da es schwierig ist, einem bestehenden Array ein Element hinzuzufügen: Da bereits schon beim Erstellen eines Arrays festgelegt wird, wie viele Elemente es hat, müsste man schon im Voraus wissen, wie viele Elemente es enthalten wird. Unsere Zoohandlung weiß aber nicht im Voraus, wie viele Tiere in ihr gehalten werden müssen.</p>
+</div>
+<div class="paragraph">
+<p>Da muss es etwas Besseres geben. Als einfaches Beispiel für eine solche Datenstruktur wollen wir eine <strong>einfach verkettete Liste</strong> (englisch: <em>singly linked list</em>) erstellen, die es uns erlauben soll, jederzeit ein neues Tier hinzuzufügen und diese Liste auszugeben.</p>
+</div>
+<div class="paragraph">
+<p>Die Idee ist ganz einfach: Die verkettete Liste soll aus einzelnen Knoten bestehen. Jeder dieser Knoten kann ein Tier (<code>Tier inhalt</code>) aufnehmen und verweist auf den Nachfolgerknoten (<code>Knoten nachfolger</code>).</p>
+</div>
+<div class="paragraph">
+<p>Unsere verkettete Liste hat einen Verweis auf den ersten Knoten (damit wir nachher alle Knoten ausgeben können) und auf den letzten Knoten (damit wir wissen, an welchen Knoten wir einen neuen Knoten anhängen).</p>
+</div></div><div hidden="" class="originaltext">Das hat schon ganz gut funktioniert, allerdings ist ein normales Array im Java nicht immer die beste Datenstruktur, allein schon deshalb, da es schwierig ist, einem bestehenden Array ein Element hinzuzufügen: Da bereits schon beim Erstellen eines Arrays festgelegt wird, wie viele Elemente es hat, müsste man schon im Voraus wissen, wie viele Elemente es enthalten wird. Unsere Zoohandlung weiß aber nicht im Voraus, wie viele Tiere in ihr gehalten werden müssen.
+
+Da muss es etwas Besseres geben. Als einfaches Beispiel für eine solche Datenstruktur wollen wir eine *einfach verkettete Liste* (englisch: _singly linked list_) erstellen, die es uns erlauben soll, jederzeit ein neues Tier hinzuzufügen und diese Liste auszugeben.
+
+Die Idee ist ganz einfach: Die verkettete Liste soll aus einzelnen Knoten bestehen. Jeder dieser Knoten kann ein Tier (`Tier inhalt`) aufnehmen und verweist auf den Nachfolgerknoten (`Knoten nachfolger`).
+
+Unsere verkettete Liste hat einen Verweis auf den ersten Knoten (damit wir nachher alle Knoten ausgeben können) und auf den letzten Knoten (damit wir wissen, an welchen Knoten wir einen neuen Knoten anhängen).
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='zeichenflaeche tshareElement' onClick='nextLayer(this)' ><svg width="100%" height="100%" class="qreator_svg" heightoriginal="701" hoehegesetzt="354.5" breitegesetzt="998" viewBox="0 0 998  354.5"><g fill="none" stroke-linecap="round" id="global"><g id="layer_2"><path d=" M 245.5 40 c 0 -0.7 1 -2.7 1 -2 c 0 3.2 -1.3 5.6 -3 8.5 c -3.4 5.7 -6.4 12.7 -9 19 M 232.6 73.2 c 0 0.2 0 0.5 0.3 0.7 M 234.5 65.5 c -0.1 0.5 -0.9 2.4 -1.4 4.2 M 233 74 c 0.5 0.7 4 -0.2 5 -0.5 c 3.5 -0.7 7.8 -1 11 -1 M 259 59 c 0 0 -0.1 -2.7 -1 -2 c -2 2.2 -3.5 8.9 -4.5 12 c -0.3 1.2 -1 3.7 0 5 c 0.5 0.5 2.6 -0.7 3 -1 c 2.6 -1.7 7 -6.7 8 -9.5 c 0.3 -1 0.5 -2 1 -3 c 0.1 -0.5 1 -2.1 1 -1.5 c 0 3.7 -3.5 7.5 -3.5 11.5 c 0 0.5 -1.1 3.5 0 3.5 c 0.6 0 1.3 -1.5 1.5 -2 c 1.3 -2.7 4.1 -6.5 6 -9 c 0.1 -0.2 2.8 -4 4 -3 c 2.6 2.6 -5.6 11.4 -1.5 13.5 c 1.6 0.7 6 -3.7 7 -5 c 5.3 -6.1 7.6 -16.1 9 -24 c 0.3 -2.1 0.5 -4.2 1 -6.5 c 0.1 -0.7 1 -2 1 -2 c 0 0 -2.8 7.7 -3 8.5 c -1.3 6.7 -4.1 15.1 -6.5 22 c -0.3 1 -2.6 6.7 -2 7.5 c 0.8 0.9 3.1 -2 3.5 -2.5 c 3 -3 5.3 -6.9 8.5 -10 c 0.8 -0.7 1.8 -1.7 3 -2.5 c 0.1 0 1.5 -1.7 1.5 -1.5 c 0 0.7 -1.6 1.2 -2 2 c -1.1 2.5 -7.3 10.5 -5 13 c 0.8 0.9 3.6 -1.2 4.5 -1.5 c 4 -1.2 9.8 -5.5 12.5 -9.5 c 1 -1.6 3 -5.2 1 -6.5 c -1.8 -0.7 -5 1.1 -6 2.5 c -3.3 5 -5.3 17.4 4.5 12.5 M 321 62 c 3.3 0 3.5 -6 -2.5 -4 c -2.3 0.7 -7 9.2 -7 11.5 c 0 1 -0.8 3.2 0.5 4 c 1.6 0.7 5.5 -3.9 6.5 -5 c 6.5 -7.2 12.3 -17 15 -26.5 c 0.6 -2.5 1.5 -4.7 1.5 -7.5 c 0 -0.7 0 -2.5 0 -2.5 c 0 0 -4.1 8.2 -4.5 9 c -3.3 6 -5.8 14 -6.5 21 c -0.3 3.4 -1.8 8.5 3.5 8.5 M 353.5 43 c 0.3 -0.2 1.1 -1.7 1.5 -1.5 c 1 1 -2.5 5.1 -3 6 c -3.6 6.1 -7.8 12.7 -11 19.5 c -0.3 0.9 -1.6 4 -1 5.5 c 0.8 1.5 3.6 1.7 5.5 1.5 c 4.5 -0.7 9.3 -1 14 -1 M 372.5 58 c -1.8 0 -3.8 11.7 -6.5 14.5 M 391 52 c 0.3 0.2 -1.8 1.2 -3 2 c -2 1 -6 5.1 -7 7 c -1.6 3.2 6.5 7.4 4.5 11.5 c -1.3 2.7 -10.8 1.2 -9.5 -1.5 M 403.5 33 c 1.8 0 0.6 6.2 0.5 7.5 c -1.3 7.1 -6.6 13.2 -8 20.5 c -0.3 1.7 -2.1 10.2 0.5 9 M 396.5 62 c 0 -2.2 -0.6 -3.1 -2 -4.5 c -0.3 -0.2 -2 -0.6 -1.5 -0.5 c 3.1 1 7.6 -2 11 -2 M 195 124 c 0 -0.2 1.5 -4 1.5 -4 c 0 0 -1.8 4.5 -2 5 c -2.3 5.8 -5 11.8 -6.5 18 c 0 0.3 -2.3 7.5 -2 7.5 c 0.3 0 2 -3.5 2.5 -4 c 4 -4.5 7.5 -9.9 11.5 -15 c 1.8 -2.4 3.5 -4.5 5.5 -7 c 0.3 -0.4 3 -3.5 3 -3.5 c -1.5 0 -3 3.2 -4 4.5 c -3.9 5.9 -8.5 10.4 -12 17" stroke="#000000" stroke-width="2"></path><path d=" M 192.5 142.5 c -0.9 1.9 -3 7.4 -1 8.5 c 1 0.5 3.5 -1 4.5 -1.5 c 3.5 -0.9 6.8 -5.5 9 -9 c 0.4 -0.5 2 -5.5 3 -5.5 c 0.5 0 -0.4 3.3 -0.5 3.5 c -0.5 2.9 -0.8 6.5 -2 9 c 0 0 -0.5 2 -0.5 2 c 0 0 2 -2 2.5 -2.5 c 1.5 -3.3 3.9 -7 7.5 -9 c 0.3 0 1 -1.5 1.5 -1.5 c 1.4 0 -0.3 4 -0.5 4.5 c -1.5 3 -1 6.5 -1 10 M 232.5 137 c -0.5 -0.5 0 -1.9 -0.5 -2.5 c -1 -1 -3.5 2.4 -4 3 c -2.3 3.8 -2.5 8 -4.5 12 c -0.5 1 0 3.5 1.5 3 c 2.4 -1 4 -6.4 4 -9 c 0 -0.4 -0.4 -4 0 -4.5 c 1 -1 4 -0.5 6 -1.5 c 2.5 -1.3 7 -5 8 -8 c 1 -3.2 1.3 -7 2.5 -10.5 c 0.4 -1.2 0.5 -4 0.5 -4 c 0 0 -1.5 6.7 -2 7.5 c -2.3 7 -5 14 -6.5 21.5 c 0 0.5 0 6.5 -1.5 6.5 c -1.9 0 -0.5 -8.4 1.5 -9.5 c 2 -1 4.5 -0.5 7 -1.5 c 3 -1 6.3 -2.9 9.5 -4.5 c 0.9 -0.4 6.1 -3 5.5 -4.5 c -1.1 -2.3 -6.4 0.4 -7.5 1.5 c -3.3 3.3 -10 12.5 -7.5 18 c 2 4.3 10 -5.5 10.5 -6 c 0.5 -0.5 1.1 -1 2 -2 c 0.3 -0.3 3.1 -4.3 4.5 -3 c 1 1 -3.1 7.5 -3.5 8.5 c -0.1 0.3 -0.8 2.5 0 2.5 c 1 0 1.1 -1.5 2 -2.5 c 2.6 -2.5 6.5 -6 8.5 -9 c 0.3 -0.5 3.1 -3.8 3.5 -3.5 c 0.3 0.4 -1.3 3 -1.5 3.5 c -1.6 4 -3.1 8.5 -4.5 12.5 c -0.6 2 1.3 2.5 3 2 M 303 144.5 c 0.8 -0.4 1.6 -0.5 2.5 -1.5 c 2.6 -2.5 6.5 -3.3 6.5 -8 c 0 -1.3 -0.1 -3.8 -1.5 -4.5 c -1.8 -0.9 -3.8 1.8 -5 2.5 c -3.1 2 -7.5 8.8 -7.5 13 c 0 1.9 -0.6 4.4 1.5 5.5 c 2.1 1 4.8 -1.3 7 -2.5 c 4 -2 6.8 -6.4 11 -8.5 c 2.1 -1 2.5 2.8 2.5 4 c 0 0.8 0.8 2.5 0 2.5 c -0.8 0 -1.1 -7.4 -1 -8.5 c 0.6 -3 5.6 -4.5 8.5 -4.5 M 339.5 133 c -1.6 -1.5 -11.3 1 -10 4 c 1 2 8.8 7 7.5 10 c -1.1 2.5 -10 1 -10 1 M 349.5 113 c 0 8.4 -3.6 18 -5.5 26.5 c -0.1 0.5 -1.3 9 -2 9 c -0.8 0 -1 -2.3 -1 -3 c 0 -3 1.1 -5 3 -7 c 2.6 -2.5 10.1 -1.4 14 -4 c 0 0 4.8 -2.3 3.5 -3 c -5.6 -2.8 -9.8 4.4 -11 8.5 c -0.3 1.5 -2.1 4.8 -0.5 6.5 c 1.6 1.5 6.6 -1.4 8.5 -2 c 2.1 -0.5 4.8 1 6 0 c 3.6 -3.5 -1.8 -8.5 4.5 -8.5 M 387 115.5 c 0 -0.5 1 -2 1 -2 c 0 0.7 -1.6 3.4 -2 4.5 c -1.5 7.5 -4 15 -5.5 22.5 c -0.1 0.5 -3 6.5 -3 6.5 c 0 0 2.6 -3.5 3 -4 c 3.6 -6.5 9.5 -11.5 14 -17.5 c 1.6 -2.2 3 -4 5 -6 c 0 0 2 -3.2 2 -3 c 0 1.9 -4.1 5 -5.5 6.5 c -4.3 5 -7.3 10 -10 16.5 c -1.1 2.5 -3 6.8 -2 10" stroke="#000000" stroke-width="2"></path><path d=" M 384 149.5 c 0.6 1.9 3.6 -1 4 -1.5 c 3 -3.8 6.3 -7.5 9 -11.5 c 0.3 -0.5 2.3 -3 3 -2.5 c 1.8 1.9 -1.8 10 -3 13.5 c -0.1 0.3 -1.8 2.5 -1.5 3 c 0.6 0.5 2.6 -3 3 -3.5 c 2.3 -3.5 5.8 -8 7.5 -11.5 c 0.1 -0.4 3 -1.9 3.5 -1.5 c 0.8 0.8 -0.6 2.4 -1 3 c -0.8 1.3 -6 11 -3 11 M 421.5 133 c -5 0 -8.1 10 -9 13.5 c -0.6 2.4 0.3 6 3.5 4.5 c 3.3 -1.5 4.5 -6 4.5 -9.5 c 0 -0.5 -0.5 -5.5 -0.5 -5.5 c 0.6 0 1.6 1 2.5 1 c 8 -2.5 10.6 -7.3 15.5 -15 c 1.6 -2.5 1 -6.5 2.5 -9.5 c 0 0 0.5 -3 0.5 -3 c 0 0 -2.6 5.9 -3 6.5 c -3.6 7.4 -4.8 15 -7.5 23 c -0.6 2.3 -1.1 4.5 -2 7 c -0.1 0.5 -0.8 2.5 0 2.5 c 0.8 0 0.3 -1.5 0.5 -2 c 0.3 -0.9 1.3 -3.3 1 -4.5 c -0.1 -0.3 -1.1 -2.5 -1 -3 c 1.1 -1 5.8 0 7.5 -0.5 c 2.6 -0.5 5 -2 7.5 -3 c 1.3 -0.4 8.1 -5.5 6.5 -6.5 c -6.3 -3.2 -9.8 7 -11 11.5 c -0.5 2 -1.6 5 1 6.5 c 3.5 1.5 7.8 -6.8 10 -9 c 0.3 -0.4 3.5 -4 3.5 -4 c 0 0 0.6 1.5 0.5 2 c -1 2 -1.8 4.5 -2.5 7 c 0 0.3 -1.8 4.9 -1 4.5 c 3.1 -1.5 6.3 -7.4 9 -10 c 1 -1 1.6 -1.5 3 -2.5 c 0.3 0 2 -1.5 2 -1.5 c 0 3.5 -3.8 8 -4.5 12 c -0.3 2.5 1.3 5.3 4 4 c 1 -0.5 2 -1 3 -1.5 M 197.5 170 c 0 0 1 -1.5 1 -2 c -0.9 -0.9 -2.8 7.8 -3 8.5 c -1.4 4.9 -2.5 10.3 -5 15 c 0 0.4 -2 7.5 -2 7.5 c 0 0 4.4 -5.9 5 -6.5 c 5.4 -5.4 10.3 -12.3 14.5 -18.5 c 0.4 -0.5 5 -4.9 4.5 -5.5 c -0.9 -0.9 -4.9 4.4 -5.5 5 c -4 4 -8 12 -9.5 18 c 0 0.5 -1.9 4.5 -1 5.5 c 0.8 0.8 3.3 -1 4 -1.5 c 2 -1.3 3.8 -3.5 5.5 -5.5 c 0.5 -0.9 2 -4.5 4 -4.5 c 1.3 0 -2.5 8.3 -2.5 9.5 c 0 0 -1 3 -1 3 c 0 0 2.5 -2.4 3 -3 c 2 -3 4 -5.5 7 -8.5 c 0.5 -0.5 2 -2.8 3 -2.5 c 1 0.5 0 3.5 0 4.5 c -0.9 3.9 -3 5.3 -3 10 M 233 184.5 c 0 -1.5 -3.3 -0.4 -4 0.5 c -2 3 -3.8 7.9 -5 11.5 c -0.3 1 0 3.5 1 4 c 0.8 0.4 2 -0.5 2.5 -1 c 1.5 -0.8 5 -5.5 4.5 -8 c 0 -0.5 -1 -5 -1 -5 c 0 0 4.5 0 5.5 -0.5 c 2.3 -0.5 6.5 -5.8 8 -8 c 2.5 -4.3 2.4 -5.4 3.5 -9.5 c 0 -0.5 1.3 -5.5 0 -5.5 c -0.5 0 -2.3 6 -2.5 7 c -1.4 7.4 -5 14 -6.5 21.5 c -0.3 2 -1 4.5 -2 6.5 c 0 0 -1.4 1 -1 1.5 c 1.3 1.3 0.5 -2 1 -2.5 c 1 -1 0.5 -2 2.5 -3 c 5 -2.5 10.8 -2.8 15 -7 c 2.3 -2.4 4.8 -3 2.5 -5.5 c -1 -1 -4.5 -0.5 -5.5 1 c -2 4.4 -9 12.5 -4.5 17.5" stroke="#000000" stroke-width="2"></path><path d=" M 247 200 c 0.8 0.8 4.3 -1.5 5 -2 c 3 -1.5 6.8 -5 8.5 -8.5 c 0.3 -0.5 3 -4 3 -4 c 0 0 0.6 2 0.5 2.5 c -0.6 1.4 -0.8 3 -1.5 4.5 c 0 0 -1.8 3.5 -1.5 3.5 c 2.1 0 6.6 -7 8.5 -9 c 0.5 -0.5 1.6 -2.5 2 -2.5 c 0.3 0 -0.3 3.5 -0.5 4.5 c -0.5 2.5 -6 13.8 1.5 9.5 c 0.6 -0.4 1.1 -1 2 -1.5 M 311 170 c -5.3 5.4 -10 14 -12 22 c -0.5 2 -1.6 5 -1 7.5 c 0.8 2.8 5.3 -0.3 6.5 -1 c 5.1 -3 8.5 -5.4 12 -10 c 0.6 -0.8 3.3 -4 2 -5.5 c -0.6 -0.5 -3.8 2.4 -4.5 3 c -2.5 2.5 -4.6 5 -6 9 c -0.8 2.8 1.8 5.8 4.5 5 c 10.1 -3.4 18.1 -18.5 21 -28 c 0.8 -3 2 -7 3.5 -10 c 0.1 0 1 -3 1 -3 c 0 0 -0.6 2 -1 3 c -0.8 2.3 -1.8 4.5 -3 7 c -3.5 7 -6 15 -8 23 c -0.3 1 -2 7 -2 7 c 0 0 3.3 -6.3 3.5 -7 M 320.5 186 c 3.1 0 7.8 -2.5 12 -2.5 M 340 181.5 c 0 -2 1 -3.5 3 -4.5 c 1.1 -0.5 4.3 0.5 3.5 2.5 c -2.3 4.9 -6.8 9 -10 14 c -0.5 0.8 -3 4.4 -2 5.5 c 1.8 1.9 6 -1 8 -1 M 336.5 191.5 c -4.3 0 6.3 -2 8.5 -2.5 M 360.5 159.5 c 0 2.5 -1.8 4.9 -2.5 7.5 c -1.1 5.9 -2.6 12 -5 18 c -1.1 2.8 -1.6 6 -2.5 9 c -0.1 1 -0.5 2 -1 3 c -0.1 0.5 -1 2 -1 1.5 c 0 -0.8 -0.1 -4.5 0 -5 c 0.5 -1 2.6 -1 3.5 -1.5 c 3.6 -1.8 7.6 -2.4 11.5 -5 c 1.3 -0.9 7.8 -5.3 7 -7 c -1 -2 -5 0.5 -6 1 c -3.3 1.5 -8 9.8 -8 14 c 0 1 -1 3.5 0.5 4.5 c 2.1 1 5.8 -1.5 7.5 -2.5 c 2.1 -1 4.3 -2.4 6.5 -3.5 c 0.3 0 1.5 0.5 1.5 0.5 c 0 0 0 -4.9 0.5 -6 c 1.5 -3 2.8 -3.4 6 -4.5 M 399 167.5 c 0.5 -0.5 -1.8 5.8 -2.5 7.5 c -2.5 6.4 -5 12.5 -7.5 19 c -0.3 0.5 -2.6 4.3 -2 5 c 1 1 4.5 -3.5 5 -4 c 6.6 -5 10.8 -13.8 17 -20 c 0.1 0 6.6 -5.8 5.5 -7 c -0.8 -0.9 -5.3 4 -6 5 c -3.8 5.9 -8.1 11.9 -11.5 18.5 c -0.3 0.8 -3.3 5.5 -2.5 6.5 c 3.6 3.5 13.1 -7.5 15.5 -10 c 0.8 -0.8 2.3 -5 3.5 -5 M 413 184 c -0.3 1 -1.3 1.9 -2 3 c -1.6 2.9 -1.8 6.4 -4 9.5 c -0.1 0 -2.1 5 -2 5 c 2 0 2.6 -2.9 4 -4.5 c 3.1 -3.5 6.1 -7.5 9.5 -11 c 0.5 -0.5 2.5 -3 4 -2.5 c 1.3 0.5 -0.1 2.5 -0.5 3.5 c -0.8 2.5 -2.1 5.3 -3 8 c -0.3 1 -2.1 1.9 -2.5 3 c -0.3 1.4 0.3 2 1.5 1 M 430 183 c 0.1 0 3 -1 3 -1 c 0 0 -3.3 2 -4 3 c -2.5 3.8 -3.5 6 -5 10.5 c -0.3 0.9 -1.1 3.4 0.5 4 c 2 0.5 6 -3 7 -5 c 0.8 -1.5 0 -6 0 -6 c 0 0 4.3 -2 5 -2.5" stroke="#000000" stroke-width="2"></path><path d=" M 436.5 186 c 4.1 -2.8 5.6 -6.5 8 -11 c 1.8 -3.3 2.8 -6.5 4 -10 c 0 0 0.5 -3 0.5 -3 c 0 0 -2.1 7.3 -2.5 8 c -3 8 -6.3 16 -9.5 24 c -0.3 0.9 -2.3 6.5 -3.5 6.5 c -1.3 0 1.5 -2 2 -3.5 c 0.3 -1.4 3.1 -9.5 1.5 -10.5 c -0.6 -0.3 0.8 1.8 1.5 2 c 1.6 0.5 3.5 0.5 5.5 0.5 c 4.6 0 9.1 -3.5 12 -6.5 c 0.3 -0.3 2.5 -1.4 1.5 -2.5 c -1 -1 -4.3 -0.5 -5.5 0 c -4.6 2.3 -6.3 8 -7.5 13 c -0.1 1 -1.6 2.5 -1 4 c 0.6 1.3 2.3 1 3.5 0.5 c 3.5 -2.3 6.5 -5 9.5 -8 c 0.5 -0.5 4 -3.5 4 -3.5 c 0 2.5 -2.6 6.4 -3.5 9 c -0.1 0.5 -1.6 2 -1 3 c 0.3 0.4 2.6 -1.5 3 -2 c 2.1 -2 4.6 -3.9 6.5 -6.5 c 0.3 -0.5 1.8 -3.5 2.5 -3.5 c 0 0 -0.8 4.5 -1 5 c -1 4 -2.5 13 3.5 12 M 191 256.5 c 0.5 0 1.5 -0.5 1.5 0 c 0 0.3 -1.3 2 -1.5 2.5 c -1 3.1 -1.9 6.6 -3 10 c -0.4 1.3 0.5 2.8 -0.5 4 M 183 264.5 c 0.9 0 1.5 1.1 2.5 1.5 c 3 1.5 10.4 -0.6 13.5 -1.5 M 189 310 c 0 -0.1 0.5 -2.3 1 -1.5 c 0.4 0.8 -0.5 3.6 -1 4.5 c -1 3.8 -0.5 8.1 -2 12 M 183.5 316 c -2 0 1.3 1.1 2.5 1 c 3 -0.6 6.5 -2 10 -2 M 228.5 261 c 0 -0.5 0.5 -4 0.5 -4 c 0 0 -0.5 2.3 -0.5 3.5 c 0 4.1 -0.5 8.6 -0.5 13 c 0 0.8 0 2.3 1 3 c 1 0.5 2.4 -2.1 3 -3 c 2.3 -3.5 3.3 -9.8 6 -12.5 M 251 262 c 2.4 -2.3 0 -2.8 -2 -2 c -2.5 1.3 -4.5 8.8 -5.5 12 c 0 0.8 -1.3 3.3 0 4 c 1.5 0.8 3.8 -1.8 4.5 -3 c 0.9 -1.5 2 -2.8 3 -4.5 c 1 -2.3 -0.5 -4.3 1 -6 c 1 -1.1 5.8 -3.3 8 -4 c 0.1 0 4.6 -1.1 4 -0.5 c -2.6 2.6 -6.5 11.3 -6.5 15.5 M 262 248.5 c -0.3 0 -2.1 -1 -1 0 M 275.5 260.5 c 0 -3.6 -3.1 -2.6 -5 0 c -1.8 2.6 -4.5 7.1 -4.5 10.5 c 0 1.1 -1.3 5 1 5 c 2 0 4.5 -4.8 5.5 -6.5 c 4.6 -7.6 6.6 -15 9.5 -23.5 c 0.1 -0.5 3 -9 3 -9 c 0 0 -3.6 6.5 -4 7 c -2.8 4.5 -5 13.1 -5 18.5 c 0 2.3 0.6 6 3.5 6 M 332.5 264.5 c 0 -1.3 3.6 -4.6 2.5 -6 c -0.6 -0.6 -3.6 0.3 -5 1 c -2.6 1.3 -9.3 8.6 -7.5 12.5 c 0.8 1.8 2.6 0.3 4 0 c 3.3 -1.1 7.3 -7 8.5 -10.5 M 335 260 c 0 0 -1.3 3.1 -1.5 3.5 c -1 3.1 -0.5 5.8 -0.5 9 M 352 258 c -5.3 0 -9.3 1.8 -11.5 8 c -0.1 0.5 -3 9.5 0 8 c 6.5 -3.1 12.1 -13.3 15 -20 c 1.1 -3 2.1 -6.4 3.5 -9.5 c 0.3 -0.9 0.6 -1.9 1 -3 M 360 240.5 c -1 1 -1.6 3.5 -2.5 5 c -2.8 4.5 -6 11.3 -7 17 c -0.3 2.8 -2.8 6.5 -2 9.5" stroke="#000000" stroke-width="2"></path><path d=" M 348.5 272 c 0.3 0.8 2.5 1.6 2.5 0.5 M 365 260 c 0 -3.3 -2.8 -2.6 -5 0.5 c -2 3 -3.1 6 -4 9.5 c -0.1 0.8 -1.3 3.3 0 4 c 1.8 0.8 4.6 -3.8 5.5 -5 c 5.1 -6.6 7.8 -13 11 -21 c 0 0 3.5 -7.9 3 -8.5 c -0.6 -0.5 -1.8 2.5 -2 3 c -1.8 2.4 -3 5.5 -4 8.5 c -2.1 6.5 -7.3 17.5 -3 24 M 226.5 311.5 c -0.5 0 0 2.6 0 5 c 0 1 -0.5 10 1.5 10 c 1 0 3.3 -3.6 4 -4.5 c 0.5 -0.8 1.5 -2.5 2 -3.5 c 0.5 -1.6 2 -4.3 2 -6 M 398 237 c 0.5 0 -3 -0.4 -4 1.5 c -1.6 3 -3.3 6.5 -5 10 c -3.8 8.8 -5 20.3 -2 29.5 M 489.5 231.5 c -1.5 -1.5 2.3 0.4 3 2.5 c 1.3 4 1.5 9.5 1 14 c -1.3 11.1 -6.8 24.1 -13 33.5 M 252.5 312 c -4.4 -4.3 -11 7.1 -12 10 c -0.4 1.1 -1.9 3.5 0 4.5 c 1 0.6 5 -2.3 6 -3.5 c 0.5 -0.8 2 -2 2.5 -3 c 0.5 -1 0 -4.1 1 -5 c 1 -1.1 4.5 -1.6 6 -3 c 0.1 -0.1 2.3 -2 3 -1.5 c 0.6 0.6 -1 2.3 -1 3 c 0 1.8 -4 11.1 -5.5 12.5 M 263.5 303 c 0 -1.1 -1 -1 -2 -1 M 276.5 311.5 c 0 -2.1 -3.3 -3 -5 -1.5 c -2.5 2.5 -7 7.8 -7 12 c 0 0.8 -1.3 5.5 1 5.5 c 2.1 0 5.3 -4.3 6.5 -6 c 5 -7.8 9.1 -16.6 12.5 -25.5 c 0.1 -0.6 1.5 -8.5 1.5 -8.5 c 0 0 -3.6 6.6 -4 7.5 c -2.3 7.1 -5.3 13.8 -6.5 21.5 c -0.3 2.3 -2 8 1.5 8 M 323.5 309.5 c 0.3 -0.3 -1.6 8.1 -2 10.5 c -0.8 5.8 -2.8 11.6 -4 17.5 c -0.1 1.1 -0.1 6.1 -1 7 c -0.3 0.3 0.8 -8 1 -9 c 1.1 -7.3 4.6 -13.1 9 -19 c 1 -1.3 2.6 -6.3 5.5 -5 c 1.6 0.8 0.8 3.1 0.5 4.5 c -1.1 5 -2.1 8.3 -8 10 c -1.1 0.3 -6 1.1 -6 -1 M 340.5 311.5 c 1.6 1.6 1 5.1 1 7.5 c 0 0.3 0.3 3 -0.5 3 c -1.3 0 0.1 -5.3 0.5 -6 c 2.1 -4.1 2.1 -6 7.5 -6 M 355 310.5 c 3.3 0 -5.8 12.5 -3 15.5 c 1 1 2.1 -1.1 2.5 -1.5 c 2.3 -2.3 4.3 -5.6 6 -9 c 0.1 -0.3 2.1 -3.1 2.5 -3 c 1.1 1.1 -0.8 8.8 -1.5 10 c -0.3 0.8 -2 3 -1 3 c 0.3 0 1.8 -1.6 2 -2 c 1.6 -2.3 4.3 -5.6 5.5 -8 c 0.1 -0.3 2.6 -4.1 3.5 -3.5 c 0.1 0.1 -1.3 3.1 -1.5 3.5 c -0.6 1.5 -2.6 8.6 -1.5 10 c 1.1 1.1 4.5 -3 5 -3.5 c 4.8 -5.8 5.3 -13.1 7.5 -20 c 0.3 -1.6 1.5 -5 1.5 -7 c 0 -1 1 -4 1 -3 c 0 2 -1.5 4.8 -2 7 c -1.1 6.1 -2.8 12.3 -4 18.5 c 0 0.3 -1 7 -1 7 c 0 0 0 -2.6 0 -3 c 0 -1.1 -1.6 -9.3 -0.5 -10.5 c 0.6 -0.6 7.5 -2.5 9 -2.5 M 356.5 296.5 c -0.8 0 -3.3 0 -2.5 0 c 1 0 1.1 0.1 2 -0.5" stroke="#000000" stroke-width="2"></path><path d=" M 386.5 326 c 2.6 0 5.1 -4.6 6.5 -6.5 c 4 -5.3 7.1 -11.1 10.5 -17 c 1.3 -2.3 2.3 -5.1 4 -7.5 c 0.5 -0.8 0.5 -1.3 0.5 -2.5 M 408 291.5 c -2.8 5.8 -4 15.3 -4 22 c 0 2.6 -1 4.8 -1 7.5 c 0 0.8 -0.5 1.5 -0.5 2.5 c 0 0.1 0.6 1.5 0.5 1.5 M 396 317 c -1.3 0 2.3 0 2.5 0 c 1.6 0 4.3 0.1 5.5 -1 M 419.5 297 c -0.6 -0.6 -2.6 5.1 -4 7.5 c -2.8 4.6 -3 9.6 -5 14.5 c -0.1 0.3 -1.1 4.6 -0.5 5.5 c 1.1 1.1 4.1 -3.8 4.5 -4.5 c 3.1 -6.1 6.8 -12.1 10 -18.5 c 0.8 -1.8 1.6 -3.5 3 -5.5 c 0 0 1.8 -3.5 1.5 -3.5 c -1 0 -3.1 5.6 -3.5 6.5 c -2.8 5.8 -5.8 12.8 -7 19.5 c -0.8 5.3 -1.1 10.1 4.5 4.5 M 448 295 c -5.8 5.8 -9.5 14.6 -10.5 23 c -0.5 5.1 -0.3 9 5 9 M 462 292 c 0 -0.6 -1.5 -2.1 -1.5 -1.5 c 0 0.8 2.8 3.3 3.5 4.5 c 0.8 1.6 0.6 5.1 0.5 7 c -1.6 10 -5.8 19.3 -12 27.5 M 155.5 142 c -3 0 1.4 -5.4 3 -5 c 5.9 1.5 14.5 6.5 14.5 -2 M 154 192.5 c -0.4 0.4 -2 0.5 -1.5 -0.5 c 0.8 -1.5 2.3 -3 4 -4 c 3.5 -1.5 7.5 2.5 11.5 2.5 c 0.8 0 1.5 -3 2 -4 M 412.9 254 c 1.5 0 -2.6 12.8 -2.6 16.3 M 403.8 255.4 c -1.6 -1.5 13.8 -2 16.3 -2.5 c 1.6 -0.4 3.1 -1.3 5 -1.3 M 426 259 c 0 -1.1 -0.5 2.1 -0.8 3.1 c -0.3 1.3 -3.8 10.1 -1.3 11.3 c 3.5 1.6 11.6 -7.6 13.1 -9.5 c 0.8 -1 2.1 -2.6 1.3 -4 c -1.6 -2.5 -4.8 0.5 -5.8 1.8 c -1.8 2.1 -3.8 6.3 -1.8 9 c 1.5 1.8 6.6 -0.3 8.1 -0.8 c 3.6 -1.1 3.6 2.1 5.3 2.1 c 0 0 -0.1 -7.8 0 -8.6 c 0.5 -2.8 3.3 -4.1 5.8 -5 M 429.7 249 c 0.8 0 0.8 -0.9 1.8 -0.9 M 262.3 38 c 2.8 0 3 2 0 2 M 371.4 40.8 c 2.8 0 3 2 0 2 M 178.8 42.7 c -1.9 11.3 -3.9 22.7 -5.9 34 M 182 50.9 c 0 -1.1 -2.6 -3.8 -2.2 -2.7 c 1.5 4.7 3 9.8 5 14.5 c 0.4 0.9 0.5 3.3 1.3 2.7 c 1.9 -1.5 2 -3.2 3.1 -5.4 c 2.6 -5.2 5.1 -10.8 8.6 -15.4 c 0.2 -0.2 -0.8 0.1 -0.9 0.4 c -0.3 1.1 -0.5 2.4 -0.9 3.6 c -0.4 1.3 -1 2.6 -1.3 4 c -1.3 6.6 -2.2 13.1 -2.2 20 M 205.6 61.8 c 0 -0.5 0.9 -1.5 0.9 -0.4 c 0 3.8 -4.4 11.9 -0.4 15 c 1.2 0.9 2.9 -1.2 4 -2.2 c 2 -1.7 5.2 -5.1 6.3 -7.7 c 0.6 -1.5 1.4 -5.7 0 -5 c -0.4 0.2 0 0.9 0 1.3 c -1 8.6 -2.7 17.2 -5.9 25.4 c -0.4 1.1 -2.6 4.8 -4 5.4 c -2.4 0.9 -16.1 2.4 -14 -3.6" stroke="#000000" stroke-width="2"></path></g><g id="layer_3"><path d=" M 718 44 c 0 -0.2 -0.7 -3.2 -1.5 -2.5 c -0.7 0.7 -1.2 4.7 -1.5 6.5 c -1.1 6.7 -3.1 13.7 -4.5 20.5 c -0.2 1.5 -2.2 5.4 -1.5 7 c 0.6 1.2 1.2 -2.7 1.5 -3 c 1.5 -2.2 2.7 -5.2 4.5 -8 c 3.5 -5.7 8 -11.5 12 -17 c 0.1 -0.1 4.5 -4.7 4 -5.5 c -1.2 -1.2 -5.2 7.2 -6 8 c -4 5.2 -7.2 11.2 -9 18 c -0.1 0.5 -1.2 4.2 -0.5 5 c 0.6 0.5 4 -1 4.5 -1.5 c 2.7 -2 6 -5 8 -8 c 0.2 -0.2 2.1 -3.5 2.5 -3.5 c 1.2 0 0 2.6 0 4 c 0 2.7 -4.6 9.2 -3.5 11.5 c 0.5 1 2.2 -2.7 2.5 -3 c 2.2 -3.4 5.7 -6.9 7.5 -10.5 c 0.1 -0.2 2.7 -2.2 3 -2 c 0.1 0.1 0 2.7 0 3 c -1 3 -2 6 -2 9.5 M 758 61.5 c 0 -3 -1.7 -3 -4 -1 c -2.7 2.7 -5.7 5.7 -7 9.5 c -0.2 1.2 -2.2 4.2 0 5.5 c 3.6 1.7 7.7 -7.9 8.5 -10 c 0.2 -0.7 -0.5 -2.7 0 -3.5 c 1.1 -1.1 4.2 -2.1 6.5 -3.5 c 3.2 -2.2 5.2 -5.7 7.5 -9 c 1.2 -2 2.2 -4.2 3 -6.5 c 0.2 -1 0 -4.5 0 -4.5 c 0 0 -2.2 6.2 -2.5 7 c -2.2 7.1 -5.2 14.1 -7.5 21.5 c -0.1 0.5 -2 9 -2 9 c 0 0 0.5 -2.4 0.5 -2.5 c 0 -0.2 0.5 -8 1 -8.5 c 0.7 -0.7 5.7 0.5 7.5 0 c 4.2 -1.2 8.7 -2.2 12.5 -6 c 0.6 -0.6 4.6 -2.6 4 -4 c -1.1 -2.2 -6.2 -0.5 -8 0.5 c -4 2.7 -9.1 11.9 -7.5 17 c 0.7 2.2 4.2 1 5.5 0 c 2.7 -2.9 7 -5.7 9.5 -9.5 c 0.5 -0.7 2 -3.5 3 -3.5 c 0.5 0 -1.2 7.5 -1.5 8 c -0.2 0.4 -1.5 3 -1.5 3 c 2.2 0 6.1 -6.2 7.5 -8 c 0.2 -0.2 2.7 -2.7 3 -2.5 c 2.7 2.7 -5.1 13.2 3.5 9 M 703.5 125.5 c -1.2 0 -2.2 6 -2.5 7 c -1.5 6.3 -5.5 11.8 -5.5 18.5 M 687.5 132 c 0 -1.9 5.7 -3.4 7.5 -4 c 6.5 -2 14.2 -5.5 21 -5.5 M 714.5 137 c 0.2 0 1.6 -1.8 2 -1.5 c 0.2 0.4 -1 2.5 -1.5 3 c -1.2 1.4 -2.7 5.8 -3.5 8 c -0.1 0.5 -1.2 5 0.5 5 c 4.5 0 12.1 -8.5 14 -12.5 c 0.5 -1 2.7 -3 1.5 -4.5 c -1.6 -1.5 -4.6 2 -5.5 3 c -3.5 3.5 -8.7 12.5 -3 15.5 c 4.7 2.4 9.6 -6.8 13 -8.5 c 1.7 -0.9 2.7 -0.9 1.5 1.5 c 0 0 0 2.5 0 2.5 c 0 0 -0.7 -5.8 -0.5 -6.5 c 0.7 -2.5 4 -7.5 7.5 -7.5 M 721.5 124.5 c -0.7 -0.7 -3.5 -1.5 -0.5 -1.5 M 765 137 c 0 -0.4 1.2 -1.5 1 -1.5 c -0.2 0 -2.2 2.8 -2.5 3.5 c -0.7 2.4 -5.6 11.3 -3.5 13.5 c 0.7 0.8 2 -0.8 2.5 -1 c 4 -1.3 5.1 -6 7.5 -9.5 c 0 0 2.6 -4.3 3 -4 c 0.6 0.5 -0.2 3.8 -0.5 4.5 c -0.5 1.5 -1.5 6.8 -1.5 8.5 c 0 1.3 2 -1.5 2.5 -3" stroke="#000000" stroke-width="2"></path><path d=" M 773.5 148 c 1 -3 4 -5.5 5.5 -8.5 c 0.2 -0.4 2.6 -1.8 3 -1.5 c 0.2 0.4 -0.7 2.5 -1 3 c -0.6 2.5 -2 4.8 -2.5 7.5 c -0.1 0.9 -1.7 3.3 -0.5 4 c 2.1 1 5.6 -4.8 6.5 -6 c 5.5 -7.3 9.2 -14 12.5 -23 c 0.7 -2 2.7 -5.5 2 -8 M 798.5 116.5 c -0.6 0.9 -0.7 1.2 -1 2.5 c -0.6 2.4 -2 5 -3 7.5 c -1.5 3.9 -2.6 8.3 -3.5 12.5 c -0.2 2 -3.2 5.9 -2 8.5 c 0.1 0.3 2.1 -2 2.5 -2.5 c 1.7 -1.9 3.2 -4.9 5.5 -6 c 0.6 -0.3 1.7 -2 2.5 -1.5 c 0.7 0.5 -0.7 1.9 -1 3 c -0.6 2.5 -2.6 9.3 -0.5 11.5 M 773.5 113.5 c -1 0.5 -3.7 1 -0.5 1 M 815 138.5 c 1.2 0 0.2 -4.5 -2 -3.5 c -3.7 1.8 -9.2 10.9 -8 15 c 1.2 4 7.1 -5.9 7.5 -6.5 c 0.7 -1 1.7 -1.9 2.5 -3 c 0.2 -0.4 1 -1.5 0.5 -1.5 c -0.6 0 -1.2 2.5 -1.5 3 c -1.2 2.5 -2.2 7 -0.5 9 c 1.6 1.5 5.2 -3.3 6 -4.5 c 3.6 -7 7.7 -13.4 11 -21 c 0.6 -1.5 3.2 -5 2 -6.5 c -0.5 -0.5 -5 8.2 -5.5 9 c -2.7 3.5 -3.2 10.4 -5 15 c -0.2 1.3 -1.1 4.8 0 6 c 1.2 1.4 5.2 -5 6 -6 c 4.7 -4.8 8.7 -12.5 11.5 -19 c 0.1 -0.4 1.5 -7 1.5 -7 c 0 0 -2.6 5 -3 6 c -2.1 5.3 -4.2 12 -5.5 18 c -0.1 0.5 -1 8 -1 8 c 0 0 1.2 -5.9 1 -7 c -0.1 -0.5 -1.2 -4 -1 -4.5 c 1.5 -1.5 4.7 -1.8 7.5 -2.5 M 696.5 174.5 c 0.1 0 1 -2 1 -2 c 0 0 -1.7 5 -2 5.5 c -1.1 5.5 -1.2 11.5 -3.5 17 c -0.1 0.4 -2 8 -2 8 c 0 0 4.1 -6.5 4.5 -7 c 4.7 -6.4 9.7 -12.8 15 -19 c 0.2 0 4 -4.5 4 -4.5 c 0 0 -1.7 1 -2 1.5 c -1.6 1.5 -3.2 3.5 -4.5 5.5 c -3.2 5.5 -6.2 11.5 -9 18 c -0.7 1.8 -3.2 4.5 -2.5 7 c 0.5 1.5 2.7 -0.3 3.5 -1 c 2.7 -2.9 5.7 -6 8 -9.5 c 0.5 -0.5 3 -4.9 3.5 -4.5 c 1.2 1.4 -1.2 9.5 -2 11 c 0 0 -1 3.5 -1 3.5 c 0 0 2.1 -3.4 2.5 -4 c 2.2 -3.3 4.2 -6.3 7 -9 c 0.7 -0.5 2.2 -2.5 3.5 -2 c 1.6 0.8 -0.6 3 -1 4 c -0.7 2 -3.7 8.5 -2.5 8.5 M 736.5 187 c 1.2 -4.3 -1.2 -5 -4.5 -2 c -2.2 2.4 -3.2 6 -5 9 c -0.7 1.3 -2.2 5.5 -0.5 6.5 c 0.7 0.4 4.7 -4 5.5 -5.5 c 1.1 -2 0.7 -5.3 2 -7.5 c 0.7 -1.5 5.2 -3.5 7 -5 c 2.2 -1.9 2.7 -5 4.5 -7.5 c 1.2 -2 1.7 -5 2.5 -7.5 c 0 0 1 -3 1 -3 c 0 0 -1.7 5 -2 6 c -1.2 7 -6.7 12.5 -8 20 c -0.2 2 -1.2 4 -2 6 c -0.2 0.5 0 2.5 0 2.5 c 0 0 1.2 -7.4 2.5 -8 c 1.2 -0.5 3.6 0.5 5 0 c 3.7 -1.8 8.6 -2.5 12 -6 c 0.2 -0.3 4.7 -3.5 4 -4.5" stroke="#000000" stroke-width="2"></path><path d=" M 760.5 180.5 c -3.7 -3.8 -10.7 7.3 -12.5 10 c -0.7 1 -1.2 3 -2 4.5 c -0.6 1.3 -1.7 4.5 0 5.5 c 4.2 2 11.7 -7.3 14.5 -10.5 c 0.2 -0.3 2.5 -4.4 3.5 -3.5 c 0.6 0.5 -0.6 2.5 -1 3 c -1 1.4 -4 7.3 -4 9 c 0 0 2.2 -1.4 2.5 -1.5 c 2.1 -2 4.2 -4 6.5 -6.5 c 0.2 -0.3 1.6 -2 2 -2 c 1.1 0 0 2.5 0 3 c -0.6 2.5 -3.7 6.5 -0.5 8.5 M 803.5 184 c 0 0 -2 6 -3 9 c -0.1 0.4 -1 4.5 -1 4.5 c 0 0 1.2 -2.5 2 -3 c 2.6 -2 6.1 -9 10 -9 c 0.1 0 0.7 1.3 0.5 2 c -1.6 3.3 -3.5 6.5 -3.5 10.5 M 825.5 187.5 c 1.5 0 3 -3.9 1 -5 c -1.7 -0.9 -3.7 1.3 -5 2.5 c -2.2 2.4 -7.2 9.5 -5.5 13.5 c 2.2 4.5 8.2 -6.3 10 -8 c 0.5 -0.5 3.5 -5 2.5 -5 c -2.6 0 -4.5 11 -4.5 13.5 M 839.5 187 c 0.7 -0.5 1.7 -4 -0.5 -3 c -3 1.5 -10.1 13 -5 15 c 1.2 0.4 4.7 -2.4 6 -3.5 c 5.7 -5.5 8.2 -11.4 12 -18.5 c 0.1 0 2 -7.5 2 -7.5 c 0 0 -1.7 4.5 -2 5 c -0.6 0.9 -2.2 1.8 -3 3 c -1.5 3 -2.6 8.5 -3.5 12 c -0.2 0.9 -1.7 4.5 -1.5 5.5 c 0.7 1.5 8.6 -5 10 -6.5 c 0.5 -0.5 2.2 -2.5 3 -2 c 0.2 0 -0.7 2 -1 2.5 c -0.2 1.9 -0.2 6 0.5 8 M 883.5 169.5 c -1.7 -0.9 -1.2 -4.5 -4.5 -4.5 c -1.2 0 -5.6 10.3 -6 11 c -4.1 8.3 -6.2 17.4 -7.5 26.5 c -0.2 2.5 -2 5 -2 8 M 864 196.5 c -3.1 -1.5 1.5 -4.3 3.5 -5 c 5.6 -1.8 12 -2.5 17 -6 c 1 -0.5 3.2 -0.5 4 -2 c 0.2 -0.5 -3.2 0.4 -4 1.5 c -0.7 1.4 -6.2 8 -5.5 10 c 1.5 3 8.5 -5.5 9 -6.5 c 2 -4 -4.7 1.5 -1.5 0 c 6.7 -3.4 7 -10.5 12 -15.5 c 2 -2 2.2 -3.9 3.5 -6.5 c 0.1 0 2.7 -4 2.5 -4 c -0.7 0 -1.1 4.4 -1.5 5 c -2.7 4 -4 8.8 -6 13.5 c -1.7 4.5 -8.5 10.4 -8.5 15.5 c 0 1 -1.7 2.5 -1 3.5 c 1.2 1 6.6 -3 7.5 -3 M 907 193 c 0 -0.5 1.7 -1.3 1.5 -2.5 c -2.2 -6.5 -7.7 2.9 -9.5 6 c -0.2 0.4 0.6 2.8 1 3 c 0.7 0.3 1.2 -1 2 -1.5 c 3.2 -1.5 3.7 -5.4 6 -7.5 c 0.2 -0.4 1.5 -2.5 1.5 -2.5 c 0 0 -3.1 4 -3.5 5.5 c -1.7 7 -5.7 17.5 -11 23 c -1.5 1.5 -14 10.5 -14 3 c 0 -0.9 1.7 -2.8 2.5 -4 M 912.5 193 c 2 0 3.1 -1 5 -2 c 1.2 -0.5 4.1 -1.3 5 -3 c 1.2 -2.5 1.7 -6 -2.5 -4 c -2.6 1.3 -4.1 4.5 -6.5 6.5 c -0.2 0 -5.2 6 -3.5 8 c 1.5 1.5 7.7 -1.4 9.5 -2 c 2.5 -0.8 6 -1.5 7.5 -3 c 2.7 -2.8 -0.7 -9.5 6 -9.5 M 655 143.5 c -0.5 -0.5 -2.5 0.5 -2.5 0.5 c 0 0 2 -3.4 3 -2.5" stroke="#000000" stroke-width="2"></path><path d=" M 655.5 141.5 c 2.2 2 14.5 7 14.5 1 M 650 193 c 0 -1.3 3.5 -5.9 5 -5 c 3.2 2 6.2 4.8 9.5 7 c 1.2 0.9 5.5 -4.5 5.5 -6" stroke="#000000" stroke-width="2"></path></g><g id="layer_4"><path d=" M 125 12.5 c 0 113.3 0 226.6 0 340 M 128.5 350 c 141 0 282 0 423 0 M 553 351 c 0 -112.5 0 -225 0 -337.5 M 125.5 15.2 c 143.6 0 287.3 0 431 0 M 129 100.5 c 141.5 0 283 0 424.5 0 M 128.5 230 c 139.5 0 279 0 418.5 0 M 625 29 c 0 73 0 146 0 219 M 628.5 248.5 c 107.1 0 214.2 0 321.5 0 M 627.5 27.7 c 108.1 0 216.2 0 324.5 0 M 951 28 c 0 74 0 148 0 222 M 629 91.2 c 108.2 0 216.6 0 325 0 M 626 232.7 c 107.2 0 214.6 0 322 0" stroke="#0000ff" stroke-width="2"></path><path d=" M 500 143 c 37.2 -23.5 74.6 -47 112 -70.5 M 598.5 71.5 c -0.5 0.2 -2.2 0.4 -2 0 c 0.6 -0.5 5.2 -0.9 6 -1 c 3.2 0 6.6 -0.2 10 -0.5 c 0.1 0 2.5 0 2.5 0 c 0 0 -2 2.7 -2.5 4 c -1.1 3.4 -4 6.5 -7 10.5 c -0.6 0.7 -1.2 3.4 -2 4 c -0.2 0.2 -3.7 -7.5 -4.5 -8.5 c -1.2 -2 -5.1 -6.5 -5 -6.5 M 501.5 195 c 37.1 -32 74.2 -64 111.5 -96 M 602.5 102.5 c -1.7 0 3.6 -2.2 4 -2.5 c 3.6 -1.2 7 -4 11 -4 c 0.6 0 -1.2 0.4 -1.5 1 c -0.7 1.7 -2.1 2.5 -3 3.5 c -1.2 1.2 -2.7 5 -3.5 6.5 c -0.6 1.2 0.5 2.9 -0.5 3.5 c -1.6 0.7 -6.7 -3 -2.5 -3" stroke="#ff0000" stroke-width="2"></path></g><g id="layer_5"><path d=" M 583.5 143.5 c 12.1 52.5 24.2 105 36.5 157.5 M 595 331 c -1.5 1.5 -5.5 6.1 -5.5 9.5 M 597.5 332.5 c 0 2.1 -3.5 4.8 -3.5 8 M 608 322.5 c 0 -3 0 -8.6 1.5 -1 c 0.7 3.8 -1.6 11.3 1.5 14.5 c 1.5 1.5 3.2 -3 3.5 -3.5 c 2.5 -3.6 3.2 -10 4.5 -14.5 M 620.5 331 c 4.2 0 8.7 -4.6 11.5 -7.5 c 1.1 -1.1 0.6 -4.3 -0.5 -5 c -1.7 -0.8 -4.2 1.8 -5.5 3 c -2.7 2.8 -8.7 11.5 -5 15.5 c 2.1 2.1 8.7 -2.8 11 -4.5 c 0.6 -0.3 5.2 -3.1 6.5 -2 c 0.2 0.1 0.7 2.5 1.5 2.5 c 0.7 0 0.5 -5.1 0.5 -6 c 0 -3.3 1.1 -4.6 3.5 -7 M 653 318 c 0 -0.1 -0.7 -1.6 -1.5 -1 c -2.5 2.5 -3.7 10 -5 13.5 c -0.2 1.1 0.2 3.3 1.5 4 c 1.7 0.8 5.2 -2.1 7 -3 c 1.6 -0.8 3 0.8 5 -1 c 1.7 -1.8 0.5 -5.1 0.5 -7.5 c 0 -1.1 0.2 -4 -0.5 -5 M 665 330 c 0 -0.8 2.1 -1.6 3 -2.5 c 2.7 -2.8 5.7 -4.3 7.5 -8 c 0.2 -0.8 1.5 -2.8 0.5 -3.5 c -5.5 -2.6 -9.7 8.1 -11 12.5 c -0.2 1.5 -1.7 4.5 -0.5 6 c 3.2 3.1 10.7 -7.3 13 -9.5 c 0.7 -0.6 1.7 -3 3 -3 c 0.7 0 -0.6 8.1 -1 9 c 0 0 -1 2.5 -0.5 2.5 c 2.6 0 5.7 -8.1 7.5 -10 c 0.2 -0.3 2.5 -2.8 3 -2.5 c 0.2 0.1 0.1 2.6 0 3 c -1.6 3.1 -2.5 6.1 -2.5 9.5 M 701.5 321.5 c 0 -0.8 1.1 -2.6 1.5 -3 c 1.1 -1.1 -2.5 -2.1 -4 -1.5 c -2.7 1.3 -6.5 9.6 -6.5 12.5 c 0 0.8 -1.2 3.3 0 4 c 2.1 1 7.7 -6.3 8.5 -7.5 c 2.1 -3 2.6 -6.8 4.5 -10 c 2 -3.3 5.5 -9.5 5.5 -13.5 c 0 -0.1 -1.2 1.6 -1.5 2 c -1 2.5 -1.7 4.8 -3 7.5 c -2.2 5.6 -5.1 12.3 -6 18.5 c -0.1 1.1 -0.2 4.5 0.5 5.5 c 0.7 0.8 2.7 -0.6 3.5 -1 c 3.5 -1.1 7.2 -4.6 8.5 -8.5 c 0.2 -0.8 2.7 -3 1 -4 c -2.1 -1 -3.2 0.8 -4.5 2 c -2.7 2.6 -3.7 12.5 2 14 c 2.2 0.6 4.2 -2.6 5.5 -4 c 4.6 -5.5 7 -14.8 8.5 -22 c 0 -0.3 1.5 -8.5 1.5 -8.5 c 0 0 -1.2 4.5 -1.5 5 c -2.2 6 -1.2 12.8 -2.5 19 c 0 0.3 -1 6.5 -1 6.5 c 0 0 -1.2 -2.3 -1.5 -3 c -0.7 -2.3 -0.2 -5.1 -1 -7.5 c -0.1 -0.5 0.2 -2.5 0 -3 c 0 0 -1 -1 -1 -1 c 0 0 2.2 0 2.5 0 c 2.5 0 5.2 -1.5 7.5 -1.5 M 739 307.5 c 2.2 -2.1 2.7 -4.8 6 -6.5 M 743.5 309.5 c -1.2 1.3 2.5 -0.1 3 -0.5 c 1.6 -1 2.5 -3.5 4 -5" stroke="#ff0000" stroke-width="2"></path></g></g></svg></div>
+<div sb='@P' ft='++'  style='display:none;' class='zeichenflaeche tshareElement' onClick='nextLayer(this)' ><svg width="100%" height="100%" class="qreator_svg" heightoriginal="701" hoehegesetzt="504.33140253162975" breitegesetzt="998" viewBox="0 0 998  504.33140253162975"><g fill="none" stroke-linecap="round" id="global"><g id="layer_2"><path d=" M 457.3 131.2 c 2.9 0 3 2 0 2 M 123.5 50.9 c 0 42.2 0 84.5 0 126.8 M 125.1 50.9 c 72.8 0 145.7 0 218.6 0 M 346 51.3 c 0 41.5 0 83 0 124.5 M 126.5 174.3 c 72.2 0 144.5 0 216.8 0 M 142.4 65.9 c -1.3 6.6 -2.7 13.3 -4 20 M 141.5 68.6 c -1.4 -1.4 1.3 0.9 1.8 2.2 c 0.6 1.5 1.4 7.2 3.6 7.7 c 1.5 0.3 2.3 -2.2 3.1 -3.6 c 2.2 -3.9 3.8 -8.2 5.9 -12.2 c 0.4 -0.9 -0.1 2.1 -0.4 3.1 c -0.4 1.7 -1.4 3.2 -1.8 5 c -0.5 2.7 -3 12.8 -0.9 15 M 162 73.1 c 0 1.9 -4.1 10.4 -0.4 11.3 c 3.1 0.7 4.7 -5.8 4.9 -7.7 c 0 -0.7 0 -2.2 0 -2.2 c 0 0 -0.1 3.9 -0.4 5.9 c -0.9 5.7 -2 12.3 -4 17.7 c -0.7 1.9 -2.2 4.9 -4.5 5.9 c -1.8 0.7 -5.4 1.1 -5.4 -1.8 M 180.1 63.6 c 1.4 0 -0.5 4.3 -1.3 6.3 c -2 5.1 -5.9 10 -5.9 15.9 c 0 1.2 2.4 0.6 3.6 0.4 c 3.4 -0.4 5.6 -2.2 9 -2.2 M 192.4 73.6 c 0 -0.4 0.7 -1.7 0.4 -1.3 c -2.4 3.7 -4.1 8.7 -4.5 13.1 c 0 0.6 0.2 1.9 0.9 1.8 c 2.1 -0.5 5.8 -7.6 6.8 -9 c 0.6 -1 1.2 -4.2 1.8 -3.1 c 0.6 1.3 -1.4 10.9 -1.3 10.9 c 2.5 -2.5 4.6 -6.5 6.8 -9.5 c 0.4 -0.6 1.2 -1.8 1.8 -1.3 c 1.7 1.7 -2 8.9 -1.8 10.9 c 0 0 0.6 2.7 1.8 1.8 c 5.1 -4.1 4.9 -12.1 6.8 -17.7 c 0.4 -1.2 1.5 -2.3 1.8 -3.6 c 0.2 -1.1 0 -4.7 -0.4 -3.6 c -2.1 4.3 -2.8 10.6 -3.6 15.4 c -0.3 2.3 -2.1 5.5 -0.4 7.2 c 0.8 0.8 3.1 -2.6 3.1 -2.7 c 2.8 -2.8 5.7 -5.7 8.6 -8.6 c 0.5 -0.5 -0.9 1.2 -1.3 1.8 c -0.6 0.8 -7.1 8.6 -4 8.6 c 4.5 0 8.6 -3.7 11.3 -6.8 c 0.8 -0.9 4.2 -3.9 2.7 -5.4 c -0.8 -0.8 -2.9 1.5 -3.1 1.8 c -1.6 2.3 -5.4 12.5 0.9 10.4 M 243.3 73.1 c -4.7 2.3 -8.1 3 -10.4 9 c -0.4 1.1 0.6 5.6 2.7 4.5 c 6 -3.3 8.5 -12.3 10 -18.6 c 0.4 -2 3 -6.3 0.9 -6.3 c -1.5 0 -1.7 2.6 -2.2 4 c -1.6 4.3 -3.2 9.8 -2.7 14.5 c 0.2 1.7 2.1 6.9 5 4 M 199.7 65.9 c -0.6 0 -1.2 0.1 -1.8 0.4 M 262.9 63.1 c 0.3 -0.6 1.1 -2.4 0.9 -1.8 c -2.5 7.7 -10.9 15 -10.9 23.6 c 0 6.5 12.4 -0.4 15.4 -0.4 M 275.6 77.7 c 0 -0.4 0.1 -1.7 0 -1.3 c -1.3 3.9 -1.7 7.5 -3.6 11.3 M 278.8 64.5 c -0.7 0 -0.8 0 -1.3 0.4 M 287 74.5 c -1.1 1.1 -3.6 2.1 -3.6 4 c 0 1.7 2.2 3.5 2.2 5.4 c 0 1.9 -4 5.6 -4 2.2 M 295.6 58.6 c -3.7 3.7 -3.3 13.2 -4.5 18.1 c -0.2 1.1 -2.9 9.8 -1.8 8.6" stroke="#0000ff" stroke-width="2"></path><path d=" M 289.7 76.8 c 0 -1.8 5.5 -2.2 6.8 -2.2 M 144.7 124.5 c -0.8 0.8 0 1.5 0.9 0.9 c 0.4 -0.3 8.7 -7.7 5 -8.6 c -4.4 -1.1 -8.3 6.1 -9 9.5 c -0.4 1.8 0.4 5.5 3.1 5 c 4.5 -0.9 8.2 -4.4 12.7 -5.4 c 0 0 2.7 0.4 2.7 0.4 c 0 0 -1.4 -2 -1.8 -3.1 c -0.7 -2.5 -1.3 -7.2 2.7 -7.2 M 177.4 117.2 c -3.3 0 -9.2 1.1 -10 5.4 c -0.4 2.7 4.6 4.4 4 7.2 c -0.5 2.5 -4.5 3.6 -2.2 -0.9 M 183.8 103.1 c 0 6.4 -1.3 14 -2.2 20.4 c -0.2 1.5 -0.6 3 -0.9 4.5 c -0.3 1.5 -0.6 3 -0.9 4.5 c 0 0.2 0 1.2 0 0.9 c 0 -2.3 -1.3 -9.4 0.9 -10 c 4.4 -1.1 8.1 -1.3 12.2 -4 c 0.9 -0.6 3.2 -0.8 2.7 -1.8 c -0.8 -1.7 -4 -0.4 -5 0.4 c -1.9 1.9 -7.4 10.2 -4.5 13.1 c 2 2 8.8 -2.2 10 -2.7 c 0 0 2.9 -1.7 4 -1.3 c 1 0.3 0.5 2.3 0.4 2.2 c -2.3 -3.1 -0.7 -7.2 3.1 -7.2 M 225.1 102.7 c -1.9 -0.9 -2.7 2.7 -3.1 4 c -1.7 5.2 -1.3 5.5 -2.2 11.3 c -0.4 2.6 -0.8 5.6 -1.8 8.1 c -0.2 0.7 -1.7 2.2 -0.9 2.2 c 2.4 0 3 -3.3 4 -5 c 2.9 -4.6 5.6 -10.1 9 -14.5 c 1.2 -1.6 4.4 -4.3 5.4 -6.3 c 0.5 -1 -1.9 1.3 -2.7 2.2 c -0.9 1 -1.9 2 -2.7 3.1 c -2.5 4 -10.7 16.1 -8.6 21.8 c 0.5 1.3 3 -0.3 3.1 -0.4 c 2.7 -2.2 5.2 -5.7 7.2 -8.6 c 0.8 -1.2 1.2 -3.6 2.7 -3.6 c 1.1 0 -2.2 12.2 -2.2 12.2 c 0 0 1.6 -1.4 2.2 -2.2 c 1.9 -2.7 4.1 -4.7 6.3 -7.2 c 0.7 -0.8 1 -2.7 2.2 -2.7 c 0.7 0 0.6 1.5 0.4 2.2 c -0.7 2.1 -5.2 8 -2.2 9.5 M 254.7 117.2 c 0 -2.3 -1.4 -0.6 -2.7 0.9 c -2 2.6 -3.3 6.2 -3.6 9.5 c 0 0.9 -0.4 2.7 0.4 2.7 c 3.8 0 4.6 -6.8 5 -9.5 c 0 -0.7 -1 -1.7 -0.4 -2.2 c 0.5 -0.5 1.4 0.9 2.2 0.9 c 1.4 0 2.9 -1 4 -1.8 c 4 -2.6 5 -11.4 5 -15.9 c 0 -1.1 -0.6 2.1 -0.9 3.1 c -0.8 3 -1.4 6 -2.2 9 c -0.6 2.3 -5.9 14.9 -5.9 18.1 c 0 1 1.3 -1.7 1.8 -2.7 c 1.1 -2.5 1.9 -6.4 4.5 -8.1 c 3.5 -2.3 7.8 -2.8 11.3 -5.4 c 0.1 -0.1 4.3 -3.8 3.6 -4 c -5.9 -1.9 -10.4 8.6 -11.3 12.7 c -0.4 1.7 -1.5 4.5 0 5.4 c 1 0.6 3.9 -2.1 4 -2.2 c 2.9 -2.6 5.7 -9.2 9 -10.9 c 0.6 -0.3 0.1 1.5 0 2.2 c -0.5 2.5 -2.2 4.8 -3.1 7.2 c -0.3 0.7 -0.9 2.2 -0.9 2.2 c 0 0 6.7 -7.2 7.2 -7.2 c 0.6 0 0 1.2 0 1.8 c 0 1.5 -1.5 8.5 2.2 7.2 c 1.3 -0.4 2.4 -1.5 3.6 -2.2 M 146 147.2 c 3.1 -3.1 1.2 -0.2 0 2.7 c -1.6 3.9 -5.7 10.2 -4.5 15" stroke="#0000ff" stroke-width="2"></path><path d=" M 141.5 165 c 0.7 2.9 9.5 -2.3 9.5 0 M 155.6 161.8 c -0.4 0.4 4.3 -3.6 5.4 -5.4 c 0.4 -0.7 1.1 -2.7 -0.4 -2.7 c -4.2 0 -7.7 7.2 -8.1 10.9 c -0.1 1.2 1.7 4.4 3.1 4 c 7.4 -2 10.9 -10.6 13.1 -17.2 c 0.5 -1.7 3.7 -9.3 2.2 -12.2 c -0.5 -1 -1 2 -1.3 3.1 c -0.6 2.5 -1.2 5.1 -1.8 7.7 c -0.7 3.4 -1.2 6.9 -1.8 10.4 c -0.2 1.6 -0.3 3.3 -0.4 5 c 0 0.9 -0.4 3.5 0 2.7 c 2.9 -5.9 -3 -16.4 6.3 -17.2 c 1.2 -0.1 2.4 0 3.6 0 c 1.6 0 1.8 0 4 0.4 c 2.3 0.5 -1.5 3.8 -1.8 4 c -3.1 3.5 -10.2 14.6 0 9.5 M 170.6 161.8 c 3.2 0 8 -1.2 10.9 -2.7 M 192.4 137.2 c -4.8 9.6 -5.9 22.6 -7.7 33.1 c -0.1 1 0.4 -2.1 0.4 -3.1 c 0 -2.4 -1.7 -6.1 0.4 -7.2 c 4.2 -2.1 9.9 -2 14.5 -4.5 c 0.4 -0.2 5.1 -3.3 2.7 -4.5 c -5.8 -2.9 -12.6 8.6 -10 13.1 c 1.3 2.4 4.8 0.8 6.8 0 c 1.5 -0.6 3.1 -2.2 5 -2.2 c 0.8 0 2.2 0.9 2.2 0.9 c 0 0 -1.3 -3 -1.3 -3.1 c 0 -2 2.3 -3.7 3.6 -5 M 226.5 141.8 c 0.3 -0.6 1.2 -2.4 0.9 -1.8 c -3.1 6.3 -5.4 17.4 -5.4 24.5 c 0 0.5 1 -0.4 1.3 -0.9 c 0.9 -1.4 1.8 -3 2.7 -4.5 c 0.9 -1.5 1.8 -3 2.7 -4.5 c 2.1 -3.6 4.3 -6.9 6.8 -10.4 c 0.7 -1 2.2 -1.8 2.2 -3.1 c 0 -0.6 -0.9 0.8 -1.3 1.3 c -1.4 1.8 -3.1 3.5 -4.5 5.4 c -2.5 3.6 -4 7.5 -5 11.8 c -0.2 0.9 -0.9 4.4 0 5.4 c 0.8 0.8 2.3 -0.9 2.7 -1.3 c 3 -3 6.2 -6 8.6 -9.5 c 0 0 -2.4 8.3 -2.7 9.5 c -0.2 1.1 2.3 -0.5 3.1 -1.3 c 0.6 -0.6 4.4 -5.8 4.5 -5.9 c 0.7 -0.9 1.7 -3.7 2.2 -2.7 c 1.3 2.6 -1.8 7.8 -1.8 10.9 M 255.1 155.4 c 6.6 -6.6 -1.5 0.6 -2.7 5 c -0.5 1.9 -0.8 5.2 2.2 3.6 c 2 -1 3.5 -4.6 4 -6.8 c 0.2 -1 0.5 -2.1 0.4 -3.1 c 0 -0.8 -1.4 -2.5 -1.8 -1.8 c -1.9 3.9 6.8 -1.3 7.7 -2.7 c 1.5 -2.3 3.9 -6 4.5 -9 c 0.2 -1 0.3 -2.1 0.4 -3.1 c 0 -0.6 0 -2.4 0 -1.8 c 0 9.2 -4.1 18.9 -5.4 28.1 c 0 0.4 0.3 -0.9 0.4 -1.3 c 0.2 -0.7 0.2 -1.5 0.4 -2.2 c 0.4 -1.9 0.2 -4 0.9 -5.9 c 0.1 -0.5 0.8 0.8 1.3 0.9 c 1.3 0.2 2.7 0.3 4 0 c 2.3 -0.6 4.5 -1.8 6.8 -2.7 c 0.2 0 7.7 -3.8 6.3 -4.5 c -6.8 -3.4 -14.8 11.2 -12.2 16.3 c 1.5 3.1 9.5 -5.4 10.4 -6.3 c 1.2 -1.2 2.4 -2.3 3.6 -3.6 c 0.4 -0.4 1.1 -1.9 1.3 -1.3 c 0.3 1.1 -0.3 4.8 -0.4 5.4 c -0.2 1.3 -2.2 4.3 -0.9 4 c 0.4 0 6 -6.2 6.8 -5.4" stroke="#0000ff" stroke-width="2"></path><path d=" M 293.8 156.8 c 1.2 1.2 -1.5 9.4 4.5 6.3 M 126.5 99.3 c 73.7 0 147.5 0 221.3 0 M 126 277.7 c 0 33.4 0 66.9 0 100.4 c 74 0 148.1 0 222.2 0 c 0 -33.4 0 -66.9 0 -100.4 c -74 0 -148.1 0 -222.2 0 M 424.7 277.7 c 0 33.7 0 67.5 0 101.3 c 65.9 0 131.8 0 197.7 0 c 0 -33.7 0 -67.5 0 -101.3 c -65.9 0 -131.8 0 -197.7 0 M 699.2 278.6 c 0 32.5 0 65.1 0 97.7 c 65.4 0 130.9 0 196.3 0 c 0 -32.5 0 -65.1 0 -97.7 c -65.4 0 -130.9 0 -196.3 0 M 31.5 238.1 c 0 7.7 -4 15.5 -4 23.1 c 0 0.5 1 -0.4 1.3 -0.9 c 0.9 -1.4 1.7 -3 2.7 -4.5 c 0.8 -1.3 1.8 -2.7 2.7 -4 c 2.9 -4.4 8.6 -8.2 10.9 -12.7 c 0.1 -0.3 -0.6 0.5 -0.9 0.9 c -0.5 0.7 -1.1 1.5 -1.8 2.2 c -0.8 1 -1.9 2 -2.7 3.1 c -2.9 4.2 -6 10.1 -7.7 15 c -0.3 1 -0.5 2.7 0.4 3.1 c 1.1 0.5 3 -0.9 3.6 -1.3 c 3.3 -2.6 5.3 -5.7 8.1 -8.6 c 0.4 -0.4 -2.1 9.1 -1.8 9.5 c 0.4 0.4 1.3 -0.4 1.8 -0.9 c 2.1 -2.4 7.5 -13.1 5.4 -3.6 c -0.2 1.3 -0.4 2.2 -0.4 3.6 M 64.2 250.4 c -3.4 1.7 -5.6 5.1 -7.2 8.6 c -0.5 1.2 -1.8 4.2 -0.4 4 c 6 -0.8 5.9 -5.3 5.9 -10 c 0 -0.7 0.6 1.8 1.3 1.8 c 0.6 0 1.3 -0.4 1.8 -0.9 c 4.1 -3.5 7.2 -12.9 7.2 -18.1 c 0 -1 -0.9 1.7 -1.3 2.7 c -0.8 2 -1.6 4.2 -2.2 6.3 c -1.5 5.1 -4.7 13.6 -3.6 19 c 0 0.3 0.3 -0.5 0.4 -0.9 c 0.2 -0.8 0.3 -4.3 1.3 -4.5 c 1.1 -0.2 2.4 0.2 3.6 0 c 1.8 -0.4 8.7 -5 7.2 -7.2 c -0.8 -1.2 -4.9 0.7 -5.4 1.3 c -2.1 2.4 -3 7.4 0 9.5 c 2.7 1.8 8.1 -7.1 8.6 -7.7 c 0.6 -0.7 1.8 -2.6 2.2 -1.8 c 1.3 2.7 -3.1 6.3 -2.2 9 c 0.3 1.1 1.9 -1.3 2.7 -2.2 c 1.7 -1.9 2.5 -4 3.6 -6.3 c 0.2 -0.5 0.1 1.2 0 1.8 c -0.3 1.6 -1.3 3.2 -1.3 5 c 0 0.3 1.3 2.9 1.3 1.3 M 94.7 252.2 c 0 0.1 0 0.3 0 0.4 M 94.7 258.6 c -0.4 0.4 -0.9 0.9 -1.3 1.3 M 152 311.3 c 0 -0.9 0.2 -2 0.9 -2.7 c 0.6 -0.6 -0.2 1.8 -0.4 2.7 c -0.2 0.9 -0.5 1.8 -0.9 2.7 c -1.1 3.1 -2.7 7 -2.7 10.4 c 0 0.8 0.9 -1.4 1.3 -2.2 c 0.4 -0.9 0.8 -1.8 1.3 -2.7 c 1.2 -1.9 6 -10 9.5 -10 c 0.9 0 -0.1 1.8 -0.4 2.7 c -0.3 1 -0.5 2.1 -0.9 3.1 c -1.2 3.3 -2.7 6.3 -2.7 10 M 173.3 313.1 c 2.1 0 -0.4 -3 -2.2 -2.2 c -3.2 1.3 -7.5 9.9 -6.3 13.6 c 0.3 0.9 2 -0.6 2.7 -1.3 c 3 -3 6.3 -7.7 7.7 -11.8 c 0 0 -2.1 3.8 -2.2 4" stroke="#0000ff" stroke-width="2"></path><path d=" M 172.9 315.4 c -0.8 1.9 -1.8 3.7 -1.8 5.9 M 183.8 311.8 c -2.2 -2.2 -6.3 7.3 -6.8 9.5 c -0.2 1 0.1 4.8 2.2 3.6 c 8.7 -5 9.9 -15.4 14 -23.6 c 0.4 -0.9 2.3 -3.1 2.7 -4.5 c 0.3 -1.3 -1.3 2.3 -1.8 3.6 c -0.5 1.3 -1.3 2.6 -1.8 4 c -1.4 3.9 -2.8 8.5 -3.6 12.7 c -1.4 8.3 2.3 2.2 5.9 -0.9 c 0.6 -0.5 1.2 -2.4 1.8 -1.8 c 0.9 0.9 -3.6 10 -0.4 10 M 219.2 300 c 0.7 -1.5 0.7 -3.9 -1.8 -3.6 c -2.5 0.3 -6.2 6.1 -6.3 6.3 c -4 7.4 -6.8 20.9 -6.8 29.5 M 204.2 319.5 c 0 -0.8 3.4 -2.1 3.6 -2.2 c 3.6 -1.6 7.5 -2.6 11.3 -4 c 0.4 -0.1 4.7 -1.6 4.5 -2.2 c -1.2 -3.7 -7.3 5.6 -7.7 6.8 c 0 0.2 -1.5 4.6 0.4 4 c 6 -1.7 4.1 -7.4 7.2 -11.3 c 1.8 -2.3 3.2 0 5.9 -2.2 c 2.6 -2.3 5 -5.8 6.3 -9 c 0.2 -0.7 0.7 -2.2 0 -2.2 c -1.1 0 -3.2 4.6 -3.6 5.4 c -0.5 1 -0.9 2.1 -1.3 3.1 c -0.5 1.3 -7.3 14.5 -2.7 14.5 M 239.7 312.7 c 6.8 -6.8 -10.9 0.4 -5 6.3 c 3.7 3.7 6.8 -7.7 6.8 -7.7 c 0 0 -0.7 3.3 -1.3 5 c -2 5.5 -4.9 12.1 -8.6 16.8 c -1.3 1.6 -2.6 3.4 -4 5 c -0.1 0.1 -4.6 4 -4 0.4 c 0.3 -2.3 3.6 -5.1 5 -6.8 M 245.1 319 c 1.4 0 9.6 -5.8 6.8 -7.2 c -3.6 -1.8 -9.5 10.2 -5 11.3 c 1.5 0.3 4.4 -2 5.9 -2.7 c 0 0 4.7 -1.3 5.4 -2.2 c 0.9 -1.3 -0.1 -4.6 0.9 -6.3 c 1.3 -2.3 3.4 -1.8 5.9 -1.8 M 150.6 356.8 c 0.3 0 0.6 -1.1 0.4 -0.9 c -1.6 2.5 -2.6 5.6 -3.1 8.6 c -0.2 1.1 -1.2 3.6 0 3.6 c 4.2 0 7.7 -9 10.9 -11.3 c 1 -0.8 -1.3 2.3 -1.8 3.6 c -0.9 2.2 -2.7 6.4 -2.7 8.6 c 0 0.2 6.9 -7.6 7.7 -8.6 c 0.9 -1.1 1.8 -3.8 3.1 -3.1 c 1.2 0.6 -0.3 2.4 -0.4 2.7 c -1 3 -1.9 6.4 -0.9 9.5 M 156.5 342.7 c -0.6 0.4 -1.8 1.2 -1.3 1.8 M 177.9 339.5 c 0 8.6 -5.3 17.6 -6.3 26.3 c 0 0.4 1 0.3 1.3 0 c 0.8 -1.1 4 -7.2 6.3 -7.2 c 0.8 0 0.4 3.6 0.4 3.6 c -0.4 2.3 -2.2 4.5 0.4 5.4 M 192.4 357.2 c 0 -0.9 1.3 -1.6 1.3 -2.2 c 0 -2.2 -4.3 2.4 -4.5 2.7 c -1.3 2 -4.4 6.5 -2.7 9 c 0.9 1.4 5.5 -5.3 5.9 -5.9 c 0.7 -1 1.4 -2.1 2.2 -3.1 c 0.2 -0.2 0.6 -1.1 0.4 -0.9 c -2 2 -2.7 5.3 -2.7 8.1 c 0 0.4 0.1 2.4 1.3 2.2 c 4.6 -0.7 8.6 -9.5 10.4 -13.1 M 207.9 342.7 c -2.7 5.5 -4.3 11.6 -5.4 17.7 c -0.2 1.3 -1.3 3.7 0 4 c 2.2 0.5 4.3 -4.4 5 -5.4 c 2.6 -4.1 4.4 -8.3 6.8 -12.7" stroke="#0000ff" stroke-width="2"></path><path d=" M 214.2 346.3 c 1.3 -2.4 5.3 -4.7 4 -7.2 c -0.3 -0.6 -1.5 0.6 -1.8 1.3 c -0.6 1.6 -1.2 3.3 -1.8 5 c -1.3 4.2 -3.2 8.7 -4 13.1 c -0.2 1.3 -0.4 4 -0.4 4 c 0 0 0 -1.5 0 -2.2 c 0 -1.8 -0.9 -2.6 -0.9 -4.5 c 0 -0.4 6.2 -0.9 7.2 -0.9 M 446.5 312.2 c 4.4 -8.9 -3.6 6.4 -3.6 9.5 c 0 0.6 0.9 -0.8 1.3 -1.3 c 1 -1.2 1.6 -2.8 2.7 -4 c 0.9 -1 5.6 -6.8 7.7 -6.8 c 0.6 0 0.2 1.2 0 1.8 c -1 2.4 -2.6 6.3 -4.5 8.1 M 468.8 310 c -4.1 0 -7.2 3.5 -9 7.2 c -0.1 0.2 -2.2 4.9 -0.9 5.4 c 2 0.8 3.4 -1.3 4.5 -2.7 c 2.7 -3.3 4.9 -7.1 6.8 -10.9 c 0.1 -0.3 -0.7 0.5 -0.9 0.9 c -0.3 1 -0.5 2.1 -0.9 3.1 c -1.1 3 -2.7 5.2 -2.7 8.6 M 481.5 309.5 c 0 -1.7 -2.6 0.8 -2.7 0.9 c -2.8 2.4 -5.4 6 -5.9 10 c -0.2 2.2 2.1 2.5 3.6 1.8 c 7.9 -3.9 11.1 -16.3 13.6 -23.6 c 0.2 -0.7 0.6 -1.5 0.9 -2.2 c 0.5 -1.4 1.3 -6.1 1.3 -4.5 c 0 9.3 -7.2 17.9 -7.2 27.2 c 0 3.1 6.8 -4.5 7.2 -4.5 c 0.9 0 -0.3 1.8 -0.4 2.7 c -0.2 2 0 4.2 0 6.3 M 513.3 298.6 c -4.4 -4.4 -5.6 3.8 -6.3 6.8 c -1.8 7.7 -2.2 19.5 -5.9 26.8 M 501.9 322.2 c 0 -9.3 10.9 -5.9 16.3 -11.3 c 0.7 -0.7 -2 0.9 -2.7 1.8 c -0.9 1.1 -1.9 2.3 -2.7 3.6 c -1 1.7 -2.6 8.2 1.8 5.4 c 2.7 -1.7 0.8 -3.1 2.7 -5 c 1 -1 2.8 -0.6 4 -1.3 c 2.4 -1.4 3.8 -5.1 4.5 -7.7 c 0.2 -0.8 2.7 -9 3.1 -8.6 c 0.7 0.7 -1.2 3.6 -1.3 4 c -1.8 5.4 -4.3 11.2 -5.4 16.8 c -0.4 2.3 4.1 0.3 5 -0.4 M 537.4 312.2 c -0.8 0 -0.3 -1.4 -1.8 -0.9 c -2.4 0.9 -6.8 5.6 -5.9 8.6 c 1.1 3.5 8.1 -5.5 7.2 -6.3 c -1 -1 -0.8 2.7 -1.3 4 c -1.8 5.2 -3.6 11.4 -6.3 16.3 c -1.7 3.1 -5.2 7.8 -9 8.6 c -1.1 0.2 -3.7 -0.3 -3.1 -1.3 c 0.9 -1.7 2.1 -3.3 3.1 -5 M 544.7 316.3 c 1.3 -1.3 4.2 -1.5 5.9 -2.7 c 2.4 -1.7 3.1 -7.6 -1.3 -4.5 c -3.2 2.2 -6.3 6.6 -7.2 10.4 c -0.2 1 -0.3 3.3 1.3 3.6 c 3.5 0.7 12.8 -4.2 14.5 -7.7 c 1.7 -3.4 -0.3 -7.3 4 -9.5 c 1.1 -0.5 3.1 0.9 4.5 0.9 M 449.7 360.9 c 0 -6.4 -4.5 8.1 -5 10 c 0 0.1 -0.4 2 0.4 2.2 c 5.3 1.3 8.1 -10.1 12.2 -12.2 c 1 -0.5 0.8 2.4 0.4 3.6 c -0.3 1.2 -4.1 6.3 -3.1 8.1 c 0.5 1.1 2.3 -1.2 3.1 -2.2 c 0.8 -0.9 5.5 -8 6.8 -6.8 c 0.4 0.4 -4.4 10.7 0 10 c 3.1 -0.5 5.1 -5.4 6.3 -7.7 c 2.4 -4.6 4.1 -9.5 5.9 -14.5" stroke="#0000ff" stroke-width="2"></path><path d=" M 476.9 351.3 c 0.9 -2.6 1.5 -7 3.6 -9 c 0.7 -0.7 -0.4 2.1 -0.9 3.1 c -0.5 1.3 -1.2 2.7 -1.8 4 c -2.6 6.6 -5.6 13.1 -6.3 20.4 c -0.5 5.3 7.8 -5.9 9 -5.9 c 0.7 0 0.4 1.5 0.4 2.2 c 0 2.5 -0.5 6.7 3.1 5.4 M 461.5 343.6 c -0.8 0.2 -2.6 1.8 -1.8 1.8 M 500.1 362.2 c 0.3 0 0.6 -2.1 -2.2 -0.9 c -2.7 1.1 -6.7 4.9 -7.2 8.1 c -0.5 3.5 5.3 -1.2 5.4 -1.3 c 2 -1.6 2.7 -5.9 5.4 -5.9 c 0.9 0 -0.6 1.8 -0.9 2.7 c -0.3 1 -1.9 6.3 0.4 6.3 c 2.2 0 4 -2.8 5 -4 c 3.9 -4.9 6.4 -9.9 9.5 -15.4 c 0.2 -0.4 3.9 -4.1 3.1 -6.3 c -0.3 -1 -1.6 1.3 -2.2 2.2 c -1.1 1.7 -2.2 3.5 -3.1 5.4 c -2 3.8 -3.5 8.5 -4.5 12.7 c -0.4 1.7 -1.9 4.3 -0.4 5.4 c 1.4 1.1 3.3 -1.7 4.5 -3.1 c 5.5 -6.5 10.9 -14.5 13.6 -22.7 c 0.4 -1.3 -0.8 2.7 -1.3 4 c -1.9 5.1 -3.2 9.6 -4.5 15 c -0.4 2 -1.2 3.9 -1.8 5.9 c 0 0.2 0.1 1.1 0 0.9 c -0.5 -0.9 -0.9 -2.1 -1.3 -3.1 c -0.3 -0.8 -0.5 -1.8 -0.9 -2.7 c -0.2 -0.6 -1.5 -1.5 -0.9 -1.8 c 2.8 -1.4 6.4 -1.7 9.5 -2.7 M 730.1 312.2 c 0 2.1 -1.3 4.9 -2.2 6.8 c -0.1 0.3 -3.1 4.1 -2.2 4.5 c 1.1 0.5 2.3 -1.4 2.7 -1.8 c 2.8 -2.8 4.8 -6.8 8.1 -9 c 0.2 -0.1 3.5 -0.9 3.6 -0.4 c 0.9 3.8 -5 7.8 -5 11.8 M 755.6 314 c 0.7 -1.4 -0.3 -4.2 -2.7 -3.1 c -2.5 1.1 -9.5 7.4 -8.1 10.9 c 0.5 1.3 2.9 -0.4 4 -1.3 c 2.9 -2.3 4.6 -8 7.7 -9.5 c 1.1 -0.5 -0.2 2.5 -0.9 3.6 c -0.6 1.1 -5 7.7 -3.6 7.7 M 766.5 312.2 c 1.4 0 0.6 -1.3 0 -0.9 c -2.1 1.4 -4.3 4.4 -5.4 6.8 c -0.2 0.5 -1.9 4.5 0 5 c 2.7 0.6 4.7 -2 6.3 -3.6 c 5.6 -5.6 8.8 -10.8 11.8 -18.1 c 0.9 -2.4 2.2 -4.7 3.1 -7.2 c 0.1 -0.4 0 -1.3 0 -1.3 c 0 0 0.3 1.8 0 2.7 c -0.7 1.7 -1.9 3.2 -2.7 5 c -2.2 5.2 -6.2 13.7 -6.8 19.5 c -0.4 4.6 5.4 -1.9 6.3 -2.7 c 0.8 -0.7 1.5 -3 2.2 -2.2 c 1.8 1.8 -4 5.3 -0.4 7.7 M 804.7 294 c -7.1 7.1 -8.9 15.9 -11.3 25.9 c -0.1 0.6 -0.9 11.3 -4 11.3 c -1.3 0 -0.1 -2.7 0 -4 c 0 -0.8 1.4 -3.2 1.8 -4 c 0.3 -0.8 -0.6 -2 0 -2.7 c 2.8 -2.8 10.8 -4.6 14.5 -6.3 c 1.3 -0.6 4.7 -1.6 3.6 -2.7 c -0.7 -0.7 -2.2 0.2 -3.1 0.9 c -4.7 3.1 -8.6 15 -0.4 7.7 c 2.4 -2.1 0.9 -3.6 1.8 -5.4 c 0.4 -0.9 2.2 -0.3 3.1 -0.9 c 3 -1.8 6.8 -6.1 8.6 -9 c 0.8 -1.4 0.7 -3.3 1.3 -5" stroke="#0000ff" stroke-width="2"></path><path d=" M 820.6 299.5 c 0.6 -1.6 3.1 -6.2 2.7 -4.5 c -1.4 5.9 -7.5 12 -9.5 18.1 c -0.1 0.4 -1.2 7.5 -0.4 8.1 c 1.2 0.9 4.3 -0.9 5 -1.3 c 3.1 -1.9 7.2 -5.3 9.5 -8.1 c 0.6 -0.7 1.5 -2 0.9 -2.7 c -2.1 -2.1 -7.9 6.1 -7.2 8.1 c 0.8 2.5 4.6 -4.5 5 -4.5 c 0.3 0 -0.3 0.5 -0.4 0.9 c -0.2 0.8 0 1.8 -0.4 2.7 c -0.5 1.3 -1.5 2.3 -2.2 3.6 c -3.4 6.2 -5.1 13.6 -10.4 18.6 c -1.3 1.2 -10 8.8 -9 1.8 c 0.4 -3.1 5.2 -5 7.2 -7.7 M 831 318.1 c -0.2 0.2 6.3 -1.9 8.1 -4 c 1 -1.1 2.8 -4.9 1.3 -4.5 c -4.2 1 -14.3 13.7 -5 13.1 c 4.8 -0.3 11.1 -3.7 13.1 -8.1 c 0.9 -2.1 -0.3 -4.8 0.9 -6.8 c 1.6 -2.6 5.4 -1.1 7.7 -0.4 M 732.4 362.7 c 0.3 -0.3 1.8 -3.6 1.8 -3.6 c 0 0 -4.8 7.6 -5 8.1 c -0.3 1.1 -0.7 3.9 0.4 3.6 c 2.6 -0.7 5 -2.9 6.8 -5 c 0.8 -0.9 2 -2.4 2.7 -3.6 c 0.2 -0.3 0.9 -1.3 0.9 -0.9 c 0 1.3 -0.4 3.6 -0.9 5 c -0.3 0.9 -2.3 3 -1.3 2.7 c 3 -1 6.1 -6.8 9 -6.8 c 0.1 0 -1 6.6 -0.4 7.2 M 744.2 347.2 c -1.9 0 -3.6 0 -3.6 2.2 M 767 342.2 c -1 1 -1.9 4.4 -2.2 5.4 c -1.8 4.8 -3.6 9.6 -5.4 14.5 c 0 0 -2.6 5 -1.8 5.9 c 0.6 0.6 5.4 -4.9 6.3 -5.4 c 0.5 -0.3 0 2 0 2.2 c 0 1.3 -0.1 2.3 0.4 3.6 M 780.1 361.3 c 2.7 -1.3 -0.8 -1.9 -2.7 -0.4 c -1.9 1.5 -6.2 7.8 -4.5 10.4 c 1.5 2.3 6.7 -5 7.2 -5.9 c 0.6 -1 2.2 -3.1 2.2 -3.1 c 0 0 -6.8 12 -0.9 9 c 5.7 -2.8 11.1 -11.6 14 -16.8 c 0.1 -0.3 5 -6.2 4 -7.2 c -0.7 -0.7 -0.7 1.8 -1.3 2.7 c -1.2 1.8 -2.9 3.5 -4 5.4 c -0.7 1.2 -4.6 11.8 -3.1 12.7 c 2.7 1.5 5.8 -2.5 7.2 -4 c 4.1 -4.6 9.5 -10.3 11.8 -16.3 c 0.1 -0.5 -1 0.4 -1.3 0.9 c -0.6 0.9 -0.8 2.1 -1.3 3.1 c -0.7 1.5 -1.6 2.9 -2.2 4.5 c -2.1 5 -3.2 10.6 -4.5 15.9 c -0.1 0.6 0.3 -1.1 0.4 -1.8 c 0 -0.9 0.1 -1.8 0 -2.7 c -0.3 -2.5 -1.1 -4.2 -0.4 -6.8 c 0.3 -1.5 9.4 0 11.3 0 M 24.7 274.7 c 25 0 50 0 75 0" stroke="#0000ff" stroke-width="2"></path></g><g id="layer_3"><path d=" M 135.1 126.8 c 0 -1.5 -3.5 -1.6 -5 -0.9 c -4.7 2.3 -9.1 4.6 -12.7 8.6 c -9 10.2 -11.9 24.4 -10.9 37.7 c 1 13.3 7.7 25.1 15.4 35.4 c 3 4 5 8.7 7.2 13.1 c 1.3 2.7 2.9 3.3 5 5.4 c 4.1 4.1 7.1 11.6 10.4 16.3 c 4.3 6 8.4 13.7 11.8 20.4 c 1 2 3 11.7 3.6 10.4 M 148.8 268.1 c 0 0 5.2 2.9 6.8 3.6 c 2 0.8 5 5 7.2 5 c 1.4 0 1.6 -8.3 1.8 -9 c 0.3 -2 0.4 -3.8 0.4 -5.9 c 0 -0.4 0.9 -1.3 0.4 -1.3 c -0.4 0 -2.8 2.4 -3.6 2.7 c -4.2 1.4 -9.6 1.5 -11.8 5.9 M 321.5 162.2 c -1.6 0 9.1 -1.4 11.3 -1.8 c 9.7 -1.3 20.1 -1.8 30 -1.8 c 10.5 0 21.1 -1.7 31.8 -0.9 c 17.1 1.3 34.5 2.2 51.8 2.2 c 29.7 0 61.3 3.9 90.4 10.4 c 10 2.2 19.9 5.5 30 7.7 c 40 8.7 82.8 22.6 116.8 46.3 c 15 10.5 31.7 19.9 42.7 34.5 c 2.8 3.8 7.2 9.9 7.2 15 M 737.4 265.9 c 0.1 -0.1 1.4 10.6 -0.9 11.8 c -2.9 1.4 -8.9 -1.5 -11.8 -2.7 c -0.7 -0.3 -1.5 -0.6 -2.2 -0.9 c -0.5 -0.2 -2.4 -0.4 -1.8 -0.4 c 4.6 0 18.1 -2.1 18.1 -8.1" stroke="#ff0000" stroke-width="2"></path></g><g id="layer_4"><path d=" M 277 317.2 c 49.3 -1.8 98.7 -3.6 148.1 -5.4 M 411 306.3 c -0.6 -0.4 -1.2 -0.8 -1.8 -1.3 c -0.2 -0.2 0.6 0.3 0.9 0.4 c 1.2 0.6 2.3 1.2 3.6 1.8 c 2.8 1.2 5.8 2.2 8.6 3.6 c 0.7 0.3 2.2 1 1.8 1.8 c -0.7 1.4 -3.4 1.7 -4.5 2.2 c -3.7 1.7 -8 5 -12.2 5 c -0.3 0 0.7 -8.9 0.9 -9.5 c 0.3 -0.9 1.1 -1.7 1.3 -2.7 c 0.1 -0.7 -1.3 -2.7 -0.4 -2.7 M 576.5 314.5 c 38.9 -1.3 77.8 -2.7 116.8 -4 M 680.6 305 c -0.8 -0.8 -2.8 -1.8 -4 -1.8 c -0.4 0 0.9 0.2 1.3 0.4 c 0.6 0.3 1.1 1 1.8 1.3 c 3.9 1.9 8.2 3.3 12.2 5 c 1.3 0.5 2.7 0.8 1.8 2.2 c -1.7 2.6 -12.4 7.2 -14.5 3.1 c -2.2 -4.5 2.2 -9 2.2 -13.1" stroke="#ff0000" stroke-width="2"></path></g><g id="layer_5"><path d=" M 870.6 163.1 c -1.2 0 0.4 2.4 0.4 3.6 c 0 1.8 0 3.6 -0.4 5.4 c -0.1 0.5 -0.2 3.3 -0.4 3.1 c -0.5 -0.5 0.5 -1.5 0.9 -2.2 c 0.8 -1.6 4.8 -12 8.1 -10.9 c 1 0.3 0 2.6 0 2.7 c -0.5 1.9 -5 14.9 0.9 10.4 M 887.4 162.2 c 0.7 0 -1.1 3.7 -1.3 4.5 c -0.6 2.8 -0.9 6.1 -0.9 9 c 0 0.2 -0.2 2.1 0.9 1.8 c 3.8 -1.2 8.1 -10.1 10 -13.6 c 0.5 -0.9 1.6 -2.4 0.9 -3.1 c -0.3 -0.3 -0.2 0.9 -0.4 1.3 c -0.3 0.9 -1 1.7 -1.3 2.7 c -1 3 -1.3 7.7 -1.3 10.9 c 0 1.2 -0.2 4.1 0.9 3.6 c 1.8 -0.9 2.5 -3.2 3.6 -5 c 3.5 -5.7 6 -13.4 7.7 -20 c 0.4 -1.6 0.5 -3.3 0.9 -5 c 0.3 -1.8 0.8 -3.6 1.3 -5.4 c 0 -0.3 0.4 -1.2 0.4 -0.9 c 0 8.8 -4.6 18.5 -5.9 27.2 c -0.4 2.8 -2.2 6.8 0 8.6 c 0.5 0.4 1.3 -0.7 1.8 -1.3 c 0.9 -1.2 1.5 -2.6 2.2 -4 c 1.8 -3.6 2.9 -7.6 4.5 -11.3 c 2.2 -5.1 6.3 -11.4 6.3 -17.2 c 0 -1.8 -2 3.2 -2.7 5 c -2 5.1 -4.2 12.2 -5 17.7 c -0.3 2.1 1.1 8.8 4.5 5.4 M 896.3 205.7 c 23.2 0 42.1 -18.8 42.1 -42.1 c 0 -23.2 -18.8 -42.1 -42.1 -42.1 c -23.2 0 -42.1 18.8 -42.1 42.1 c 0 23.2 18.8 42.1 42.1 42.1 M 865.6 315.9 c 4 0 7.4 0.8 11.3 1.3 c 4.8 0.6 11.2 -1.4 15.9 -2.7 c 4.4 -1.2 7.2 -3.8 10.9 -6.3 c 3.6 -2.5 8.1 -4.5 11.3 -7.7 c 6.7 -6.7 9.4 -15.6 11.8 -24.5 c 0.8 -3.2 2.4 -6.1 2.7 -9.5 c 1.1 -13.8 1.1 -28.1 -2.2 -41.8 c -1.2 -4.8 -5.1 -8.8 -7.2 -13.1 c -0.6 -1.3 -1.5 -1.8 -2.7 -2.7 c -0.5 -0.3 -1.9 -1 -1.3 -1.3 c 0.5 -0.2 1.2 0 1.8 0 M 915.1 222.2 c -0.5 0.5 -0.3 1.3 -1.3 1.3 c -0.3 0 0.3 -0.5 0.4 -0.9 c 0.3 -1.2 0.5 -3.2 0.4 -4.5 c -0.4 -4.1 0.9 -9 2.7 -12.7 c 0.6 -1.3 7.5 -0.7 8.6 -0.4 c 1.1 0.2 4.1 -1.5 3.6 -0.4 c -2.9 5.8 -7.4 10.5 -12.2 15 c -1.2 1.1 -6.9 5 -4 5" stroke="#ff0000" stroke-width="2"></path></g><g id="layer_6"><path d=" M 229.2 360.9 c 15.3 0 12.3 24.5 11.8 34.5 c -0.1 3.6 -0.5 7.2 -0.9 10.9 c -0.3 3.7 -0.3 7.2 -1.3 10.9 c -1.1 4.2 -2 7.8 -2.7 12.2 c 0 0.6 0.2 8.1 -0.4 8.1 c -0.5 0 -0.5 -0.9 -0.9 -1.3 M 226.5 424.5 c 0 -1.3 0.8 1.2 0.9 1.3 c 0.7 1.4 0.8 3 1.3 4.5 c 1.3 4.4 2.4 8.7 3.6 13.1 c 0.2 0.8 0.4 2.2 1.3 2.2 c 1.3 0 4.7 -5.4 5.4 -6.3 c 3.8 -4.4 10.2 -13 0.4 -13.6 c -1.8 -0.1 -3.6 -0.1 -5.4 0 c -2.7 0.2 -5.3 1.5 -7.7 2.7 M 187.9 474 c 0 -0.6 1 0.9 0.4 2.7 c -0.5 1.6 -1.2 3.3 -1.8 5 c -1.3 3.7 -3.2 7.1 -4.5 10.9 c -0.3 1.1 -1.2 2.6 -0.4 3.6 c 1.9 2.3 6.5 -0.5 8.6 -0.9 c 0.3 0 5 -0.5 5 0.9 M 202.9 489.5 c 1.4 -1.4 15.5 -3.3 9 -8.1 c -1.5 -1.1 -4 1.2 -5 2.2 c -2.1 2.1 -9 11.7 -2.2 12.7 c 1.8 0.2 3.6 -0.9 5.4 -1.3 M 225.1 483.6 c -3.5 -3.5 -6.7 2.7 -8.1 5.9 c -0.5 1.2 -1.6 3.3 -0.4 4 c 1.6 1 4 -1 5 -1.8 c 4.8 -3.9 3.7 -6.9 1.3 -11.8 M 244.2 471.8 c -5.4 5.4 -11.3 12.7 -11.3 20.9 c 0 2.2 0 5.8 2.2 6.3 c 3.5 0.8 5.8 -1.7 7.7 -4 c 5.8 -7 8 -18.9 -1.3 -23.6 M 542.4 362.7 c 0 -1.9 6.7 0.8 7.7 1.8 c 3.4 3.4 5.2 10.7 6.3 15.4 c 3.5 15.5 1.8 31.6 1.8 47.2 c 0 5.1 -0.6 10.6 -1.8 15.4 c -0.1 0.7 -2.2 3.6 -1.3 4.5 c 0.3 0.3 0.6 -0.8 0.9 -1.3 M 547.9 440.9 c -0.5 -2.1 -0.2 -6.9 1.8 -1.8 c 0.4 1 1.5 12.7 4 12.7 c 1.7 0 5.6 -3.9 6.3 -4.5 c 1.8 -1.6 3.6 -3.6 3.6 -6.3 c 0 -7 -14 -4.4 -18.1 -3.6 M 507 468.6 c 0 2.4 -3 5.8 -4 7.7 c -3.4 6 -11.9 15.2 -11.3 22.7 c 0.1 2 3.9 1.4 4.5 1.3 c 4.8 -0.6 10.5 -2.9 15.4 -1.3 M 517.9 494 c 3 -1.5 7.3 -2.2 10 -4.5 c 1.4 -1.2 2.8 -2.9 0.9 -4.5 c -6.9 -5.5 -15.6 17.3 -3.6 13.6 c 1.3 -0.4 2.9 -0.9 3.6 -2.2 M 540.1 487.7 c 2.3 -2.3 1.1 -4.1 -1.8 -1.8 c -2.6 2 -4.4 5.4 -5.4 8.6 c -0.3 1.2 -2.1 4.6 0.4 5.4 c 1.2 0.3 4.2 -1.9 4.5 -2.2 c 3.7 -3.3 5.4 -7.3 1.8 -10.9 M 549.7 494.5 c 6.4 -2.1 10.9 -10.6 14 -16.3 c 0.9 -1.7 1.9 -3.5 2.7 -5.4 c 0.2 -0.5 0 -1.8 0 -1.8 c 0 0 -1.6 4.1 -2.2 6.3 c -1.4 5.3 -3.6 12.5 -3.6 18.1 M 825.6 362.7 c 3.4 0 8.9 -1.3 11.3 2.2 c 1.6 2.5 1.9 6.3 3.1 9 c 2.6 6 2.7 12.9 2.7 19.5 c 0 10.1 0.1 20.3 -0.9 30.4 c -0.4 4.7 -0.6 9 -1.8 13.6 M 832 436.8 c 0 -0.8 -1.9 -1.4 -1.8 -0.9" stroke="#ff0000" stroke-width="2"></path><path d=" M 830.1 435.9 c 0.8 4.8 4.5 11.2 7.7 15 c 1 1.1 0.9 3.2 3.1 2.2 c 3.4 -1.4 5.9 -10.1 7.7 -13.1 c 0.3 -0.5 1.5 -1.8 0.9 -2.7 c -1.1 -1.5 -3.9 -0.4 -5.9 -0.4 c -3.9 0 -8 0.4 -11.8 0.4 M 798.8 472.2 c -0.2 -0.2 -0.2 -1.8 0.4 -1.8 c 1.2 0 -0.3 2.5 -0.9 3.6 c -0.7 1.5 -1.7 3 -2.7 4.5 c -3.3 5.2 -9 13.3 -9.5 20 c -0.1 1.5 1.9 2.7 3.1 2.7 c 6 0 11.5 -3.1 17.7 -3.1 M 814.7 494 c 2.4 0 9.2 -3.5 11.8 -5.4 c 1.3 -0.9 2.1 -2.9 0.4 -4 c -5.2 -3.4 -12.7 7.7 -11.3 12.2 c 0.9 3 5.6 3.4 7.7 1.3 M 841 485 c -1.1 0 -1.3 -1.9 -2.7 -1.3 c -3.1 1.2 -8.8 10.5 -6.8 14 c 1.3 2.3 4 -0.5 5 -1.3 c 4 -3.3 4.2 -6.4 2.7 -10.9 M 856.9 475 c 1.3 -2.7 4.3 -5.9 7.7 -5.9 c 1.5 0 5 1.4 4.5 3.6 c -0.3 1.4 -3.4 4.7 -4 5.4 c -4.2 5.1 -9.5 10.4 -13.1 15.9 c -0.3 0.5 -1.8 4.2 0 5 c 5.1 2.1 11.5 -1.8 16.8 -1.8" stroke="#ff0000" stroke-width="2"></path></g></g></svg></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Unsere <code>LinkedList</code> soll zwei Methoden haben: <code>void add(Tier)</code>, um ein neues Tier hinzuzufügen und <code>void printAll()</code>, um alle Tiere in der Liste auszugeben.</p>
+</div></div><div hidden="" class="originaltext">Unsere `LinkedList` soll zwei Methoden haben: `void add(Tier)`, um ein neues Tier hinzuzufügen und `void printAll()`, um alle Tiere in der Liste auszugeben. 
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref42452920">Ein erster Versuch</h3>
+<div class="paragraph">
+<p>Eine einfach Umsetzung von Knoten könnte so aussehen:</p>
+</div>
+</div></div><div hidden="" class="originaltext">=== Ein erster Versuch
+Eine einfach Umsetzung von Knoten könnte so aussehen: </div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>MySinglyLinkedList1/Knoten.java:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">package</span> MySinglyLinkedList1<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> zoohandlung<span class="token punctuation">.</span>Tier<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// damit der Wert des Inhalts festgelegt werden kann</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Knoten</span> <span class="token punctuation">{</span>
+
+    Tier inhalt<span class="token punctuation">;</span>
+    Knoten nachfolger<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">*MySinglyLinkedList1/Knoten.java:* 
+[source,java,indent=0]
+----
+package MySinglyLinkedList1;
+ 
+import zoohandlung.Tier; // damit der Wert des Inhalts festgelegt werden kann
+
+public class Knoten {
+
+    Tier inhalt;
+    Knoten nachfolger;
+} 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Und unsere <code>MyLinkedList</code> hätte den folgenden Code:</p>
+</div></div><div hidden="" class="originaltext">Und unsere `MyLinkedList` hätte den folgenden Code:</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>MySinglyLinkedList1/MyLinkedList.java:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">package</span> MySinglyLinkedList1<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> zoohandlung<span class="token punctuation">.</span>Tier<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// damit der Typ Tier bekannt ist</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyLinkedList</span> <span class="token punctuation">{</span>
+
+    Knoten ersterKnoten <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Knoten letzterKnoten <span class="token operator">=</span> null<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>Tier t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Knoten k <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Knoten</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        k<span class="token punctuation">.</span>inhalt <span class="token operator">=</span> t<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ersterKnoten <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            ersterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
+            letzterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        letzterKnoten<span class="token punctuation">.</span>nachfolger <span class="token operator">=</span> k<span class="token punctuation">;</span>
+        letzterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">printAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Knoten aktuellerKnoten <span class="token operator">=</span> ersterKnoten<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>aktuellerKnoten <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>aktuellerKnoten<span class="token punctuation">.</span>inhalt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            aktuellerKnoten <span class="token operator">=</span> aktuellerKnoten<span class="token punctuation">.</span>nachfolger<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">*MySinglyLinkedList1/MyLinkedList.java:* 
+[source,java,indent=0] 
+----
+package MySinglyLinkedList1;
+
+import zoohandlung.Tier; // damit der Typ Tier bekannt ist
+
+public class MyLinkedList {
+
+    Knoten ersterKnoten = null;
+    Knoten letzterKnoten = null;
+
+    public void add(Tier t) {
+        Knoten k = new Knoten();
+        k.inhalt = t;
+        if (ersterKnoten == null) {
+            ersterKnoten = k;
+            letzterKnoten = k;
+        }
+        letzterKnoten.nachfolger = k;
+        letzterKnoten = k;
+    }
+
+    public void printAll() {
+        Knoten aktuellerKnoten = ersterKnoten;
+        while (aktuellerKnoten != null) {
+            System.out.println(aktuellerKnoten.inhalt);
+            aktuellerKnoten = aktuellerKnoten.nachfolger;
+        }
+    }
+}
+
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>In den ersten beiden Zeilen werden die Knoten <code>ersterKnoten</code> und <code>letzterKnoten</code> als Felder deklariert. Der Wert dieser Felder wird jeweils aus <code>null</code> gesetzt, was bedeutet, dass in ihnen noch kein Objekt vom Typ <em>Knoten</em> gespeichert ist:</p>
+</div></div><div hidden="" class="originaltext">In den ersten beiden Zeilen werden die Knoten `ersterKnoten` und `letzterKnoten` als Felder deklariert. Der Wert dieser Felder wird jeweils aus `null` gesetzt, was bedeutet, dass in ihnen noch kein Objekt vom Typ _Knoten_ gespeichert ist:</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>Knoten ersterKnoten = null;
+Knoten letzterKnoten = null;</pre>
+</div>
+</div></div><div hidden="" class="originaltext">[java,source,indent=0]
+----
+    Knoten ersterKnoten = null;
+    Knoten letzterKnoten = null;
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Die Methode <code>add(Tier)</code> erwartet als Übergabeparameter ein Objekt vom Typ <em>Tier</em> und erstellt mit der übergebenen Tier einen neuen Knoten:</p>
+</div></div><div hidden="" class="originaltext">Die Methode `add(Tier)` erwartet als Übergabeparameter ein Objekt vom Typ _Tier_ und erstellt mit der übergebenen Tier einen neuen Knoten:
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>public void add(Tier t) {
+    Knoten k = new Knoten(); <i class="conum" data-value="1"></i><b>(1)</b>
+    k.inhalt = t; <i class="conum" data-value="2"></i><b>(2)</b>
+    if (ersterKnoten == null) { <i class="conum" data-value="3"></i><b>(3)</b>
+        ersterKnoten = k;
+        letzterKnoten = k;
+    }
+    letzterKnoten.nachfolger = k; <i class="conum" data-value="4"></i><b>(4)</b>
+    letzterKnoten = k; <i class="conum" data-value="5"></i><b>(5)</b>
+}</pre>
+</div>
+</div></div><div hidden="" class="originaltext">[indent=0]   
+----
+    public void add(Tier t) { 
+        Knoten k = new Knoten(); // &lt;1&gt; 
+        k.inhalt = t; //&lt;2&gt;
+        if (ersterKnoten == null) { //&lt;3&gt; 
+            ersterKnoten = k;
+            letzterKnoten = k;
+        }
+        letzterKnoten.nachfolger = k; //&lt;4&gt;
+        letzterKnoten = k; //&lt;5&gt; 
+    } 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Ein neuer, leerer Knoten wird erstellt</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Der Inhalt dieses Knotens verweist auf das übergebene Objekt vom Typ <em>Tier</em></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Sollte der erste Knoten noch <code>null</code> sein, unser Eintrag also der erste Eintrag in der Liste sein, so verweisen der erste und der letzte Knoten auf das übergebene Objekt</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Der Nachfolger des bisherigen letzten Knotens ist der neue Knoten und …​</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>…​ wir haben jetzt einen neuen letzten Knoten, nämlich den, den wir gerade angehängt haben.</td>
+</tr>
+</tbody></table>
+</div></div><div hidden="" class="originaltext">&lt;1&gt; Ein neuer, leerer Knoten wird erstellt
+&lt;2&gt; Der Inhalt dieses Knotens verweist auf das übergebene Objekt vom Typ _Tier_ 
+&lt;3&gt; Sollte der erste Knoten noch `null` sein, unser Eintrag also der erste Eintrag in der Liste sein, so verweisen der erste und der letzte Knoten auf das übergebene Objekt 
+&lt;4&gt; Der Nachfolger des bisherigen letzten Knotens ist der neue Knoten und ...
+&lt;5&gt; ... wir haben jetzt einen neuen letzten Knoten, nämlich den, den wir gerade angehängt haben.</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Nun müssen noch alle Werte unserer Liste ausgegeben werden:</p>
+</div></div><div hidden="" class="originaltext">Nun müssen noch alle Werte unserer Liste ausgegeben werden:</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="literalblock">
+<div class="content">
+<pre>public void printAll() {
+    Knoten aktuellerKnoten = ersterKnoten; <i class="conum" data-value="1"></i><b>(1)</b>
+    while (aktuellerKnoten != null) { <i class="conum" data-value="2"></i><b>(2)</b>
+        System.out.println(aktuellerKnoten.inhalt); <i class="conum" data-value="3"></i><b>(3)</b>
+        aktuellerKnoten = aktuellerKnoten.nachfolger; <i class="conum" data-value="4"></i><b>(4)</b>
+    }
+}</pre>
+</div>
+</div></div><div hidden="" class="originaltext">
+    public void printAll() {
+        Knoten aktuellerKnoten = ersterKnoten; //&lt;1&gt; 
+        while (aktuellerKnoten != null) { //&lt;2&gt;
+            System.out.println(aktuellerKnoten.inhalt); //&lt;3&gt;
+            aktuellerKnoten = aktuellerKnoten.nachfolger; //&lt;4&gt;
+        }
+    }</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>aktuellerKnoten</code> enthält immer den aktuell auszugebenden Knoten. Zu Beginn setzen wir diesen auf den ersten Knoten.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Solange der aktuelle Knoten auf ein bestehendes Objekt verweist (also ungleich <code>null</code> ist):</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>gib den Inhalt des aktuellen Knotens aus</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>der neue Wert in <code>aktuellerKnoten</code> ist der Nachfolger des aktuellen Knotens</td>
+</tr>
+</tbody></table>
+</div></div><div hidden="" class="originaltext">&lt;1&gt; `aktuellerKnoten` enthält immer den aktuell auszugebenden Knoten. Zu Beginn setzen wir diesen auf den ersten Knoten.
+&lt;2&gt; Solange der aktuelle Knoten auf ein bestehendes Objekt verweist (also ungleich `null` ist): 
+&lt;3&gt; gib den Inhalt des aktuellen Knotens aus
+&lt;4&gt; der neue Wert in `aktuellerKnoten` ist der Nachfolger des aktuellen Knotens</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Probieren wir unsere aktuelle Umsetzung der Klassen <code>MyLinkedList</code> und <code>Knoten</code> mal aus. Dazu können wir aus einem anderen Package den folgenden Code aufrufen:</p>
+</div></div><div hidden="" class="originaltext">Probieren wir unsere aktuelle Umsetzung der Klassen `MyLinkedList` und `Knoten` mal aus. Dazu können wir aus einem anderen Package den folgenden Code aufrufen:</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>externalPackage/Main1.java:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>package externalPackage;
+
+import MySinglyLinkedList1.MyLinkedList;
+import zoohandlung.*;
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        MyLinkedList mll = new MyLinkedList(); <i class="conum" data-value="1"></i><b>(1)</b>
+        for (int i = 0; i &lt; 10; i++) {
+            Loewe l = new Loewe("Leo" + i, Math.random()); <i class="conum" data-value="2"></i><b>(2)</b>
+            mll.add(l); <i class="conum" data-value="3"></i><b>(3)</b>
+        }
+        mll.printAll(); <i class="conum" data-value="4"></i><b>(4)</b>
+    }
+}</pre>
+</div>
+</div></div><div hidden="" class="originaltext">*externalPackage/Main1.java:* 
+----
+package externalPackage;
+
+import MySinglyLinkedList1.MyLinkedList;
+import zoohandlung.*;
+
+public class Main1 {
+
+    public static void main(String[] args) {
+        MyLinkedList mll = new MyLinkedList(); //&lt;1&gt; 
+        for (int i = 0; i &lt; 10; i++) {
+            Loewe l = new Loewe("Leo" + i, Math.random()); //&lt;2&gt;
+            mll.add(l); //&lt;3&gt; 
+        }
+        mll.printAll(); //&lt;4&gt; 
+    }
+} 
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Erstelle eine neue Instanz von unserer Klasse <code>MyLinkedList</code> und speichere diese in der Variable mit dem Namen <code>mll</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Erstelle einen neuen Löwen mit dem Namen Leo0 bis Leo9 und gib diesen Löwen jeweils ein zufälliges Gewicht</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Füge die erstellten Löwen der Liste hinzu</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Gib alle Löwen in der Liste aus</td>
+</tr>
+</tbody></table>
+</div></div><div hidden="" class="originaltext">&lt;1&gt; Erstelle eine neue Instanz von unserer Klasse `MyLinkedList` und speichere diese in der Variable mit dem Namen `mll`. 
+&lt;2&gt; Erstelle einen neuen Löwen mit dem Namen Leo0 bis Leo9 und gib diesen Löwen jeweils ein zufälliges Gewicht
+&lt;3&gt; Füge die erstellten Löwen der Liste hinzu
+&lt;4&gt; Gib alle Löwen in der Liste aus</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Startet man das Programm, so werden tatsächlich die Namen der 10 hinzugefügten Löwen ausgegeben. Super: Prinzipiell ist damit unser Ziel erreicht!</p>
+</div>
+<div class="paragraph">
+<p>Aber es geht noch besser!</p>
+</div></div><div hidden="" class="originaltext">Startet man das Programm, so werden tatsächlich die Namen der 10 hinzugefügten Löwen ausgegeben. Super: Prinzipiell ist damit unser Ziel erreicht!
+
+Aber es geht noch besser!</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref64660423">Abhängigkeit vom Package zoohandlung reduzieren</h3>
+
+</div></div><div hidden="" class="originaltext">=== Abhängigkeit vom Package zoohandlung reduzieren 
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>In der bisherigen Umsetzung des Codes findet man in <em>Knoten.java</em> und in <em>LinkedList.java</em> jeweils die Zeile</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">import</span> zoohandlung<span class="token punctuation">.</span>Tier<span class="token punctuation">;</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>damit zum Beispiel in <em>Knoten.java</em> der Typ <em>Tier</em> überhaupt bekannt ist:</p>
+</div></div><div hidden="" class="originaltext">In der bisherigen Umsetzung des Codes findet man in _Knoten.java_ und in _LinkedList.java_ jeweils die Zeile
+
+[source,java,indent=0]
+----
+import zoohandlung.Tier;
+----
+
+damit zum Beispiel in _Knoten.java_ der Typ _Tier_ überhaupt bekannt ist:</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>MySinglyLinkedList1/Knoten.java:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">import</span> zoohandlung<span class="token punctuation">.</span>Tier<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// damit der Wert des Inhalts festgelegt werden kann</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Knoten</span> <span class="token punctuation">{</span>
+
+    Tier inhalt<span class="token punctuation">;</span>
+    Knoten nachfolger<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">*MySinglyLinkedList1/Knoten.java:* 
+[source,java,indent=0]
+----
+import zoohandlung.Tier; // damit der Wert des Inhalts festgelegt werden kann
+
+public class Knoten {
+
+    Tier inhalt;
+    Knoten nachfolger;
+} 
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Das Problem besteht nun darin, dass unsere Klasse <code>MyLinkedList</code> dadurch nur zum Speichern von Objekten des Typs <em>Tier</em> funktioniert. Das war zwar unser ursprüngliches Ziel, aber schöner wäre es doch, wenn man in dieser LinkedList z. B. auch Strings speichern könnte, so dass man unsere LinkedList auch so verwenden könnte:</p>
+</div></div><div hidden="" class="originaltext">Das Problem besteht nun darin, dass unsere Klasse `MyLinkedList` dadurch nur zum Speichern von Objekten des Typs _Tier_ funktioniert. Das war zwar unser ursprüngliches Ziel, aber schöner wäre es doch, wenn man in dieser LinkedList z. B. auch Strings speichern könnte, so dass man unsere LinkedList auch so verwenden könnte:</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="literalblock">
+<div class="content">
+<pre>public static void main(String[] args) {
+    MyLinkedList mll = new MyLinkedList();
+    for (int i = 0; i &lt; 10; i++) {
+        mll.add("Text" +i);
+    }
+    mll.printAll();
+}</pre>
+</div>
+</div></div><div hidden="" class="originaltext">    public static void main(String[] args) {
+        MyLinkedList mll = new MyLinkedList(); 
+        for (int i = 0; i &lt; 10; i++) {
+            mll.add("Text" +i);  
+        }
+        mll.printAll();   
+    } </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Ein einfacher Trick sieht so aus:</p>
+</div>
+<div class="paragraph">
+<p>Jede Klasse in Java ist automatisch eine Unterklasse der Klasse <code>Object</code>. Legt man also in unserem Knoten als Typ des Inhalts statt <code>Tier</code> einfach <code>Object</code> fest, so kann unsere Liste nun Objekte beliebiger Typen speichern.</p>
+</div>
+<div class="paragraph">
+<p>Alles was wir dazu tun müssen, ist in <em>Knoten.java</em> und <em>MyLinkedList.java</em> jedes Mal, wenn der Typ <em>Tier</em> vorkommt, diesen durch den Typ <em>Object</em> ersetzen.</p>
+</div>
+<div class="paragraph">
+<p>Dadurch wird aus</p>
+</div></div><div hidden="" class="originaltext">Ein einfacher Trick sieht so aus:
+
+Jede Klasse in Java ist automatisch eine Unterklasse der Klasse `Object`. Legt man also in unserem Knoten als Typ des Inhalts statt `Tier` einfach `Object` fest, so kann unsere Liste nun Objekte beliebiger Typen speichern.
+
+Alles was wir dazu tun müssen, ist in _Knoten.java_ und _MyLinkedList.java_ jedes Mal, wenn der Typ _Tier_ vorkommt, diesen durch den Typ _Object_ ersetzen.
+
+Dadurch wird aus</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>MySinglyLinkedList1/Knoten.java:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">package</span> MySinglyLinkedList1<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> zoohandlung<span class="token punctuation">.</span>Tier<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// damit der Wert des Inhalts festgelegt werden kann</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Knoten</span> <span class="token punctuation">{</span>
+
+    Tier inhalt<span class="token punctuation">;</span>
+    Knoten nachfolger<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">*MySinglyLinkedList1/Knoten.java:* 
+[source,java,indent=0]
+----
+package MySinglyLinkedList1;
+
+import zoohandlung.Tier; // damit der Wert des Inhalts festgelegt werden kann
+
+public class Knoten {
+
+    Tier inhalt;
+    Knoten nachfolger;
+} 
+----  </div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>MySinglyLinkedList2/Knoten.java:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">package</span> MySinglyLinkedList2<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Knoten</span> <span class="token punctuation">{</span>
+
+    Object inhalt<span class="token punctuation">;</span>
+    Knoten nachfolger<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">*MySinglyLinkedList2/Knoten.java:* 
+[source,java,indent=0]
+----
+package MySinglyLinkedList2;
+ 
+public class Knoten {
+
+    Object inhalt; 
+    Knoten nachfolger;
+} 
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Beachte, dass der Import von <code>zoohandlung.Tier</code> jetzt nicht mehr notwendig ist!</p>
+</div>
+<div class="paragraph">
+<p>Ebenso kann man sich in der Klasse <code>MyLinkedList</code> den Import sparen und aus der Methode</p>
+</div></div><div hidden="" class="originaltext">Beachte, dass der Import von `zoohandlung.Tier` jetzt nicht mehr notwendig ist!
+
+Ebenso kann man sich in der Klasse `MyLinkedList` den Import sparen und aus der Methode </div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>public void add(Tier t) {
+    ...
+}</pre>
+</div>
+</div></div><div hidden="" class="originaltext">[indent=0]   
+----
+    public void add(Tier t) { 
+        ...  
+    } 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>wird die Methode</p>
+</div></div><div hidden="" class="originaltext">wird die Methode</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>public void add(Object t) {
+    ...
+}</pre>
+</div>
+</div></div><div hidden="" class="originaltext">[indent=0]   
+----
+    public void add(Object t) { 
+        ...  
+    } 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Probiert man diese neue Klasse nun aus, so kann man nach wie vor problemlos Objekte vom Typ <em>Tier</em> der LinkedList hinzufügen:</p>
+</div></div><div hidden="" class="originaltext">Probiert man diese neue Klasse nun aus, so kann man nach wie vor problemlos Objekte vom Typ _Tier_ der LinkedList hinzufügen:
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="literalblock">
+<div class="content">
+<pre>public static void main(String[] args) {
+    MyLinkedList mll = new MyLinkedList();
+    for (int i = 0; i &lt; 10; i++) {
+        Loewe l = new Loewe("Leo" + i, Math.random());
+        mll.add(l); <i class="conum" data-value="1"></i><b>(1)</b>
+        mll.add(Math.random()); <i class="conum" data-value="2"></i><b>(2)</b>
+    }
+    mll.printAll();
+}</pre>
+</div>
+</div></div><div hidden="" class="originaltext">    public static void main(String[] args) {
+        MyLinkedList mll = new MyLinkedList();
+        for (int i = 0; i &lt; 10; i++) {
+            Loewe l = new Loewe("Leo" + i, Math.random());
+            mll.add(l); //&lt;1&gt;
+            mll.add(Math.random()); //&lt;2&gt;
+        }
+        mll.printAll();
+    }</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Hier wird ein Objekt vom Typ <em>Loewe</em> (ist auch ein Objekt vom Typ <em>Object</em>) der Liste hinzugefügt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Hier wird <code>mll</code> ein Objekt vom Typ <em>Integer</em> hinzugefügt. Kein Problem, ist ja auch ein Objekt vom Typ <em>Object</em>.</td>
+</tr>
+</tbody></table>
+</div></div><div hidden="" class="originaltext">&lt;1&gt; Hier wird ein Objekt vom Typ _Loewe_ (ist auch ein Objekt vom Typ _Object_) der Liste hinzugefügt.
+&lt;2&gt; Hier wird `mll` ein Objekt vom Typ _Integer_ hinzugefügt. Kein Problem, ist ja auch ein Objekt vom Typ _Object_.</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Hmm, das ist jetzt nicht das, was wir wollten: Zwar ist <code>MyLinkedList</code> jetzt unabhängig von <code>zoohandlung.Tier</code>, aber der Preis dafür besteht darin, dass man nun Objekte jeden Typs in unserer verketteten Liste speichern kann, und zwar so, dass unsere verkettete Liste gleichzeitig Objekte vom Typ <em>Loewe</em> und vom Typ <em>Integer</em> enthält. Auch andere Objekte wie Strings oder MP3-Lieder könnten gleichzeitig mit unserem Löwen in der verketteten Liste gespeichert werden.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Wir wollen zwar, dass unsere verkettete Liste für die unterschiedlichsten Typen funktioniert, jede verkettete Liste soll jedoch nur Objekte des gleichen Typs aufnehmen können.</p>
+</div>
+<div class="paragraph">
+<p>Zum Beispiel  soll es eine verkettete Liste geben, die nur Objekte vom Typ <em>Loewe</em> speichert und eine andere, die nur Objekte vom Typ <em>Integer</em> speichert.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div></div><div hidden="" class="originaltext">Hmm, das ist jetzt nicht das, was wir wollten: Zwar ist `MyLinkedList` jetzt unabhängig von `zoohandlung.Tier`, aber der Preis dafür besteht darin, dass man nun Objekte jeden Typs in unserer verketteten Liste speichern kann, und zwar so, dass unsere verkettete Liste gleichzeitig Objekte vom Typ _Loewe_ und vom Typ _Integer_ enthält. Auch andere Objekte wie Strings oder MP3-Lieder könnten gleichzeitig mit unserem Löwen in der verketteten Liste gespeichert werden. 
+
+[WARNING]
+====
+Wir wollen zwar, dass unsere verkettete Liste für die unterschiedlichsten Typen funktioniert, jede verkettete Liste soll jedoch nur Objekte des gleichen Typs aufnehmen können.
+
+Zum Beispiel  soll es eine verkettete Liste geben, die nur Objekte vom Typ _Loewe_ speichert und eine andere, die nur Objekte vom Typ _Integer_ speichert.
+==== 
+</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref97982147">Generische Klassen und Methoden</h3>
+
+</div></div><div hidden="" class="originaltext">=== Generische Klassen und Methoden
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Wir müssen es also irgendwie schaffen, dass unsere verkettete Liste zwar für jeden Typ funktioniert, aber so, dass alle Elemente unserer Liste von diesem gleichen Typ sind.</p>
+</div>
+<div class="paragraph">
+<p>Zum Glück gibt es zu diesem Zweck eine einfache Lösung: generische Klassen und Methoden!</p>
+</div>
+<div class="paragraph">
+<p>Sehen wir uns das am Beispiel von <code>Knoten</code> an: aus</p>
+</div></div><div hidden="" class="originaltext">Wir müssen es also irgendwie schaffen, dass unsere verkettete Liste zwar für jeden Typ funktioniert, aber so, dass alle Elemente unserer Liste von diesem gleichen Typ sind.
+
+Zum Glück gibt es zu diesem Zweck eine einfache Lösung: generische Klassen und Methoden!
+
+Sehen wir uns das am Beispiel von `Knoten` an: aus</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>MySinglyLinkedList2/Knoten.java:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">package</span> MySinglyLinkedList2<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Knoten</span> <span class="token punctuation">{</span>
+
+    Object inhalt<span class="token punctuation">;</span>
+    Knoten nachfolger<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">*MySinglyLinkedList2/Knoten.java:* 
+[source,java,indent=0]
+----
+package MySinglyLinkedList2;
+ 
+public class Knoten {
+
+    Object inhalt; 
+    Knoten nachfolger;
+} 
+----  </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>wird dabei</p>
+</div></div><div hidden="" class="originaltext">wird dabei </div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>package MySinglyLinkedList3;
+
+public class Knoten&lt;T&gt; { <i class="conum" data-value="1"></i><b>(1)</b>
+
+    T inhalt; <i class="conum" data-value="2"></i><b>(2)</b>
+    Knoten&lt;T&gt; nachfolger; <i class="conum" data-value="3"></i><b>(3)</b>
+}</pre>
+</div>
+</div></div><div hidden="" class="originaltext">----
+package MySinglyLinkedList3;
+
+public class Knoten&lt;T&gt; { //&lt;1&gt;
+
+    T inhalt; //&lt;2&gt;
+    Knoten&lt;T&gt; nachfolger; //&lt;3&gt; 
+}
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>Knoten&lt;T&gt;</code> bedeutet, dass in der Klasse Knoten ein Typ <code>T</code> vorkommt, der überall dort, wo er in der Klasse vorkommt, derselbe ist.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Es gibt ein Feld namens <code>inhalt</code> das vom Typ <code>T</code> ist</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Der Nachfolger ist wieder ein Knoten, der wieder den Typparameter <code>T</code> erhält, d. h. auch dieser Knoten kann nur wieder einen Inhalt vom Typ <code>T</code> speichern.</td>
+</tr>
+</tbody></table>
+</div></div><div hidden="" class="originaltext">&lt;1&gt; `Knoten&lt;T&gt;` bedeutet, dass in der Klasse Knoten ein Typ `T` vorkommt, der überall dort, wo er in der Klasse vorkommt, derselbe ist.
+&lt;2&gt; Es gibt ein Feld namens `inhalt` das vom Typ `T` ist
+&lt;3&gt; Der Nachfolger ist wieder ein Knoten, der wieder den Typparameter `T` erhält, d. h. auch dieser Knoten kann nur wieder einen Inhalt vom Typ `T` speichern.</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Am einfachsten kann man diesen <em>Typparameter</em> verstehen, wenn man das an einem Beispiel veranschaulicht:</p>
+</div>
+<div class="paragraph">
+<p>Erstellt man einen neuen Knoten über</p>
+</div></div><div hidden="" class="originaltext">Am einfachsten kann man diesen _Typparameter_ verstehen, wenn man das an einem Beispiel veranschaulicht:
+
+Erstellt man einen neuen Knoten über</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>Knoten&lt;String&gt; k = new Knoten&lt;&gt;();</pre>
+</div>
+</div></div><div hidden="" class="originaltext">----
+Knoten&lt;String&gt; k = new Knoten&lt;&gt;(); 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>so ist der Typparameter hier String, d. h. jedes <code>T</code> in der Klasse <code>Knoten&lt;T&gt;</code> kann durch ein <code>String</code> ersetzt werden:</p>
+</div></div><div hidden="" class="originaltext">so ist der Typparameter hier String, d. h. jedes `T` in der Klasse `Knoten&lt;T&gt;` kann durch ein `String` ersetzt werden:
+</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>public class Knoten&lt;String&gt; {
+
+    String inhalt; <i class="conum" data-value="1"></i><b>(1)</b>
+    Knoten&lt;String&gt; nachfolger; <i class="conum" data-value="2"></i><b>(2)</b>
+}</pre>
+</div>
+</div></div><div hidden="" class="originaltext">----
+public class Knoten&lt;String&gt; { 
+
+    String inhalt; //&lt;1&gt;
+    Knoten&lt;String&gt; nachfolger; //&lt;2&gt; 
+}
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="colist arabic">
+<table>
+<tbody><tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Der Typ von <code>inhalt</code> ist nun <code>String</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Der Nachfolger unseres Knotens ist hiermit auch vom Typ <code>Knoten&lt;String&gt;</code> und somit alle Elemente unserer verketteten Liste.</td>
+</tr>
+</tbody></table>
+</div></div><div hidden="" class="originaltext">&lt;1&gt; Der Typ von `inhalt` ist nun `String`
+&lt;2&gt; Der Nachfolger unseres Knotens ist hiermit auch vom Typ `Knoten&lt;String&gt;` und somit alle Elemente unserer verketteten Liste.</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Analog dazu kann man auch unsere verkettete Liste mit einem Typparameter versehen:</p>
+</div></div><div hidden="" class="originaltext">Analog dazu kann man auch unsere verkettete Liste mit einem Typparameter versehen:
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyLinkedList</span><span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+
+    Knoten<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> ersterKnoten <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Knoten<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> letzterKnoten <span class="token operator">=</span> null<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Knoten<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> k <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Knoten</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">printAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Knoten<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> aktuellerKnoten <span class="token operator">=</span> ersterKnoten<span class="token punctuation">;</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0]
+----
+public class MyLinkedList&lt;T&gt; {
+
+    Knoten&lt;T&gt; ersterKnoten = null;
+    Knoten&lt;T&gt; letzterKnoten = null;
+
+    public void add(T t) {
+        Knoten&lt;T&gt; k = new Knoten&lt;&gt;();
+        ... 
+    }
+
+    public void printAll() {
+        Knoten&lt;T&gt; aktuellerKnoten = ersterKnoten;
+        ... 
+    }
+}
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Der Typparameter von <code>MyLinkedList</code> muss bei der Verwendung unserer Klasse immer angegeben werden, so dass unsere verkettete Liste nun so aufgerufen werden muss:</p>
+</div></div><div hidden="" class="originaltext">Der Typparameter von `MyLinkedList` muss bei der Verwendung unserer Klasse immer angegeben werden, so dass unsere verkettete Liste nun so aufgerufen werden muss:
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    MyLinkedList<span class="token operator">&lt;</span>Tier<span class="token operator">&gt;</span> mll <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyLinkedList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Loewe l <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Loewe</span><span class="token punctuation">(</span><span class="token string">"Leo"</span> <span class="token operator">+</span> i<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mll<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    mll<span class="token punctuation">.</span><span class="token function">printAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0]
+----
+    public static void main(String[] args) {
+        MyLinkedList&lt;Tier&gt; mll = new MyLinkedList&lt;&gt;();
+        for (int i = 0; i &lt; 10; i++) {
+            Loewe l = new Loewe("Leo" + i, Math.random());
+            mll.add(l);
+        }
+        mll.printAll();
+    }
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Dadurch wird festgelegt, dass unsere verkettete Liste nur Elemente vom Typ <em>Tier</em> aufnehmen kann. Der Versuch, dieser Liste ein neues Element vom Typ <em>Integer</em> oder <em>String</em> hinzuzufügen, wird mit einer Fehlermeldung quittiert.</p>
+</div>
+<div class="paragraph">
+<p>Möchte man nun eine verkettete Liste erstellen, die nur Strings aufnehmen kann, so muss diese über</p>
+</div></div><div hidden="" class="originaltext">Dadurch wird festgelegt, dass unsere verkettete Liste nur Elemente vom Typ _Tier_ aufnehmen kann. Der Versuch, dieser Liste ein neues Element vom Typ _Integer_ oder _String_ hinzuzufügen, wird mit einer Fehlermeldung quittiert.
+
+Möchte man nun eine verkettete Liste erstellen, die nur Strings aufnehmen kann, so muss diese über 
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre>MyLinkedList&lt;String&gt; mll = new MyLinkedList&lt;&gt;();</pre>
+</div>
+</div></div><div hidden="" class="originaltext">----
+MyLinkedList&lt;String&gt; mll = new MyLinkedList&lt;&gt;();
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>erzeugt werden.</p>
+</div>
+<div class="paragraph">
+<p>Jetzt funktioniert unsere verkettete Liste tatsächlich so, wie es beabsichtigt war. Toll!</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>&lt;&gt;</code> heißt wegen seiner Form auch <em>diamond operator</em>.</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div></div><div hidden="" class="originaltext">erzeugt werden. 
+
+Jetzt funktioniert unsere verkettete Liste tatsächlich so, wie es beabsichtigt war. Toll! 
+
+[NOTE]
+====
+`&lt;&gt;` heißt wegen seiner Form auch _diamond operator_.  
+====</div></div></div>
+<div sb='@P' ft='+'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref78661363">Zugabe: Implementieren der Interfaces Iterable und Iterator</h3>
+
+</div></div><div hidden="" class="originaltext">=== Zugabe: Implementieren der Interfaces Iterable und Iterator 
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Eigentlich erfüllt unsere verkettete Liste bereits alle Eigenschaften, die wir zu Beginn vorgegeben haben. Aber es sollen an dieser Stelle noch zwei Interfaces implementiert werden, die die Benutzung unserer Klasse noch etwas angenehmer machen.</p>
+</div>
+<div class="paragraph">
+<p>Für Arrays gibt es eine besonders schöne Variante der For-Schleife:</p>
+</div></div><div hidden="" class="originaltext">Eigentlich erfüllt unsere verkettete Liste bereits alle Eigenschaften, die wir zu Beginn vorgegeben haben. Aber es sollen an dieser Stelle noch zwei Interfaces implementiert werden, die die Benutzung unserer Klasse noch etwas angenehmer machen.
+
+Für Arrays gibt es eine besonders schöne Variante der For-Schleife:
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">String<span class="token punctuation">[</span><span class="token punctuation">]</span> text<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token string">"bla"</span><span class="token punctuation">,</span><span class="token string">"blubb"</span><span class="token punctuation">,</span><span class="token string">"blobb"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span>String t<span class="token operator">:</span>text<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0]
+----
+        String[] text=new String[]{"bla","blubb","blobb"};
+        
+        for (String t:text){
+            System.out.println(t); 
+        } 
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Hier wird ein Array erstellt, das die drei Strings "bla", "blubb" und "blobb" enthält.</p>
+</div>
+<div class="paragraph">
+<p>Anstatt</p>
+</div></div><div hidden="" class="originaltext">Hier wird ein Array erstellt, das die drei Strings "bla", "blubb" und "blobb" enthält. 
+
+Anstatt
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> text<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>text<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0]
+----
+for (int i = 0; i &lt; text.length; i++){
+    System.out.println(text[i]); 
+}
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>verwenden wir die elegantere Variante</p>
+</div></div><div hidden="" class="originaltext">verwenden wir die elegantere Variante</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">for</span> <span class="token punctuation">(</span>String t<span class="token operator">:</span>text<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0]
+----
+        for (String t:text){
+            System.out.println(t); 
+        } 
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Der Vorteil besteht darin, dass man sich keine Gedanken über die Länge des Arrays machen muss; es werden einfach alle Einträge der Feldvariable <code>text</code> ausgegeben.</p>
+</div>
+<div class="paragraph">
+<p>Wäre es nicht schön, wenn unsere verkettete Liste auch so etwas könnte? Also zum Beispiel, dass der folgende Code funktionieren würde:</p>
+</div></div><div hidden="" class="originaltext">Der Vorteil besteht darin, dass man sich keine Gedanken über die Länge des Arrays machen muss; es werden einfach alle Einträge der Feldvariable `text` ausgegeben.
+
+Wäre es nicht schön, wenn unsere verkettete Liste auch so etwas könnte? Also zum Beispiel, dass der folgende Code funktionieren würde:</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">MyLinkedList<span class="token operator">&lt;</span>Tier<span class="token operator">&gt;</span> mll <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyLinkedList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Loewe l <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Loewe</span><span class="token punctuation">(</span><span class="token string">"Leo"</span> <span class="token operator">+</span> i<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mll<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span>Tier t <span class="token operator">:</span> mll<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// das wäre schön!</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0]  
+----
+        MyLinkedList&lt;Tier&gt; mll = new MyLinkedList&lt;&gt;();
+        for (int i = 0; i &lt; 10; i++) {
+            Loewe l = new Loewe("Leo" + i, Math.random());
+            mll.add(l);
+        }
+
+        for (Tier t : mll) { // das wäre schön!
+            System.out.println(t);
+        } 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Dazu muss man wissen, dass <code>for</code> an der Stelle, wo hier das <code>mll</code> steht, ein Objekt erwartet, das das Interface <code>Iterable</code> implementiert.</p>
+</div>
+<div class="paragraph">
+<p>Also ändern wir unsere Klasse <code>MyLinkedList&lt;T&gt;</code> so ab, dass <code>Iterable&lt;T&gt;</code> implementiert wird:</p>
+</div></div><div hidden="" class="originaltext">Dazu muss man wissen, dass `for` an der Stelle, wo hier das `mll` steht, ein Objekt erwartet, das das Interface `Iterable` implementiert.
+
+Also ändern wir unsere Klasse `MyLinkedList&lt;T&gt;` so ab, dass `Iterable&lt;T&gt;` implementiert wird:
+
+
+ </div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyLinkedList</span><span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token keyword">implements</span> <span class="token class-name">Iterable</span><span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Iterator<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0] 
+----
+public class MyLinkedList&lt;T&gt; implements Iterable&lt;T&gt; {
+
+    ... 
+
+    @Override
+    public Iterator&lt;T&gt; iterator() {
+        ... 
+    }
+} 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Dadurch muss man eine Methode <code>public Iterator&lt;T&gt; iterator()</code> implementieren, die ein Objekt zurückgibt, das das Interface <code>Iterator&lt;T&gt;</code> implementiert.</p>
+</div>
+<div class="paragraph">
+<p>Also lassen wir unsere Klasse <code>MyLinkedList&lt;T&gt;</code> zusätzlich zu <code>Iterable&lt;T&gt;</code> auch das Interface <code>Iterator&lt;T&gt;</code> implementieren.</p>
+</div>
+<div class="paragraph">
+<p>Dadurch kommen zwei weitere Methoden dazu:</p>
+</div></div><div hidden="" class="originaltext">Dadurch muss man eine Methode `public Iterator&lt;T&gt; iterator()` implementieren, die ein Objekt zurückgibt, das das Interface `Iterator&lt;T&gt;` implementiert.
+
+Also lassen wir unsere Klasse `MyLinkedList&lt;T&gt;` zusätzlich zu `Iterable&lt;T&gt;` auch das Interface `Iterator&lt;T&gt;` implementieren. 
+
+Dadurch kommen zwei weitere Methoden dazu:
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyLinkedList</span><span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token keyword">implements</span> <span class="token class-name">Iterator</span><span class="token operator">&lt;</span>T<span class="token operator">&gt;</span><span class="token punctuation">,</span> Iterable<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> T <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> Iterator<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0]
+----
+public class MyLinkedList&lt;T&gt; implements Iterator&lt;T&gt;, Iterable&lt;T&gt; {
+
+    ... 
+
+    public boolean hasNext() {
+        ...
+    }
+
+    public T next() {
+        ...
+    }
+
+    public Iterator&lt;T&gt; iterator() {
+        return this;
+    } 
+}
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Da unsere Klasse nun auch <code>Iterator&lt;T&gt;</code> implementiert kann unsere Klasse selbst als Objekt vom Typ <code>Iterator&lt;T&gt;</code> zurückgegeben werden.</p>
+</div>
+<div class="paragraph">
+<p>Nun müssen noch die Methoden 'public boolean hasNext()` und <code>public T next()</code> umgesetzt werden:</p>
+</div>
+<div class="paragraph">
+<p><code>hasNext()</code> gibt zurück, ob es noch ein weiteres Element in unserer verketteten Liste gibt. Eine mögliche Umsetzung könnte so aussehen:</p>
+</div></div><div hidden="" class="originaltext">Da unsere Klasse nun auch `Iterator&lt;T&gt;` implementiert kann unsere Klasse selbst als Objekt vom Typ `Iterator&lt;T&gt;` zurückgegeben werden.
+
+Nun müssen noch die Methoden 'public boolean hasNext()` und `public T next()` umgesetzt werden:
+
+`hasNext()` gibt zurück, ob es noch ein weiteres Element in unserer verketteten Liste gibt. Eine mögliche Umsetzung könnte so aussehen:
+</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">boolean</span> rueckgabe <span class="token operator">=</span> aktuellerKnoten <span class="token operator">!=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>rueckgabe <span class="token operator">==</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        aktuellerKnoten <span class="token operator">=</span> ersterKnoten<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> rueckgabe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0]
+----
+    public boolean hasNext() {
+        boolean rueckgabe = aktuellerKnoten != null;
+        if (rueckgabe == false) {
+            aktuellerKnoten = ersterKnoten;
+        }
+        return rueckgabe;
+    }
+---- </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>In <code>rueckgabe' wird gespeichert, ob der aktuelle Knoten ungleich `null</code> ist (also <code>true</code>, falls er ungleich <code>null</code> ist, sonst <code>false</code>).</p>
+</div>
+<div class="paragraph">
+<p>Damit die for-Schleife so funktioniert, wie erwartet, muss im Falle, dass wir schon am letzten Knoten sind, der aktuelle Knoten wieder auf den ersten Knoten gesetzt werden.</p>
+</div>
+<div class="paragraph">
+<p><code>public T next()</code> muss den nächsten Wert aus der Liste zurückgeben. Das könnte etwa so aussehen:</p>
+</div></div><div hidden="" class="originaltext">In `rueckgabe' wird gespeichert, ob der aktuelle Knoten ungleich `null` ist (also `true`, falls er ungleich `null` ist, sonst `false`). 
+
+Damit die for-Schleife so funktioniert, wie erwartet, muss im Falle, dass wir schon am letzten Knoten sind, der aktuelle Knoten wieder auf den ersten Knoten gesetzt werden.
+
+`public T next()` muss den nächsten Wert aus der Liste zurückgeben. Das könnte etwa so aussehen:
+</div></div></div>
+<div sb='@P' ft='/'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">public</span> T <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    T rueckgabe <span class="token operator">=</span> aktuellerKnoten<span class="token punctuation">.</span>inhalt<span class="token punctuation">;</span>
+    aktuellerKnoten <span class="token operator">=</span> aktuellerKnoten<span class="token punctuation">.</span>nachfolger<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> rueckgabe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0]
+----
+    public T next() {
+        T rueckgabe = aktuellerKnoten.inhalt;
+        aktuellerKnoten = aktuellerKnoten.nachfolger;
+        return rueckgabe;
+    } 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Der neue aktuelle Knoten wird dabei auf den Nachfolger des aktuellen Knotens gesetzt. Dieser kann auch <code>null</code> sein.</p>
+</div>
+<div class="paragraph">
+<p>Insgesamt sieht <code>MyLinkedList</code> nun so aus:</p>
+</div></div><div hidden="" class="originaltext">Der neue aktuelle Knoten wird dabei auf den Nachfolger des aktuellen Knotens gesetzt. Dieser kann auch `null` sein. 
+
+Insgesamt sieht `MyLinkedList` nun so aus:</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p><strong>MySinglyLinkedList4/MyLinkedList.java:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java"><span class="token keyword">package</span> MySinglyLinkedList4<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Iterator<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyLinkedList</span><span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token keyword">implements</span> <span class="token class-name">Iterator</span><span class="token operator">&lt;</span>T<span class="token operator">&gt;</span><span class="token punctuation">,</span> Iterable<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+
+    Knoten<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> ersterKnoten <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Knoten<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> letzterKnoten <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    Knoten<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> aktuellerKnoten <span class="token operator">=</span> null<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Knoten<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> k <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Knoten</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        k<span class="token punctuation">.</span>inhalt <span class="token operator">=</span> t<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ersterKnoten <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            ersterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
+            aktuellerKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
+            letzterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        letzterKnoten<span class="token punctuation">.</span>nachfolger <span class="token operator">=</span> k<span class="token punctuation">;</span>
+        letzterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">boolean</span> rueckgabe <span class="token operator">=</span> aktuellerKnoten <span class="token operator">!=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>rueckgabe <span class="token operator">==</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            aktuellerKnoten <span class="token operator">=</span> ersterKnoten<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> rueckgabe<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> T <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        T rueckgabe <span class="token operator">=</span> aktuellerKnoten<span class="token punctuation">.</span>inhalt<span class="token punctuation">;</span>
+        aktuellerKnoten <span class="token operator">=</span> aktuellerKnoten<span class="token punctuation">.</span>nachfolger<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> rueckgabe<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Iterator<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> <span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">*MySinglyLinkedList4/MyLinkedList.java:*  
+[source,java,indent=0]
+----
+package MySinglyLinkedList4;
+
+import java.util.Iterator;
+
+public class MyLinkedList&lt;T&gt; implements Iterator&lt;T&gt;, Iterable&lt;T&gt; {
+
+    Knoten&lt;T&gt; ersterKnoten = null;
+    Knoten&lt;T&gt; letzterKnoten = null;
+    Knoten&lt;T&gt; aktuellerKnoten = null;
+
+    public void add(T t) {
+        Knoten&lt;T&gt; k = new Knoten&lt;&gt;();
+        k.inhalt = t;
+        if (ersterKnoten == null) {
+            ersterKnoten = k;
+            aktuellerKnoten = k;
+            letzterKnoten = k;
+        }
+        letzterKnoten.nachfolger = k;
+        letzterKnoten = k;
+    }
+
+    @Override
+    public boolean hasNext() {
+        boolean rueckgabe = aktuellerKnoten != null;
+        if (rueckgabe == false) {
+            aktuellerKnoten = ersterKnoten;
+        }
+        return rueckgabe;
+    }
+
+    @Override
+    public T next() {
+        T rueckgabe = aktuellerKnoten.inhalt;
+        aktuellerKnoten = aktuellerKnoten.nachfolger;
+        return rueckgabe;
+    }
+
+    @Override
+    public Iterator&lt;T&gt; iterator() {
+        return this;
+    }
+}
+ 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
+<p>Nun kann tatsächlich zum Beispiel der folgende Code angewendet werden, der von allen Tieren, die das Interface <em>Laufen</em> implementieren, die Anzahl der Beine ausgibt:</p>
+</div></div><div hidden="" class="originaltext">Nun kann tatsächlich zum Beispiel der folgende Code angewendet werden, der von allen Tieren, die das Interface _Laufen_ implementieren, die Anzahl der Beine ausgibt:</div></div></div>
+<div sb='@P' ft='++'  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight language-java code-toolbar"><code class=" language-java" data-lang="java">MyLinkedList<span class="token operator">&lt;</span>Tier<span class="token operator">&gt;</span> mll <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyLinkedList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Loewe l <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Loewe</span><span class="token punctuation">(</span><span class="token string">"Leo"</span> <span class="token operator">+</span> i<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mll<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span>Tier t <span class="token operator">:</span> mll<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>t <span class="token keyword">instanceof</span> <span class="token class-name">Laufen</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Laufen<span class="token punctuation">)</span> t<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAnzahlBeine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code><div class="toolbar"><div class="toolbar-item"><span>Java</span></div></div></pre>
+</div>
+</div></div><div hidden="" class="originaltext">[source,java,indent=0]
+----
+        MyLinkedList&lt;Tier&gt; mll = new MyLinkedList&lt;&gt;();
+        for (int i = 0; i &lt; 10; i++) {
+            Loewe l = new Loewe("Leo" + i, Math.random());
+            mll.add(l);
+        }
+
+        for (Tier t : mll) {
+            if (t instanceof Laufen) {
+                System.out.println(((Laufen) t).getAnzahlBeine());
+            }
+        } 
+----</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref89068150">Code zu diesem Kapitel</h3>
+<div class="paragraph">
+<p>Den gesamten Code dieses Kapitels findet man auf Github unter  <a href="https://github.com/menzelths/MyLinkedList" class="bare">https://github.com/menzelths/MyLinkedList</a>.</p>
+</div>
+<div class="paragraph">
+<p>Zum Clonen des Projekts kann der folgende Link verwendet werden:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>https://github.com/menzelths/MyLinkedList.git</pre>
+</div>
+</div>
+</div></div><div hidden="" class="originaltext">=== Code zu diesem Kapitel 
+Den gesamten Code dieses Kapitels findet man auf Github unter  https://github.com/menzelths/MyLinkedList.
+
+Zum Clonen des Projekts kann der folgende Link verwendet werden:
+
+----
+https://github.com/menzelths/MyLinkedList.git 
+----</div></div></div>
+</body></html>
