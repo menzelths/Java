@@ -152,25 +152,27 @@ Knoten letzterKnoten = null;</pre>
 <pre>public void add(Tier t) {
     Knoten k = new Knoten(); <i class="conum" data-value="1"></i><b>(1)</b>
     k.inhalt = t; <i class="conum" data-value="2"></i><b>(2)</b>
-    if (ersterKnoten == null) { <i class="conum" data-value="3"></i><b>(3)</b>
+    if (ersterKnoten == null) { //erstes Element <i class="conum" data-value="3"></i><b>(3)</b>
         ersterKnoten = k;
         letzterKnoten = k;
+    } else {
+        letzterKnoten.nachfolger = k; <i class="conum" data-value="4"></i><b>(4)</b>
+        letzterKnoten = k; <i class="conum" data-value="5"></i><b>(5)</b>
     }
-    letzterKnoten.nachfolger = k; <i class="conum" data-value="4"></i><b>(4)</b>
-    letzterKnoten = k; <i class="conum" data-value="5"></i><b>(5)</b>
 }</pre>
 </div>
 </div></div><div hidden="" class="originaltext">[indent=0]   
-----
-    public void add(Tier t) { 
-        Knoten k = new Knoten(); // &lt;1&gt; 
+---- 
+    public void add(Tier t) {
+        Knoten k = new Knoten(); //&lt;1&gt;
         k.inhalt = t; //&lt;2&gt;
-        if (ersterKnoten == null) { //&lt;3&gt; 
+        if (ersterKnoten == null) { //erstes Element &lt;3&gt; 
             ersterKnoten = k;
             letzterKnoten = k;
+        } else {
+            letzterKnoten.nachfolger = k; //&lt;4&gt;
+            letzterKnoten = k; //&lt;5&gt; 
         }
-        letzterKnoten.nachfolger = k; //&lt;4&gt;
-        letzterKnoten = k; //&lt;5&gt; 
     } 
 ----</div></div></div>
 </section><section><div sb='@P' ft='++'  class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="literalblock">
@@ -698,13 +700,14 @@ public class MyLinkedList&lt;T&gt; implements Iterator&lt;T&gt;, Iterable&lt;T&g
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span>T t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         Knoten<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span> k <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Knoten</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         k<span class="token punctuation">.</span>inhalt <span class="token operator">=</span> t<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>ersterKnoten <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        k<span class="token punctuation">.</span>inhalt <span class="token operator">=</span> t<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ersterKnoten <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//erstes Element</span>
             ersterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
-            aktuellerKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
+            letzterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            letzterKnoten<span class="token punctuation">.</span>nachfolger <span class="token operator">=</span> k<span class="token punctuation">;</span>
             letzterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        letzterKnoten<span class="token punctuation">.</span>nachfolger <span class="token operator">=</span> k<span class="token punctuation">;</span>
-        letzterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span>
@@ -745,13 +748,14 @@ public class MyLinkedList&lt;T&gt; implements Iterator&lt;T&gt;, Iterable&lt;T&g
     public void add(T t) {
         Knoten&lt;T&gt; k = new Knoten&lt;&gt;();
         k.inhalt = t;
-        if (ersterKnoten == null) {
+        k.inhalt = t;
+        if (ersterKnoten == null) { //erstes Element
             ersterKnoten = k;
-            aktuellerKnoten = k;
+            letzterKnoten = k;
+        } else {
+            letzterKnoten.nachfolger = k;
             letzterKnoten = k;
         }
-        letzterKnoten.nachfolger = k;
-        letzterKnoten = k;
     }
 
     @Override
