@@ -1242,6 +1242,7 @@ Insgesamt sieht `MyLinkedList` nun so aus:</div></div></div>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>ersterKnoten <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//erstes Element</span>
             ersterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
             letzterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
+            aktuellerKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
         <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
             letzterKnoten<span class="token punctuation">.</span>nachfolger <span class="token operator">=</span> k<span class="token punctuation">;</span>
             letzterKnoten <span class="token operator">=</span> k<span class="token punctuation">;</span>
@@ -1290,6 +1291,7 @@ public class MyLinkedList&lt;T&gt; implements Iterator&lt;T&gt;, Iterable&lt;T&g
         if (ersterKnoten == null) { //erstes Element
             ersterKnoten = k;
             letzterKnoten = k;
+            aktuellerKnoten = k;
         } else {
             letzterKnoten.nachfolger = k;
             letzterKnoten = k;
@@ -1317,6 +1319,7 @@ public class MyLinkedList&lt;T&gt; implements Iterator&lt;T&gt;, Iterable&lt;T&g
         return this;
     }
 }
+ 
  
 ----</div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="paragraph">
