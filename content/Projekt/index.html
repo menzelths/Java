@@ -43,7 +43,7 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 ""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
 </script>
 </head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
-<h2 id="ref32715034">Projektaufgaben</h2>
+<h2 id="ref77445275">Projektaufgaben</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -54,7 +54,7 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 <p><strong>Präsentationstermine</strong> sind der 18. und der 25. Juni mit je maximal 6 Vorträgen, das Kolloquium findet für alle Teilnehmer am 2. Juli statt, im Krankheitsfall an einem anderen Tag der Kalenderwoche 27.</p>
 </li>
 <li>
-<p>Jedes Thema sollte von maximal <strong>zwei</strong> Personen bearbeitet werden.</p>
+<p>Jedes Thema muss von <strong>zwei</strong> Schülern bearbeitet werden; bei ungerader Gesamtschülerzahl muss ein Schüler das Projekt alleine durchführen, was bei der Gesamtbewertung berücksichtigt wird.</p>
 </li>
 <li>
 <p>Die zu verwendende Programmiersprache ist <strong>Java</strong>, die zu verwendende Entwicklungsumgebung ist <strong>Netbeans</strong>. Der Einsatz objektorientierter Programmierung wird empfohlen, ist jedoch nicht verpflichtend.</p>
@@ -98,7 +98,7 @@ zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1)
 </div></div><div hidden="" class="originaltext">== Projektaufgaben
 * Das Projekt läuft vom *23. April bis zum 11. Juni 2018*, auch in den bis dahin stattfindenden Informatik-Stunden.
 * *Präsentationstermine* sind der 18. und der 25. Juni mit je maximal 6 Vorträgen, das Kolloquium findet für alle Teilnehmer am 2. Juli statt, im Krankheitsfall an einem anderen Tag der Kalenderwoche 27.
-* Jedes Thema sollte von maximal *zwei* Personen bearbeitet werden.
+* Jedes Thema muss von *zwei* Schülern bearbeitet werden; bei ungerader Gesamtschülerzahl muss ein Schüler das Projekt alleine durchführen, was bei der Gesamtbewertung berücksichtigt wird. 
 * Die zu verwendende Programmiersprache ist *Java*, die zu verwendende Entwicklungsumgebung ist *Netbeans*. Der Einsatz objektorientierter Programmierung wird empfohlen, ist jedoch nicht verpflichtend.
 * Für die Programmierung von Grafik mithilfe der Maus, sowie dem Auslesen und Schreiben von Textdateien, gibt es https://github.com/menzelths/Grundlagen_Formular_Netbeans[hier] ein Beispielprogramm.
 * Beide Teilnehmer des Teams müssen alles über das erstellte Programm und den Algorithmus wissen, was in einem zusätzlichen Kolloquium einzeln überprüft wird.
@@ -215,8 +215,8 @@ Aufgabe 8 ist nur sinnvoll zusammen mit Aufgabe 7, hier können sich also zwei T
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo24.php">Bin packing</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Algorithmus FirstFist für zufällige Abfolge von Daten implementieren und erklären</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich NextFit implementieren und erklären</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Algorithmus <code>FirstFit</code> für zufällige Abfolge von Daten implementieren und erklären</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich <code>NextFit</code> implementieren und erklären</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich beide Algorithmen grafisch darstellen (übereinander zum Vergleichen)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich eigene Offline-Lösung implementieren, erklären und zum Vergleich grafisch darstellen</p></td>
 </tr>
@@ -241,7 +241,7 @@ Aufgabe 8 ist nur sinnvoll zusammen mit Aufgabe 7, hier können sich also zwei T
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo23.php">Maximale Flüsse</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Implementieren und Erklären des Algorithmus anhand eines einfachen Beispiels mit zufälligen Verbindungen zufälliger Gewichtungen und Richtungen sowie Start- und Zielpunkt</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich grafische Darstellung</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich die Möglichkeit, Punkte, Verbindungen und deren Richtungen und Gewichtungen grafische einzugeben; ebenso Start- und Zielpunkt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich die Möglichkeit, Punkte, Verbindungen und deren Richtungen und Gewichtungen grafisch einzugeben; ebenso Start- und Zielpunkt</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich schrittweise Visualisierung der Lösung</p></td>
 </tr>
 <tr>
@@ -273,17 +273,15 @@ Aufgabe 8 ist nur sinnvoll zusammen mit Aufgabe 7, hier können sich also zwei T
 
 |8|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo40.php[Travelling Salesman], Zusammenarbeit mit Aufgabe 7 für Näherungslösung sinnvoll|Implementierung und Durchführung des Algorithmus für n beliebige Punkte mit der Holzhammermethode und Idee erklären|zusätzlich grafische Darstellung mit der dynamischen Methode|zusätzlich Näherungsmethode mit grafischer Darstellung|zusätzlich schrittweise Lösung für Näherungslösung visualisieren
 
-|9|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo24.php[Bin packing]|Algorithmus FirstFist für zufällige Abfolge von Daten implementieren und erklären|zusätzlich NextFit implementieren und erklären |zusätzlich beide Algorithmen grafisch darstellen (übereinander zum Vergleichen)|zusätzlich eigene Offline-Lösung implementieren, erklären und zum Vergleich grafisch darstellen
+|9|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo24.php[Bin packing]|Algorithmus `FirstFit` für zufällige Abfolge von Daten implementieren und erklären|zusätzlich `NextFit` implementieren und erklären |zusätzlich beide Algorithmen grafisch darstellen (übereinander zum Vergleichen)|zusätzlich eigene Offline-Lösung implementieren, erklären und zum Vergleich grafisch darstellen
 
 |10|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo33.php[Mehrheitsbestimmung]|Majority-Algorithmus für zufällige Wahl implementieren und durchführen|zusätzlich Korrektheit des Majority-Algorithmus erklären|zusätzlich verfeinerten Majority-Algorithmus implementieren und erklären|zusätzlich schrittweise Visualisierung der Lösungsstrategie für einen der Algorithmen 
 
 |11|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo36.php[Turnier- und Sportligaplanung]|Implementieren und erklären des Algorithmus mit 18 Mannschaften (Zahlen 1 bis 18)|zusätzlich 18 Mannschaften aus einfacher Text-Datei einlesen und Spielplan erstellen|zusätzlich Zeitmessung, wie die Erstellungsdauer des Plans von der Anzahl der Mannschaften abhängt und grafische Darstellung (Rechenzeit über Anzahl der Mannschaften)|zusätzlich schrittweise Visualisierung der Lösung
 
-|12|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo23.php[Maximale Flüsse]|Implementieren und Erklären des Algorithmus anhand eines einfachen Beispiels mit zufälligen Verbindungen zufälliger Gewichtungen und Richtungen sowie Start- und Zielpunkt|zusätzlich grafische Darstellung|zusätzlich die Möglichkeit, Punkte, Verbindungen und deren Richtungen und Gewichtungen grafische einzugeben; ebenso Start- und Zielpunkt|zusätzlich schrittweise Visualisierung der Lösung
+|12|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo23.php[Maximale Flüsse]|Implementieren und Erklären des Algorithmus anhand eines einfachen Beispiels mit zufälligen Verbindungen zufälliger Gewichtungen und Richtungen sowie Start- und Zielpunkt|zusätzlich grafische Darstellung|zusätzlich die Möglichkeit, Punkte, Verbindungen und deren Richtungen und Gewichtungen grafisch einzugeben; ebenso Start- und Zielpunkt|zusätzlich schrittweise Visualisierung der Lösung
 
 |13|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo37.php[Fingerprinting]|Algorithmus zum Erstellen eines Fingerprints erklären und an einem einfachen Beispiel von Hand durchführen|zusätzlich Algorithmus für einen String implementieren, wobei automatisch eine sinnvolle Fingerprint-Länge gewählt wird|zusätzlich Textdatei einlesen und Fingerprint davon erstellen|zusätzlich Textvergleich mit Hilfe des Fingerprints durchführen und Verfahren erklären
- 
-
 
 |=== </div></div></div>
 <div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div></div><div hidden="" class="originaltext"></div></div></div>
