@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html><html><head><meta name='description' content='Journal for HTML' ><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='../../assets/css/style.css'>
+<link rel='stylesheet' href='../../assets/css/font-awesome.css'>
+<link rel='stylesheet' href='../../assets/css/katex.css'>
+<link rel='stylesheet' href='../../assets/css/asciidoctor.menz.css'>
+<link rel='stylesheet' href='../../assets/css/prism.css'>
+<script src='../../assets/js/jquery.min.js'></script>
+<script>function nextLayer(evt){var a =evt.firstChild;var zaehler=0;for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){element.setAttribute('visibility','visible');  break;}zaehler++;}if (zaehler==10){for (var i=0;i<10;i++){var element=a.getElementById('layer_'+i);if (element!=null) {element.setAttribute('visibility','hidden');  } } for (var i=0;i<10;i++){ var element=a.getElementById('layer_'+i);if (element!=null&&element.getAttribute('visibility')=='hidden'){ element.setAttribute('visibility','visible');break; }}}}</script><script>var saveAs=saveAs||function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link="download"in save_link,click=function(node){var event=new MouseEvent("click");node.dispatchEvent(event)},is_safari=/Version\/[\d\.]+.*Safari/.test(navigator.userAgent),webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,arbitrary_revoke_timeout=500,revoke=function(file){var revoker=function(){if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}};if(view.chrome){revoker()}else{setTimeout(revoker,arbitrary_revoke_timeout)}},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},auto_bom=function(blob){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(blob.type)){return new Blob(["\ufeff",blob],{type:blob.type})}return blob},FileSaver=function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(target_view&&is_safari&&typeof FileReader!=="undefined"){var reader=new FileReader;reader.onloadend=function(){var base64Data=reader.result;target_view.location.href="data:attachment/file"+base64Data.slice(base64Data.search(/[,;]/));filesaver.readyState=filesaver.DONE;dispatch_all()};reader.readAsDataURL(blob);filesaver.readyState=filesaver.INIT;return}if(blob_changed||!object_url){object_url=get_URL().createObjectURL(blob)}if(target_view){target_view.location.href=object_url}else{var new_tab=view.open(object_url,"_blank");if(new_tab==undefined&&is_safari){view.location.href=object_url}}filesaver.readyState=filesaver.DONE;dispatch_all();revoke(object_url)},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_URL().createObjectURL(blob);setTimeout(function(){save_link.href=object_url;save_link.download=name;click(save_link);dispatch_all();revoke(object_url);filesaver.readyState=filesaver.DONE});return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event);revoke(file)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name,no_auto_bom){return new FileSaver(blob,name,no_auto_bom)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(blob,name,no_auto_bom){if(!no_auto_bom){blob=auto_bom(blob)}return navigator.msSaveOrOpenBlob(blob,name||"download")}}FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!=null){define([],function(){return saveAs})}
+</script>
+<script>    this.saveObject=function(){
+        var e = window.event.srcElement;
+
+        var objectData=e.previousSibling.getAttribute('data');
+        var typ=e.previousSibling.getAttribute('type');
+        var name=e.previousSibling.getAttribute('name');
+        var index=objectData.indexOf(',');
+       
+        var byteCharacters = atob(objectData.substring(index+1));
+  var byteArrays = [];  
+  var sliceSize=512;
+
+  for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    var byteNumbers = new Array(slice.length);
+    for (var i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+
+    byteArrays.push(byteArray);
+  }
+        
+    var blob = new Blob(byteArrays, {type: typ});
+			saveAs(blob, name);
+    }</script>
+<script>function zeigeHashTags(t){var s=!1
+t.toUpperCase().startsWith("TAGS_")&&(t=t.split("_")[1],""==t&&(s=!0),$(".tshareElement").each(function(){var e=$(this).attr("sb");(null==e||""==e)&&(e="@")
+for(var a=-1,r=0;r<t.length;r++)e.includes(t.charAt(r))&&(a=r,r=t.length)
+a>=0||1==s?($(this).attr("style","display:true;"),$(this).next().attr("style","display:true"),$(this).removeClass("versteckt"),$(this).next().removeClass("versteckt")):($(this).attr("style","display:none;"),$(this).next().attr("style","display:none"),$(this).removeClass("versteckt").addClass("versteckt"),$(this).next().removeClass("versteckt").addClass("versteckt"))}))}$(window).on("hashchange",function(){var t=location.hash.substring(1).toUpperCase()
+zeigeHashTags(t)}),$(document).ready(function(){var t=location.hash.substring(1).toUpperCase()
+""==t&&(t="tags_@",location.hash="tags_@"),zeigeHashTags(t)})
+</script>
+</head><body><div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect1">
+<h2 id="ref32715034">Projektaufgaben</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Das Projekt läuft vom <strong>23. April bis zum 11. Juni 2018</strong>, auch in den bis dahin stattfindenden Informatik-Stunden.</p>
+</li>
+<li>
+<p><strong>Präsentationstermine</strong> sind der 18. und der 25. Juni mit je maximal 6 Vorträgen, das Kolloquium findet für alle Teilnehmer am 2. Juli statt, im Krankheitsfall an einem anderen Tag der Kalenderwoche 27.</p>
+</li>
+<li>
+<p>Jedes Thema sollte von maximal <strong>zwei</strong> Personen bearbeitet werden.</p>
+</li>
+<li>
+<p>Die zu verwendende Programmiersprache ist <strong>Java</strong>, die zu verwendende Entwicklungsumgebung ist <strong>Netbeans</strong>. Der Einsatz objektorientierter Programmierung wird empfohlen, ist jedoch nicht verpflichtend.</p>
+</li>
+<li>
+<p>Für die Programmierung von Grafik mithilfe der Maus, sowie dem Auslesen und Schreiben von Textdateien, gibt es <a href="https://github.com/menzelths/Grundlagen_Formular_Netbeans">hier</a> ein Beispielprogramm.</p>
+</li>
+<li>
+<p>Beide Teilnehmer des Teams müssen alles über das erstellte Programm und den Algorithmus wissen, was in einem zusätzlichen Kolloquium einzeln überprüft wird.</p>
+</li>
+<li>
+<p>Das Ergebnis muss in Form einer Präsentation (kann auch an der Tafel sein, muss nicht Powerpoint sein) dem Kurs vorgestellt werden, <strong>maximale Dauer: 10 Minuten</strong>. Beide Team-Mitglieder sollten dabei gleiche Rede-Anteile haben, die sich auch im Anspruch ähneln und werden getrennt voneinander bewertet. Die Präsentation soll bis auf wenige Ausnahmen keine Code-Ausschnitte zeigen, sondern den jeweiligen Algorithmus als solchen erklären. Grafische Darstellungen sind von Vorteil, im Idealfall kann das erstellte Programm sogar schrittweise den Lösungsweg visualisieren (siehe auch Tabelle weiter unten).</p>
+</li>
+<li>
+<p><strong>Jedes Team muss gemeinsam ein Github-Repository erstellen, mit dem gearbeitet wird.</strong> Der Link zum Projekt-Repository ist eurem Informatiklehrer mitzuteilen. Es sollte regelmäßig am Projekt gearbeitet werden, was auch an der History des Github-Projekts überprüfbar ist. Projekte, die erst kurz vor dem Präsentationstermin komplett auf Github hochgeladen werden erhalten einen Abzug.</p>
+<div class="paragraph">
+<p>Ein Vorteil der Arbeit mit Github ist auch, dass im Krankheitsfall eines Teilnehmers das andere Team-Mitglied weiterarbeiten kann und auch eine Zusammenarbeit über das Internet ohne physische Treffen möglich ist.</p>
+</div>
+</li>
+<li>
+<p>Fragen, auch außerhalb der Informatikstunden, sind jederzeit möglich und da die Programmierprojekte auf Github hinterlegt sind, können diese von eurem Informatiklehrer jederzeit eingesehen und dadurch die Fragen einfacher beantwortet werden.</p>
+</li>
+<li>
+<p>Sollte ein Team einen Algorithmus nur erklären können ohne diesen zu implementieren, so wird diese Leistung mit <strong>maximal 5 Punkten</strong> bewertet.</p>
+</li>
+<li>
+<p><strong>"Abgabetermin des Programms": 15. Juni 2018, 18 Uhr</strong></p>
+<div class="paragraph">
+<p>Zu diesem Zeitpunkt werden alle Programme von eurem Informatiklehrer von Github heruntergeladen und für die Präsentationen vorbereitet. <strong>Eine spätere Abgabe ist nicht möglich; die zu diesem Zeitpunkt vorliegende Version des Programms ist die Grundlage für die abschließende Bewertung des Projekts. In der Präsentation des Programms darf keine neuere Version verwendet werden.</strong></p>
+</div>
+</li>
+<li>
+<p><strong>Abgabetermin Präsentation: 17. Juni 2018, 18 Uhr</strong></p>
+<div class="paragraph">
+<p>Bitte die Präsentationen per E-Mail an euren Informatiklehrer schicken, spätere Einsendungen führen zu einem Abzug.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div></div><div hidden="" class="originaltext">== Projektaufgaben
+* Das Projekt läuft vom *23. April bis zum 11. Juni 2018*, auch in den bis dahin stattfindenden Informatik-Stunden.
+* *Präsentationstermine* sind der 18. und der 25. Juni mit je maximal 6 Vorträgen, das Kolloquium findet für alle Teilnehmer am 2. Juli statt, im Krankheitsfall an einem anderen Tag der Kalenderwoche 27.
+* Jedes Thema sollte von maximal *zwei* Personen bearbeitet werden.
+* Die zu verwendende Programmiersprache ist *Java*, die zu verwendende Entwicklungsumgebung ist *Netbeans*. Der Einsatz objektorientierter Programmierung wird empfohlen, ist jedoch nicht verpflichtend.
+* Für die Programmierung von Grafik mithilfe der Maus, sowie dem Auslesen und Schreiben von Textdateien, gibt es https://github.com/menzelths/Grundlagen_Formular_Netbeans[hier] ein Beispielprogramm.
+* Beide Teilnehmer des Teams müssen alles über das erstellte Programm und den Algorithmus wissen, was in einem zusätzlichen Kolloquium einzeln überprüft wird.
+* Das Ergebnis muss in Form einer Präsentation (kann auch an der Tafel sein, muss nicht Powerpoint sein) dem Kurs vorgestellt werden, *maximale Dauer: 10 Minuten*. Beide Team-Mitglieder sollten dabei gleiche Rede-Anteile haben, die sich auch im Anspruch ähneln und werden getrennt voneinander bewertet. Die Präsentation soll bis auf wenige Ausnahmen keine Code-Ausschnitte zeigen, sondern den jeweiligen Algorithmus als solchen erklären. Grafische Darstellungen sind von Vorteil, im Idealfall kann das erstellte Programm sogar schrittweise den Lösungsweg visualisieren (siehe auch Tabelle weiter unten).
+* *Jedes Team muss gemeinsam ein Github-Repository erstellen, mit dem gearbeitet wird.* Der Link zum Projekt-Repository ist eurem Informatiklehrer mitzuteilen. Es sollte regelmäßig am Projekt gearbeitet werden, was auch an der History des Github-Projekts überprüfbar ist. Projekte, die erst kurz vor dem Präsentationstermin komplett auf Github hochgeladen werden erhalten einen Abzug. 
++
+Ein Vorteil der Arbeit mit Github ist auch, dass im Krankheitsfall eines Teilnehmers das andere Team-Mitglied weiterarbeiten kann und auch eine Zusammenarbeit über das Internet ohne physische Treffen möglich ist. 
+* Fragen, auch außerhalb der Informatikstunden, sind jederzeit möglich und da die Programmierprojekte auf Github hinterlegt sind, können diese von eurem Informatiklehrer jederzeit eingesehen und dadurch die Fragen einfacher beantwortet werden. 
+* Sollte ein Team einen Algorithmus nur erklären können ohne diesen zu implementieren, so wird diese Leistung mit *maximal 5 Punkten* bewertet.
+* *"Abgabetermin des Programms": 15. Juni 2018, 18 Uhr*
++
+Zu diesem Zeitpunkt werden alle Programme von eurem Informatiklehrer von Github heruntergeladen und für die Präsentationen vorbereitet. *Eine spätere Abgabe ist nicht möglich; die zu diesem Zeitpunkt vorliegende Version des Programms ist die Grundlage für die abschließende Bewertung des Projekts. In der Präsentation des Programms darf keine neuere Version verwendet werden.*  
+* *Abgabetermin Präsentation: 17. Juni 2018, 18 Uhr*
++
+Bitte die Präsentationen per E-Mail an euren Informatiklehrer schicken, spätere Einsendungen führen zu einem Abzug.
+
+</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><div class="sect2">
+<h3 id="ref38456754">Mögliche Themen</h3>
+<div class="paragraph">
+<p>Jedes Team wählt ein Thema aus und bearbeitet dieses gemäß der oben aufgezählten Richtlinien.</p>
+</div>
+<div class="paragraph">
+<p>Aufgabe 8 ist nur sinnvoll zusammen mit Aufgabe 7, hier können sich also zwei Teams zusammentun.</p>
+</div>
+</div></div><div hidden="" class="originaltext">=== Mögliche Themen
+Jedes Team wählt ein Thema aus und bearbeitet dieses gemäß der oben aufgezählten Richtlinien. 
+
+Aufgabe 8 ist nur sinnvoll zusammen mit Aufgabe 7, hier können sich also zwei Teams zusammentun.</div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div><table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nr</th>
+<th class="tableblock halign-left valign-top">Thema</th>
+<th class="tableblock halign-left valign-top">bis zu 7 Punkte</th>
+<th class="tableblock halign-left valign-top">bis zu 10 Punkte</th>
+<th class="tableblock halign-left valign-top">bis zu 13 Punkte</th>
+<th class="tableblock halign-left valign-top">bis zu 15 Punkte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo5.php">Labyrinth und Tiefensuche</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Algorithmus mit Labyrinth in Array implementieren und erklären können</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich grafische Ausgabe des Labyrinths und der Lösung</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Labyrinth mit Maus zeichnen (in festem Raster), Startpunkt festlegen und Lösung finden</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich schrittweise Visualisierung der Lösung</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo6.php">Roboter im Labyrinth</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Algorithmus mit Labyrinth in Array implementieren und erklären können</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich grafische Ausgabe des Labyrinths und der gefundenen Lösung</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Labyrinth mit Maus zeichnen (in festem Raster), Startpunkt festlegen und Lösung finden</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich schrittweise Visualisierung der Lösung</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo7.php">Kürzeste Wege</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Algorithmus mit zufälligen Wegpunkten und Verbindungen sowie Start- und Zielpunkt implementieren und erklären</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich grafische Ausgabe der zufälligen Punkte mit Verbindungen und farbig dargestelltem kürzesten Weg</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Setzen der Wegpunkte, Verbindungen sowie Start- und Zielpunkt mit der Maus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich schrittweise Visualisierung der Lösung</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo8.php">Topologisches Sortieren</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Algorithmus mit fester Belegung und Abfolge implementieren und erklären</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Eingabemaske erstellen, die das Eingeben eigener TODO-Punkte ermöglicht, sowie deren Abfolgen (nachgeordnete Aufgaben könnten beispielsweise als einfache Zahlen in Kommaliste eingegeben werden)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich grafische Darstellung der Anfangssituation mit Rechtecken und Pfeilen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich schrittweise Visualisierung der Lösung</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo14.php">Gewinnstrategie für ein Streichholzspiel</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spiel für zufällige Streichholzanzahl für zwei Spieler programmieren, Algorithmus von Hand durchspielen (Anzahl der wegzunehmenden Streichhölzer Spielers durch Eingabe in der Konsole für beide Spieler) und Algorithmus erklären können</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spiel Computer gegen Mensch erstellen, wobei der Computer gemäß dem Algorithmus spielt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich grafische Umsetzung z. B. mit JPanel und Textfeld</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich: Computer spielt jeweils gegen sich selbst mit verschiedenen Anzahlen von Streichhölzern (5 bis 100) am Anfang. Es wird eine Liste erstellt, die enthält, wie oft prozentual der beginnende Spieler gewinnt.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo42.php">Kleinster umschließender Kreis</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementierung und Durchführung des Algorithmus mit zufälligen Punkten</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Erklärung des Algorithmus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich grafische Darstellung z. B. in einem jPanel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Messung der Rechenzeit für verschiedene Anzahlen von Startpunkten und Darstellung in einem Diagramm</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo21.php">Minimal aufspannende Bäume</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementierung des Algorithmus mit zufälligen Punkten</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich grafische Darstellung</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Festlegung der Punkte per Maus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich schrittweise Visualisierung der Lösung</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo40.php">Travelling Salesman</a>, Zusammenarbeit mit Aufgabe 7 für Näherungslösung sinnvoll</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementierung und Durchführung des Algorithmus für n beliebige Punkte mit der Holzhammermethode und Idee erklären</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich grafische Darstellung mit der dynamischen Methode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Näherungsmethode mit grafischer Darstellung</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich schrittweise Lösung für Näherungslösung visualisieren</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo24.php">Bin packing</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Algorithmus FirstFist für zufällige Abfolge von Daten implementieren und erklären</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich NextFit implementieren und erklären</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich beide Algorithmen grafisch darstellen (übereinander zum Vergleichen)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich eigene Offline-Lösung implementieren, erklären und zum Vergleich grafisch darstellen</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo33.php">Mehrheitsbestimmung</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Majority-Algorithmus für zufällige Wahl implementieren und durchführen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Korrektheit des Majority-Algorithmus erklären</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich verfeinerten Majority-Algorithmus implementieren und erklären</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich schrittweise Visualisierung der Lösungsstrategie für einen der Algorithmen</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo36.php">Turnier- und Sportligaplanung</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementieren und erklären des Algorithmus mit 18 Mannschaften (Zahlen 1 bis 18)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich 18 Mannschaften aus einfacher Text-Datei einlesen und Spielplan erstellen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Zeitmessung, wie die Erstellungsdauer des Plans von der Anzahl der Mannschaften abhängt und grafische Darstellung (Rechenzeit über Anzahl der Mannschaften)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich schrittweise Visualisierung der Lösung</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo23.php">Maximale Flüsse</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementieren und Erklären des Algorithmus anhand eines einfachen Beispiels mit zufälligen Verbindungen zufälliger Gewichtungen und Richtungen sowie Start- und Zielpunkt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich grafische Darstellung</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich die Möglichkeit, Punkte, Verbindungen und deren Richtungen und Gewichtungen grafische einzugeben; ebenso Start- und Zielpunkt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich schrittweise Visualisierung der Lösung</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo37.php">Fingerprinting</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Algorithmus zum Erstellen eines Fingerprints erklären und an einem einfachen Beispiel von Hand durchführen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Algorithmus für einen String implementieren, wobei automatisch eine sinnvolle Fingerprint-Länge gewählt wird</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Textdatei einlesen und Fingerprint davon erstellen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zusätzlich Textvergleich mit Hilfe des Fingerprints durchführen und Verfahren erklären</p></td>
+</tr>
+</tbody>
+</table></div><div hidden="" class="originaltext">[autowidth]  
+|===
+|Nr|Thema|bis zu 7 Punkte| bis zu 10 Punkte|bis zu 13 Punkte|bis zu 15 Punkte
+
+|1|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo5.php[Labyrinth und Tiefensuche]| Algorithmus mit Labyrinth in Array implementieren und erklären können|zusätzlich grafische Ausgabe des Labyrinths und der Lösung|zusätzlich Labyrinth mit Maus zeichnen (in festem Raster), Startpunkt festlegen und Lösung finden|zusätzlich schrittweise Visualisierung der Lösung
+
+|2|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo6.php[Roboter im Labyrinth]|Algorithmus mit Labyrinth in Array implementieren und erklären können|zusätzlich grafische Ausgabe des Labyrinths und der gefundenen Lösung|zusätzlich Labyrinth mit Maus zeichnen (in festem Raster), Startpunkt festlegen und Lösung finden|zusätzlich schrittweise Visualisierung der Lösung 
+
+|3|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo7.php[Kürzeste Wege]|Algorithmus mit zufälligen Wegpunkten und Verbindungen sowie Start- und Zielpunkt implementieren und erklären|zusätzlich grafische Ausgabe der zufälligen Punkte mit Verbindungen und farbig dargestelltem kürzesten Weg|zusätzlich Setzen der Wegpunkte, Verbindungen sowie Start- und Zielpunkt mit der Maus|zusätzlich schrittweise Visualisierung der Lösung
+
+|4|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo8.php[Topologisches Sortieren]|Algorithmus mit fester Belegung und Abfolge implementieren und erklären|zusätzlich Eingabemaske erstellen, die das Eingeben eigener TODO-Punkte ermöglicht, sowie deren Abfolgen (nachgeordnete Aufgaben könnten beispielsweise als einfache Zahlen in Kommaliste eingegeben werden)|zusätzlich grafische Darstellung der Anfangssituation mit Rechtecken und Pfeilen|zusätzlich schrittweise Visualisierung der Lösung
+
+|5|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo14.php[Gewinnstrategie für ein Streichholzspiel]|Spiel für zufällige Streichholzanzahl für zwei Spieler programmieren, Algorithmus von Hand durchspielen (Anzahl der wegzunehmenden Streichhölzer Spielers durch Eingabe in der Konsole für beide Spieler) und Algorithmus erklären können|Spiel Computer gegen Mensch erstellen, wobei der Computer gemäß dem Algorithmus spielt|zusätzlich grafische Umsetzung z. B. mit JPanel und Textfeld|zusätzlich: Computer spielt jeweils gegen sich selbst mit verschiedenen Anzahlen von Streichhölzern (5 bis 100) am Anfang. Es wird eine Liste erstellt, die enthält, wie oft prozentual der beginnende Spieler gewinnt.
+
+|6|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo42.php[Kleinster umschließender Kreis]|Implementierung und Durchführung des Algorithmus mit zufälligen Punkten|zusätzlich Erklärung des Algorithmus|zusätzlich grafische Darstellung z. B. in einem jPanel|Messung der Rechenzeit für verschiedene Anzahlen von Startpunkten und Darstellung in einem Diagramm
+
+|7|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo21.php[Minimal aufspannende Bäume]|Implementierung des Algorithmus mit zufälligen Punkten|zusätzlich grafische Darstellung|zusätzlich Festlegung der Punkte per Maus|zusätzlich schrittweise Visualisierung der Lösung
+
+|8|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo40.php[Travelling Salesman], Zusammenarbeit mit Aufgabe 7 für Näherungslösung sinnvoll|Implementierung und Durchführung des Algorithmus für n beliebige Punkte mit der Holzhammermethode und Idee erklären|zusätzlich grafische Darstellung mit der dynamischen Methode|zusätzlich Näherungsmethode mit grafischer Darstellung|zusätzlich schrittweise Lösung für Näherungslösung visualisieren
+
+|9|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo24.php[Bin packing]|Algorithmus FirstFist für zufällige Abfolge von Daten implementieren und erklären|zusätzlich NextFit implementieren und erklären |zusätzlich beide Algorithmen grafisch darstellen (übereinander zum Vergleichen)|zusätzlich eigene Offline-Lösung implementieren, erklären und zum Vergleich grafisch darstellen
+
+|10|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo33.php[Mehrheitsbestimmung]|Majority-Algorithmus für zufällige Wahl implementieren und durchführen|zusätzlich Korrektheit des Majority-Algorithmus erklären|zusätzlich verfeinerten Majority-Algorithmus implementieren und erklären|zusätzlich schrittweise Visualisierung der Lösungsstrategie für einen der Algorithmen 
+
+|11|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo36.php[Turnier- und Sportligaplanung]|Implementieren und erklären des Algorithmus mit 18 Mannschaften (Zahlen 1 bis 18)|zusätzlich 18 Mannschaften aus einfacher Text-Datei einlesen und Spielplan erstellen|zusätzlich Zeitmessung, wie die Erstellungsdauer des Plans von der Anzahl der Mannschaften abhängt und grafische Darstellung (Rechenzeit über Anzahl der Mannschaften)|zusätzlich schrittweise Visualisierung der Lösung
+
+|12|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo23.php[Maximale Flüsse]|Implementieren und Erklären des Algorithmus anhand eines einfachen Beispiels mit zufälligen Verbindungen zufälliger Gewichtungen und Richtungen sowie Start- und Zielpunkt|zusätzlich grafische Darstellung|zusätzlich die Möglichkeit, Punkte, Verbindungen und deren Richtungen und Gewichtungen grafische einzugeben; ebenso Start- und Zielpunkt|zusätzlich schrittweise Visualisierung der Lösung
+
+|13|https://www-i1.informatik.rwth-aachen.de/~algorithmus/algo37.php[Fingerprinting]|Algorithmus zum Erstellen eines Fingerprints erklären und an einem einfachen Beispiel von Hand durchführen|zusätzlich Algorithmus für einen String implementieren, wobei automatisch eine sinnvolle Fingerprint-Länge gewählt wird|zusätzlich Textdatei einlesen und Fingerprint davon erstellen|zusätzlich Textvergleich mit Hilfe des Fingerprints durchführen und Verfahren erklären
+ 
+
+
+|=== </div></div></div>
+<div sb='@' ft='='  style='display:none;' class='markdown tshareElement adoccss'><div class="markdownText"><div></div><div hidden="" class="originaltext"></div></div></div>
+</body></html>
